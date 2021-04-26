@@ -1,0 +1,15 @@
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.exe
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.deps.json
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.runtimeconfig.json
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.runtimeconfig.dev.json
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.dll
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\bin\Debug\netcoreapp3.1\LCC.pdb
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.csprojAssemblyReference.cache
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.Main.resources
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.csproj.GenerateResource.cache
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.AssemblyInfoInputs.cache
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.AssemblyInfo.cs
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.csproj.CoreCompileInputs.cache
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.dll
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.pdb
+C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\obj\Debug\netcoreapp3.1\LCC.genruntimeconfig.cache
