@@ -25,9 +25,9 @@ namespace LCC
 
         private async void sample() {
 
-            var aParams = new Dictionary<string, string>
+            var aParams = new Dictionary<dynamic, dynamic>
             {
-                { "Name", "John Patrick Loyola" }
+                { 1, "John Patrick Loyola" }
             };
             this.Text = await new ClientLibrary().send("https://webhook.site/8d3650d3-25ac-458d-ae23-16d7559444b4", aParams);
         }

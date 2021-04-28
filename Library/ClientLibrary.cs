@@ -14,13 +14,13 @@ namespace LCC.Library
 
         public readonly HttpClient oClient = new HttpClient();
 
-        public async Task<string>get(string sUrl, Dictionary<string, string> oParam)
+        public async Task<string>get(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
             return await this.oClient.GetStringAsync(sUrl + "?" + this.getQueryParameters(oParam));
         }
 
 
-        public async Task<string>send(string sUrl, Dictionary<string, string> oParam)
+        public async Task<string>send(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
             var sJson = JsonConvert.SerializeObject(oParam);
             StringContent oParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
@@ -28,10 +28,10 @@ namespace LCC.Library
             return await oResponse.Content.ReadAsStringAsync();
         }
 
-        private string getQueryParameters(Dictionary<string, string> oParam)
+        private string getQueryParameters(Dictionary<dynamic, dynamic> oParam)
         {
             string sQuery = "";
-            foreach(KeyValuePair<string, string> oItem in oParam) {
+            foreach(KeyValuePair<dynamic, dynamic> oItem in oParam) {
                 sQuery += "&" + oItem.Key + "=" + oItem.Value;
             }
 
