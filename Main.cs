@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LCC.Library;
 using System.Net.Http;
+using System.Security.Cryptography;
 
 namespace LCC
 {
@@ -20,16 +21,42 @@ namespace LCC
         public Main()
         {
             InitializeComponent();
-            this.label1.Text = new KeyGeneratorLibrary().getGeneratedLicenseKey();
+            //for(int i = 0; i <= 10; i++)
+            //{
+            //    sKey += new KeyGeneratorLibrary().getGeneratedLicenseKey() + "\n";
+            //}
+
+            //var hash = new HMACSHA256(Encoding.UTF8.GetBytes("---LCC-GIAEMPATECH-04-20-2021---"));
+            //int timestamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            //var aParamss = new Dictionary<dynamic, dynamic>
+            //{
+            //    { "sample", "true" },
+            //    { "timestamp", timestamp }
+            //};
+            //var aParams = new Dictionary<dynamic, dynamic>
+            //{
+            //    { "sample", "true" },
+            //    { "timestamp", timestamp },
+            //    { "hmac", Convert.ToBase64String(hash.ComputeHash(Encoding.UTF8.GetBytes(new ClientLibrary().getQueryParameters(aParamss)))) }
+            //};
+
+            //this.richTextBox1.Text = new ClientLibrary().getQueryParameters(aParams);
+            this.sample();
+
         }
 
-        private async void sample() {
-
-            var aParams = new Dictionary<dynamic, dynamic>
+        private async void sample()
+        {
+            var oParams = new Dictionary<dynamic, dynamic>
             {
-                { 1, "John Patrick Loyola" }
+                { "sample", "true" }
             };
-            this.Text = await new ClientLibrary().send("https://webhook.site/8d3650d3-25ac-458d-ae23-16d7559444b4", aParams);
+            this.richTextBox1.Text = await new ClientLibrary().get("http://lcc-tool.com/api/license/HELLOW TO THE API", oParams);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.sample();
         }
     }
 }

@@ -49,5 +49,25 @@ namespace LCC.Library
             using StreamReader streamReader = new StreamReader((Stream)oCryptoStream);
             return streamReader.ReadToEnd();
         }
+
+        public static string getEncryptBase64(string sContent)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(sContent));
+        }
+        public static string getEncryptBase64(byte[] aContent)
+        {
+            return Convert.ToBase64String(aContent);
+        }
+
+        public static string getDecryptBase64(string sContent)
+        {
+            return Encoding.UTF8.GetString(Convert.FromBase64String(sContent));
+        }
+
+        public static string getHmac(string sContent)
+        {
+            HMACSHA256 oHmacSha256 = new HMACSHA256(Encoding.UTF8.GetBytes(LCC_KEY));
+            return getEncryptBase64(oHmacSha256.ComputeHash(Encoding.UTF8.GetBytes(sContent)));
+        }
     }
 }

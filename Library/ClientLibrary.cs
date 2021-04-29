@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,8 +11,6 @@ namespace LCC.Library
     public class ClientLibrary
     {
 
-        public const string PROTOCOL = "HTTPS";
-
         public readonly HttpClient oClient = new HttpClient();
 
         public async Task<string>get(string sUrl, Dictionary<dynamic, dynamic> oParam)
@@ -22,20 +21,23 @@ namespace LCC.Library
 
         public async Task<string>send(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
+            oParam.Add("hmac", this.getQueryParameters(oParam, false));
             var sJson = JsonConvert.SerializeObject(oParam);
             StringContent oParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
             var oResponse = await this.oClient.PostAsync(sUrl, oParameters);
             return await oResponse.Content.ReadAsStringAsync();
         }
 
-        private string getQueryParameters(Dictionary<dynamic, dynamic> oParam)
+        public string getQueryParameters(Dictionary<dynamic, dynamic> oParam, bool bWithHmac = true)
         {
             string sQuery = "";
-            foreach(KeyValuePair<dynamic, dynamic> oItem in oParam) {
-                sQuery += "&" + oItem.Key + "=" + oItem.Value;
+            for(int i = 0; i < oParam.Count; i++)
+            {
+                sQuery += ((i != 0) ? "&" : "") + oParam.Keys.ElementAt(i) + "=" + oParam.Values.ElementAt(i);
             }
-
-            return sQuery;
+            sQuery += ((oParam.Count != 0) ? "&" : "") + "timestamp=" + UtilsLibrary.getTimestamp(); 
+            if (bWithHmac == true) sQuery += ((oParam.Count != 0) ? "&" : "") + "hmac=" + EncryptionDecryptionLibrary.getHmac(sQuery);
+            return sQuery.Replace("+", "%2B");
         }
     }
 }
