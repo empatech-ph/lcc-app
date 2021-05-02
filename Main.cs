@@ -56,7 +56,7 @@ namespace LCC
                 { "total_access", 5},
                 { "timestamp", UtilsLibrary.getTimestamp() }
             };
-            this.richTextBox1.Text = await new ClientLibrary().send("http://lcc-tool.com/api/license", oParams);
+            this.richTextBox1.Text = await new ClientLibrary(Properties.Resources.ResourceManager.GetString("webhost")).send("/api/license", oParams);
         }
 
         private void button1_Click(object sender, EventArgs e)

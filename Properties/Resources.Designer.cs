@@ -59,5 +59,14 @@ namespace LCC.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://lcc-tool.com.
+        /// </summary>
+        internal static string webhost {
+            get {
+                return ResourceManager.GetString("webhost", resourceCulture);
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace LCC.Admin
         public KeyGenerator()
         {
             InitializeComponent();
-            this.oClient = new ClientLibrary();
+            this.oClient = new ClientLibrary(Properties.Resources.ResourceManager.GetString("webhost"));
             this.oKeyGen = new KeyGeneratorLibrary();
             this.cb_noOfUserCanAccess.SelectedIndex = 0;
             this.cb_licenseKeyLife.SelectedIndex = 0;
@@ -47,7 +47,7 @@ namespace LCC.Admin
             {
                 { "timestamp", UtilsLibrary.getTimestamp() }
             };
-            var sLatestId = await this.oClient.get("http://lcc-tool.com/api/license/id", oParam);
+            var sLatestId = await this.oClient.get("/api/license/id", oParam);
             if (this.tb_prodCode.TextLength <= 0) this.tb_prodCode.Text = this.oKeyGen.getProductCode(Int32.Parse(sLatestId));
             if (this.tb_licenseKey.TextLength <= 0) this.tb_licenseKey.Text = this.oKeyGen.getGeneratedLicenseKey();
         }
@@ -64,7 +64,7 @@ namespace LCC.Admin
                     { "timestamp", UtilsLibrary.getTimestamp() },
                 };
 
-            var sResult = await this.oClient.send("http://lcc-tool.com/api/license", oParam);
+            var sResult = await this.oClient.send("/api/license", oParam);
             MessageBox.Show(sResult);
             this.clearFields();
         }
