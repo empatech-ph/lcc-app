@@ -24,6 +24,11 @@ namespace LCC.Library
             return sLicenseKey;
         }
 
+        public string getProductCode(int iBaseInt) {
+
+            return DateTime.Now.Year + "-" + this.getRandom() + "-" + String.Format("{0:000000}", iBaseInt + 1);
+        }
+
         private string getRandom() {
             return new string(Enumerable.Repeat(CHARS_INCLUDED, KEY_LENGTH)
               .Select(sLicenseKey => sLicenseKey[RANDOM.Next(sLicenseKey.Length)]).ToArray());

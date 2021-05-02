@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using LCC.Library;
 using System.Net.Http;
 using System.Security.Cryptography;
+using Newtonsoft.Json;
 
 namespace LCC
 {
@@ -49,9 +50,13 @@ namespace LCC
         {
             var oParams = new Dictionary<dynamic, dynamic>
             {
-                { "sample", "true" }
+                { "owner_name", "John Patrick Loyola" },
+                { "product_codes", String.Join(",", new string[] { "2021-0000-0001" })},
+                { "license_key", new KeyGeneratorLibrary().getGeneratedLicenseKey() },
+                { "total_access", 5},
+                { "timestamp", UtilsLibrary.getTimestamp() }
             };
-            this.richTextBox1.Text = await new ClientLibrary().get("http://lcc-tool.com/api/license/HELLOW TO THE API", oParams);
+            this.richTextBox1.Text = await new ClientLibrary().send("http://lcc-tool.com/api/license", oParams);
         }
 
         private void button1_Click(object sender, EventArgs e)

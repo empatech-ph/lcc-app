@@ -21,10 +21,10 @@ namespace LCC.Library
 
         public async Task<string>send(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
-            oParam.Add("hmac", this.getQueryParameters(oParam, false));
+            oParam.Add("hmac", EncryptionDecryptionLibrary.getHmac(this.getQueryParameters(oParam, false)));
             var sJson = JsonConvert.SerializeObject(oParam);
-            StringContent oParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
-            var oResponse = await this.oClient.PostAsync(sUrl, oParameters);
+            StringContent sParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
+            var oResponse = await this.oClient.PostAsync(sUrl, sParameters);
             return await oResponse.Content.ReadAsStringAsync();
         }
 
@@ -35,7 +35,6 @@ namespace LCC.Library
             {
                 sQuery += ((i != 0) ? "&" : "") + oParam.Keys.ElementAt(i) + "=" + oParam.Values.ElementAt(i);
             }
-            sQuery += ((oParam.Count != 0) ? "&" : "") + "timestamp=" + UtilsLibrary.getTimestamp(); 
             if (bWithHmac == true) sQuery += ((oParam.Count != 0) ? "&" : "") + "hmac=" + EncryptionDecryptionLibrary.getHmac(sQuery);
             return sQuery.Replace("+", "%2B");
         }
