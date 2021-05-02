@@ -18,7 +18,7 @@ namespace LCC.Admin
         public KeyGenerator()
         {
             InitializeComponent();
-            this.oClient = new ClientLibrary(Properties.Resources.ResourceManager.GetString("webhost"));
+            this.oClient = new ClientLibrary();
             this.oKeyGen = new KeyGeneratorLibrary();
             this.cb_noOfUserCanAccess.SelectedIndex = 0;
             this.cb_licenseKeyLife.SelectedIndex = 0;
@@ -79,6 +79,11 @@ namespace LCC.Admin
             this.tb_ownerName.Clear();
             this.tb_prodCode.Clear();
             this.tb_licenseKey.Clear();
+        }
+
+        private void btn_verify_Click(object sender, EventArgs e)
+        {
+            new KeyVerifier().ShowDialog();
         }
     }
 }

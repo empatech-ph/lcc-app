@@ -151,7 +151,7 @@ namespace LCC.Admin
             // 
             this.title.AutoSize = true;
             this.title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.title.Location = new System.Drawing.Point(12, 9);
+            this.title.Location = new System.Drawing.Point(12, 20);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(140, 25);
             this.title.TabIndex = 7;
@@ -216,7 +216,7 @@ namespace LCC.Admin
             this.btn_verify.TabIndex = 10;
             this.btn_verify.Text = "Verifier";
             this.btn_verify.UseVisualStyleBackColor = false;
-            this.btn_verify.Click += new System.EventHandler(this.b_save_Click);
+            this.btn_verify.Click += new System.EventHandler(this.btn_verify_Click);
             // 
             // KeyGenerator
             // 
