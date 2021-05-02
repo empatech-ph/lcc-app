@@ -13,9 +13,21 @@ namespace LCC.Library
 
         public readonly HttpClient oClient = new HttpClient();
 
+        public string sBaseUrl = "";
+
+        public ClientLibrary()
+        {
+            this.sBaseUrl = Properties.Resources.ResourceManager.GetString("webhost");
+        }
+
+        public ClientLibrary(string sBaseUrl)
+        {
+            this.sBaseUrl = sBaseUrl;
+        }
+
         public async Task<string>get(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
-            return await this.oClient.GetStringAsync(sUrl + "?" + this.getQueryParameters(oParam));
+            return await this.oClient.GetStringAsync(this.sBaseUrl + sUrl + "?" + this.getQueryParameters(oParam));
         }
 
 
@@ -24,7 +36,7 @@ namespace LCC.Library
             oParam.Add("hmac", EncryptionDecryptionLibrary.getHmac(this.getQueryParameters(oParam, false)));
             var sJson = JsonConvert.SerializeObject(oParam);
             StringContent sParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
-            var oResponse = await this.oClient.PostAsync(sUrl, sParameters);
+            var oResponse = await this.oClient.PostAsync(this.sBaseUrl + sUrl, sParameters);
             return await oResponse.Content.ReadAsStringAsync();
         }
 
