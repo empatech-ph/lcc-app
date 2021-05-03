@@ -35,6 +35,8 @@ namespace LCC.Admin
             this.tb_prodCode = new System.Windows.Forms.TextBox();
             this.tb_LicenseKey = new System.Windows.Forms.TextBox();
             this.btn_verify = new System.Windows.Forms.Button();
+            this.forAllowedEmail = new System.Windows.Forms.Label();
+            this.tb_allowedEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // title
@@ -59,7 +61,7 @@ namespace LCC.Admin
             // forLicenseKey
             // 
             this.forLicenseKey.AutoSize = true;
-            this.forLicenseKey.Location = new System.Drawing.Point(63, 108);
+            this.forLicenseKey.Location = new System.Drawing.Point(63, 142);
             this.forLicenseKey.Name = "forLicenseKey";
             this.forLicenseKey.Size = new System.Drawing.Size(76, 15);
             this.forLicenseKey.TabIndex = 9;
@@ -74,7 +76,7 @@ namespace LCC.Admin
             // 
             // tb_LicenseKey
             // 
-            this.tb_LicenseKey.Location = new System.Drawing.Point(145, 105);
+            this.tb_LicenseKey.Location = new System.Drawing.Point(145, 139);
             this.tb_LicenseKey.Name = "tb_LicenseKey";
             this.tb_LicenseKey.Size = new System.Drawing.Size(219, 23);
             this.tb_LicenseKey.TabIndex = 2;
@@ -82,7 +84,7 @@ namespace LCC.Admin
             // btn_verify
             // 
             this.btn_verify.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btn_verify.Location = new System.Drawing.Point(198, 146);
+            this.btn_verify.Location = new System.Drawing.Point(202, 193);
             this.btn_verify.Name = "btn_verify";
             this.btn_verify.Size = new System.Drawing.Size(95, 44);
             this.btn_verify.TabIndex = 3;
@@ -90,14 +92,32 @@ namespace LCC.Admin
             this.btn_verify.UseVisualStyleBackColor = false;
             this.btn_verify.Click += new System.EventHandler(this.btn_verify_Click);
             // 
+            // forAllowedEmail
+            // 
+            this.forAllowedEmail.AutoSize = true;
+            this.forAllowedEmail.Location = new System.Drawing.Point(49, 113);
+            this.forAllowedEmail.Name = "forAllowedEmail";
+            this.forAllowedEmail.Size = new System.Drawing.Size(90, 15);
+            this.forAllowedEmail.TabIndex = 9;
+            this.forAllowedEmail.Text = "*Allowed Email:";
+            // 
+            // tb_allowedEmail
+            // 
+            this.tb_allowedEmail.Location = new System.Drawing.Point(145, 110);
+            this.tb_allowedEmail.Name = "tb_allowedEmail";
+            this.tb_allowedEmail.Size = new System.Drawing.Size(219, 23);
+            this.tb_allowedEmail.TabIndex = 2;
+            // 
             // KeyVerifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(411, 216);
+            this.ClientSize = new System.Drawing.Size(411, 264);
             this.Controls.Add(this.btn_verify);
+            this.Controls.Add(this.tb_allowedEmail);
             this.Controls.Add(this.tb_LicenseKey);
+            this.Controls.Add(this.forAllowedEmail);
             this.Controls.Add(this.tb_prodCode);
             this.Controls.Add(this.forLicenseKey);
             this.Controls.Add(this.forProdCode);
@@ -118,5 +138,7 @@ namespace LCC.Admin
         private System.Windows.Forms.TextBox tb_prodCode;
         private System.Windows.Forms.TextBox tb_LicenseKey;
         private System.Windows.Forms.Button btn_verify;
+        private System.Windows.Forms.Label forAllowedEmail;
+        private System.Windows.Forms.TextBox tb_allowedEmail;
     }
 }

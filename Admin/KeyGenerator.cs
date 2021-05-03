@@ -20,7 +20,6 @@ namespace LCC.Admin
             InitializeComponent();
             this.oClient = new ClientLibrary();
             this.oKeyGen = new KeyGeneratorLibrary();
-            this.cb_noOfUserCanAccess.SelectedIndex = 0;
             this.cb_licenseKeyLife.SelectedIndex = 0;
         }
 
@@ -31,7 +30,7 @@ namespace LCC.Admin
 
         private void b_save_Click(object sender, EventArgs e)
         {
-            if (this.tb_licenseKey.TextLength <= 0 || this.tb_prodCode.TextLength <= 0 || this.tb_ownerName.TextLength <= 0)
+            if (this.rt_allowedEmails.TextLength <=0 || this.tb_licenseKey.TextLength <= 0 || this.tb_prodCode.TextLength <= 0 || this.tb_ownerName.TextLength <= 0)
             {
                 MessageBox.Show("Please provide requered fields");
             }
@@ -60,7 +59,7 @@ namespace LCC.Admin
                     { "product_code", this.tb_prodCode.Text },
                     { "license_key", this.tb_licenseKey.Text },
                     { "license_key_life", this.cb_licenseKeyLife.Text },
-                    { "total_access", this.cb_noOfUserCanAccess.Text },
+                    { "allowed_emails", this.rt_allowedEmails.Text },
                     { "timestamp", UtilsLibrary.getTimestamp() },
                 };
 

@@ -21,7 +21,14 @@ namespace LCC.Admin
 
         private void btn_verify_Click(object sender, EventArgs e)
         {
-            this.verify();
+            if (this.tb_prodCode.TextLength <= 0 || this.tb_LicenseKey.TextLength <= 0 || this.tb_allowedEmail.TextLength <= 0)
+            {
+                MessageBox.Show("Please provide requered fields");
+            }
+            else
+            {
+                this.verify();
+            }
         }
 
         private async void verify()
@@ -30,6 +37,7 @@ namespace LCC.Admin
             {
                 { "product_code", this.tb_prodCode.Text },
                 { "license_key", this.tb_LicenseKey.Text },
+                { "allowed_email", this.tb_allowedEmail.Text },
                 { "timestamp", UtilsLibrary.getTimestamp() },
             };
             var sResult = await this.oClient.send("/api/license/verify", oParam);
