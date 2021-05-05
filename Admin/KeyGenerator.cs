@@ -1,4 +1,6 @@
 ﻿using LCC.Library;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,7 @@ using System.Windows.Forms;
 
 namespace LCC.Admin
 {
-    public partial class KeyGenerator : Form
+    public partial class KeyGenerator : MaterialForm
     {
         private ClientLibrary oClient;
 
@@ -18,6 +20,17 @@ namespace LCC.Admin
         public KeyGenerator()
         {
             InitializeComponent();
+            // Create a material theme manager and add the form to manage (this)
+            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+
+            // Configure color schema
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue400, Primary.Blue500,
+                Primary.Blue500, Accent.LightBlue200,
+                TextShade.WHITE);
+
             this.oClient = new ClientLibrary();
             this.oKeyGen = new KeyGeneratorLibrary();
             this.cb_licenseKeyLife.SelectedIndex = 0;
