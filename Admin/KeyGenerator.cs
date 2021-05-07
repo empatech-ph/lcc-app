@@ -95,7 +95,7 @@ namespace LCC.Admin
                     { "should_expired_at", (int) oResult.id },
                     { "timestamp", UtilsLibrary.getTimestamp() },
                 };
-                dynamic oUserResult = await this.oClient.send("/api/license/user", oParamUser);
+                dynamic oUserResult = await this.oClient.send("/api/user", oParamUser);
                 if(oUserResult.success == false)
                 {
                     MessageBox.Show(oUserResult.message.ToString());

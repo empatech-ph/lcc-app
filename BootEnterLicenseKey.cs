@@ -58,9 +58,9 @@ namespace LCC
             dynamic oResult = await this.oClient.get("/api/license/verify-without-email", oParam);
             if (oResult.success == true)
             {
-
                 var oInfo = new Dictionary<dynamic, dynamic>
                 {
+                    { "id",  oResult.data.id},
                     { "code",  this.tb_productCode.Text},
                     { "key", this.tb_licenseKey.Text },
                     { "processor_id", Library.UtilsLibrary.getProcessorId() },
@@ -72,17 +72,12 @@ namespace LCC
                 MessageBox.Show("Hello " + oResult.data.owner_name + ", Thank you for purchasing our subscription.\n" +
                     "You can now proceed to the app, just use the email addresses that you\'ve provided.");
                 this.Hide();
-                new UserManagement.Login().ShowDialog();
+                (new UserManagement.Login()).Show();
             }
             else
             {
                 MessageBox.Show("It seems that your details inputted is incorrect, please verify!.");
             }
-        }
-
-        private void btn_keygen_Click(object sender, EventArgs e)
-        {
-            new Admin.KeyGenerator().ShowDialog();
         }
     }
 }

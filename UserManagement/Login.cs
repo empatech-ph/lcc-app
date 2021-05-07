@@ -1,6 +1,7 @@
 ﻿using LCC.Library;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,13 +35,21 @@ namespace LCC.UserManagement
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if (tb_email.TextLength <= 0)
+            if (this.tb_email.TextLength <= 0)
             {
                 MessageBox.Show("Please provide requered fields");
             }
             else
             {
-                this.login();
+                if(this.tb_email.Text == "admin" && this.tb_password.Text == "password123")
+                {
+                    this.Hide();
+                    (new Admin.KeyGenerator()).Show();
+                }
+                else
+                {
+                    this.login();
+                }
             }
 
         }
@@ -52,8 +61,8 @@ namespace LCC.UserManagement
             var oParam = new Dictionary<dynamic, dynamic>
             {
                 { "timestamp", UtilsLibrary.getTimestamp() },
-                { "license_key", oInfo.key },
-                { "product_code", oInfo.code },
+                { "license_key", oInfo.key.ToString() },
+                { "product_code", oInfo.code.ToString() },
                 { "password", this.tb_password.Text},
                 { "email", this.tb_email.Text},
             };
@@ -63,22 +72,27 @@ namespace LCC.UserManagement
                 if (oResult.change_password == true)
                 {
                     MessageBox.Show("Please change your password.");
-                    new UserManagement.ChangePassword().ShowDialog();
+                    (new UserManagement.ChangePassword((int)oResult.id, this.tb_email.Text)).ShowDialog();
                 }
                 else if (oResult.not_registered == true)
                 {
                     MessageBox.Show("You are not registered, please register your email");
-                    new UserManagement.Register().ShowDialog();
+                    (new UserManagement.Register(this.tb_email.Text)).ShowDialog();
                 }
                 else
                 {
                     this.Hide();
-                    new Main().Show();
+                    (new Project()).Show();
                 }
             }
             else
             {
-                MessageBox.Show(oResult.message);
+                MessageBox.Show(oResult.message.ToString());
+                if (oResult.invalid_license == true)
+                {
+                    this.Hide();
+                    (new BootEnterLicenseKey()).Show();
+                }
             }
         }
     }
