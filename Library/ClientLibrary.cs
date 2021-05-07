@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 namespace LCC.Library
 {
@@ -25,19 +26,20 @@ namespace LCC.Library
             this.sBaseUrl = sBaseUrl;
         }
 
-        public async Task<string>get(string sUrl, Dictionary<dynamic, dynamic> oParam)
+        public async Task<dynamic> get(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
-            return await this.oClient.GetStringAsync(this.sBaseUrl + sUrl + "?" + this.getQueryParameters(oParam));
+            return JObject.Parse(await this.oClient.GetStringAsync(this.sBaseUrl + sUrl + "?" + this.getQueryParameters(oParam)));
         }
 
 
-        public async Task<string>send(string sUrl, Dictionary<dynamic, dynamic> oParam)
+        public async Task<dynamic>send(string sUrl, Dictionary<dynamic, dynamic> oParam)
         {
             oParam.Add("hmac", EncryptionDecryptionLibrary.getHmac(this.getQueryParameters(oParam, false)));
             var sJson = JsonConvert.SerializeObject(oParam);
             StringContent sParameters = new StringContent(sJson, Encoding.UTF8, "application/json");
             var oResponse = await this.oClient.PostAsync(this.sBaseUrl + sUrl, sParameters);
-            return await oResponse.Content.ReadAsStringAsync();
+            return JObject.Parse(await oResponse.Content.ReadAsStringAsync());
+            
         }
 
         public string getQueryParameters(Dictionary<dynamic, dynamic> oParam, bool bWithHmac = true)

@@ -17,8 +17,15 @@ namespace LCC
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
-            Application.Run(new BootEnterLicenseKey());
+            if ((new Library.RegistryLibrary()).getRegistry("info") != "")
+            {
+                Application.Run(new UserManagement.Login());
+            }
+            else
+            {
+                Application.Run(new BootEnterLicenseKey());
+            }
+
         }
     }
 }

@@ -35,6 +35,7 @@ namespace LCC
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.btn_proceed = new MaterialSkin.Controls.MaterialButton();
+            this.btn_keygen = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // materialLabel1
@@ -106,6 +107,7 @@ namespace LCC
             // btn_proceed
             // 
             this.btn_proceed.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_proceed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_proceed.Depth = 0;
             this.btn_proceed.DrawShadows = true;
             this.btn_proceed.HighEmphasis = true;
@@ -122,12 +124,33 @@ namespace LCC
             this.btn_proceed.UseVisualStyleBackColor = true;
             this.btn_proceed.Click += new System.EventHandler(this.btn_proceed_Click);
             // 
+            // btn_keygen
+            // 
+            this.btn_keygen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_keygen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_keygen.Depth = 0;
+            this.btn_keygen.DrawShadows = true;
+            this.btn_keygen.HighEmphasis = true;
+            this.btn_keygen.Icon = null;
+            this.btn_keygen.Location = new System.Drawing.Point(470, 381);
+            this.btn_keygen.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_keygen.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_keygen.Name = "btn_keygen";
+            this.btn_keygen.Size = new System.Drawing.Size(86, 36);
+            this.btn_keygen.TabIndex = 3;
+            this.btn_keygen.Text = "keygen";
+            this.btn_keygen.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_keygen.UseAccentColor = false;
+            this.btn_keygen.UseVisualStyleBackColor = true;
+            this.btn_keygen.Click += new System.EventHandler(this.btn_keygen_Click);
+            // 
             // BootEnterLicenseKey
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(563, 426);
+            this.Controls.Add(this.btn_keygen);
             this.Controls.Add(this.btn_proceed);
             this.Controls.Add(this.tb_licenseKey);
             this.Controls.Add(this.tb_productCode);
@@ -152,5 +175,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialButton btn_proceed;
+        private MaterialSkin.Controls.MaterialButton btn_keygen;
     }
 }

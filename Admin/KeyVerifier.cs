@@ -1,6 +1,7 @@
 ﻿using LCC.Library;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,8 +54,8 @@ namespace LCC.Admin
                 { "allowed_email", this.tb_allowedEmail.Text },
                 { "timestamp", UtilsLibrary.getTimestamp() },
             };
-            var sResult = await this.oClient.send("/api/license/verify-with-email", oParam);
-            MessageBox.Show(sResult);
+            dynamic oResult = await this.oClient.get("/api/license/verify-with-email", oParam);
+            MessageBox.Show(oResult.ToString());
         }
     }
 }
