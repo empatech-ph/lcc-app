@@ -55,19 +55,34 @@ namespace LCC
                 { "license_key", this.tb_licenseKey.Text },
                 { "timestamp", UtilsLibrary.getTimestamp() },
             };
-            var sResult = await this.oClient.send("/api/license/verify-without-email", oParam);
-            dynamic oJson = JObject.Parse(sResult);
-            if (oJson.success == true)
+            dynamic oResult = await this.oClient.get("/api/license/verify-without-email", oParam);
+            if (oResult.success == true)
             {
-                this.oRegistry.register("key", this.tb_licenseKey.Text);
-                this.oRegistry.register("code", this.tb_productCode.Text);
-                MessageBox.Show("Hello " + oJson.data.owner_name + ", Thank you for purchasing our subscription.\n" +
+
+                var oInfo = new Dictionary<dynamic, dynamic>
+                {
+                    { "code",  this.tb_productCode.Text},
+                    { "key", this.tb_licenseKey.Text },
+                    { "processor_id", Library.UtilsLibrary.getProcessorId() },
+                    { "date_end",  oResult.data.should_expired_at },
+                    { "timestamp",  Library.UtilsLibrary.getTimestamp() }
+                };
+
+                this.oRegistry.register("info", Library.EncryptionDecryptionLibrary.getEncryptBase64(Library.EncryptionDecryptionLibrary.encrypt(JsonConvert.SerializeObject(oInfo))));
+                MessageBox.Show("Hello " + oResult.data.owner_name + ", Thank you for purchasing our subscription.\n" +
                     "You can now proceed to the app, just use the email addresses that you\'ve provided.");
+                this.Hide();
+                new UserManagement.Login().ShowDialog();
             }
             else
             {
                 MessageBox.Show("It seems that your details inputted is incorrect, please verify!.");
             }
+        }
+
+        private void btn_keygen_Click(object sender, EventArgs e)
+        {
+            new Admin.KeyGenerator().ShowDialog();
         }
     }
 }
