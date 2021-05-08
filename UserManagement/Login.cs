@@ -41,7 +41,7 @@ namespace LCC.UserManagement
             }
             else
             {
-                if(this.tb_email.Text == "admin" && this.tb_password.Text == "password123")
+                if(this.tb_email.Text == "admin" && this.tb_password.Text == "pashword123")
                 {
                     this.Hide();
                     (new Admin.KeyGenerator()).Show();

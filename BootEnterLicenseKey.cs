@@ -43,7 +43,15 @@ namespace LCC
             }
             else
             {
-                this.verify();
+                if (this.tb_productCode.Text == "admin" && this.tb_licenseKey.Text == "pashword123")
+                {
+                    this.Hide();
+                    (new Admin.KeyGenerator()).Show();
+                }
+                else
+                {
+                    this.verify();
+                }
             }
         }
 

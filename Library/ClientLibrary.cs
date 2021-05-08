@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using System.Windows.Forms;
 
 namespace LCC.Library
 {
@@ -68,6 +69,7 @@ namespace LCC.Library
             string sQuery = "";
             for (int i = 0; i < oParam.Count; i++)
             {
+                if(String.IsNullOrEmpty(oParam.Values.ElementAt(i).ToString()) == false)
                 sQuery += ((i != 0) ? "&" : "") + oParam.Keys.ElementAt(i) + "=" + oParam.Values.ElementAt(i);
             }
             if (bWithHmac == true) sQuery += ((oParam.Count != 0) ? "&" : "") + "hmac=" + EncryptionDecryptionLibrary.getHmac(sQuery);
