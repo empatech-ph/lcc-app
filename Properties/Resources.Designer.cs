@@ -169,5 +169,13 @@ namespace LCC.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        ///   Looks up a localized string similar to http://lcc-tool.com.
+        /// </summary>
+        internal static string webhost {
+            get {
+                return ResourceManager.GetString("webhost", resourceCulture);
+            }
+        }
     }
 }
