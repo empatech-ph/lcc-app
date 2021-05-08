@@ -106,6 +106,7 @@ namespace LCC
             // btn_proceed
             // 
             this.btn_proceed.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_proceed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_proceed.Depth = 0;
             this.btn_proceed.DrawShadows = true;
             this.btn_proceed.HighEmphasis = true;

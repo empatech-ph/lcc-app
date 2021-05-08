@@ -28,6 +28,7 @@
 		<PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
 		<PackageReference Include="IKVM" Version="8.1.5717" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -39,11 +40,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		a
 		<EmbeddedResource Update="Properties\Resources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
+  <ItemGroup>
+    <None Update="UserManagement\report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>report.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{c0c07587-41a7-46c8-8fbd-3f9c8ebe2ddc}" />
+  </ItemGroup>
 </Project>

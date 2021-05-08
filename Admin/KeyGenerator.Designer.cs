@@ -44,6 +44,8 @@ namespace LCC.Admin
             this.btn_verify = new MaterialSkin.Controls.MaterialButton();
             this.forAllowedEmails = new System.Windows.Forms.Label();
             this.rt_allowedEmails = new System.Windows.Forms.RichTextBox();
+            this.forOwnerEmail = new System.Windows.Forms.Label();
+            this.tb_ownerEmail = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // forOwnerName
@@ -58,7 +60,7 @@ namespace LCC.Admin
             // forProductCode
             // 
             this.forProductCode.AutoSize = true;
-            this.forProductCode.Location = new System.Drawing.Point(42, 239);
+            this.forProductCode.Location = new System.Drawing.Point(42, 269);
             this.forProductCode.Name = "forProductCode";
             this.forProductCode.Size = new System.Drawing.Size(91, 15);
             this.forProductCode.TabIndex = 0;
@@ -67,7 +69,7 @@ namespace LCC.Admin
             // forLicenseKey
             // 
             this.forLicenseKey.AutoSize = true;
-            this.forLicenseKey.Location = new System.Drawing.Point(55, 268);
+            this.forLicenseKey.Location = new System.Drawing.Point(55, 298);
             this.forLicenseKey.Name = "forLicenseKey";
             this.forLicenseKey.Size = new System.Drawing.Size(76, 15);
             this.forLicenseKey.TabIndex = 0;
@@ -82,11 +84,11 @@ namespace LCC.Admin
             // 
             // tb_licenseKey
             // 
-            this.tb_licenseKey.Location = new System.Drawing.Point(152, 265);
+            this.tb_licenseKey.Location = new System.Drawing.Point(152, 295);
             this.tb_licenseKey.Name = "tb_licenseKey";
             this.tb_licenseKey.ReadOnly = true;
             this.tb_licenseKey.Size = new System.Drawing.Size(288, 23);
-            this.tb_licenseKey.TabIndex = 5;
+            this.tb_licenseKey.TabIndex = 6;
             // 
             // b_generate
             // 
@@ -96,12 +98,12 @@ namespace LCC.Admin
             this.b_generate.DrawShadows = true;
             this.b_generate.HighEmphasis = true;
             this.b_generate.Icon = null;
-            this.b_generate.Location = new System.Drawing.Point(205, 317);
+            this.b_generate.Location = new System.Drawing.Point(271, 337);
             this.b_generate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.b_generate.MouseState = MaterialSkin.MouseState.HOVER;
             this.b_generate.Name = "b_generate";
             this.b_generate.Size = new System.Drawing.Size(95, 36);
-            this.b_generate.TabIndex = 6;
+            this.b_generate.TabIndex = 8;
             this.b_generate.Text = "Generate";
             this.b_generate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.b_generate.UseAccentColor = false;
@@ -116,12 +118,12 @@ namespace LCC.Admin
             this.b_save.DrawShadows = true;
             this.b_save.HighEmphasis = true;
             this.b_save.Icon = null;
-            this.b_save.Location = new System.Drawing.Point(308, 317);
+            this.b_save.Location = new System.Drawing.Point(205, 337);
             this.b_save.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.b_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.b_save.Name = "b_save";
             this.b_save.Size = new System.Drawing.Size(58, 36);
-            this.b_save.TabIndex = 10;
+            this.b_save.TabIndex = 7;
             this.b_save.Text = "Save";
             this.b_save.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.b_save.UseAccentColor = false;
@@ -136,12 +138,12 @@ namespace LCC.Admin
             this.button1.DrawShadows = true;
             this.button1.HighEmphasis = true;
             this.button1.Icon = null;
-            this.button1.Location = new System.Drawing.Point(374, 317);
+            this.button1.Location = new System.Drawing.Point(374, 337);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 36);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 9;
             this.button1.Text = "Clear";
             this.button1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.button1.UseAccentColor = false;
@@ -150,16 +152,16 @@ namespace LCC.Admin
             // 
             // tb_prodCode
             // 
-            this.tb_prodCode.Location = new System.Drawing.Point(152, 236);
+            this.tb_prodCode.Location = new System.Drawing.Point(152, 266);
             this.tb_prodCode.Name = "tb_prodCode";
             this.tb_prodCode.ReadOnly = true;
             this.tb_prodCode.Size = new System.Drawing.Size(288, 23);
-            this.tb_prodCode.TabIndex = 4;
+            this.tb_prodCode.TabIndex = 5;
             // 
             // forLicenseKeyLife
             // 
             this.forLicenseKeyLife.AutoSize = true;
-            this.forLicenseKeyLife.Location = new System.Drawing.Point(33, 115);
+            this.forLicenseKeyLife.Location = new System.Drawing.Point(33, 145);
             this.forLicenseKeyLife.Name = "forLicenseKeyLife";
             this.forLicenseKeyLife.Size = new System.Drawing.Size(93, 15);
             this.forLicenseKeyLife.TabIndex = 0;
@@ -175,15 +177,15 @@ namespace LCC.Admin
             "6",
             "12",
             "24"});
-            this.cb_licenseKeyLife.Location = new System.Drawing.Point(151, 112);
+            this.cb_licenseKeyLife.Location = new System.Drawing.Point(151, 142);
             this.cb_licenseKeyLife.Name = "cb_licenseKeyLife";
             this.cb_licenseKeyLife.Size = new System.Drawing.Size(235, 23);
-            this.cb_licenseKeyLife.TabIndex = 2;
+            this.cb_licenseKeyLife.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(392, 115);
+            this.label2.Location = new System.Drawing.Point(392, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 15);
             this.label2.TabIndex = 8;
@@ -212,7 +214,7 @@ namespace LCC.Admin
             // forAllowedEmails
             // 
             this.forAllowedEmails.AutoSize = true;
-            this.forAllowedEmails.Location = new System.Drawing.Point(31, 147);
+            this.forAllowedEmails.Location = new System.Drawing.Point(31, 177);
             this.forAllowedEmails.Name = "forAllowedEmails";
             this.forAllowedEmails.Size = new System.Drawing.Size(102, 30);
             this.forAllowedEmails.TabIndex = 11;
@@ -220,11 +222,27 @@ namespace LCC.Admin
             // 
             // rt_allowedEmails
             // 
-            this.rt_allowedEmails.Location = new System.Drawing.Point(151, 147);
+            this.rt_allowedEmails.Location = new System.Drawing.Point(151, 177);
             this.rt_allowedEmails.Name = "rt_allowedEmails";
             this.rt_allowedEmails.Size = new System.Drawing.Size(289, 83);
-            this.rt_allowedEmails.TabIndex = 3;
+            this.rt_allowedEmails.TabIndex = 4;
             this.rt_allowedEmails.Text = "";
+            // 
+            // forOwnerEmail
+            // 
+            this.forOwnerEmail.AutoSize = true;
+            this.forOwnerEmail.Location = new System.Drawing.Point(36, 108);
+            this.forOwnerEmail.Name = "forOwnerEmail";
+            this.forOwnerEmail.Size = new System.Drawing.Size(96, 15);
+            this.forOwnerEmail.TabIndex = 0;
+            this.forOwnerEmail.Text = "*Owner\'s Email:  ";
+            // 
+            // tb_ownerEmail
+            // 
+            this.tb_ownerEmail.Location = new System.Drawing.Point(151, 105);
+            this.tb_ownerEmail.Name = "tb_ownerEmail";
+            this.tb_ownerEmail.Size = new System.Drawing.Size(289, 23);
+            this.tb_ownerEmail.TabIndex = 2;
             // 
             // KeyGenerator
             // 
@@ -241,10 +259,12 @@ namespace LCC.Admin
             this.Controls.Add(this.b_generate);
             this.Controls.Add(this.tb_prodCode);
             this.Controls.Add(this.tb_licenseKey);
+            this.Controls.Add(this.tb_ownerEmail);
             this.Controls.Add(this.tb_ownerName);
             this.Controls.Add(this.cb_licenseKeyLife);
             this.Controls.Add(this.forLicenseKey);
             this.Controls.Add(this.forLicenseKeyLife);
+            this.Controls.Add(this.forOwnerEmail);
             this.Controls.Add(this.forProductCode);
             this.Controls.Add(this.forOwnerName);
             this.MaximizeBox = false;
@@ -273,5 +293,7 @@ namespace LCC.Admin
         private MaterialSkin.Controls.MaterialButton btn_verify;
         private System.Windows.Forms.Label forAllowedEmails;
         private System.Windows.Forms.RichTextBox rt_allowedEmails;
+        private System.Windows.Forms.Label forOwnerEmail;
+        private System.Windows.Forms.TextBox tb_ownerEmail;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using LCC.Library;
 using MaterialSkin;
 using MaterialSkin.Controls;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,13 +9,14 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LCC.Admin
+namespace LCC.UserManagement
 {
-    public partial class KeyVerifier : MaterialForm
+    public partial class ChangePassword : MaterialForm
     {
+        private int iId;
         private ClientLibrary oClient;
 
-        public KeyVerifier()
+        public ChangePassword(int iId, string sEmail)
         {
             InitializeComponent();
             // Create a material theme manager and add the form to manage (this)
@@ -30,32 +30,44 @@ namespace LCC.Admin
                 Primary.Blue500, Accent.LightBlue200,
                 TextShade.WHITE);
 
+            this.iId = iId;
+            this.l_email.Text = sEmail;
             this.oClient = new ClientLibrary();
         }
 
-        private void btn_verify_Click(object sender, EventArgs e)
+        private void btn_change_Click(object sender, EventArgs e)
         {
-            if (this.tb_prodCode.TextLength <= 0 || this.tb_LicenseKey.TextLength <= 0 || this.tb_allowedEmail.TextLength <= 0)
+            if(this.tb_password.TextLength <= 0 || this.tb_confirmPassword.TextLength <= 0)
             {
-                MessageBox.Show("Please provide requered fields");
-            }
-            else
+                MessageBox.Show("Provide required fields.");
+            }else
             {
-                this.verify();
+                if(this.tb_password.Text == this.tb_confirmPassword.Text)
+                {
+                    this.changePassword();
+                }
+                else
+                {
+                    MessageBox.Show("Password doesn't match.");
+                }
             }
         }
 
-        private async void verify()
+        private async void changePassword()
         {
             var oParam = new Dictionary<dynamic, dynamic>
-            {
-                { "product_code", this.tb_prodCode.Text },
-                { "license_key", this.tb_LicenseKey.Text },
-                { "allowed_email", this.tb_allowedEmail.Text },
+            {   
                 { "timestamp", UtilsLibrary.getTimestamp() },
+                { "id", this.iId },
+                { "password", this.tb_password.Text},
             };
-            dynamic oResult = await this.oClient.get("/api/license/verify-with-email", oParam);
-            MessageBox.Show(oResult.ToString());
+            dynamic oResult = await this.oClient.send("/api/user/password/change", oParam);
+            MessageBox.Show(oResult.message.ToString());
+            if(oResult.success == true)
+            {
+                this.Hide();
+            }
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Management;
 using System.Text;
 
 namespace LCC.Library
@@ -8,7 +9,20 @@ namespace LCC.Library
     {
         public static int getTimestamp()
         {
-            return (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            return (int)DateTimeOffset.Now.ToUnixTimeSeconds();
+        }
+
+        public static string getProcessorId()
+        {
+            var oManagemetnObjectSearcher = new ManagementObjectSearcher("Select ProcessorId From Win32_processor");
+            ManagementObjectCollection oManagementList = oManagemetnObjectSearcher.Get();
+            string sProcessorId = "";
+            foreach (ManagementObject oItem in oManagementList)
+            {
+                sProcessorId = oItem["ProcessorId"].ToString();
+                break;
+            }
+            return sProcessorId;
         }
     }
 }
