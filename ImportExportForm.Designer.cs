@@ -50,6 +50,7 @@ namespace LCC
             this.importComboBox.DropDownHeight = 174;
             this.importComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.importComboBox.DropDownWidth = 121;
+            this.importComboBox.Enabled = false;
             this.importComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.importComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.importComboBox.FormattingEnabled = true;
@@ -140,6 +141,7 @@ namespace LCC
             this.cancelImportBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.cancelImportBtn.UseAccentColor = false;
             this.cancelImportBtn.UseVisualStyleBackColor = true;
+            this.cancelImportBtn.Click += new System.EventHandler(this.cancelImportBtn_Click);
             // 
             // importTxt
             // 

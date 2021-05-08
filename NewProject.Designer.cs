@@ -151,6 +151,7 @@ namespace LCC
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
             this.Name = "NewProject";
+            this.Sizable = false;
             this.Text = "Add New Project";
             this.Load += new System.EventHandler(this.NewProject_Load);
             this.ResumeLayout(false);
