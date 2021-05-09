@@ -19,10 +19,13 @@ namespace LCC
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if(System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                Application.Exit();
+            }
             try
             {
-                string sInfo = (new Library.RegistryLibrary()).getRegistry("info");
-                dynamic oInfo = JObject.Parse(Library.EncryptionDecryptionLibrary.decrypt(Library.EncryptionDecryptionLibrary.getDecryptBase64(sInfo)));
+                dynamic oInfo = new RegistryLibrary().getInfo();
                 var oParam = new Dictionary<dynamic, dynamic>
                 {
                     { "timestamp", UtilsLibrary.getTimestamp() },
@@ -40,11 +43,11 @@ namespace LCC
                 }
                 else
                 {
+                    Application.Run(new BootEnterLicenseKey());
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Your license key was expired.");
                 Application.Run(new BootEnterLicenseKey());
             }
 

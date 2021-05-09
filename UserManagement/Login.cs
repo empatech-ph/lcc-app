@@ -56,8 +56,7 @@ namespace LCC.UserManagement
 
         private async void login()
         {
-            string sInfo = (new Library.RegistryLibrary()).getRegistry("info");
-            dynamic oInfo = JObject.Parse(Library.EncryptionDecryptionLibrary.decrypt(Library.EncryptionDecryptionLibrary.getDecryptBase64(sInfo)));
+            dynamic oInfo = new RegistryLibrary().getInfo();
             var oParam = new Dictionary<dynamic, dynamic>
             {
                 { "timestamp", UtilsLibrary.getTimestamp() },
