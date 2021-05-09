@@ -19,6 +19,10 @@ namespace LCC
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if(System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                Application.Exit();
+            }
             try
             {
                 string sInfo = (new Library.RegistryLibrary()).getRegistry("info");
