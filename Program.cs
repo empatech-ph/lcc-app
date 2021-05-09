@@ -40,11 +40,11 @@ namespace LCC
                 }
                 else
                 {
+                    Application.Run(new BootEnterLicenseKey());
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Your license key was expired.");
                 Application.Run(new BootEnterLicenseKey());
             }
 
