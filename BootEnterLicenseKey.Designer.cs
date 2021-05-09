@@ -139,7 +139,7 @@ namespace LCC
             this.MaximumSize = new System.Drawing.Size(563, 450);
             this.Name = "BootEnterLicenseKey";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Welcome to Linear Cutting Tool";
+            this.Text = "Welcome to LinearCut1D";
             this.ResumeLayout(false);
             this.PerformLayout();
 

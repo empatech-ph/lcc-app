@@ -81,8 +81,13 @@ namespace LCC
 
         private void projectTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = projectTable.Rows[e.RowIndex];
-            cellClickLabel.Text = row != null ? "Project " + row.Cells[3].Value.ToString() : "";
+            try
+            {
+                var row = projectTable.Rows[e.RowIndex];
+                cellClickLabel.Text = row != null ? "Project " + row.Cells[3].Value.ToString() : "";
+            }
+            catch (Exception)
+            { }
 
         }
 
