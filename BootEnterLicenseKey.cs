@@ -84,7 +84,7 @@ namespace LCC
             }
             else
             {
-                MessageBox.Show("It seems that your details inputted is incorrect, please verify!.");
+                MessageBox.Show(oResult.message.ToString());
             }
         }
     }
