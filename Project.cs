@@ -43,6 +43,7 @@ namespace LCC
             projectTable.Columns["rev_no"].HeaderText = "Revision #";
             DataGridViewButtonColumn viewButtonColumn = new DataGridViewButtonColumn();
             viewButtonColumn.Name = "view_column";
+            viewButtonColumn.HeaderText= "View";
             //viewButtonColumn.FlatStyle = FlatStyle.Flat;
             viewButtonColumn.UseColumnTextForButtonValue = true;
             viewButtonColumn.Text = "View";
@@ -52,11 +53,33 @@ namespace LCC
                 projectTable.Columns.Insert(columnIndex, viewButtonColumn);
             }
             projectTable.Columns[columnIndex].HeaderText = "";
-            projectTable.CellClick += dataGridViewSoftware_CellClick;
+            projectTable.CellClick += projectTblView_CellClick;
+
+            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.Name = "edit_column";
+            editButtonColumn.HeaderText = "Edit";
+            //viewButtonColumn.FlatStyle = FlatStyle.Flat;
+            editButtonColumn.UseColumnTextForButtonValue = true;
+            editButtonColumn.Text = "Edit";
+            int columnIndexEdit = 5;
+            if (projectTable.Columns["edit_column"] == null)
+            {
+                projectTable.Columns.Insert(columnIndexEdit, editButtonColumn);
+            }
+            projectTable.Columns[columnIndexEdit].HeaderText = "";
+            projectTable.CellClick += projectTblEdit_CellClick;
         }
-        private void dataGridViewSoftware_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == projectTable.Columns["view_column"].Index)
+            {
+                MessageBox.Show("Test");
+            }
+        }
+
+        private void projectTblEdit_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
             {
                 MessageBox.Show("Test");
             }
@@ -70,7 +93,7 @@ namespace LCC
         private void addProject_Click(object sender, EventArgs e)
         {
             NewProject newProject = new NewProject();
-            newProject.Show();
+            newProject.ShowDialog();
         }
 
         private void Project_Activated(object sender, EventArgs e)
@@ -81,7 +104,8 @@ namespace LCC
 
         private void projectTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = projectTable.Rows[e.RowIndex];
+            var rowIndex = projectTable.CurrentCell.RowIndex;
+            var row = projectTable.Rows[rowIndex]; ;
             cellClickLabel.Text = row != null ? "Project " + row.Cells[3].Value.ToString() : "";
 
         }
@@ -90,14 +114,14 @@ namespace LCC
         {
             importOrExport = "Import";
             ImportExportForm importExportForm = new ImportExportForm();
-            importExportForm.Show();
+            importExportForm.ShowDialog();
         }
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
             importOrExport = "Export";
             ImportExportForm importExportForm = new ImportExportForm();
-            importExportForm.Show();
+            importExportForm.ShowDialog();
         }
 
         private void projectTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -106,7 +130,7 @@ namespace LCC
             var row = projectTable.Rows[rowIndex];
             var store = new DataStore("data.json");
             var collection = store.GetCollection<ProjectModel>();
-            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { project_name = row.Cells[3].Value.ToString(), project_reference = row.Cells[2].Value.ToString(), rev_no = row.Cells[5].Value.ToString(), scope = row.Cells[4].Value.ToString() });
+            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { id = (int)row.Cells[1].Value,  project_name = row.Cells[3].Value.ToString(), project_reference = row.Cells[2].Value.ToString(), rev_no = row.Cells[5].Value.ToString(), scope = row.Cells[4].Value.ToString() });
         }
 
         private void printerBtn_Click(object sender, EventArgs e)

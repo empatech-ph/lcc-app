@@ -111,20 +111,26 @@ namespace LCC
             try
             {
                 var store = new DataStore("data.json");
-                var records = store.GetCollection<ProjectModel>().AsQueryable().ToList();
+                var records = store.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no}).ToList();
                 using (var writer = new StreamWriter(saveFileDialog.FileName))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.WriteRecords(records);
                     //csv.Flush();
                 }
-                MessageBox.Show("File has been uploaded. Data has been exported succesfully.");
+                MessageBox.Show("File has been downloaded. Data has been exported succesfully.");
             }
             catch
             {
                 MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
             }
 
+        }
+
+        private void cancelImportBtn_Click(object sender, EventArgs e)
+        {
+            ImportExportForm importExportForm = new ImportExportForm();
+            importExportForm.Close();
         }
     }
 }
