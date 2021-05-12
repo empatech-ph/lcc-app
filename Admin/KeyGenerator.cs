@@ -126,5 +126,12 @@ namespace LCC.Admin
         {
             new KeyVerifier().ShowDialog();
         }
+
+        private void rt_allowedEmails_Click(object sender, EventArgs e)
+        {
+            var oAssignRoles = new AssignRoles(this.rt_allowedEmails.Text);
+            oAssignRoles.oAssignRoles = this.rt_allowedEmails;
+            oAssignRoles.ShowDialog();
+        }
     }
 }
