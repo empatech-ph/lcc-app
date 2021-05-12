@@ -76,7 +76,7 @@ namespace LCC.UserManagement
                 else if (oResult.not_registered == true)
                 {
                     MessageBox.Show("You are not registered, please register your email");
-                    (new UserManagement.Register(this.tb_email.Text)).ShowDialog();
+                    (new UserManagement.Register(this.tb_email.Text, oResult.user_type.ToString())).ShowDialog();
                 }
                 else
                 {

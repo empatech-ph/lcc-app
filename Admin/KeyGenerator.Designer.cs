@@ -216,17 +216,20 @@ namespace LCC.Admin
             this.forAllowedEmails.AutoSize = true;
             this.forAllowedEmails.Location = new System.Drawing.Point(31, 177);
             this.forAllowedEmails.Name = "forAllowedEmails";
-            this.forAllowedEmails.Size = new System.Drawing.Size(102, 30);
+            this.forAllowedEmails.Size = new System.Drawing.Size(98, 15);
             this.forAllowedEmails.TabIndex = 11;
-            this.forAllowedEmails.Text = "*Allowed Emails: \r\n(Separated with , )";
+            this.forAllowedEmails.Text = "*Allowed Emails: ";
             // 
             // rt_allowedEmails
             // 
+            this.rt_allowedEmails.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rt_allowedEmails.Location = new System.Drawing.Point(151, 177);
             this.rt_allowedEmails.Name = "rt_allowedEmails";
+            this.rt_allowedEmails.ReadOnly = true;
             this.rt_allowedEmails.Size = new System.Drawing.Size(289, 83);
             this.rt_allowedEmails.TabIndex = 4;
             this.rt_allowedEmails.Text = "";
+            this.rt_allowedEmails.Click += new System.EventHandler(this.rt_allowedEmails_Click);
             // 
             // forOwnerEmail
             // 
