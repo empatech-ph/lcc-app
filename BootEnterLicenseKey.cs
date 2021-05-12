@@ -73,6 +73,7 @@ namespace LCC
                     { "key", this.tb_licenseKey.Text },
                     { "processor_id", Library.UtilsLibrary.getProcessorId() },
                     { "date_end",  oResult.data.should_expired_at },
+                    { "date_recheck",  oResult.date_recheck },
                     { "timestamp",  Library.UtilsLibrary.getTimestamp() }
                 };
 

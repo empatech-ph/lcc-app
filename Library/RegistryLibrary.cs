@@ -53,6 +53,7 @@ namespace LCC.Library
                     { "key", "" },
                     { "processor_id", "" },
                     { "date_end",  "" },
+                    { "date_recheck",  "" },
                     { "timestamp",  "" }
                 };
                 return JObject.Parse(JsonConvert.SerializeObject(oInfo));
