@@ -71,13 +71,13 @@ namespace LCC
                     { "id",  oResult.data.id},
                     { "code",  this.tb_productCode.Text},
                     { "key", this.tb_licenseKey.Text },
-                    { "processor_id", Library.UtilsLibrary.getProcessorId() },
+                    { "processor_id", UtilsLibrary.getProcessorId() },
                     { "date_end",  oResult.data.should_expired_at },
                     { "date_recheck",  oResult.date_recheck },
-                    { "timestamp",  Library.UtilsLibrary.getTimestamp() }
+                    { "timestamp",  UtilsLibrary.getTimestamp() }
                 };
 
-                this.oRegistry.register("info", Library.EncryptionDecryptionLibrary.getEncryptBase64(Library.EncryptionDecryptionLibrary.encrypt(JsonConvert.SerializeObject(oInfo))));
+                this.oRegistry.registerEncrypt("info", JsonConvert.SerializeObject(oInfo));
                 MessageBox.Show("Hello " + oResult.data.owner_name + ", Thank you for purchasing our subscription.\n" +
                     "You can now proceed to the app, just use the email addresses that you\'ve provided.");
                 this.Hide();

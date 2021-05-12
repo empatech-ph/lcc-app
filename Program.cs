@@ -25,7 +25,7 @@ namespace LCC
                 Application.Exit();
             }
             dynamic oInfo = new RegistryLibrary().getInfo();
-            if (oInfo.ContainsKey("date_recheck"))
+            if (oInfo.ContainsKey("date_recheck") && oInfo.date_recheck.ToString() != "")
             {
                 if ((Convert.ToInt32(oInfo.date_recheck.ToString()) >= UtilsLibrary.getTimestamp()) && oClient.IsConnectedToInternet() == false)
                 {
