@@ -1,3 +1,5 @@
+using LCC.Library;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +19,38 @@ namespace LCC
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            if(System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                Application.Exit();
+            }
+            try
+            {
+                dynamic oInfo = new RegistryLibrary().getInfo();
+                var oParam = new Dictionary<dynamic, dynamic>
+                {
+                    { "timestamp", UtilsLibrary.getTimestamp() },
+                    { "license_key", oInfo.key.ToString() },
+                    { "product_code", oInfo.code.ToString() },
+                };
+                ClientLibrary oClient = new ClientLibrary();
+                dynamic oTask = oClient.get("/api/license/verify-without-email", oParam);
+                Task.WaitAll(oTask);
+                dynamic oResult = oTask.Result;
+
+                if (oResult.success == true)
+                {
+                    Application.Run(new UserManagement.Login());
+                }
+                else
+                {
+                    Application.Run(new BootEnterLicenseKey());
+                }
+            }
+            catch (Exception)
+            {
+                Application.Run(new BootEnterLicenseKey());
+            }
+
         }
     }
 }
