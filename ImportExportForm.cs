@@ -40,12 +40,12 @@ namespace LCC
 
         private void ImportForm_Load(object sender, EventArgs e)
         {
-            importExportBtn.Text = Project.importOrExport;
-            this.Text = Project.importOrExport;
-            importLbl.Text = Project.importOrExport + " entity:";
-            browseBtn.Enabled = Project.importOrExport == "Import";
-            browsePanel.Enabled = Project.importOrExport == "Import";
-            importExportBtn.Enabled = Project.importOrExport == "Export";
+            //importExportBtn.Text = Project.importOrExport;
+            //this.Text = Project.importOrExport;
+            //importLbl.Text = Project.importOrExport + " entity:";
+            //browseBtn.Enabled = Project.importOrExport == "Import";
+            //browsePanel.Enabled = Project.importOrExport == "Import";
+            //importExportBtn.Enabled = Project.importOrExport == "Export";
             importComboBox.SelectedItem = "Project";
         }
 
@@ -59,7 +59,7 @@ namespace LCC
 
         private void browseBtn_Click(object sender, EventArgs e)
         {
-            openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+            openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             openFileDialog.Title = "Browse File";
             openFileDialog.ShowDialog();
             importTxt.Text = openFileDialog.FileName;
@@ -74,59 +74,47 @@ namespace LCC
         }
         private void importBtn_Click(object sender, EventArgs e)
         {
-            if (Project.importOrExport == "Import")
+            try
             {
-                try
-                {
+                if (importTxt.Text.IsNullOrEmpty())
+                    MessageBox.Show("Please select file to import.");
+                else { 
                     string filePath = string.Empty;
+                filePath = openFileDialog.FileName; //get the path of the file
+                var reader = new ChoCSVReader(filePath).IgnoreHeader();
+                dynamic rec;
 
-                    filePath = openFileDialog.FileName; //get the path of the file
-                    var reader = new ChoCSVReader(filePath).IgnoreHeader();
-                    dynamic rec;
-
-                    while ((rec = reader.Read()) != null)
+                while ((rec = reader.Read()) != null)
+                {
+                    if (importComboBox.SelectedItem.ToString() == "Project")
                     {
                         var store = new DataStore("data.json");
                         var collection = store.GetCollection<ProjectModel>();
                         collection.InsertOne(new ProjectModel { id = 1, project_name = rec[0], project_reference = rec[1], rev_no = rec[2], scope = rec[3] });
                     }
-                    MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
+                    else 
+                    {
+                        var store = new DataStore("data2.json");
+                        var collection = store.GetCollection<CutLengthModel>();
+                        collection.InsertOne(
+                            new CutLengthModel { id = 1, project_id = Project.selectedProject, part_code = rec[0], description = rec[1]
+                            ,grade= rec[2]
+                            ,quantity = int.Parse(rec[3])
+                            ,uncut_quantity= int.Parse(rec[4])
+                            ,length = int.Parse(rec[5])
+                            ,order_number = rec[6]
+                            ,note = rec[7]
+                            });
+                    }
                 }
-                catch
-                {
-                    MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
+                MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
                 }
-
             }
-            else
-            {
-                saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
-                saveFileDialog.Title = "Save File";
-                saveFileDialog.ShowDialog();
-            }
-        }
-
-        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                var store = new DataStore("data.json");
-                var records = store.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no}).ToList();
-                using (var writer = new StreamWriter(saveFileDialog.FileName))
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                {
-                    csv.WriteRecords(records);
-                    //csv.Flush();
-                }
-                MessageBox.Show("File has been downloaded. Data has been exported succesfully.");
-            }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
             }
-
         }
-
         private void cancelImportBtn_Click(object sender, EventArgs e)
         {
             ImportExportForm importExportForm = new ImportExportForm();

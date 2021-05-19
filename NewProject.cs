@@ -16,6 +16,7 @@ namespace LCC
 {
     public partial class NewProject : MaterialForm
     {
+        public static int newProjectId = 0;
         public NewProject()
         {
             InitializeComponent();
@@ -40,22 +41,28 @@ namespace LCC
         {
             try
             {
-                if (projNameTxt.Text != "" && projNameReferenceTxt.Text != "" && revNumberTxt.Text != "" && scopeOfWorksTxt.Text != "")
+                if (!string.IsNullOrWhiteSpace(projNameTxt.Text) && !string.IsNullOrWhiteSpace(projNameReferenceTxt.Text) && !string.IsNullOrWhiteSpace(revNumberTxt.Text) && !string.IsNullOrWhiteSpace(scopeOfWorksTxt.Text))
                 {
                     var store = new DataStore("data.json");
                     var collection = store.GetCollection<ProjectModel>();
+                    newProjectId = collection.GetNextIdValue();
                     collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("You may have entered invalid inputs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please fill all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("You may have entered invalid inputs.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void projNameReferenceTxt_Validating(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
