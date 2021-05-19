@@ -17,8 +17,9 @@ namespace LCC.UserManagement
     {
 
         private ClientLibrary oClient;
+        private string sUserType;
 
-        public Register(string sEmail = "")
+        public Register(string sEmail = "", string sUserType = "")
         {
             InitializeComponent();
             // Create a material theme manager and add the form to manage (this)
@@ -33,6 +34,8 @@ namespace LCC.UserManagement
                 TextShade.WHITE);
 
             this.tb_email.Text = sEmail;
+            this.sUserType = sUserType;
+            this.Text = "Register as " + sUserType;
             this.oClient = new ClientLibrary();
         }
 
@@ -74,7 +77,7 @@ namespace LCC.UserManagement
                     { "name", this.tb_name.Text },
                     { "email", this.tb_email.Text },
                     { "password", this.tb_confirmPassword.Text },
-                    { "user_type", 2 },
+                    { "user_type", this.getUserType(this.sUserType) },
                     { "is_new", false },
                     { "license_id", oInfo.id.ToString() },
                     { "timestamp", UtilsLibrary.getTimestamp() },
@@ -90,6 +93,17 @@ namespace LCC.UserManagement
             else
             {
                 MessageBox.Show("Your email is not associated with your subscription.");
+            }
+        }
+
+        private int getUserType(string sUserType)
+        {
+            switch (sUserType)
+            {
+                case "System Administrator": return 1;
+                case "Moderator": return 2;
+                case "Estimator": return 3;
+                default: return 0;
             }
         }
 
