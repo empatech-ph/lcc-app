@@ -11,11 +11,19 @@ using JsonFlatFileDataStore;
 using LCC.Model;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+using ChoETL;
+using System.Globalization;
+using CsvHelper;
+using CsvHelper.Configuration;
 namespace LCC
 {
     public partial class Project : MaterialForm
     {
-        public static string importOrExport = "";
+        //public static string importOrExport = "";
+        public static int selectedProject = 0;
 
         public Project()
         {
@@ -34,8 +42,22 @@ namespace LCC
 
         public void Project_Load(object sender, EventArgs e)
         {
+            //tool tips
+            projectToolTip.SetToolTip(projectBtn, "Projects");
+            projectToolTip.SetToolTip(addProject, "Create New Project");
+            projectToolTip.SetToolTip(materialBtn, "Materials");
+            projectToolTip.SetToolTip(assemblyBtn, "Assemblies");
+            projectToolTip.SetToolTip(storageBtn, "Audit Logs");
+            projectToolTip.SetToolTip(printerBtn, "Print Reports");
+            projectToolTip.SetToolTip(filterBtn, "Search and Filter");
+            projectToolTip.SetToolTip(importBtn, "Import File");
+            projectToolTip.SetToolTip(exportBtn, "Export File");
+            projectToolTip.SetToolTip(optimizeBtn, "Optimize");
+
+            //project table
             var store = new DataStore("data.json");
             projectTable.DataSource = store.GetCollection<ProjectModel>().AsQueryable().ToList();
+            selectedProject = store.GetCollection<ProjectModel>().AsQueryable().Select(x => x.id).First();
             projectTable.Columns["id"].Visible = false;
             projectTable.Columns["project_name"].HeaderText = "Project Name";
             projectTable.Columns["project_reference"].HeaderText = "Project Reference #";
@@ -43,7 +65,7 @@ namespace LCC
             projectTable.Columns["rev_no"].HeaderText = "Revision #";
             DataGridViewButtonColumn viewButtonColumn = new DataGridViewButtonColumn();
             viewButtonColumn.Name = "view_column";
-            viewButtonColumn.HeaderText= "View";
+            viewButtonColumn.HeaderText = "View";
             //viewButtonColumn.FlatStyle = FlatStyle.Flat;
             viewButtonColumn.UseColumnTextForButtonValue = true;
             viewButtonColumn.Text = "View";
@@ -68,6 +90,8 @@ namespace LCC
             }
             projectTable.Columns[columnIndexEdit].HeaderText = "";
             projectTable.CellClick += projectTblEdit_CellClick;
+            //var rowIndex = cutLengthsTable.CurrentCell.IsNull() ? 0 : cutLengthsTable.CurrentCell.RowIndex;
+            //DataGridViewRow row = cutLengthsTable.Rows[rowIndex];
         }
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -102,30 +126,22 @@ namespace LCC
             projectTable.DataSource = store.GetCollection<ProjectModel>().AsQueryable().ToList();
         }
 
-        private void projectTable_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                var row = projectTable.Rows[e.RowIndex];
-                cellClickLabel.Text = row != null ? "Project " + row.Cells[3].Value.ToString() : "";
-            }
-            catch (Exception)
-            { }
-
-        }
-
         private void importBtn_Click(object sender, EventArgs e)
         {
-            importOrExport = "Import";
+            //importOrExport = "Import";
             ImportExportForm importExportForm = new ImportExportForm();
             importExportForm.ShowDialog();
         }
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
-            importOrExport = "Export";
-            ImportExportForm importExportForm = new ImportExportForm();
-            importExportForm.ShowDialog();
+            //importOrExport = "Export";
+            //ImportExportForm importExportForm = new ImportExportForm();
+            //importExportForm.ShowDialog();
+
+            saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+            saveFileDialog.Title = "Save File";
+            saveFileDialog.ShowDialog();
         }
 
         private void projectTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -134,12 +150,108 @@ namespace LCC
             var row = projectTable.Rows[rowIndex];
             var store = new DataStore("data.json");
             var collection = store.GetCollection<ProjectModel>();
-            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { id = (int)row.Cells[1].Value,  project_name = row.Cells[3].Value.ToString(), project_reference = row.Cells[2].Value.ToString(), rev_no = row.Cells[5].Value.ToString(), scope = row.Cells[4].Value.ToString() });
+            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { id = int.Parse(row.Cells["id"].Value.ToString()), project_name = row.Cells["project_name"].Value.ToString(), project_reference = row.Cells["project_reference"].Value.ToString(), rev_no = row.Cells["rev_no"].Value.ToString(), scope = row.Cells["scope"].Value.ToString() });
         }
 
         private void printerBtn_Click(object sender, EventArgs e)
         {
 
+        }
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                var store = new DataStore("data.json");
+                var records = store.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
+                using (var writer = new StreamWriter(saveFileDialog.FileName))
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(records);
+                    //csv.Flush();
+                }
+                MessageBox.Show("File has been downloaded. Data has been exported succesfully.");
+            }
+            catch
+            {
+                MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
+            }
+
+        }
+
+        private void cutLengthsTable_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                var rowIndex = cutLengthsTable.CurrentCell.RowIndex;
+                var row = cutLengthsTable.Rows[rowIndex];
+                var store = new DataStore("data2.json");
+                var collection = store.GetCollection<CutLengthModel>();
+                collection.InsertOne(new CutLengthModel
+                {
+                    id = 1,
+                    project_id = NewProject.newProjectId,
+                    part_code = row.Cells[2].Value.ToString(),
+                    description = row.Cells[3].Value.ToString(),
+                    grade = row.Cells[4].Value.ToString(),
+                    quantity = int.Parse(row.Cells[5].Value.ToString()),
+                    uncut_quantity = int.Parse(row.Cells[6].Value.ToString()),
+                    length = int.Parse(row.Cells[7].Value.ToString()),
+                    order_number = row.Cells[8].Value.ToString(),
+                    note = row.Cells[9].Value.ToString()
+                });
+            }
+            catch {
+                MessageBox.Show("Error.");
+            }
+        }
+
+        private void projectTab_TabIndexChanged(object sender, EventArgs e)
+        {
+            if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
+            {
+                //cut lengths table
+                var store2 = new DataStore("data2.json");
+                var collection = store2.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == selectedProject).ToList();
+                cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
+                cutLengthsTable.Columns["id"].Visible = false;
+                cutLengthsTable.Columns["project_id"].Visible = false;
+                cutLengthsTable.Columns["part_code"].HeaderText = "Part Code";
+                cutLengthsTable.Columns["description"].HeaderText = "Description";
+                cutLengthsTable.Columns["grade"].HeaderText = "Grade";
+                cutLengthsTable.Columns["quantity"].HeaderText = "Quantity";
+                cutLengthsTable.Columns["uncut_quantity"].HeaderText = "Uncut Quantity";
+                cutLengthsTable.Columns["length"].HeaderText = "Length";
+                cutLengthsTable.Columns["order_number"].HeaderText = "Order Number";
+                cutLengthsTable.Columns["note"].HeaderText = "Note";
+            }
+        }
+
+        private void projectTab_Selected(object sender, TabControlEventArgs e)
+        {
+            if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
+            {
+                //cut lengths table
+                var store2 = new DataStore("data2.json");
+                var collection = store2.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == selectedProject).ToList();
+                cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
+                cutLengthsTable.Columns["id"].Visible = false;
+                cutLengthsTable.Columns["project_id"].Visible = false;
+                cutLengthsTable.Columns["part_code"].HeaderText = "Part Code";
+                cutLengthsTable.Columns["description"].HeaderText = "Description";
+                cutLengthsTable.Columns["grade"].HeaderText = "Grade";
+                cutLengthsTable.Columns["quantity"].HeaderText = "Quantity";
+                cutLengthsTable.Columns["uncut_quantity"].HeaderText = "Uncut Quantity";
+                cutLengthsTable.Columns["length"].HeaderText = "Length";
+                cutLengthsTable.Columns["order_number"].HeaderText = "Order Number";
+                cutLengthsTable.Columns["note"].HeaderText = "Note";
+            }
+        }
+
+        private void projectTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var rowIndex = projectTable.CurrentCell.RowIndex;
+            var row = projectTable.Rows[rowIndex];
+            selectedProject = int.Parse(row.Cells["id"].Value.ToString());
         }
     }
 }
