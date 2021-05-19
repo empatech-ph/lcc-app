@@ -55,6 +55,8 @@ namespace LCC
             this.projectTable = new System.Windows.Forms.DataGridView();
             this.addProject = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialTab = new System.Windows.Forms.TabPage();
+            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,6 +64,7 @@ namespace LCC
             this.projectTab.SuspendLayout();
             this.projTab1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).BeginInit();
+            this.materialTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectBtn
@@ -384,6 +387,7 @@ namespace LCC
             // projectTab
             // 
             this.projectTab.Controls.Add(this.projTab1);
+            this.projectTab.Controls.Add(this.materialTab);
             this.projectTab.Location = new System.Drawing.Point(12, 127);
             this.projectTab.Name = "projectTab";
             this.projectTab.SelectedIndex = 0;
@@ -479,6 +483,25 @@ namespace LCC
             this.materialDivider1.TabIndex = 2;
             this.materialDivider1.Text = "materialDivider1";
             // 
+            // materialTab
+            // 
+            this.materialTab.Controls.Add(this.materialComponent1);
+            this.materialTab.Location = new System.Drawing.Point(4, 24);
+            this.materialTab.Name = "materialTab";
+            this.materialTab.Size = new System.Drawing.Size(1080, 448);
+            this.materialTab.TabIndex = 1;
+            this.materialTab.Text = "Material";
+            this.materialTab.UseVisualStyleBackColor = true;
+            // 
+            // materialComponent1
+            // 
+            this.materialComponent1.BackColor = System.Drawing.Color.White;
+            this.materialComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialComponent1.Location = new System.Drawing.Point(0, 0);
+            this.materialComponent1.Name = "materialComponent1";
+            this.materialComponent1.Size = new System.Drawing.Size(1080, 448);
+            this.materialComponent1.TabIndex = 0;
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -505,6 +528,7 @@ namespace LCC
             this.projTab1.ResumeLayout(false);
             this.projTab1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).EndInit();
+            this.materialTab.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -535,5 +559,7 @@ namespace LCC
         private System.Windows.Forms.Label cellClickLabel;
         private MaterialSkin.Controls.MaterialButton exportBtn;
         public System.Windows.Forms.DataGridView projectTable;
+        private System.Windows.Forms.TabPage materialTab;
+        private Components.MaterialComponent materialComponent1;
     }
 }

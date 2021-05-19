@@ -30,7 +30,7 @@ namespace LCC.Library
         {
             dynamic oInfo = new RegistryLibrary().getInfo();
 
-            return new DataStore(AppDomain.CurrentDomain.BaseDirectory + "data.json");
+            return new DataStore(AppDomain.CurrentDomain.BaseDirectory + "sample");
         }
     }
 }

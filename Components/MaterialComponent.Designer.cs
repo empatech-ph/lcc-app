@@ -63,11 +63,11 @@ namespace LCC.Components
             this.part_allowance,
             this.min_remnant_length});
             this.dt_material.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_material.Location = new System.Drawing.Point(0, 100);
+            this.dt_material.Location = new System.Drawing.Point(0, 120);
             this.dt_material.Name = "dt_material";
             this.dt_material.RowHeadersVisible = false;
             this.dt_material.RowTemplate.Height = 25;
-            this.dt_material.Size = new System.Drawing.Size(898, 367);
+            this.dt_material.Size = new System.Drawing.Size(1080, 328);
             this.dt_material.TabIndex = 0;
             this.dt_material.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellEndEdit);
             this.dt_material.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dt_material_EditingControlShowing);
@@ -80,7 +80,7 @@ namespace LCC.Components
             this.no.HeaderText = "No.";
             this.no.Name = "no";
             this.no.ReadOnly = true;
-            this.no.Width = 45;
+            this.no.Width = 40;
             // 
             // list
             // 
@@ -91,7 +91,7 @@ namespace LCC.Components
             this.list.MinimumWidth = 10;
             this.list.Name = "list";
             this.list.ReadOnly = true;
-            this.list.Width = 50;
+            this.list.Width = 80;
             // 
             // description
             // 
@@ -109,6 +109,7 @@ namespace LCC.Components
             this.grade.Name = "grade";
             this.grade.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.grade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.grade.Width = 200;
             // 
             // kerf
             // 
@@ -137,26 +138,29 @@ namespace LCC.Components
             this.part_allowance.DataPropertyName = "part_allowance";
             this.part_allowance.HeaderText = "Part Allowance (mm)";
             this.part_allowance.Name = "part_allowance";
+            this.part_allowance.Width = 120;
             // 
             // min_remnant_length
             // 
             this.min_remnant_length.DataPropertyName = "min_remnant_length";
             this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
             this.min_remnant_length.Name = "min_remnant_length";
+            this.min_remnant_length.Width = 120;
             // 
             // btn_add
             // 
-            this.btn_add.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_add.AutoSize = false;
             this.btn_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_add.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_add.Depth = 0;
             this.btn_add.DrawShadows = true;
             this.btn_add.HighEmphasis = true;
             this.btn_add.Icon = global::LCC.Properties.Resources.add;
-            this.btn_add.Location = new System.Drawing.Point(10, 55);
+            this.btn_add.Location = new System.Drawing.Point(14, 16);
             this.btn_add.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_add.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_add.Name = "btn_add";
+            this.btn_add.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_add.Size = new System.Drawing.Size(153, 36);
             this.btn_add.TabIndex = 1;
             this.btn_add.Text = "Add Material";
@@ -173,10 +177,9 @@ namespace LCC.Components
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.dt_material);
             this.Name = "MaterialComponent";
-            this.Size = new System.Drawing.Size(898, 467);
+            this.Size = new System.Drawing.Size(1080, 448);
             ((System.ComponentModel.ISupportInitialize)(this.dt_material)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

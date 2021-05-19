@@ -32,7 +32,7 @@ namespace LCC.Modals
 
         public void btn_save_Click(object sender, EventArgs e)
         {
-            var store = new DataStore("data.json");
+            var store = Library.UtilsLibrary.getUserFile();
             var collection = store.GetCollection<MaterialModel>();
             try
             {
