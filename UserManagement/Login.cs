@@ -16,6 +16,7 @@ namespace LCC.UserManagement
     public partial class Login : MaterialForm
     {
         private ClientLibrary oClient;
+        private RegistryLibrary oRegistry;
 
         public Login()
         {
@@ -31,6 +32,7 @@ namespace LCC.UserManagement
                 Primary.Blue500, Accent.LightBlue200,
                 TextShade.WHITE);
             this.oClient = new ClientLibrary();
+            this.oRegistry = new RegistryLibrary();
         }
 
         private void btn_login_Click(object sender, EventArgs e)
@@ -56,7 +58,7 @@ namespace LCC.UserManagement
 
         private async void login()
         {
-            dynamic oInfo = new RegistryLibrary().getInfo();
+            dynamic oInfo = this.oRegistry.getInfo();
             var oParam = new Dictionary<dynamic, dynamic>
             {
                 { "timestamp", UtilsLibrary.getTimestamp() },
@@ -71,16 +73,25 @@ namespace LCC.UserManagement
                 if (oResult.change_password == true)
                 {
                     MessageBox.Show("Please change your password.");
-                    (new UserManagement.ChangePassword((int)oResult.id, this.tb_email.Text)).ShowDialog();
+                    (new ChangePassword((int)oResult.id, this.tb_email.Text)).ShowDialog();
                 }
                 else if (oResult.not_registered == true)
                 {
                     MessageBox.Show("You are not registered, please register your email");
-                    (new UserManagement.Register(this.tb_email.Text, oResult.user_type.ToString())).ShowDialog();
+                    (new Register(this.tb_email.Text, oResult.user_type.ToString())).ShowDialog();
                 }
                 else
                 {
                     this.Hide();
+                    var oLogin = new Dictionary<dynamic, dynamic>
+                    {
+                        { "id",  oResult.id.ToString()},
+                        { "file_name", EncryptionDecryptionLibrary.getEncryptBase64(oResult.id.ToString() + oResult.email.ToString()) + ".json" },
+                        { "user_type", oResult.user_type.ToString()},
+                        { "email", oResult.email.ToString()},
+                        { "timestamp",  UtilsLibrary.getTimestamp() }
+                    };
+                    this.oRegistry.registerEncrypt("login", JsonConvert.SerializeObject(oLogin));
                     (new Project()).Show();
                 }
             }
