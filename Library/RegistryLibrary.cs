@@ -24,6 +24,11 @@ namespace LCC.Library
             this.oRegistry.SetValue(sKey, sValue);
         }
 
+        public void registerEncrypt(string sKey, string sValue)
+        {
+            this.register(sKey, EncryptionDecryptionLibrary.getEncryptBase64(EncryptionDecryptionLibrary.encrypt(sValue)));
+        }
+
         public string getRegistry(string sKey)
         {
             if (this.oRegistry.GetValueNames().Contains(sKey) == true)
@@ -33,16 +38,25 @@ namespace LCC.Library
             return "";
         }
 
+        public string getDecryptRegistry(string sKey)
+        {
+            if (this.oRegistry.GetValueNames().Contains(sKey) == true)
+            {
+                return EncryptionDecryptionLibrary.decrypt(EncryptionDecryptionLibrary.getDecryptBase64(this.oRegistry.GetValue(sKey).ToString()));
+            }
+            return "{}";
+        }
+
         public dynamic getInfo()
         {
             try
             {
-                string sInfo = this.getRegistry("info");
-                if(sInfo == "")
+                string sInfo = this.getDecryptRegistry("info");
+                if (sInfo == "{}")
                 {
                     throw new Exception();
                 }
-                return JObject.Parse(EncryptionDecryptionLibrary.decrypt(EncryptionDecryptionLibrary.getDecryptBase64(sInfo)));
+                return JObject.Parse(sInfo);
             }
             catch (Exception)
             {
@@ -53,9 +67,34 @@ namespace LCC.Library
                     { "key", "" },
                     { "processor_id", "" },
                     { "date_end",  "" },
+                    { "date_recheck",  "" },
                     { "timestamp",  "" }
                 };
                 return JObject.Parse(JsonConvert.SerializeObject(oInfo));
+            }
+        }
+        public dynamic getLogin()
+        {
+            try
+            {
+                string sLogin = this.getDecryptRegistry("login");
+                if (sLogin == "{}")
+                {
+                    throw new Exception();
+                }
+                return JObject.Parse(sLogin);
+            }
+            catch (Exception)
+            {
+                var oLogin = new Dictionary<dynamic, dynamic>
+                {
+                    { "id",  ""},
+                    { "file_name",  ""},
+                    { "user_type", "" },
+                    { "email", "" },
+                    { "timestamp",  "" }
+                };
+                return JObject.Parse(JsonConvert.SerializeObject(oLogin));
             }
         }
     }
