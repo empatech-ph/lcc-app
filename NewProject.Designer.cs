@@ -94,6 +94,7 @@ namespace LCC
             this.projNameReferenceTxt.Name = "projNameReferenceTxt";
             this.projNameReferenceTxt.Size = new System.Drawing.Size(249, 23);
             this.projNameReferenceTxt.TabIndex = 4;
+            this.projNameReferenceTxt.Validating += new System.ComponentModel.CancelEventHandler(this.projNameReferenceTxt_Validating);
             // 
             // projNameTxt
             // 
