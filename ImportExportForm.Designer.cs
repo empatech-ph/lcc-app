@@ -33,12 +33,9 @@ namespace LCC
             this.importComboBox = new MaterialSkin.Controls.MaterialComboBox();
             this.importExportBtn = new MaterialSkin.Controls.MaterialButton();
             this.importLbl = new MaterialSkin.Controls.MaterialLabel();
-            this.browseBtn = new MaterialSkin.Controls.MaterialButton();
             this.cancelImportBtn = new MaterialSkin.Controls.MaterialButton();
             this.importTxt = new MaterialSkin.Controls.MaterialTextBox();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.browsePanel = new System.Windows.Forms.Panel();
-            this.browsePanel.SuspendLayout();
+            this.browseBtn = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // importComboBox
@@ -50,7 +47,6 @@ namespace LCC
             this.importComboBox.DropDownHeight = 174;
             this.importComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.importComboBox.DropDownWidth = 121;
-            this.importComboBox.Enabled = false;
             this.importComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.importComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.importComboBox.FormattingEnabled = true;
@@ -76,7 +72,6 @@ namespace LCC
             this.importExportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.importExportBtn.Depth = 0;
             this.importExportBtn.DrawShadows = true;
-            this.importExportBtn.Enabled = false;
             this.importExportBtn.HighEmphasis = true;
             this.importExportBtn.Icon = null;
             this.importExportBtn.Location = new System.Drawing.Point(174, 220);
@@ -85,6 +80,7 @@ namespace LCC
             this.importExportBtn.Name = "importExportBtn";
             this.importExportBtn.Size = new System.Drawing.Size(132, 36);
             this.importExportBtn.TabIndex = 1;
+            this.importExportBtn.Text = "Import";
             this.importExportBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.importExportBtn.UseAccentColor = false;
             this.importExportBtn.UseVisualStyleBackColor = true;
@@ -101,27 +97,6 @@ namespace LCC
             this.importLbl.Size = new System.Drawing.Size(113, 19);
             this.importLbl.TabIndex = 3;
             this.importLbl.Text = "Entity to import:";
-            // 
-            // browseBtn
-            // 
-            this.browseBtn.AutoSize = false;
-            this.browseBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.browseBtn.Depth = 0;
-            this.browseBtn.DrawShadows = true;
-            this.browseBtn.Enabled = false;
-            this.browseBtn.HighEmphasis = true;
-            this.browseBtn.Icon = null;
-            this.browseBtn.Location = new System.Drawing.Point(28, 13);
-            this.browseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.browseBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.browseBtn.Name = "browseBtn";
-            this.browseBtn.Size = new System.Drawing.Size(122, 49);
-            this.browseBtn.TabIndex = 4;
-            this.browseBtn.Text = "Browse";
-            this.browseBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.browseBtn.UseAccentColor = false;
-            this.browseBtn.UseVisualStyleBackColor = true;
-            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
             // cancelImportBtn
             // 
@@ -149,45 +124,49 @@ namespace LCC
             this.importTxt.Depth = 0;
             this.importTxt.Enabled = false;
             this.importTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.importTxt.Location = new System.Drawing.Point(157, 12);
+            this.importTxt.Location = new System.Drawing.Point(174, 140);
             this.importTxt.MaxLength = 50;
             this.importTxt.MouseState = MaterialSkin.MouseState.OUT;
             this.importTxt.Multiline = false;
             this.importTxt.Name = "importTxt";
             this.importTxt.Size = new System.Drawing.Size(277, 50);
-            this.importTxt.TabIndex = 6;
+            this.importTxt.TabIndex = 8;
             this.importTxt.Text = "No file selected.";
-            this.importTxt.TextChanged += new System.EventHandler(this.importTxt_TextChanged);
             // 
-            // saveFileDialog
+            // browseBtn
             // 
-            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
-            // 
-            // browsePanel
-            // 
-            this.browsePanel.BackColor = System.Drawing.Color.Silver;
-            this.browsePanel.Controls.Add(this.importTxt);
-            this.browsePanel.Controls.Add(this.browseBtn);
-            this.browsePanel.Enabled = false;
-            this.browsePanel.Location = new System.Drawing.Point(17, 134);
-            this.browsePanel.Name = "browsePanel";
-            this.browsePanel.Size = new System.Drawing.Size(446, 77);
-            this.browsePanel.TabIndex = 7;
+            this.browseBtn.AutoSize = false;
+            this.browseBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.browseBtn.Depth = 0;
+            this.browseBtn.DrawShadows = true;
+            this.browseBtn.HighEmphasis = true;
+            this.browseBtn.Icon = null;
+            this.browseBtn.Location = new System.Drawing.Point(45, 141);
+            this.browseBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.browseBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.browseBtn.Name = "browseBtn";
+            this.browseBtn.Size = new System.Drawing.Size(122, 49);
+            this.browseBtn.TabIndex = 7;
+            this.browseBtn.Text = "Browse";
+            this.browseBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.browseBtn.UseAccentColor = false;
+            this.browseBtn.UseVisualStyleBackColor = true;
+            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
             // ImportExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 276);
+            this.Controls.Add(this.importTxt);
+            this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.cancelImportBtn);
             this.Controls.Add(this.importLbl);
             this.Controls.Add(this.importExportBtn);
             this.Controls.Add(this.importComboBox);
-            this.Controls.Add(this.browsePanel);
             this.Name = "ImportExportForm";
             this.Sizable = false;
             this.Load += new System.EventHandler(this.ImportForm_Load);
-            this.browsePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,10 +178,8 @@ namespace LCC
         private MaterialSkin.Controls.MaterialComboBox importComboBox;
         private MaterialSkin.Controls.MaterialButton importExportBtn;
         private MaterialSkin.Controls.MaterialLabel importLbl;
-        private MaterialSkin.Controls.MaterialButton browseBtn;
         private MaterialSkin.Controls.MaterialButton cancelImportBtn;
         private MaterialSkin.Controls.MaterialTextBox importTxt;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.Panel browsePanel;
+        private MaterialSkin.Controls.MaterialButton browseBtn;
     }
 }
