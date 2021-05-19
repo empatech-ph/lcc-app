@@ -20,37 +20,38 @@ namespace LCC
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if(System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
             {
                 Application.Exit();
             }
-            try
-            {
-                dynamic oInfo = new RegistryLibrary().getInfo();
-                var oParam = new Dictionary<dynamic, dynamic>
-                {
-                    { "timestamp", UtilsLibrary.getTimestamp() },
-                    { "license_key", oInfo.key.ToString() },
-                    { "product_code", oInfo.code.ToString() },
-                };
-                ClientLibrary oClient = new ClientLibrary();
-                dynamic oTask = oClient.get("/api/license/verify-without-email", oParam);
-                Task.WaitAll(oTask);
-                dynamic oResult = oTask.Result;
-                if (oResult.success == true && (Convert.ToInt32(oResult.data.should_expired_at.ToString()) >= UtilsLibrary.getTimestamp()))
-                {
-                    Application.Run(new UserManagement.Login());
-                }
-                else
-                {
-                    Application.Run(new BootEnterLicenseKey());
-                }
-            }
-            catch (Exception)
-            {
-                Application.Run(new BootEnterLicenseKey());
-            }
 
+            Application.Run(new Project());
+            //try
+            //{
+            //    dynamic oInfo = new RegistryLibrary().getInfo();
+            //    var oParam = new Dictionary<dynamic, dynamic>
+            //    {
+            //        { "timestamp", UtilsLibrary.getTimestamp() },
+            //        { "license_key", oInfo.key.ToString() },
+            //        { "product_code", oInfo.code.ToString() },
+            //    };
+            //    ClientLibrary oClient = new ClientLibrary();
+            //    dynamic oTask = oClient.get("/api/license/verify-without-email", oParam);
+            //    Task.WaitAll(oTask);
+            //    dynamic oResult = oTask.Result;
+            //    if (oResult.success == true && (Convert.ToInt32(oResult.data.should_expired_at.ToString()) >= UtilsLibrary.getTimestamp()))
+            //    {
+            //        Application.Run(new UserManagement.Login());
+            //    }
+            //    else
+            //    {
+            //        Application.Run(new BootEnterLicenseKey());
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    Application.Run(new BootEnterLicenseKey());
+            //}
         }
     }
 }

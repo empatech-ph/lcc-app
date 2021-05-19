@@ -30,7 +30,7 @@ namespace LCC
         private void InitializeComponent()
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -41,20 +41,30 @@ namespace LCC
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
-            // richTextBox2
+            // materialDrawer1
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(801, 453);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
+            this.materialDrawer1.AutoHide = false;
+            this.materialDrawer1.BackgroundWithAccent = false;
+            this.materialDrawer1.BaseTabControl = null;
+            this.materialDrawer1.Depth = 0;
+            this.materialDrawer1.HighlightWithAccent = true;
+            this.materialDrawer1.IndicatorWidth = 0;
+            this.materialDrawer1.IsOpen = true;
+            this.materialDrawer1.Location = new System.Drawing.Point(6, 68);
+            this.materialDrawer1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDrawer1.Name = "materialDrawer1";
+            this.materialDrawer1.ShowIconsWhenHidden = false;
+            this.materialDrawer1.Size = new System.Drawing.Size(1203, 449);
+            this.materialDrawer1.TabIndex = 0;
+            this.materialDrawer1.Text = "materialDrawer1";
+            this.materialDrawer1.UseColors = false;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.richTextBox2);
+            this.ClientSize = new System.Drawing.Size(1215, 523);
+            this.Controls.Add(this.materialDrawer1);
             this.Name = "Main";
             this.Text = "Project";
             this.ResumeLayout(false);
@@ -64,6 +74,6 @@ namespace LCC
         #endregion
 
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private MaterialSkin.Controls.MaterialDrawer materialDrawer1;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JsonFlatFileDataStore;
+using System;
 using System.Collections.Generic;
 using System.Management;
 using System.Text;
@@ -23,6 +24,13 @@ namespace LCC.Library
                 break;
             }
             return sProcessorId;
+        }
+
+        public static DataStore getUserFile()
+        {
+            dynamic oInfo = new RegistryLibrary().getInfo();
+
+            return new DataStore(AppDomain.CurrentDomain.BaseDirectory + "data.json");
         }
     }
 }
