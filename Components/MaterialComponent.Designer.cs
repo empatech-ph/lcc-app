@@ -33,6 +33,10 @@ namespace LCC.Components
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dt_material = new System.Windows.Forms.DataGridView();
+            this.btn_add = new MaterialSkin.Controls.MaterialButton();
+            this.btn_analyze = new MaterialSkin.Controls.MaterialButton();
+            this.ST = new MaterialSkin.Controls.MaterialCheckbox();
+            this.BO = new MaterialSkin.Controls.MaterialCheckbox();
             this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock = new System.Windows.Forms.DataGridViewButtonColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +46,6 @@ namespace LCC.Components
             this.trim_right = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.part_allowance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.min_remnant_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_add = new MaterialSkin.Controls.MaterialButton();
-            this.btn_analyze = new MaterialSkin.Controls.MaterialButton();
-            this.ST = new MaterialSkin.Controls.MaterialCheckbox();
-            this.BO = new MaterialSkin.Controls.MaterialCheckbox();
             ((System.ComponentModel.ISupportInitialize)(this.dt_material)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,81 +78,6 @@ namespace LCC.Components
             this.dt_material.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_material_DataError);
             this.dt_material.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dt_material_EditingControlShowing);
             this.dt_material.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dt_material_RowsAdded);
-            // 
-            // no
-            // 
-            this.no.DataPropertyName = "no";
-            dataGridViewCellStyle1.NullValue = null;
-            this.no.DefaultCellStyle = dataGridViewCellStyle1;
-            this.no.HeaderText = "No.";
-            this.no.Name = "no";
-            this.no.ReadOnly = true;
-            this.no.Width = 40;
-            // 
-            // stock
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Stock";
-            this.stock.DefaultCellStyle = dataGridViewCellStyle2;
-            this.stock.HeaderText = "List";
-            this.stock.MinimumWidth = 10;
-            this.stock.Name = "stock";
-            this.stock.ReadOnly = true;
-            this.stock.Width = 80;
-            // 
-            // description
-            // 
-            this.description.DataPropertyName = "description";
-            this.description.HeaderText = "Description";
-            this.description.Name = "description";
-            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.description.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.description.Width = 200;
-            // 
-            // grade
-            // 
-            this.grade.DataPropertyName = "grade";
-            this.grade.HeaderText = "Grade";
-            this.grade.Name = "grade";
-            this.grade.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.grade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.grade.Width = 200;
-            // 
-            // kerf
-            // 
-            this.kerf.DataPropertyName = "kerf";
-            dataGridViewCellStyle3.NullValue = null;
-            this.kerf.DefaultCellStyle = dataGridViewCellStyle3;
-            this.kerf.HeaderText = "Kerf (mm)";
-            this.kerf.Name = "kerf";
-            this.kerf.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.kerf.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // trim_left
-            // 
-            this.trim_left.DataPropertyName = "trim_left";
-            this.trim_left.HeaderText = "Trim Left (mm)";
-            this.trim_left.Name = "trim_left";
-            // 
-            // trim_right
-            // 
-            this.trim_right.DataPropertyName = "trim_right";
-            this.trim_right.HeaderText = "Trim Right (mm)";
-            this.trim_right.Name = "trim_right";
-            // 
-            // part_allowance
-            // 
-            this.part_allowance.DataPropertyName = "part_allowance";
-            this.part_allowance.HeaderText = "Part Allowance (mm)";
-            this.part_allowance.Name = "part_allowance";
-            this.part_allowance.Width = 120;
-            // 
-            // min_remnant_length
-            // 
-            this.min_remnant_length.DataPropertyName = "min_remnant_length";
-            this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
-            this.min_remnant_length.Name = "min_remnant_length";
-            this.min_remnant_length.Width = 120;
             // 
             // btn_add
             // 
@@ -230,6 +155,78 @@ namespace LCC.Components
             this.BO.Text = "Use Commercial Length List";
             this.BO.UseVisualStyleBackColor = true;
             // 
+            // no
+            // 
+            this.no.DataPropertyName = "no";
+            dataGridViewCellStyle1.NullValue = null;
+            this.no.DefaultCellStyle = dataGridViewCellStyle1;
+            this.no.HeaderText = "No.";
+            this.no.Name = "no";
+            this.no.Width = 40;
+            // 
+            // stock
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = "Stock";
+            this.stock.DefaultCellStyle = dataGridViewCellStyle2;
+            this.stock.HeaderText = "List";
+            this.stock.MinimumWidth = 10;
+            this.stock.Name = "stock";
+            this.stock.ReadOnly = true;
+            this.stock.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.stock.Width = 80;
+            // 
+            // description
+            // 
+            this.description.DataPropertyName = "description";
+            this.description.HeaderText = "Description";
+            this.description.Name = "description";
+            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.description.Width = 200;
+            // 
+            // grade
+            // 
+            this.grade.DataPropertyName = "grade";
+            this.grade.HeaderText = "Grade";
+            this.grade.Name = "grade";
+            this.grade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.grade.Width = 200;
+            // 
+            // kerf
+            // 
+            this.kerf.DataPropertyName = "kerf";
+            dataGridViewCellStyle3.NullValue = null;
+            this.kerf.DefaultCellStyle = dataGridViewCellStyle3;
+            this.kerf.HeaderText = "Kerf (mm)";
+            this.kerf.Name = "kerf";
+            this.kerf.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // trim_left
+            // 
+            this.trim_left.DataPropertyName = "trim_left";
+            this.trim_left.HeaderText = "Trim Left (mm)";
+            this.trim_left.Name = "trim_left";
+            // 
+            // trim_right
+            // 
+            this.trim_right.DataPropertyName = "trim_right";
+            this.trim_right.HeaderText = "Trim Right (mm)";
+            this.trim_right.Name = "trim_right";
+            // 
+            // part_allowance
+            // 
+            this.part_allowance.DataPropertyName = "part_allowance";
+            this.part_allowance.HeaderText = "Part Allowance (mm)";
+            this.part_allowance.Name = "part_allowance";
+            this.part_allowance.Width = 120;
+            // 
+            // min_remnant_length
+            // 
+            this.min_remnant_length.DataPropertyName = "min_remnant_length";
+            this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
+            this.min_remnant_length.Name = "min_remnant_length";
+            this.min_remnant_length.Width = 120;
+            // 
             // MaterialComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -253,6 +250,8 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridView dt_material;
         private MaterialSkin.Controls.MaterialButton btn_add;
         private MaterialSkin.Controls.MaterialButton btn_analyze;
+        private MaterialSkin.Controls.MaterialCheckbox ST;
+        private MaterialSkin.Controls.MaterialCheckbox BO;
         private System.Windows.Forms.DataGridViewTextBoxColumn no;
         private System.Windows.Forms.DataGridViewButtonColumn stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
@@ -262,7 +261,5 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn trim_right;
         private System.Windows.Forms.DataGridViewTextBoxColumn part_allowance;
         private System.Windows.Forms.DataGridViewTextBoxColumn min_remnant_length;
-        private MaterialSkin.Controls.MaterialCheckbox ST;
-        private MaterialSkin.Controls.MaterialCheckbox BO;
     }
 }
