@@ -77,21 +77,21 @@ namespace LCC.Modals
         {
 
             this.l_materialName.Text = this.oStockManager.l_material.Text;
-            this.c_qty.SelectedIndex = 0;
-            this.c_stockType.SelectedIndex = 0;
-            if (this.oStockManager.bST == true && this.oStockManager.bBO == true)
-            {
-                this.c_stockType.Items.Add("ST");
-                this.c_stockType.Items.Add("BO");
-            }
-            else if (this.oStockManager.bST == false && this.oStockManager.bBO == true)
+            if (this.oStockManager.bST == false && this.oStockManager.bBO == true)
             {
                 this.c_stockType.Items.Add("BO");
             }
             else if (this.oStockManager.bST == true && this.oStockManager.bBO == false)
             {
                 this.c_stockType.Items.Add("ST");
+            } 
+            else
+            {
+                this.c_stockType.Items.Add("ST");
+                this.c_stockType.Items.Add("BO");
             }
+            this.c_qty.SelectedIndex = 0;
+            this.c_stockType.SelectedIndex = 0;
         }
 
         private void c_qty_SelectedIndexChanged(object sender, EventArgs e)

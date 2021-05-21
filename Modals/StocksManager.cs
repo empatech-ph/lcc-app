@@ -46,23 +46,28 @@ namespace LCC.Modals
             IEnumerable<StockModel> oList = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>()
                 .AsQueryable()
                 .Where(e => e.material_id == GLOBAL.iSelectedMaterialId);
-
-            if (this.bST == true && this.bBO == true)
-            {
-                oList = oList.Where(e => e.stock_type == "BO" || e.stock_type == "ST");
-            }
-            else if (this.bST == false && this.bBO == true)
+            if (this.bST == false && this.bBO == true)
             {
                 oList = oList.Where(e => e.stock_type == "BO");
+                stock_type.Items.Add("BO");
             }
             else if (this.bST == true && this.bBO == false)
             {
                 oList = oList.Where(e => e.stock_type == "ST");
+                stock_type.Items.Add("ST");
+            }
+            else
+            {
+                oList = oList.Where(e => e.stock_type == "BO" || e.stock_type == "ST");
+                stock_type.Items.Add("ST");
+                stock_type.Items.Add("BO");
             }
             BindingList<StockModel> oListModel = new BindingList<StockModel>(oList.ToList());
             this.dt_stock.DataSource = oListModel;
             this.dt_stock.Columns["id"].Visible = false;
             this.dt_stock.Columns["material_id"].Visible = false;
+            this.dt_stock.Columns["visibility"].Visible = false;
+            this.dt_stock.Columns["editable"].Visible = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -74,12 +79,7 @@ namespace LCC.Modals
 
         private void dt_stock_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            var oRow = this.dt_stock.Rows[e.RowIndex];
-            if (oRow.Cells["qty"].Value.ToString() == "-1")
-            {
-                oRow.Cells["qty"].Value = "∞";
-            }
-            this.setRowEditableColor(e);
+
         }
 
         private void dt_stock_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -127,6 +127,22 @@ namespace LCC.Modals
                 oModifyQtyModal.oStockManager = this;
                 oModifyQtyModal.ShowDialog();
             }
+            if (this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image")
+            {
+                if (this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image")
+                {
+                    oRow.Cells["visibility"].Value = !bool.Parse(oRow.Cells["visibility"].Value.ToString());
+                    oRow.Cells["visibility_image"].Value = ((bool.Parse(oRow.Cells["visibility"].Value.ToString())) ? Properties.Resources.light_on : Properties.Resources.light_off);
+                    (oRow.Cells["visibility_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["visibility"].Value.ToString())) ? "Visible" : "Not Visible");
+                }
+                else 
+                {
+                    oRow.Cells["editable"].Value = !bool.Parse(oRow.Cells["editable"].Value.ToString());
+                    oRow.Cells["editable_image"].Value = ((bool.Parse(oRow.Cells["editable"].Value.ToString())) ? Properties.Resources.unlocked : Properties.Resources.locked);
+                    (oRow.Cells["editable_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["editable"].Value.ToString())) ? "Editable" : "Not Editable");
+                }
+                this.updateStock();
+            }
         }
 
         private void dt_stock_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -142,9 +158,9 @@ namespace LCC.Modals
                 var oStore = Library.UtilsLibrary.getUserFile();
                 var collection = oStore.GetCollection<StockModel>();
 
-                collection.UpdateOne(oRow => oRow.id == (int)row.Cells["id"].Value, new StockModel
+                collection.UpdateOne(oRow => oRow.id == int.Parse(row.Cells["id"].Value.ToString()), new StockModel
                 {
-                    id = 1,
+                    id = int.Parse(row.Cells["id"].Value.ToString()),
                     material_id = GLOBAL.iSelectedMaterialId,
                     qty = (row.Cells["qty"].Value == null) ? "0" : ((row.Cells["qty"].Value.ToString() == "∞") ? "-1" : row.Cells["qty"].Value.ToString()),
                     stock_type = row.Cells["stock_type"].Value.ToString(),
@@ -164,6 +180,23 @@ namespace LCC.Modals
         private void StocksManager_Load(object sender, EventArgs e)
         {
             this.initStockData();
+        }
+
+        private void dt_stock_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow oRow in this.dt_stock.Rows)
+            {
+                oRow.Cells["visibility_image"].Value = (bool.Parse(oRow.Cells["visibility"].Value.ToString()) ? Properties.Resources.light_on : Properties.Resources.light_off);
+                oRow.Cells["editable_image"].Value = (bool.Parse(oRow.Cells["editable"].Value.ToString()) ? Properties.Resources.unlocked : Properties.Resources.locked);
+
+                (oRow.Cells["visibility_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["visibility"].Value.ToString())) ? "Visible" : "Not Visible");
+                (oRow.Cells["editable_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["editable"].Value.ToString())) ? "Editable" : "Not Editable");
+
+                if (oRow.Cells["qty"].Value.ToString() == "-1")
+                {
+                    oRow.Cells["qty"].Value = "∞";
+                }
+            }
         }
     }
 }

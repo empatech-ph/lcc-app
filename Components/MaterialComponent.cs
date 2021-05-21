@@ -52,8 +52,10 @@ namespace LCC.Components
                 var oStore = Library.UtilsLibrary.getUserFile();
                 var collection = oStore.GetCollection<MaterialModel>();
 
-                collection.UpdateOne(oRow => oRow.id == (int)row.Cells["id"].Value, new MaterialModel
+                collection.UpdateOne(oRow => oRow.id == int.Parse(row.Cells["id"].Value.ToString()), new MaterialModel
                 {
+                    id = int.Parse(row.Cells["id"].Value.ToString()),
+                    project_id = GLOBAL.iSelectedProjectId,
                     description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : "",
                     grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : "",
                     kerf = row.Cells["kerf"].Value != null ? Convert.ToDouble(row.Cells["kerf"].Value) : 0.00,
