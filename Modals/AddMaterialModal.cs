@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -33,15 +34,18 @@ namespace LCC.Modals
         public void btn_save_Click(object sender, EventArgs e)
         {
             var store = Library.UtilsLibrary.getUserFile();
-            var collection = store.GetCollection<MaterialModel>();
+            var oMaterialModel = store.GetCollection<MaterialModel>();
             try
             {
-                if(this.tb_description.TextLength <= 0)
+                if(this.tb_description.TextLength <= 0 || this.tb_grade.TextLength <= 0)
                 {
                     throw new Exception();
                 }
-                collection.InsertOne(new MaterialModel
+
+                oMaterialModel.InsertOne(new MaterialModel
                 {
+                    id = 1,
+                    project_id = GLOBAL.iSelectedProjectId,
                     description = this.tb_description.Text,
                     grade = this.tb_grade.Text,
                     kerf = this.tb_kerf.TextLength <= 0 ? 0.00 : Convert.ToDouble(this.tb_kerf.Text),
@@ -69,6 +73,14 @@ namespace LCC.Modals
             catch(Exception)
             {
                 MessageBox.Show("You may have entered invalid inputs, Please check.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tb_kerf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
             }
         }
     }

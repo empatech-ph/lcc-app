@@ -28,6 +28,9 @@
     <Compile Update="Modals\AddMaterialModal.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Modals\ModifyQtyModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="NewProject.cs">
       <SubType>Form</SubType>
     </Compile>

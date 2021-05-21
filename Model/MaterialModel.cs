@@ -7,7 +7,7 @@ namespace LCC.Model
     public class MaterialModel
     {
         public int id { get; set; }
-        public int no { get; set; }
+        public int project_id { get; set; }
         public string description { get; set; }
         public string grade { get; set; }
         public double kerf { get; set; }

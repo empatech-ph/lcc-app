@@ -23,7 +23,8 @@ namespace LCC
     public partial class Project : MaterialForm
     {
         //public static string importOrExport = "";
-        public static int selectedProject = 0;
+
+        private DataStore oFile;
 
         public Project()
         {
@@ -38,6 +39,8 @@ namespace LCC
                 Primary.Blue400, Primary.Blue500,
                 Primary.Blue500, Accent.LightBlue200,
                 TextShade.WHITE);
+
+            this.oFile = Library.UtilsLibrary.getUserFile();
         }
 
         public void Project_Load(object sender, EventArgs e)
@@ -55,9 +58,10 @@ namespace LCC
             projectToolTip.SetToolTip(optimizeBtn, "Optimize");
 
             //project table
-            var store = new DataStore("data.json");
-            projectTable.DataSource = store.GetCollection<ProjectModel>().AsQueryable().ToList();
-            selectedProject = store.GetCollection<ProjectModel>().AsQueryable().Select(x => x.id).First();
+            var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
+            projectTable.DataSource = oProjectList.ToList();
+            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.Select(x => x.id).First();
+            materialComponent1.initDatagrid();
             projectTable.Columns["id"].Visible = false;
             projectTable.Columns["project_name"].HeaderText = "Project Name";
             projectTable.Columns["project_reference"].HeaderText = "Project Reference #";
@@ -122,8 +126,7 @@ namespace LCC
 
         private void Project_Activated(object sender, EventArgs e)
         {
-            var store = new DataStore("data.json");
-            projectTable.DataSource = store.GetCollection<ProjectModel>().AsQueryable().ToList();
+            projectTable.DataSource = this.oFile.GetCollection<ProjectModel>().AsQueryable().ToList();
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -148,8 +151,7 @@ namespace LCC
         {
             var rowIndex = projectTable.CurrentCell.RowIndex;
             var row = projectTable.Rows[rowIndex];
-            var store = new DataStore("data.json");
-            var collection = store.GetCollection<ProjectModel>();
+            var collection = this.oFile.GetCollection<ProjectModel>();
             collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { id = int.Parse(row.Cells["id"].Value.ToString()), project_name = row.Cells["project_name"].Value.ToString(), project_reference = row.Cells["project_reference"].Value.ToString(), rev_no = row.Cells["rev_no"].Value.ToString(), scope = row.Cells["scope"].Value.ToString() });
         }
 
@@ -161,8 +163,7 @@ namespace LCC
         {
             try
             {
-                var store = new DataStore("data.json");
-                var records = store.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
+                var records = this.oFile.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
                 using (var writer = new StreamWriter(saveFileDialog.FileName))
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
@@ -184,12 +185,11 @@ namespace LCC
             {
                 var rowIndex = cutLengthsTable.CurrentCell.RowIndex;
                 var row = cutLengthsTable.Rows[rowIndex];
-                var store = new DataStore("data2.json");
-                var collection = store.GetCollection<CutLengthModel>();
+                var collection = this.oFile.GetCollection<CutLengthModel>();
                 collection.InsertOne(new CutLengthModel
                 {
                     id = 1,
-                    project_id = NewProject.newProjectId,
+                    project_id = GLOBAL.iSelectedProjectId,
                     part_code = row.Cells[2].Value.ToString(),
                     description = row.Cells[3].Value.ToString(),
                     grade = row.Cells[4].Value.ToString(),
@@ -210,8 +210,7 @@ namespace LCC
             if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
             {
                 //cut lengths table
-                var store2 = new DataStore("data2.json");
-                var collection = store2.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == selectedProject).ToList();
+                var collection = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
                 cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
                 cutLengthsTable.Columns["id"].Visible = false;
                 cutLengthsTable.Columns["project_id"].Visible = false;
@@ -231,8 +230,8 @@ namespace LCC
             if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
             {
                 //cut lengths table
-                var store2 = new DataStore("data2.json");
-                var collection = store2.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == selectedProject).ToList();
+                var collection = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                cutLengthsTable.DataSource = null;
                 cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
                 cutLengthsTable.Columns["id"].Visible = false;
                 cutLengthsTable.Columns["project_id"].Visible = false;
@@ -251,7 +250,8 @@ namespace LCC
         {
             var rowIndex = projectTable.CurrentCell.RowIndex;
             var row = projectTable.Rows[rowIndex];
-            selectedProject = int.Parse(row.Cells["id"].Value.ToString());
+            GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
+            this.materialComponent1.initDatagrid();
         }
     }
 }

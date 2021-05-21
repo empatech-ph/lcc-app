@@ -77,7 +77,7 @@ namespace LCC.Modals
             // 
             this.tb_grade.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_grade.Depth = 0;
-            this.tb_grade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tb_grade.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tb_grade.Hint = "Grade";
             this.tb_grade.Location = new System.Drawing.Point(279, 90);
             this.tb_grade.MaxLength = 50;
@@ -102,6 +102,7 @@ namespace LCC.Modals
             this.tb_kerf.Size = new System.Drawing.Size(143, 50);
             this.tb_kerf.TabIndex = 1;
             this.tb_kerf.Text = "0.00";
+            this.tb_kerf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
             // tb_trim_left
             // 
@@ -117,6 +118,7 @@ namespace LCC.Modals
             this.tb_trim_left.Size = new System.Drawing.Size(145, 50);
             this.tb_trim_left.TabIndex = 1;
             this.tb_trim_left.Text = "0.00";
+            this.tb_trim_left.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
             // tb_trim_right
             // 
@@ -132,6 +134,7 @@ namespace LCC.Modals
             this.tb_trim_right.Size = new System.Drawing.Size(151, 50);
             this.tb_trim_right.TabIndex = 1;
             this.tb_trim_right.Text = "0.00";
+            this.tb_trim_right.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
             // tb_partial_allowance
             // 
@@ -147,6 +150,7 @@ namespace LCC.Modals
             this.tb_partial_allowance.Size = new System.Drawing.Size(230, 50);
             this.tb_partial_allowance.TabIndex = 1;
             this.tb_partial_allowance.Text = "0.00";
+            this.tb_partial_allowance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
             // tb_min_remnant
             // 
@@ -162,6 +166,7 @@ namespace LCC.Modals
             this.tb_min_remnant.Size = new System.Drawing.Size(230, 50);
             this.tb_min_remnant.TabIndex = 1;
             this.tb_min_remnant.Text = "0.00";
+            this.tb_min_remnant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
             // AddMaterialModal
             // 

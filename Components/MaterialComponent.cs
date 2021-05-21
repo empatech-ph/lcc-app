@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using LCC.Model;
 using System.Linq;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace LCC.Components
 {
@@ -21,17 +23,25 @@ namespace LCC.Components
 
         public void initDatagrid()
         {
-            var oStore = Library.UtilsLibrary.getUserFile();
-            BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oStore.GetCollection<MaterialModel>().AsQueryable().ToList());
+            dynamic oList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+            BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
             this.dt_material.DataSource = oListModel;
             this.dt_material.Columns["id"].Visible = false;
+            this.dt_material.Columns["project_id"].Visible = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            var oAddMaterialModal = new Modals.AddMaterialModal();
-            oAddMaterialModal.oMaterialComponent = this;
-            oAddMaterialModal.ShowDialog();
+            if (GLOBAL.iSelectedProjectId != 0)
+            {
+                var oAddMaterialModal = new Modals.AddMaterialModal();
+                oAddMaterialModal.oMaterialComponent = this;
+                oAddMaterialModal.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select project.");
+            }
         }
 
         private void dt_material_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +54,6 @@ namespace LCC.Components
 
                 collection.UpdateOne(oRow => oRow.id == (int)row.Cells["id"].Value, new MaterialModel
                 {
-                    no = row.Cells["no"].Value != null ? (int)row.Cells["no"].Value : 0,
                     description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : "",
                     grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : "",
                     kerf = row.Cells["kerf"].Value != null ? Convert.ToDouble(row.Cells["kerf"].Value) : 0.00,
@@ -54,7 +63,7 @@ namespace LCC.Components
                     min_remnant_length = row.Cells["min_remnant_length"].Value != null ? Convert.ToDouble(row.Cells["min_remnant_length"].Value) : 0.00
                 });
             }
-            catch(Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Please check the format when editing the field.");
             }
@@ -63,7 +72,8 @@ namespace LCC.Components
         private void dt_material_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             string sCellName = this.dt_material.Columns[this.dt_material.CurrentCell.ColumnIndex].Name;
-            if(sCellName == "kerf" || sCellName == "trim_left" || sCellName == "trim_right" || sCellName == "part_allowance" || sCellName == "min_remnant_length") {
+            if (sCellName == "kerf" || sCellName == "trim_left" || sCellName == "trim_right" || sCellName == "part_allowance" || sCellName == "min_remnant_length")
+            {
 
                 //e.Control.KeyPress += new KeyPressEventHandler(CheckKey);
             }
@@ -75,6 +85,72 @@ namespace LCC.Components
             {
                 e.Handled = true;
             }
+        }
+
+        private void btn_analyze_Click(object sender, EventArgs e)
+        {
+            if (GLOBAL.iSelectedProjectId != 0)
+            {
+                dynamic oCutLength = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>().AsQueryable()
+                        .Where(e => e.project_id == GLOBAL.iSelectedProjectId)
+                        .Select(o => new { o.description, o.grade })
+                        .Distinct()
+                        .ToList();
+                var oMaterialModel = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>();
+                foreach (dynamic oItem in oCutLength)
+                {
+                    oMaterialModel.InsertOne(new MaterialModel
+                    {
+                        id = 1,
+                        description = oItem.description.ToString(),
+                        grade = oItem.grade.ToString(),
+                        kerf = 0.00,
+                        trim_left = 0.00,
+                        trim_right = 0.00,
+                        part_allowance = 0.00,
+                        min_remnant_length = 0.00,
+                        project_id = GLOBAL.iSelectedProjectId,
+                    });
+                }
+                this.initDatagrid();
+            }
+            else
+            {
+                MessageBox.Show("Please select project.");
+            }
+        }
+
+        private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
+            {
+                if (this.ST.Checked == false && this.BO.Checked == false)
+                {
+                    MessageBox.Show("Please check atleast 1 in the filter.");
+                }
+                else
+                {
+                    var rowIndex = this.dt_material.CurrentCell.RowIndex;
+                    var row = this.dt_material.Rows[rowIndex];
+                    GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
+                    var oStockManager = new Modals.StocksManager();
+                    oStockManager.bBO = this.BO.Checked;
+                    oStockManager.bST = this.ST.Checked;
+                    oStockManager.ShowDialog();
+                }
+            }
+        }
+
+        private void dt_material_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            var row = this.dt_material.Rows[e.RowIndex];
+            row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
+        }
+
+        private void dt_material_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var row = this.dt_material.Rows[e.RowIndex];
+            row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
         }
     }
 }

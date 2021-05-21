@@ -171,7 +171,7 @@ namespace LCC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://lcc-tool.coms.
+        ///   Looks up a localized string similar to http://lcc-tool.com.
         /// </summary>
         internal static string webhost {
             get {

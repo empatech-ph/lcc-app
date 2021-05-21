@@ -56,12 +56,12 @@ namespace LCC
             this.projectTable = new System.Windows.Forms.DataGridView();
             this.addProject = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialTab = new System.Windows.Forms.TabPage();
-            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.cutLengthTab = new System.Windows.Forms.TabPage();
             this.addCutLengthBtn = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.cutLengthsTable = new System.Windows.Forms.DataGridView();
+            this.materialTab = new System.Windows.Forms.TabPage();
+            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
@@ -395,10 +395,9 @@ namespace LCC
             // 
             // projectTab
             // 
-            this.projectTab.Controls.Add(this.projTab1);
-            this.projectTab.Controls.Add(this.materialTab);
             this.projectTab.Controls.Add(this.projTab);
             this.projectTab.Controls.Add(this.cutLengthTab);
+            this.projectTab.Controls.Add(this.materialTab);
             this.projectTab.Location = new System.Drawing.Point(12, 127);
             this.projectTab.Name = "projectTab";
             this.projectTab.SelectedIndex = 0;
@@ -552,6 +551,25 @@ namespace LCC
             this.cutLengthsTable.TabIndex = 0;
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             // 
+            // materialTab
+            // 
+            this.materialTab.Controls.Add(this.materialComponent1);
+            this.materialTab.Location = new System.Drawing.Point(4, 24);
+            this.materialTab.Name = "materialTab";
+            this.materialTab.Size = new System.Drawing.Size(1080, 448);
+            this.materialTab.TabIndex = 2;
+            this.materialTab.Text = "Materials";
+            this.materialTab.UseVisualStyleBackColor = true;
+            // 
+            // materialComponent1
+            // 
+            this.materialComponent1.BackColor = System.Drawing.Color.White;
+            this.materialComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialComponent1.Location = new System.Drawing.Point(0, 0);
+            this.materialComponent1.Name = "materialComponent1";
+            this.materialComponent1.Size = new System.Drawing.Size(1080, 448);
+            this.materialComponent1.TabIndex = 0;
+            // 
             // saveFileDialog
             // 
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
@@ -616,15 +634,12 @@ namespace LCC
         public System.Windows.Forms.DataGridView projectTable;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolTip projectToolTip;
-        private System.Windows.Forms.TabPage tabPage1;
         private MaterialSkin.Controls.MaterialButton addProject;
         public System.Windows.Forms.TabControl projectTab;
         public System.Windows.Forms.TabPage cutLengthTab;
         private System.Windows.Forms.DataGridView cutLengthsTable;
-        private MaterialSkin.Controls.MaterialButton addCutLength;
         private MaterialSkin.Controls.MaterialDivider materialDivider2;
         private MaterialSkin.Controls.MaterialButton addCutLengthBtn;
-        private System.Windows.Forms.Label selectedProjectLbl;
         private System.Windows.Forms.TabPage materialTab;
         private Components.MaterialComponent materialComponent1;
     }
