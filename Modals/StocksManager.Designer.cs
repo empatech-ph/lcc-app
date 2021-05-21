@@ -126,13 +126,16 @@ namespace LCC.Modals
             this.qty.HeaderText = "Quantity";
             this.qty.Name = "qty";
             this.qty.ReadOnly = true;
-            this.qty.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.qty.Width = 60;
             // 
             // length
             // 
             this.length.DataPropertyName = "length";
             this.length.HeaderText = "Length (mm)";
             this.length.Name = "length";
+            this.length.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.length.Width = 150;
             // 
             // stock_type
             // 
@@ -140,7 +143,8 @@ namespace LCC.Modals
             this.stock_type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stock_type.HeaderText = "Stock Type";
             this.stock_type.Name = "stock_type";
-            this.stock_type.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.stock_type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.stock_type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.stock_type.Width = 90;
             // 
             // cost
@@ -148,7 +152,7 @@ namespace LCC.Modals
             this.cost.DataPropertyName = "cost";
             this.cost.HeaderText = "Cost (AUD) / EA";
             this.cost.Name = "cost";
-            this.cost.Width = 150;
+            this.cost.Width = 200;
             // 
             // stock_code
             // 
@@ -161,23 +165,23 @@ namespace LCC.Modals
             this.note.DataPropertyName = "note";
             this.note.HeaderText = "Note";
             this.note.Name = "note";
-            this.note.Width = 230;
+            this.note.Width = 240;
             // 
             // visibility_image
             // 
-            this.visibility_image.HeaderText = "";
+            this.visibility_image.HeaderText = "Visibility";
             this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.visibility_image.Name = "visibility_image";
             this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.visibility_image.Width = 101;
+            this.visibility_image.Width = 65;
             // 
             // editable_image
             // 
-            this.editable_image.HeaderText = "";
+            this.editable_image.HeaderText = "Editable";
             this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.editable_image.Name = "editable_image";
             this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editable_image.Width = 101;
+            this.editable_image.Width = 65;
             // 
             // StocksManager
             // 
