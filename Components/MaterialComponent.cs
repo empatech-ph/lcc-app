@@ -101,18 +101,22 @@ namespace LCC.Components
                 var oMaterialModel = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>();
                 foreach (dynamic oItem in oCutLength)
                 {
-                    oMaterialModel.InsertOne(new MaterialModel
-                    {
-                        id = 1,
-                        description = oItem.description.ToString(),
-                        grade = oItem.grade.ToString(),
-                        kerf = 0.00,
-                        trim_left = 0.00,
-                        trim_right = 0.00,
-                        part_allowance = 0.00,
-                        min_remnant_length = 0.00,
-                        project_id = GLOBAL.iSelectedProjectId,
-                    });
+                    int mExistingRowsCount = oMaterialModel.AsQueryable()
+                        .Where(e => e.description == oItem.description.ToString() && e.grade == oItem.grade.ToString()).ToList().Count;
+
+                    if (mExistingRowsCount <= 0)
+                        oMaterialModel.InsertOne(new MaterialModel
+                        {
+                            id = 1,
+                            description = oItem.description.ToString(),
+                            grade = oItem.grade.ToString(),
+                            kerf = 0.00,
+                            trim_left = 0.00,
+                            trim_right = 0.00,
+                            part_allowance = 0.00,
+                            min_remnant_length = 0.00,
+                            project_id = GLOBAL.iSelectedProjectId,
+                        });
                 }
                 this.initDatagrid();
             }
@@ -153,6 +157,12 @@ namespace LCC.Components
         {
             var row = this.dt_material.Rows[e.RowIndex];
             row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
+        }
+
+        private void dt_material_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if(e.Context.ToString() == "Parsing, Commit")
+            MessageBox.Show("Please check the format when editing the field.");
         }
     }
 }
