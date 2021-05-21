@@ -86,7 +86,7 @@ namespace LCC.UserManagement
                     var oLogin = new Dictionary<dynamic, dynamic>
                     {
                         { "id",  oResult.id.ToString()},
-                        { "file_name", EncryptionDecryptionLibrary.getEncryptBase64(oResult.id.ToString() + oResult.email.ToString()) + ".json" },
+                        { "file_name", EncryptionDecryptionLibrary.getEncryptBase64(oResult.id.ToString() + oResult.email.ToString())},
                         { "user_type", oResult.user_type.ToString()},
                         { "email", oResult.email.ToString()},
                         { "timestamp",  UtilsLibrary.getTimestamp() }

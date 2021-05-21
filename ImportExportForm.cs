@@ -97,7 +97,7 @@ namespace LCC
                         var store = new DataStore("data2.json");
                         var collection = store.GetCollection<CutLengthModel>();
                         collection.InsertOne(
-                            new CutLengthModel { id = 1, project_id = Project.selectedProject, part_code = rec[0], description = rec[1]
+                            new CutLengthModel { id = 1, project_id = GLOBAL.iSelectedProjectId, part_code = rec[0], description = rec[1]
                             ,grade= rec[2]
                             ,quantity = int.Parse(rec[3])
                             ,uncut_quantity= int.Parse(rec[4])

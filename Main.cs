@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using MaterialSkin;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,21 +11,19 @@ using System.Windows.Forms;
 
 namespace LCC
 {
-    public partial class Main : Form
+    public partial class Main : MaterialSkin.Controls.MaterialForm
     {
-        public Main(string sString = "")
+
+        private readonly MaterialSkinManager materialSkinManager;
+        public Main()
         {
             InitializeComponent();
-            var mbs = new ManagementObjectSearcher("Select ProcessorId From Win32_processor");
-            ManagementObjectCollection mbsList = mbs.Get();
-            string id = "";
-            foreach (ManagementObject mo in mbsList)
-            {
-                id = mo["ProcessorId"].ToString();
-                break;
-            }
-            //this.richTextBox1.Text = Library.EncryptionDecryptionLibrary.decrypt(Library.EncryptionDecryptionLibrary.getDecryptBase64("RUZxTndHQlBUMThxbXNyYzJrMWxnbW5rUWlaamlUaGRiZG5XczVqRkxySmxUL0UwbjdGR0Z1WEVVR082Vm1yUEVYRDVHMGMxeUlDcXROZFBja0NZRm1YWG9uUUxXelhKMkNsU0JjeTlNQk9BZHhEQWs5N1J2bUVPaDdMejdTTGk="));
-            this.richTextBox2.Text = sString;
+
+            materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.EnforceBackcolorOnAllComponents = true;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
         }
     }
 }

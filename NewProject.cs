@@ -43,8 +43,7 @@ namespace LCC
             {
                 if (!string.IsNullOrWhiteSpace(projNameTxt.Text) && !string.IsNullOrWhiteSpace(projNameReferenceTxt.Text) && !string.IsNullOrWhiteSpace(revNumberTxt.Text) && !string.IsNullOrWhiteSpace(scopeOfWorksTxt.Text))
                 {
-                    var store = new DataStore("data.json");
-                    var collection = store.GetCollection<ProjectModel>();
+                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                     newProjectId = collection.GetNextIdValue();
                     collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
                     this.Close();

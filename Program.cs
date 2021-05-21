@@ -19,7 +19,6 @@ namespace LCC
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ClientLibrary oClient = new ClientLibrary();
             if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
             {
                 Application.Exit();
@@ -27,11 +26,20 @@ namespace LCC
             dynamic oInfo = new RegistryLibrary().getInfo();
             if (oInfo.ContainsKey("date_recheck") && oInfo.date_recheck.ToString() != "")
             {
-                if ((Convert.ToInt32(oInfo.date_recheck.ToString()) >= UtilsLibrary.getTimestamp()) && oClient.IsConnectedToInternet() == false)
+                ClientLibrary oClient = new ClientLibrary();
+                dynamic oLoginInfo = new RegistryLibrary().getLogin();
+                if ((Convert.ToInt32(oInfo.date_recheck.ToString()) >= UtilsLibrary.getTimestamp()))
                 {
-                    Application.Run(new UserManagement.Login());
+                    if (oLoginInfo.id.ToString() != "")
+                    {
+                        Application.Run(new Project());
+                    }
+                    else
+                    {
+                        Application.Run(new UserManagement.Login());
+                    }
                 }
-                else
+                else if(oClient.IsConnectedToInternet() == true)
                 {
                     try
                     {
@@ -57,6 +65,10 @@ namespace LCC
                     {
                         Application.Run(new BootEnterLicenseKey());
                     }
+                }
+                else
+                {
+                    Application.Run(new BootEnterLicenseKey());
                 }
             }
             else
