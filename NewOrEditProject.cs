@@ -19,19 +19,11 @@ namespace LCC
         public static int newProjectId = 0;
         public static int editProjectId = 0;
         public static bool isAdd = true;
+        public Project oProject;
         public NewOrEditProject()
         {
             InitializeComponent();
-            // Create a material theme manager and add the form to manage (this)
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue400, Primary.Blue500,
-                Primary.Blue500, Accent.LightBlue200,
-                TextShade.WHITE);
+            Library.ThemeLibrary.initMaterialDesign(this);
         }
 
         private void NewProject_Load(object sender, EventArgs e)
@@ -46,8 +38,7 @@ namespace LCC
             {
                 if (!string.IsNullOrWhiteSpace(projNameTxt.Text) && !string.IsNullOrWhiteSpace(projNameReferenceTxt.Text) && !string.IsNullOrWhiteSpace(revNumberTxt.Text) && !string.IsNullOrWhiteSpace(scopeOfWorksTxt.Text))
                 {
-                    var store = new DataStore("data.json");
-                    var collection = store.GetCollection<ProjectModel>();
+                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                     Project.selectedProject = collection.GetNextIdValue();
                     if (isAdd)
                     {
@@ -64,6 +55,7 @@ namespace LCC
                 {
                     MessageBox.Show("Please fill all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                this.oProject.initProject();
             }
             catch (Exception ex)
             {

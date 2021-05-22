@@ -20,15 +20,7 @@ namespace LCC.Modals
         public StocksManager()
         {
             InitializeComponent();
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue400, Primary.Blue500,
-                Primary.Blue500, Accent.LightBlue200,
-                TextShade.WHITE);
+            Library.ThemeLibrary.initMaterialDesign(this);
             this.initMaterialTitle();
         }
 
@@ -125,7 +117,7 @@ namespace LCC.Modals
                     oModifyQtyModal.oStockManager = this;
                     oModifyQtyModal.ShowDialog();
                 }
-                if (this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image")
+                if (e.RowIndex != -1 && this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image")
                 {
                     if (this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image")
                     {

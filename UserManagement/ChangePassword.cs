@@ -19,16 +19,7 @@ namespace LCC.UserManagement
         public ChangePassword(int iId, string sEmail)
         {
             InitializeComponent();
-            // Create a material theme manager and add the form to manage (this)
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue400, Primary.Blue500,
-                Primary.Blue500, Accent.LightBlue200,
-                TextShade.WHITE);
+            Library.ThemeLibrary.initMaterialDesign(this);
 
             this.iId = iId;
             this.l_email.Text = sEmail;

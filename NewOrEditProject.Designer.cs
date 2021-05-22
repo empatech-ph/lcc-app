@@ -151,8 +151,11 @@ namespace LCC
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(503, 253);
             this.Name = "NewOrEditProject";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Project";
             this.Load += new System.EventHandler(this.NewProject_Load);
             this.ResumeLayout(false);

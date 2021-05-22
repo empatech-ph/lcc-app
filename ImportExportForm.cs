@@ -24,16 +24,7 @@ namespace LCC
         public ImportExportForm()
         {
             InitializeComponent();
-            // Create a material theme manager and add the form to manage (this)
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue400, Primary.Blue500,
-                Primary.Blue500, Accent.LightBlue200,
-                TextShade.WHITE);
+            Library.ThemeLibrary.initMaterialDesign(this);
         }
 
         private void ImportForm_Load(object sender, EventArgs e)
@@ -89,16 +80,14 @@ namespace LCC
                         {
                             if (importComboBox.SelectedItem.ToString() == "Project")
                             {
-                                var store = new DataStore("data.json");
-                                var collection = store.GetCollection<ProjectModel>();
+                                var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                                 collection.InsertOne(new ProjectModel { id = 1, project_name = rec[1], project_reference = rec[0], rev_no = rec[3], scope = rec[2] });
                             }
                             else
                             {
                                 if (extension != ".xlsx")
                                 {
-                                    var store = new DataStore("data2.json");
-                                    var collection = store.GetCollection<CutLengthModel>();
+                                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
                                     collection.InsertOne(
                                         new CutLengthModel
                                         {
@@ -139,8 +128,7 @@ namespace LCC
                                 {
                                     rowDataList = item.ItemArray.ToList();
                                     allRowsList.Add(rowDataList); 
-                                    var store2 = new DataStore("data2.json");
-                                    var collection2 = store2.GetCollection<CutLengthModel>();
+                                    var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
                                     collection2.InsertOne(
                                         new CutLengthModel
                                         {

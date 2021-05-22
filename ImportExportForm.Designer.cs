@@ -164,8 +164,11 @@ namespace LCC
             this.Controls.Add(this.importLbl);
             this.Controls.Add(this.importExportBtn);
             this.Controls.Add(this.importComboBox);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(478, 276);
             this.Name = "ImportExportForm";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.ImportForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

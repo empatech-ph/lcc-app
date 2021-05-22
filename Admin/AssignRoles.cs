@@ -19,16 +19,7 @@ namespace LCC.Admin
         public AssignRoles(string sUserEmails)
         {
             InitializeComponent();
-            // Create a material theme manager and add the form to manage (this)
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Blue400, Primary.Blue500,
-                Primary.Blue500, Accent.LightBlue200,
-                TextShade.WHITE);
+            Library.ThemeLibrary.initMaterialDesign(this);
 
             string[] aUserEmails = sUserEmails.TrimStart(',').TrimEnd(',').Split(',');
             for (int i = 0; aUserEmails.Length > i; i++)
