@@ -211,7 +211,7 @@ namespace LCC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://lcc-tool.com.
+        ///   Looks up a localized string similar to https://lcc-api.herokuapp.com.
         /// </summary>
         internal static string webhost {
             get {

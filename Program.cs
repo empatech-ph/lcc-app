@@ -61,7 +61,7 @@ namespace LCC
                             Application.Run(new BootEnterLicenseKey());
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         Application.Run(new BootEnterLicenseKey());
                     }

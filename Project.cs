@@ -254,5 +254,17 @@ namespace LCC
                 note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
             });
         }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            DialogResult oDialogResult = MessageBox.Show("Do you want to logout?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                new Library.RegistryLibrary().deleteRegistry("login");
+                this.Hide();
+                new UserManagement.Login().Show();
+            }
+
+        }
     }
 }

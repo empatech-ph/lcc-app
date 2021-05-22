@@ -73,6 +73,7 @@ namespace LCC
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
+            this.btn_logout = new MaterialSkin.Controls.MaterialButton();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -292,6 +293,7 @@ namespace LCC
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btn_logout);
             this.panel4.Controls.Add(this.materialButton4);
             this.panel4.Controls.Add(this.materialButton3);
             this.panel4.Controls.Add(this.materialButton2);
@@ -299,7 +301,7 @@ namespace LCC
             this.panel4.Controls.Add(this.fileBtn);
             this.panel4.Location = new System.Drawing.Point(157, 28);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(251, 32);
+            this.panel4.Size = new System.Drawing.Size(317, 32);
             this.panel4.TabIndex = 7;
             // 
             // materialButton4
@@ -657,6 +659,27 @@ namespace LCC
             this.l_currentProject.Text = "Current Project : No selected project";
             this.l_currentProject.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btn_logout
+            // 
+            this.btn_logout.AutoSize = false;
+            this.btn_logout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_logout.Depth = 0;
+            this.btn_logout.DrawShadows = true;
+            this.btn_logout.HighEmphasis = true;
+            this.btn_logout.Icon = null;
+            this.btn_logout.Location = new System.Drawing.Point(250, 3);
+            this.btn_logout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_logout.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_logout.Name = "btn_logout";
+            this.btn_logout.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_logout.Size = new System.Drawing.Size(62, 25);
+            this.btn_logout.TabIndex = 6;
+            this.btn_logout.Text = "Logout";
+            this.btn_logout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_logout.UseAccentColor = false;
+            this.btn_logout.UseVisualStyleBackColor = true;
+            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -739,5 +762,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private MaterialSkin.Controls.MaterialLabel l_currentProject;
         private MaterialSkin.Controls.MaterialTabSelector oProjectTabSelector;
+        private MaterialSkin.Controls.MaterialButton btn_logout;
     }
 }

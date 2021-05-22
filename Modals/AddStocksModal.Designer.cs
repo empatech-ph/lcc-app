@@ -56,7 +56,7 @@ namespace LCC.Modals
             this.btn_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(58, 36);
-            this.btn_save.TabIndex = 0;
+            this.btn_save.TabIndex = 9;
             this.btn_save.Text = "Save";
             this.btn_save.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             this.btn_save.UseAccentColor = false;
@@ -90,7 +90,7 @@ namespace LCC.Modals
             this.tb_cost.Multiline = false;
             this.tb_cost.Name = "tb_cost";
             this.tb_cost.Size = new System.Drawing.Size(119, 50);
-            this.tb_cost.TabIndex = 1;
+            this.tb_cost.TabIndex = 5;
             this.tb_cost.Text = "0.00";
             this.tb_cost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -143,7 +143,7 @@ namespace LCC.Modals
             this.rb_note.MouseState = MaterialSkin.MouseState.HOVER;
             this.rb_note.Name = "rb_note";
             this.rb_note.Size = new System.Drawing.Size(477, 87);
-            this.rb_note.TabIndex = 4;
+            this.rb_note.TabIndex = 6;
             this.rb_note.Text = "";
             // 
             // ck_editable
@@ -159,7 +159,7 @@ namespace LCC.Modals
             this.ck_editable.Name = "ck_editable";
             this.ck_editable.Ripple = true;
             this.ck_editable.Size = new System.Drawing.Size(92, 37);
-            this.ck_editable.TabIndex = 5;
+            this.ck_editable.TabIndex = 7;
             this.ck_editable.Text = "Editable";
             this.ck_editable.UseVisualStyleBackColor = true;
             // 
@@ -176,7 +176,7 @@ namespace LCC.Modals
             this.ck_visible.Name = "ck_visible";
             this.ck_visible.Ripple = true;
             this.ck_visible.Size = new System.Drawing.Size(82, 37);
-            this.ck_visible.TabIndex = 5;
+            this.ck_visible.TabIndex = 8;
             this.ck_visible.Text = "Visible";
             this.ck_visible.UseVisualStyleBackColor = true;
             // 
@@ -205,7 +205,7 @@ namespace LCC.Modals
             this.tb_length.Multiline = false;
             this.tb_length.Name = "tb_length";
             this.tb_length.Size = new System.Drawing.Size(119, 50);
-            this.tb_length.TabIndex = 1;
+            this.tb_length.TabIndex = 4;
             this.tb_length.Text = "0.00";
             this.tb_length.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 

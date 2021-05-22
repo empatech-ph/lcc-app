@@ -63,7 +63,7 @@ namespace LCC.Modals
             this.c_qty.MaxDropDownItems = 4;
             this.c_qty.Name = "c_qty";
             this.c_qty.Size = new System.Drawing.Size(92, 25);
-            this.c_qty.TabIndex = 8;
+            this.c_qty.TabIndex = 1;
             // 
             // btn_save
             // 
@@ -77,7 +77,7 @@ namespace LCC.Modals
             this.btn_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(58, 36);
-            this.btn_save.TabIndex = 10;
+            this.btn_save.TabIndex = 2;
             this.btn_save.Text = "Save";
             this.btn_save.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             this.btn_save.UseAccentColor = false;

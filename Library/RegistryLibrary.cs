@@ -97,5 +97,9 @@ namespace LCC.Library
                 return JObject.Parse(JsonConvert.SerializeObject(oLogin));
             }
         }
+        public void deleteRegistry(string sKey)
+        {
+            this.oRegistry.DeleteValue(sKey);
+        }
     }
 }

@@ -51,7 +51,7 @@ namespace LCC.Modals
             this.btn_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(58, 36);
-            this.btn_save.TabIndex = 0;
+            this.btn_save.TabIndex = 8;
             this.btn_save.Text = "Save";
             this.btn_save.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
             this.btn_save.UseAccentColor = false;
@@ -85,7 +85,7 @@ namespace LCC.Modals
             this.tb_grade.Multiline = false;
             this.tb_grade.Name = "tb_grade";
             this.tb_grade.Size = new System.Drawing.Size(230, 50);
-            this.tb_grade.TabIndex = 1;
+            this.tb_grade.TabIndex = 2;
             this.tb_grade.Text = "";
             // 
             // tb_kerf
@@ -100,7 +100,7 @@ namespace LCC.Modals
             this.tb_kerf.Multiline = false;
             this.tb_kerf.Name = "tb_kerf";
             this.tb_kerf.Size = new System.Drawing.Size(143, 50);
-            this.tb_kerf.TabIndex = 1;
+            this.tb_kerf.TabIndex = 3;
             this.tb_kerf.Text = "0.00";
             this.tb_kerf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -116,7 +116,7 @@ namespace LCC.Modals
             this.tb_trim_left.Multiline = false;
             this.tb_trim_left.Name = "tb_trim_left";
             this.tb_trim_left.Size = new System.Drawing.Size(145, 50);
-            this.tb_trim_left.TabIndex = 1;
+            this.tb_trim_left.TabIndex = 4;
             this.tb_trim_left.Text = "0.00";
             this.tb_trim_left.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -132,7 +132,7 @@ namespace LCC.Modals
             this.tb_trim_right.Multiline = false;
             this.tb_trim_right.Name = "tb_trim_right";
             this.tb_trim_right.Size = new System.Drawing.Size(151, 50);
-            this.tb_trim_right.TabIndex = 1;
+            this.tb_trim_right.TabIndex = 5;
             this.tb_trim_right.Text = "0.00";
             this.tb_trim_right.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -148,7 +148,7 @@ namespace LCC.Modals
             this.tb_partial_allowance.Multiline = false;
             this.tb_partial_allowance.Name = "tb_partial_allowance";
             this.tb_partial_allowance.Size = new System.Drawing.Size(230, 50);
-            this.tb_partial_allowance.TabIndex = 1;
+            this.tb_partial_allowance.TabIndex = 6;
             this.tb_partial_allowance.Text = "0.00";
             this.tb_partial_allowance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -164,7 +164,7 @@ namespace LCC.Modals
             this.tb_min_remnant.Multiline = false;
             this.tb_min_remnant.Name = "tb_min_remnant";
             this.tb_min_remnant.Size = new System.Drawing.Size(230, 50);
-            this.tb_min_remnant.TabIndex = 1;
+            this.tb_min_remnant.TabIndex = 7;
             this.tb_min_remnant.Text = "0.00";
             this.tb_min_remnant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
