@@ -463,6 +463,8 @@ namespace LCC
             this.projectTable.TabIndex = 3;
             this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellClick);
             this.projectTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellEndEdit);
+            this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
+            this.projectTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
             // 
             // addProject
             // 
@@ -550,6 +552,7 @@ namespace LCC
             this.cutLengthsTable.Size = new System.Drawing.Size(1071, 352);
             this.cutLengthsTable.TabIndex = 0;
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
+            this.cutLengthsTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
             // 
             // materialTab
             // 

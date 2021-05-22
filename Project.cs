@@ -23,6 +23,8 @@ namespace LCC
     public partial class Project : MaterialForm
     {
         //public static string importOrExport = "";
+        public static int selectedProject = 0;
+        int LastNewRowIndex = -1;
 
         private DataStore oFile;
 
@@ -96,6 +98,7 @@ namespace LCC
             projectTable.CellClick += projectTblEdit_CellClick;
             //var rowIndex = cutLengthsTable.CurrentCell.IsNull() ? 0 : cutLengthsTable.CurrentCell.RowIndex;
             //DataGridViewRow row = cutLengthsTable.Rows[rowIndex];
+
         }
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -109,7 +112,18 @@ namespace LCC
         {
             if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
             {
-                MessageBox.Show("Test");
+                //MessageBox.Show(e.ColumnIndex.ToString());
+                var rowIndex = projectTable.CurrentCell.RowIndex;
+                var row = projectTable.Rows[rowIndex];
+                NewOrEditProject editProject = new NewOrEditProject();
+                editProject.projNameTxt.Text = row.Cells["project_name"].Value.ToString();
+                editProject.projNameReferenceTxt.Text = row.Cells["project_reference"].Value.ToString();
+                editProject.scopeOfWorksTxt.Text = row.Cells["scope"].Value.ToString();
+                editProject.revNumberTxt.Text = row.Cells["rev_no"].Value.ToString();
+                NewOrEditProject.editProjectId = int.Parse(row.Cells["id"].Value.ToString());
+                NewOrEditProject.isAdd = false;
+                editProject.ShowDialog();
+
             }
         }
 
@@ -120,7 +134,8 @@ namespace LCC
 
         private void addProject_Click(object sender, EventArgs e)
         {
-            NewProject newProject = new NewProject();
+            NewOrEditProject newProject = new NewOrEditProject();
+            NewOrEditProject.isAdd = true;
             newProject.ShowDialog();
         }
 
@@ -168,7 +183,6 @@ namespace LCC
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.WriteRecords(records);
-                    //csv.Flush();
                 }
                 MessageBox.Show("File has been downloaded. Data has been exported succesfully.");
             }
@@ -177,32 +191,6 @@ namespace LCC
                 MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
             }
 
-        }
-
-        private void cutLengthsTable_RowValidated(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                var rowIndex = cutLengthsTable.CurrentCell.RowIndex;
-                var row = cutLengthsTable.Rows[rowIndex];
-                var collection = this.oFile.GetCollection<CutLengthModel>();
-                collection.InsertOne(new CutLengthModel
-                {
-                    id = 1,
-                    project_id = GLOBAL.iSelectedProjectId,
-                    part_code = row.Cells[2].Value.ToString(),
-                    description = row.Cells[3].Value.ToString(),
-                    grade = row.Cells[4].Value.ToString(),
-                    quantity = int.Parse(row.Cells[5].Value.ToString()),
-                    uncut_quantity = int.Parse(row.Cells[6].Value.ToString()),
-                    length = int.Parse(row.Cells[7].Value.ToString()),
-                    order_number = row.Cells[8].Value.ToString(),
-                    note = row.Cells[9].Value.ToString()
-                });
-            }
-            catch {
-                MessageBox.Show("Error.");
-            }
         }
 
         private void projectTab_TabIndexChanged(object sender, EventArgs e)
@@ -252,6 +240,58 @@ namespace LCC
             var row = projectTable.Rows[rowIndex];
             GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
             this.materialComponent1.initDatagrid();
+        }
+
+        private void cutLengthsTable_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            LastNewRowIndex = e.Row.Index - 1;
+        }
+
+        private void cutLengthsTable_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (LastNewRowIndex > -1)
+            {
+                try
+                {
+                    var rowIndex = cutLengthsTable.CurrentCell.RowIndex;
+                    var row = cutLengthsTable.Rows[rowIndex];
+                    if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
+                    {
+                        var store = new DataStore("data2.json");
+                        var collection = store.GetCollection<CutLengthModel>();
+                        collection.InsertOne(new CutLengthModel
+                        {
+                            id = 1,
+                            project_id = selectedProject,
+                            part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
+                            description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
+                            grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
+                            quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
+                            uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
+                            length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                            order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
+                            note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                        });
+                    }
+                    else {
+                        var store = new DataStore("data1.json");
+                        var collection = store.GetCollection<ProjectModel>();
+                        collection.InsertOne(new ProjectModel { 
+                            id = 1, 
+                            project_name = row.Cells["project_name"].Value != null ? row.Cells["project_name"].Value.ToString() : string.Empty,
+                            project_reference = row.Cells["project_reference"].Value != null ? row.Cells["project_reference"].Value.ToString() : string.Empty,
+                            rev_no = row.Cells["rev_no"].Value != null ? row.Cells["rev_no"].Value.ToString() : string.Empty,
+                            scope = row.Cells["scope"].Value != null ? row.Cells["scope"].Value.ToString() : string.Empty,
+                        });
+                    }
+
+                }
+                catch
+                {
+                    MessageBox.Show("Error.");
+                }
+                LastNewRowIndex = -1;
+            }
         }
     }
 }

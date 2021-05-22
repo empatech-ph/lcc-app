@@ -1,7 +1,7 @@
 ﻿
 namespace LCC
 {
-    partial class NewProject
+    partial class NewOrEditProject
     {
         /// <summary>
         /// Required designer variable.
@@ -137,7 +137,7 @@ namespace LCC
             this.addProjectBtn.UseVisualStyleBackColor = true;
             this.addProjectBtn.Click += new System.EventHandler(this.addProjectBtn_Click);
             // 
-            // NewProject
+            // NewOrEditProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,7 +151,7 @@ namespace LCC
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
-            this.Name = "NewProject";
+            this.Name = "NewOrEditProject";
             this.Sizable = false;
             this.Text = "Add New Project";
             this.Load += new System.EventHandler(this.NewProject_Load);
@@ -166,10 +166,10 @@ namespace LCC
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private System.Windows.Forms.TextBox projNameReferenceTxt;
-        private System.Windows.Forms.TextBox projNameTxt;
-        private System.Windows.Forms.TextBox scopeOfWorksTxt;
-        private System.Windows.Forms.TextBox revNumberTxt;
         private MaterialSkin.Controls.MaterialButton addProjectBtn;
+        public System.Windows.Forms.TextBox projNameReferenceTxt;
+        public System.Windows.Forms.TextBox projNameTxt;
+        public System.Windows.Forms.TextBox scopeOfWorksTxt;
+        public System.Windows.Forms.TextBox revNumberTxt;
     }
 }

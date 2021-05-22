@@ -14,10 +14,12 @@ using System.Linq;
 
 namespace LCC
 {
-    public partial class NewProject : MaterialForm
+    public partial class NewOrEditProject : MaterialForm
     {
         public static int newProjectId = 0;
-        public NewProject()
+        public static int editProjectId = 0;
+        public static bool isAdd = true;
+        public NewOrEditProject()
         {
             InitializeComponent();
             // Create a material theme manager and add the form to manage (this)
@@ -34,7 +36,8 @@ namespace LCC
 
         private void NewProject_Load(object sender, EventArgs e)
         {
-
+            NewOrEditProject form = new NewOrEditProject();
+            form.Text = isAdd ? "Add New Project" : "Edit Project";
         }
 
         private void addProjectBtn_Click(object sender, EventArgs e)
@@ -43,9 +46,18 @@ namespace LCC
             {
                 if (!string.IsNullOrWhiteSpace(projNameTxt.Text) && !string.IsNullOrWhiteSpace(projNameReferenceTxt.Text) && !string.IsNullOrWhiteSpace(revNumberTxt.Text) && !string.IsNullOrWhiteSpace(scopeOfWorksTxt.Text))
                 {
-                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
-                    newProjectId = collection.GetNextIdValue();
-                    collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                    var store = new DataStore("data.json");
+                    var collection = store.GetCollection<ProjectModel>();
+                    Project.selectedProject = collection.GetNextIdValue();
+                    if (isAdd)
+                    {
+                        collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                    }
+                    else
+                    {
+
+                        collection.UpdateOne(x => x.id == editProjectId, new ProjectModel { id = editProjectId, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                    }
                     this.Close();
                 }
                 else

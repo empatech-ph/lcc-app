@@ -15,9 +15,7 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using ChoETL;
-using System.Globalization;
-using CsvHelper;
-using CsvHelper.Configuration;
+using ExcelDataReader;
 
 namespace LCC
 {
@@ -78,42 +76,97 @@ namespace LCC
             {
                 if (importTxt.Text.IsNullOrEmpty())
                     MessageBox.Show("Please select file to import.");
-                else { 
-                    string filePath = string.Empty;
-                filePath = openFileDialog.FileName; //get the path of the file
-                var reader = new ChoCSVReader(filePath).IgnoreHeader();
-                dynamic rec;
-
-                while ((rec = reader.Read()) != null)
+                else
                 {
-                    if (importComboBox.SelectedItem.ToString() == "Project")
+                    string filePath = string.Empty;
+                    filePath = openFileDialog.FileName; //get the path of the file
+                    var extension = Path.GetExtension(openFileDialog.FileName);
+                    var reader = new ChoCSVReader(filePath).IgnoreHeader();
+                    dynamic rec;
+                    if (extension == ".csv" || extension == ".txt")
                     {
-                        var store = new DataStore("data.json");
-                        var collection = store.GetCollection<ProjectModel>();
-                        collection.InsertOne(new ProjectModel { id = 1, project_name = rec[0], project_reference = rec[1], rev_no = rec[2], scope = rec[3] });
+                        while ((rec = reader.Read()) != null)
+                        {
+                            if (importComboBox.SelectedItem.ToString() == "Project")
+                            {
+                                var store = new DataStore("data.json");
+                                var collection = store.GetCollection<ProjectModel>();
+                                collection.InsertOne(new ProjectModel { id = 1, project_name = rec[1], project_reference = rec[0], rev_no = rec[3], scope = rec[2] });
+                            }
+                            else
+                            {
+                                if (extension != ".xlsx")
+                                {
+                                    var store = new DataStore("data2.json");
+                                    var collection = store.GetCollection<CutLengthModel>();
+                                    collection.InsertOne(
+                                        new CutLengthModel
+                                        {
+                                            id = 1,
+                                            project_id = Project.selectedProject,
+                                            part_code = rec[0],
+                                            description = rec[1],
+                                            grade = rec[2],
+                                            quantity = int.Parse(rec[3]),
+                                            uncut_quantity = int.Parse(rec[4]),
+                                            length = int.Parse(rec[5]),
+                                            order_number = rec[6],
+                                            note = rec[7]
+                                        });
+                                }
+                            }
+                        }
                     }
-                    else 
+
+                    else
                     {
-                        var store = new DataStore("data2.json");
-                        var collection = store.GetCollection<CutLengthModel>();
-                        collection.InsertOne(
-                            new CutLengthModel { id = 1, project_id = GLOBAL.iSelectedProjectId, part_code = rec[0], description = rec[1]
-                            ,grade= rec[2]
-                            ,quantity = int.Parse(rec[3])
-                            ,uncut_quantity= int.Parse(rec[4])
-                            ,length = int.Parse(rec[5])
-                            ,order_number = rec[6]
-                            ,note = rec[7]
-                            });
+                        using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader2 = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                var result = reader2.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration()
+                                    {
+                                        UseHeaderRow = true
+                                    }
+                                });
+                                DataRowCollection row = result.Tables[0].Rows;
+
+                                List<object> rowDataList = null;
+                                List<object> allRowsList = new List<object>();
+                                foreach (DataRow item in row)
+                                {
+                                    rowDataList = item.ItemArray.ToList();
+                                    allRowsList.Add(rowDataList); 
+                                    var store2 = new DataStore("data2.json");
+                                    var collection2 = store2.GetCollection<CutLengthModel>();
+                                    collection2.InsertOne(
+                                        new CutLengthModel
+                                        {
+                                            id = 1,
+                                            project_id = Project.selectedProject,
+                                            part_code = item.ItemArray[0].ToString(),
+                                            description = item.ItemArray[1].ToString(),
+                                            grade = item.ItemArray[2].ToString(),
+                                            quantity = int.Parse(item.ItemArray[3].ToString()),
+                                            uncut_quantity = int.Parse(item.ItemArray[4].ToString()),
+                                            length = int.Parse(item.ItemArray[5].ToString()),
+                                            order_number = item.ItemArray[6].ToString(),
+                                            note = item.ItemArray[7].ToString()
+                                        });
+                                }
+                            }
+                        }
                     }
-                }
-                MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
+                    MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("You may have uploaded a file with invalid entries. Please check your file and try again.");
             }
+            this.Close();
         }
         private void cancelImportBtn_Click(object sender, EventArgs e)
         {
