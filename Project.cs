@@ -112,6 +112,7 @@ namespace LCC
         {
             //importOrExport = "Import";
             ImportExportForm importExportForm = new ImportExportForm();
+            importExportForm.oProject = this;
             importExportForm.ShowDialog();
         }
 
@@ -163,7 +164,7 @@ namespace LCC
 
         }
 
-        private void initCutLength()
+        public void initCutLength()
         {
             var collection = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
             cutLengthsTable.DataSource = null;

@@ -21,6 +21,8 @@ namespace LCC
 {
     public partial class ImportExportForm : MaterialForm
     {
+
+        public Project oProject;
         public ImportExportForm()
         {
             InitializeComponent();
@@ -85,23 +87,30 @@ namespace LCC
                             }
                             else
                             {
-                                if (extension != ".xlsx")
+                                if (GLOBAL.iSelectedProjectId != 0)
                                 {
-                                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
-                                    collection.InsertOne(
-                                        new CutLengthModel
-                                        {
-                                            id = 1,
-                                            project_id = Project.selectedProject,
-                                            part_code = rec[0],
-                                            description = rec[1],
-                                            grade = rec[2],
-                                            quantity = int.Parse(rec[3]),
-                                            uncut_quantity = int.Parse(rec[4]),
-                                            length = int.Parse(rec[5]),
-                                            order_number = rec[6],
-                                            note = rec[7]
-                                        });
+                                    if (extension != ".xlsx")
+                                    {
+                                        var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
+                                        collection.InsertOne(
+                                            new CutLengthModel
+                                            {
+                                                id = 1,
+                                                project_id = GLOBAL.iSelectedProjectId,
+                                                part_code = rec[0],
+                                                description = rec[1],
+                                                grade = rec[2],
+                                                quantity = int.Parse(rec[3]),
+                                                uncut_quantity = int.Parse(rec[4]),
+                                                length = int.Parse(rec[5]),
+                                                order_number = rec[6],
+                                                note = rec[7]
+                                            });
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Please select project.");
                                 }
                             }
                         }
@@ -109,46 +118,56 @@ namespace LCC
 
                     else
                     {
-                        using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
+                        if (GLOBAL.iSelectedProjectId != 0)
                         {
-                            using (var reader2 = ExcelReaderFactory.CreateReader(stream))
+                            using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                             {
-                                var result = reader2.AsDataSet(new ExcelDataSetConfiguration()
+                                using (var reader2 = ExcelReaderFactory.CreateReader(stream))
                                 {
-                                    ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration()
+                                    var result = reader2.AsDataSet(new ExcelDataSetConfiguration()
                                     {
-                                        UseHeaderRow = true
-                                    }
-                                });
-                                DataRowCollection row = result.Tables[0].Rows;
-
-                                List<object> rowDataList = null;
-                                List<object> allRowsList = new List<object>();
-                                foreach (DataRow item in row)
-                                {
-                                    rowDataList = item.ItemArray.ToList();
-                                    allRowsList.Add(rowDataList); 
-                                    var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
-                                    collection2.InsertOne(
-                                        new CutLengthModel
+                                        ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration()
                                         {
-                                            id = 1,
-                                            project_id = Project.selectedProject,
-                                            part_code = item.ItemArray[0].ToString(),
-                                            description = item.ItemArray[1].ToString(),
-                                            grade = item.ItemArray[2].ToString(),
-                                            quantity = int.Parse(item.ItemArray[3].ToString()),
-                                            uncut_quantity = int.Parse(item.ItemArray[4].ToString()),
-                                            length = int.Parse(item.ItemArray[5].ToString()),
-                                            order_number = item.ItemArray[6].ToString(),
-                                            note = item.ItemArray[7].ToString()
-                                        });
+                                            UseHeaderRow = true
+                                        }
+                                    });
+                                    DataRowCollection row = result.Tables[0].Rows;
+
+                                    List<object> rowDataList = null;
+                                    List<object> allRowsList = new List<object>();
+                                    foreach (DataRow item in row)
+                                    {
+                                        rowDataList = item.ItemArray.ToList();
+                                        allRowsList.Add(rowDataList);
+                                        var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
+                                        collection2.InsertOne(
+                                            new CutLengthModel
+                                            {
+                                                id = 1,
+                                                project_id = GLOBAL.iSelectedProjectId,
+                                                part_code = item.ItemArray[0].ToString(),
+                                                description = item.ItemArray[1].ToString(),
+                                                grade = item.ItemArray[2].ToString(),
+                                                quantity = int.Parse(item.ItemArray[3].ToString()),
+                                                uncut_quantity = int.Parse(item.ItemArray[4].ToString()),
+                                                length = int.Parse(item.ItemArray[5].ToString()),
+                                                order_number = item.ItemArray[6].ToString(),
+                                                note = item.ItemArray[7].ToString()
+                                            });
+                                    }
                                 }
                             }
                         }
+                        else
+                        {
+                            MessageBox.Show("Please select project.");
+                        }
                     }
                     MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
+                    this.oProject.initProject();
+                    this.oProject.initCutLength();
                 }
+
             }
             catch (Exception ex)
             {
