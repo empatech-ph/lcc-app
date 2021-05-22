@@ -128,10 +128,16 @@ namespace LCC
 
         private void projectTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            var rowIndex = projectTable.CurrentCell.RowIndex;
-            var row = projectTable.Rows[rowIndex];
+            var row = projectTable.Rows[e.RowIndex];
             var collection = this.oFile.GetCollection<ProjectModel>();
-            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel { id = int.Parse(row.Cells["id"].Value.ToString()), project_name = row.Cells["project_name"].Value.ToString(), project_reference = row.Cells["project_reference"].Value.ToString(), rev_no = row.Cells["rev_no"].Value.ToString(), scope = row.Cells["scope"].Value.ToString() });
+            collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel
+            {
+                id = int.Parse(row.Cells["id"].Value.ToString()),
+                project_name = row.Cells["project_name"].Value.ToString(),
+                project_reference = row.Cells["project_reference"].Value.ToString(),
+                rev_no = row.Cells["rev_no"].Value.ToString(),
+                scope = row.Cells["scope"].Value.ToString()
+            });
         }
 
         private void printerBtn_Click(object sender, EventArgs e)
@@ -157,7 +163,7 @@ namespace LCC
 
         }
 
-        private void initCutLength() 
+        private void initCutLength()
         {
             var collection = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
             cutLengthsTable.DataSource = null;
@@ -185,27 +191,35 @@ namespace LCC
             {
                 try
                 {
-                    var rowIndex = cutLengthsTable.CurrentCell.RowIndex;
-                    var row = cutLengthsTable.Rows[rowIndex];
-                    if (projectTab.SelectedTab == projectTab.TabPages["cutLengthTab"])
+                    var row = cutLengthsTable.Rows[e.RowIndex];
+                    if (projectTab.SelectedTab.Name == "cutLengthTab")
                     {
-                        this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
+                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null)
+                        {
+                            this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
+                            {
+                                id = 1,
+                                project_id = GLOBAL.iSelectedProjectId,
+                                part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
+                                description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
+                                grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
+                                quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
+                                uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
+                                length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                                order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
+                                note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                            });
+                        }
+                        else
+                        {
+                            MessageBox.Show("Description and Grade fields can't be null.");
+                        }
+                    }
+                    else
+                    {
+                        this.oFile.GetCollection<ProjectModel>().InsertOne(new ProjectModel
                         {
                             id = 1,
-                            project_id = GLOBAL.iSelectedProjectId,
-                            part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
-                            description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
-                            grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
-                            quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
-                            uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                            length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
-                            order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
-                            note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
-                        });
-                    }
-                    else {
-                        this.oFile.GetCollection<ProjectModel>().InsertOne(new ProjectModel { 
-                            id = 1, 
                             project_name = row.Cells["project_name"].Value != null ? row.Cells["project_name"].Value.ToString() : string.Empty,
                             project_reference = row.Cells["project_reference"].Value != null ? row.Cells["project_reference"].Value.ToString() : string.Empty,
                             rev_no = row.Cells["rev_no"].Value != null ? row.Cells["rev_no"].Value.ToString() : string.Empty,
@@ -220,6 +234,25 @@ namespace LCC
                 }
                 LastNewRowIndex = -1;
             }
+        }
+
+        private void cutLengthsTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = cutLengthsTable.Rows[e.RowIndex];
+            if(row.Cells["id"].Value != null)
+            this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
+            {
+                id = int.Parse(row.Cells["id"].Value.ToString()),
+                project_id = GLOBAL.iSelectedProjectId,
+                part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
+                description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
+                grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
+                quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
+                uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
+                length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
+                note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+            });
         }
     }
 }

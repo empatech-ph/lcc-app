@@ -71,7 +71,7 @@ namespace LCC
             this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -602,6 +602,7 @@ namespace LCC
             this.cutLengthsTable.RowTemplate.Height = 25;
             this.cutLengthsTable.Size = new System.Drawing.Size(1072, 407);
             this.cutLengthsTable.TabIndex = 0;
+            this.cutLengthsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellEndEdit);
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.cutLengthsTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
             // 
@@ -630,17 +631,17 @@ namespace LCC
             // 
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
             // 
-            // materialTabSelector1
+            // oProjectTabSelector
             // 
-            this.materialTabSelector1.BaseTabControl = this.projectTab;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTabSelector1.Location = new System.Drawing.Point(12, 127);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(1083, 48);
-            this.materialTabSelector1.TabIndex = 11;
-            this.materialTabSelector1.Text = "materialTabSelector1";
+            this.oProjectTabSelector.BaseTabControl = this.projectTab;
+            this.oProjectTabSelector.Depth = 0;
+            this.oProjectTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.oProjectTabSelector.Location = new System.Drawing.Point(12, 127);
+            this.oProjectTabSelector.MouseState = MaterialSkin.MouseState.HOVER;
+            this.oProjectTabSelector.Name = "oProjectTabSelector";
+            this.oProjectTabSelector.Size = new System.Drawing.Size(1083, 48);
+            this.oProjectTabSelector.TabIndex = 11;
+            this.oProjectTabSelector.Text = "materialTabSelector1";
             // 
             // l_currentProject
             // 
@@ -663,7 +664,7 @@ namespace LCC
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 663);
             this.Controls.Add(this.l_currentProject);
-            this.Controls.Add(this.materialTabSelector1);
+            this.Controls.Add(this.oProjectTabSelector);
             this.Controls.Add(this.projectTab);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -737,5 +738,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private MaterialSkin.Controls.MaterialLabel l_currentProject;
+        private MaterialSkin.Controls.MaterialTabSelector oProjectTabSelector;
     }
 }
