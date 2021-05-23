@@ -78,16 +78,16 @@ namespace LCC
                     dynamic rec;
                     if (extension == ".csv" || extension == ".txt")
                     {
-                        while ((rec = reader.Read()) != null)
+                        if (GLOBAL.iSelectedProjectId != 0 && importComboBox.SelectedItem.ToString() != "Project")
                         {
-                            if (importComboBox.SelectedItem.ToString() == "Project")
+                            while ((rec = reader.Read()) != null)
                             {
-                                var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
-                                collection.InsertOne(new ProjectModel { id = 1, project_name = rec[1], project_reference = rec[0], rev_no = rec[3], scope = rec[2] });
-                            }
-                            else
-                            {
-                                if (GLOBAL.iSelectedProjectId != 0)
+                                if (importComboBox.SelectedItem.ToString() == "Project")
+                                {
+                                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
+                                    collection.InsertOne(new ProjectModel { id = 1, project_name = rec[1], project_reference = rec[0], rev_no = rec[3], scope = rec[2] });
+                                }
+                                else
                                 {
                                     if (extension != ".xlsx")
                                     {
@@ -108,11 +108,12 @@ namespace LCC
                                             });
                                     }
                                 }
-                                else
-                                {
-                                    MessageBox.Show("Please select project.");
-                                }
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select project.");
+                            return;
                         }
                     }
 
@@ -161,6 +162,7 @@ namespace LCC
                         else
                         {
                             MessageBox.Show("Please select project.");
+                            return;
                         }
                     }
                     MessageBox.Show("File has been uploaded. Data has been imported succesfully.");
@@ -177,8 +179,7 @@ namespace LCC
         }
         private void cancelImportBtn_Click(object sender, EventArgs e)
         {
-            ImportExportForm importExportForm = new ImportExportForm();
-            importExportForm.Close();
+            this.Hide();
         }
     }
 }

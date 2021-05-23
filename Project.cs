@@ -92,7 +92,7 @@ namespace LCC
 
         private void addProject_Click(object sender, EventArgs e)
         {
-            NewOrEditProject newProject = new NewOrEditProject();
+            NewOrEditProject newProject = new NewOrEditProject(); ;
             newProject.oProject = this;
             NewOrEditProject.isAdd = true;
             newProject.ShowDialog();
@@ -103,7 +103,7 @@ namespace LCC
             this.oFile.Reload();
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             projectTable.DataSource = oProjectList.ToList();
-            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.Select(x => x.id).First();
+            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : int.Parse(this.projectTable.Rows[this.projectTable.CurrentCell.RowIndex].Cells["id"].Value.ToString());
             this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.Select(x => x.project_name).First().ToString());
             projectTable.Columns["id"].Visible = false;
         }
