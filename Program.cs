@@ -23,58 +23,7 @@ namespace LCC
             {
                 Application.Exit();
             }
-            dynamic oInfo = new RegistryLibrary().getInfo();
-            if (oInfo.ContainsKey("date_recheck") && oInfo.date_recheck.ToString() != "")
-            {
-                ClientLibrary oClient = new ClientLibrary();
-                dynamic oLoginInfo = new RegistryLibrary().getLogin();
-                if ((Convert.ToInt32(oInfo.date_recheck.ToString()) >= UtilsLibrary.getTimestamp()))
-                {
-                    if (oLoginInfo.id.ToString() != "")
-                    {
-                        Application.Run(new Project());
-                    }
-                    else
-                    {
-                        Application.Run(new UserManagement.Login());
-                    }
-                }
-                else if(oClient.IsConnectedToInternet() == true)
-                {
-                    try
-                    {
-                        var oParam = new Dictionary<dynamic, dynamic>
-                        {
-                            { "timestamp", UtilsLibrary.getTimestamp() },
-                            { "license_key", oInfo.key.ToString() },
-                            { "product_code", oInfo.code.ToString() },
-                        };
-                        dynamic oTask = oClient.get("/api/license/verify-without-email", oParam);
-                        Task.WaitAll(oTask);
-                        dynamic oResult = oTask.Result;
-                        if (oResult.success == true && (Convert.ToInt32(oResult.data.should_expired_at.ToString()) >= UtilsLibrary.getTimestamp()))
-                        {
-                            Application.Run(new UserManagement.Login());
-                        }
-                        else
-                        {
-                            Application.Run(new BootEnterLicenseKey());
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Application.Run(new BootEnterLicenseKey());
-                    }
-                }
-                else
-                {
-                    Application.Run(new BootEnterLicenseKey());
-                }
-            }
-            else
-            {
-                Application.Run(new BootEnterLicenseKey());
-            }
+            Application.Run(new SplashScreen());
         }
     }
 }
