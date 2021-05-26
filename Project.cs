@@ -103,9 +103,8 @@ namespace LCC
             this.oFile.Reload();
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             projectTable.DataSource = oProjectList.ToList();
-            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : int.Parse(this.projectTable.Rows[this.projectTable.CurrentCell.RowIndex].Cells["id"].Value.ToString());
-            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.Select(x => x.project_name).First().ToString());
             projectTable.Columns["id"].Visible = false;
+            var I  = this.projectTable.CurrentCell;
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -266,6 +265,13 @@ namespace LCC
                 new UserManagement.Login().Show();
             }
 
+        }
+
+        private void projectTable_SelectionChanged(object sender, EventArgs e)
+        {
+
+            GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
         }
     }
 }
