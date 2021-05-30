@@ -44,7 +44,7 @@ namespace LCC
             this.printerBtn = new MaterialSkin.Controls.MaterialButton();
             this.filterBtn = new MaterialSkin.Controls.MaterialButton();
             this.importBtn = new MaterialSkin.Controls.MaterialButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelOptimize = new System.Windows.Forms.Panel();
             this.optimizeBtn = new MaterialSkin.Controls.MaterialButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_logout = new MaterialSkin.Controls.MaterialButton();
@@ -70,13 +70,14 @@ namespace LCC
             this.cutLengthsTable = new System.Windows.Forms.DataGridView();
             this.materialTab = new System.Windows.Forms.TabPage();
             this.materialComponent1 = new LCC.Components.MaterialComponent();
+            this.tabResult = new System.Windows.Forms.TabPage();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelOptimize.SuspendLayout();
             this.panel4.SuspendLayout();
             this.projectTab.SuspendLayout();
             this.projTab.SuspendLayout();
@@ -264,13 +265,13 @@ namespace LCC
             this.importBtn.UseVisualStyleBackColor = true;
             this.importBtn.Click += new System.EventHandler(this.importBtn_Click);
             // 
-            // panel3
+            // panelOptimize
             // 
-            this.panel3.Controls.Add(this.optimizeBtn);
-            this.panel3.Location = new System.Drawing.Point(477, 65);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(64, 56);
-            this.panel3.TabIndex = 6;
+            this.panelOptimize.Controls.Add(this.optimizeBtn);
+            this.panelOptimize.Location = new System.Drawing.Point(477, 65);
+            this.panelOptimize.Name = "panelOptimize";
+            this.panelOptimize.Size = new System.Drawing.Size(64, 56);
+            this.panelOptimize.TabIndex = 6;
             // 
             // optimizeBtn
             // 
@@ -290,6 +291,8 @@ namespace LCC
             this.optimizeBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.optimizeBtn.UseAccentColor = false;
             this.optimizeBtn.UseVisualStyleBackColor = true;
+            this.optimizeBtn.Visible = false;
+            this.optimizeBtn.Click += new System.EventHandler(this.optimizeBtn_Click);
             // 
             // panel4
             // 
@@ -430,6 +433,7 @@ namespace LCC
             this.projectTab.Controls.Add(this.projTab);
             this.projectTab.Controls.Add(this.cutLengthTab);
             this.projectTab.Controls.Add(this.materialTab);
+            this.projectTab.Controls.Add(this.tabResult);
             this.projectTab.Depth = 0;
             this.projectTab.Location = new System.Drawing.Point(11, 181);
             this.projectTab.MouseState = MaterialSkin.MouseState.HOVER;
@@ -438,6 +442,7 @@ namespace LCC
             this.projectTab.SelectedIndex = 0;
             this.projectTab.Size = new System.Drawing.Size(1088, 476);
             this.projectTab.TabIndex = 8;
+            this.projectTab.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
             // 
             // projTab
             // 
@@ -651,6 +656,16 @@ namespace LCC
             this.materialComponent1.Size = new System.Drawing.Size(1078, 446);
             this.materialComponent1.TabIndex = 0;
             // 
+            // tabResult
+            // 
+            this.tabResult.Location = new System.Drawing.Point(4, 24);
+            this.tabResult.Name = "tabResult";
+            this.tabResult.Padding = new System.Windows.Forms.Padding(3);
+            this.tabResult.Size = new System.Drawing.Size(1080, 448);
+            this.tabResult.TabIndex = 3;
+            this.tabResult.Text = "Result";
+            this.tabResult.UseVisualStyleBackColor = true;
+            // 
             // saveFileDialog
             // 
             this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
@@ -691,7 +706,7 @@ namespace LCC
             this.Controls.Add(this.oProjectTabSelector);
             this.Controls.Add(this.projectTab);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DrawerShowIconsWhenHidden = true;
@@ -706,8 +721,8 @@ namespace LCC
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelOptimize.ResumeLayout(false);
+            this.panelOptimize.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.projectTab.ResumeLayout(false);
             this.projTab.ResumeLayout(false);
@@ -732,7 +747,7 @@ namespace LCC
         private MaterialSkin.Controls.MaterialButton printerBtn;
         private MaterialSkin.Controls.MaterialButton filterBtn;
         private MaterialSkin.Controls.MaterialButton importBtn;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelOptimize;
         private MaterialSkin.Controls.MaterialButton optimizeBtn;
         private System.Windows.Forms.Panel panel4;
         private MaterialSkin.Controls.MaterialButton materialButton4;
@@ -764,5 +779,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialLabel l_currentProject;
         private MaterialSkin.Controls.MaterialTabSelector oProjectTabSelector;
         private MaterialSkin.Controls.MaterialButton btn_logout;
+        private System.Windows.Forms.TabPage tabResult;
     }
 }
