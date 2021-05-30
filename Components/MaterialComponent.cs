@@ -185,5 +185,19 @@ namespace LCC.Components
                 oRow.Cells["chk_filter"].Value = this.oHeaderCheckbox.Checked;
             }
         }
+
+        private void dt_material_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var oRow = this.dt_material.Rows[e.RowIndex];
+            if (e.RowIndex != -1 && this.dt_material.Columns[e.ColumnIndex].Name == "remove_image")
+            {
+                DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (oDialog == DialogResult.Yes)
+                {
+                    Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
+                    this.dt_material.Rows.RemoveAt(oRow.Index);
+                }
+            }
+        }
     }
 }
