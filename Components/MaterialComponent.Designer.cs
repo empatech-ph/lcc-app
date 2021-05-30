@@ -50,6 +50,7 @@ namespace LCC.Components
             this.trim_right = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.part_allowance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.min_remnant_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remove_image = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_material)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +71,8 @@ namespace LCC.Components
             this.trim_left,
             this.trim_right,
             this.part_allowance,
-            this.min_remnant_length});
+            this.min_remnant_length,
+            this.remove_image});
             this.dt_material.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dt_material.Location = new System.Drawing.Point(0, 89);
             this.dt_material.Name = "dt_material";
@@ -79,6 +81,7 @@ namespace LCC.Components
             this.dt_material.Size = new System.Drawing.Size(1080, 359);
             this.dt_material.TabIndex = 0;
             this.dt_material.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellClick);
+            this.dt_material.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellDoubleClick);
             this.dt_material.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellEndEdit);
             this.dt_material.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dt_material_CellFormatting);
             this.dt_material.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_material_DataError);
@@ -214,7 +217,7 @@ namespace LCC.Components
             this.description.Name = "description";
             this.description.ReadOnly = true;
             this.description.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.description.Width = 200;
+            this.description.Width = 185;
             // 
             // grade
             // 
@@ -225,7 +228,7 @@ namespace LCC.Components
             this.grade.Name = "grade";
             this.grade.ReadOnly = true;
             this.grade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.grade.Width = 180;
+            this.grade.Width = 150;
             // 
             // kerf
             // 
@@ -261,6 +264,14 @@ namespace LCC.Components
             this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
             this.min_remnant_length.Name = "min_remnant_length";
             this.min_remnant_length.Width = 120;
+            // 
+            // remove_image
+            // 
+            this.remove_image.HeaderText = "Delete";
+            this.remove_image.Image = global::LCC.Properties.Resources.delete_bin_480px;
+            this.remove_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.remove_image.Name = "remove_image";
+            this.remove_image.Width = 50;
             // 
             // MaterialComponent
             // 
@@ -299,5 +310,6 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn trim_right;
         private System.Windows.Forms.DataGridViewTextBoxColumn part_allowance;
         private System.Windows.Forms.DataGridViewTextBoxColumn min_remnant_length;
+        private System.Windows.Forms.DataGridViewImageColumn remove_image;
     }
 }
