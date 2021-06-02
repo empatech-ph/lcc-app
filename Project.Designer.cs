@@ -290,6 +290,7 @@ namespace LCC
             this.optimizeBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.optimizeBtn.UseAccentColor = false;
             this.optimizeBtn.UseVisualStyleBackColor = true;
+            this.optimizeBtn.Click += new System.EventHandler(this.optimizeBtn_Click);
             // 
             // panel4
             // 

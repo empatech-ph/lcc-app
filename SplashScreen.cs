@@ -39,7 +39,7 @@ namespace LCC
             this.progressBar.BackColor = MaterialSkinManager.Instance.ColorScheme.PrimaryColor;
         }
 
-        private void startApp()
+        private async void startApp()
         {
             if (this.oInfo.ContainsKey("date_recheck") && this.oInfo.date_recheck.ToString() != "")
             {
@@ -66,9 +66,7 @@ namespace LCC
                             { "license_key", this.oInfo.key.ToString() },
                             { "product_code", this.oInfo.code.ToString() },
                         };
-                        dynamic oTask = oClient.get("/api/license/verify-without-email", oParam);
-                        Task.WaitAll(oTask);
-                        dynamic oResult = oTask.Result;
+                        dynamic oResult = await oClient.get("/api/license/verify-without-email", oParam);
                         if (oResult.success == true && (Convert.ToInt32(oResult.data.should_expired_at.ToString()) >= UtilsLibrary.getTimestamp()))
                         {
                             (new UserManagement.Login()).Show();

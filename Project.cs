@@ -273,5 +273,10 @@ namespace LCC
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
             this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
         }
+
+        private void optimizeBtn_Click(object sender, EventArgs e)
+        {
+            var oOptimize = new Library.OptimizeLibrary();
+        }
     }
 }
