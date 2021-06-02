@@ -15,10 +15,12 @@ namespace LCC.Components
 {
     public partial class MaterialComponent : UserControl
     {
+        CheckBox oHeaderCheckbox = new CheckBox();
         public MaterialComponent()
         {
             InitializeComponent();
             this.initDatagrid();
+            this.addCheckboxHeader();
         }
 
         public void initDatagrid()
@@ -145,8 +147,8 @@ namespace LCC.Components
                     oStockManager.ShowDialog();
                 }
             }
-        }
 
+        }
         private void dt_material_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             var row = this.dt_material.Rows[e.RowIndex];
@@ -161,8 +163,41 @@ namespace LCC.Components
 
         private void dt_material_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            if(e.Context.ToString() == "Parsing, Commit")
-            MessageBox.Show("Please check the format when editing the field.");
+            if (e.Context.ToString() == "Parsing, Commit")
+                MessageBox.Show("Please check the format when editing the field.");
+        }
+
+        private void addCheckboxHeader()
+        {
+            var oCell = this.dt_material.Columns["chk_filter"].HeaderCell.Size;
+            this.oHeaderCheckbox.BackColor = Color.White;
+            this.oHeaderCheckbox.Size = new Size(15, 15);
+            this.oHeaderCheckbox.Location = new Point((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2, oCell.Height / 2);
+            this.oHeaderCheckbox.Click += new EventHandler(HeaderCheckBox_Clicked);
+            this.dt_material.Controls.Add(this.oHeaderCheckbox);
+        }
+
+        private void HeaderCheckBox_Clicked(object sender, EventArgs e)
+        {
+            this.dt_material.EndEdit();
+            foreach (DataGridViewRow oRow in this.dt_material.Rows)
+            {
+                oRow.Cells["chk_filter"].Value = this.oHeaderCheckbox.Checked;
+            }
+        }
+
+        private void dt_material_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var oRow = this.dt_material.Rows[e.RowIndex];
+            if (e.RowIndex != -1 && this.dt_material.Columns[e.ColumnIndex].Name == "remove_image")
+            {
+                DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (oDialog == DialogResult.Yes)
+                {
+                    Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
+                    this.dt_material.Rows.RemoveAt(oRow.Index);
+                }
+            }
         }
     }
 }

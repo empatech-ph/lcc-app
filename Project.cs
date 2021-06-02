@@ -272,6 +272,22 @@ namespace LCC
 
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
             this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
+            this.materialComponent1.initDatagrid();
+            this.initCutLength();
+        }
+
+        private void optimizeBtn_Click(object sender, EventArgs e)
+        {
+            this.projectTab.SelectedIndex = 3;
+        }
+
+        private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.optimizeBtn.Visible = false;
+            if (this.projectTab.SelectedTab.Name == "materialTab")
+            {
+                this.optimizeBtn.Visible = true;
+            }
         }
 
         private void optimizeBtn_Click(object sender, EventArgs e)
