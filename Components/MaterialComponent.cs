@@ -53,7 +53,14 @@ namespace LCC.Components
                 var row = this.dt_material.Rows[this.dt_material.CurrentCell.RowIndex];
                 var oStore = Library.UtilsLibrary.getUserFile();
                 var collection = oStore.GetCollection<MaterialModel>();
-
+                GLOBAL.aCheckedMaterials.Clear();
+                foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
+                {
+                    if (Convert.ToBoolean(oRowItem.Cells["chk_filter"].Value) == true)
+                    {
+                        GLOBAL.aCheckedMaterials.Add(int.Parse(oRowItem.Cells["id"].Value.ToString()));
+                    }
+                }
                 collection.UpdateOne(oRow => oRow.id == int.Parse(row.Cells["id"].Value.ToString()), new MaterialModel
                 {
                     id = int.Parse(row.Cells["id"].Value.ToString()),
@@ -130,24 +137,25 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
+            if(e.RowIndex >= 0)
             {
-                if (this.ST.Checked == false && this.BO.Checked == false)
+                var oRow = this.dt_material.Rows[e.RowIndex];
+                if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
                 {
-                    MessageBox.Show("Please check atleast 1 in the filter.");
-                }
-                else
-                {
-                    var rowIndex = this.dt_material.CurrentCell.RowIndex;
-                    var row = this.dt_material.Rows[rowIndex];
-                    GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
-                    var oStockManager = new Modals.StocksManager();
-                    oStockManager.bBO = this.BO.Checked;
-                    oStockManager.bST = this.ST.Checked;
-                    oStockManager.ShowDialog();
+                    if (this.ST.Checked == false && this.BO.Checked == false)
+                    {
+                        MessageBox.Show("Please check atleast 1 in the filter.");
+                    }
+                    else
+                    {
+                        GLOBAL.iSelectedMaterialId = int.Parse(oRow.Cells["id"].Value.ToString());
+                        var oStockManager = new Modals.StocksManager();
+                        oStockManager.bBO = this.BO.Checked;
+                        oStockManager.bST = this.ST.Checked;
+                        oStockManager.ShowDialog();
+                    }
                 }
             }
-
         }
         private void dt_material_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -180,9 +188,11 @@ namespace LCC.Components
         private void HeaderCheckBox_Clicked(object sender, EventArgs e)
         {
             this.dt_material.EndEdit();
-            foreach (DataGridViewRow oRow in this.dt_material.Rows)
+            GLOBAL.aCheckedMaterials.Clear();
+            foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
             {
-                oRow.Cells["chk_filter"].Value = this.oHeaderCheckbox.Checked;
+                oRowItem.Cells["chk_filter"].Value = this.oHeaderCheckbox.Checked;
+                GLOBAL.aCheckedMaterials.Add(int.Parse(oRowItem.Cells["id"].Value.ToString()));
             }
         }
 

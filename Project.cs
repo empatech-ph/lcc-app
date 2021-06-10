@@ -279,6 +279,9 @@ namespace LCC
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
             this.projectTab.SelectedIndex = 3;
+            var oOptimize = new Library.OptimizeLibrary();
+            oOptimize.optimize();
+            MessageBox.Show(JsonConvert.SerializeObject(GLOBAL.oTempOptimized));
         }
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,11 +291,6 @@ namespace LCC
             {
                 this.optimizeBtn.Visible = true;
             }
-        }
-
-        private void optimizeBtn_Click(object sender, EventArgs e)
-        {
-            var oOptimize = new Library.OptimizeLibrary();
         }
     }
 }
