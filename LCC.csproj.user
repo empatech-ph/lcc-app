@@ -16,6 +16,9 @@
     <Compile Update="Components\MaterialComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\OptimizeBarComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="GeneralReport.cs">
       <SubType>Form</SubType>
     </Compile>

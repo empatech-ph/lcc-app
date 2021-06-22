@@ -14,7 +14,7 @@ namespace LCC.Model
         public int total_cut{ get; set; }
         public double remaining_cut_length{ get; set; }
         public string stock_qty{ get; set; }
-
-
-    }
+        public string stock_used_qty { get; set; }
+        public int cutlength_rem_qty { get; set; }
+    } 
 }
