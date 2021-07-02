@@ -21,10 +21,10 @@ namespace LCC.Components
         public void initializeBar(TempStocklengthModel oStockLength)
         {
             int iCounter = 0;
+            this.optimizeBarPanel.ColumnCount = oStockLength.total_cut;
             foreach (int iVal in Enumerable.Range(1, oStockLength.total_cut))
             {
                 float fPercent = (float)(oStockLength.cutlength_length / oStockLength.length) * 100;
-                this.optimizeBarPanel.ColumnCount++;
                 this.optimizeBarPanel.ColumnStyles.Insert(iCounter, new ColumnStyle(SizeType.Percent, fPercent));
                 this.optimizeBarPanel.Controls.Add(this.getNewGeneratedPanel(Color.FromArgb(200, 63, 81, 181)), iCounter, 0);
                 iCounter++;
@@ -37,12 +37,13 @@ namespace LCC.Components
         {
             this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + "mm x " + iTotalCut), 0, 1);
             this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition(0, 1), iTotalCut);
-            
-            if(iTotalCut > 0)
+
+            if (dRest > 0)
             {
                 this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(dRest + "mm"), 1, 1);
                 this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition(1, 1), iTotalCut);
             }
+
         }
 
         private Label getNewGeneratedLabel(string sText)
@@ -56,12 +57,15 @@ namespace LCC.Components
         }
 
         private void generateWastePanel(int iLastRow, float fPercent)
-        {
-            Panel oPanel = this.getNewGeneratedPanel(Color.White);
-            this.optimizeBarPanel.ColumnCount++;
-            this.optimizeBarPanel.ColumnStyles.Insert(iLastRow, new ColumnStyle(SizeType.Percent, fPercent));
-            oPanel.Paint += this.paintPanel;
-            this.optimizeBarPanel.Controls.Add(oPanel, iLastRow, 0);
+        { 
+            if (fPercent > 0)
+            {
+                Panel oPanel = this.getNewGeneratedPanel(Color.White);
+                this.optimizeBarPanel.ColumnCount++;
+                this.optimizeBarPanel.ColumnStyles.Insert(iLastRow, new ColumnStyle(SizeType.Percent, fPercent));
+                oPanel.Paint += this.paintPanel;
+                this.optimizeBarPanel.Controls.Add(oPanel, iLastRow, 0);
+            }
 
         }
 
