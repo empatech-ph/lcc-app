@@ -104,7 +104,7 @@ namespace LCC
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             projectTable.DataSource = oProjectList.ToList();
             projectTable.Columns["id"].Visible = false;
-            var I  = this.projectTable.CurrentCell;
+            var I = this.projectTable.CurrentCell;
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -239,20 +239,20 @@ namespace LCC
         private void cutLengthsTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var row = cutLengthsTable.Rows[e.RowIndex];
-            if(row.Cells["id"].Value != null)
-            this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
-            {
-                id = int.Parse(row.Cells["id"].Value.ToString()),
-                project_id = GLOBAL.iSelectedProjectId,
-                part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
-                description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
-                grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
-                quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
-                uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
-                order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
-                note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
-            });
+            if (row.Cells["id"].Value != null)
+                this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
+                {
+                    id = int.Parse(row.Cells["id"].Value.ToString()),
+                    project_id = GLOBAL.iSelectedProjectId,
+                    part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
+                    description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
+                    grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
+                    quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
+                    uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
+                    length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                    order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
+                    note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                });
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -279,9 +279,8 @@ namespace LCC
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
             this.projectTab.SelectedIndex = 3;
-            var oOptimize = new Library.OptimizeLibrary();
-            oOptimize.optimize();
-            MessageBox.Show(JsonConvert.SerializeObject(GLOBAL.oTempOptimized));
+            optimizeComponent1.triggerOptimize(); 
+
         }
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -291,6 +290,12 @@ namespace LCC
             {
                 this.optimizeBtn.Visible = true;
             }
+        }
+
+        private void cutLengthsTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Context.ToString() == "Parsing, Commit")
+                MessageBox.Show("Please check the format when editing the field.");
         }
     }
 }

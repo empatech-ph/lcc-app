@@ -19,6 +19,12 @@
     <Compile Update="Components\OptimizeBarComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\OptimizeComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GeneralReport.cs">
       <SubType>Form</SubType>
     </Compile>

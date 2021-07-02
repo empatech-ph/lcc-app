@@ -9,7 +9,7 @@ namespace LCC.Model
         public int id { get; set; }
         public int material_id { get; set; }
         public string qty { get; set; }
-        public int length { get; set; }
+        public double length { get; set; }
         public string stock_type { get; set; }
         public double cost { get; set; }
         public string stock_code { get; set; }

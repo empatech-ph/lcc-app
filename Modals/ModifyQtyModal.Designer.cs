@@ -40,7 +40,7 @@ namespace LCC.Modals
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
-            this.materialLabel2.Location = new System.Drawing.Point(76, 94);
+            this.materialLabel2.Location = new System.Drawing.Point(76, 99);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(56, 17);
@@ -72,7 +72,7 @@ namespace LCC.Modals
             this.btn_save.DrawShadows = true;
             this.btn_save.HighEmphasis = true;
             this.btn_save.Icon = null;
-            this.btn_save.Location = new System.Drawing.Point(93, 200);
+            this.btn_save.Location = new System.Drawing.Point(91, 153);
             this.btn_save.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_save.Name = "btn_save";
@@ -88,7 +88,7 @@ namespace LCC.Modals
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 263);
+            this.ClientSize = new System.Drawing.Size(240, 219);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.c_qty);

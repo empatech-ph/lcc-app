@@ -29,17 +29,13 @@ namespace LCC.Components
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dt_material = new System.Windows.Forms.DataGridView();
-            this.btn_add = new MaterialSkin.Controls.MaterialButton();
-            this.btn_analyze = new MaterialSkin.Controls.MaterialButton();
-            this.ST = new MaterialSkin.Controls.MaterialCheckbox();
-            this.BO = new MaterialSkin.Controls.MaterialCheckbox();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.chk_filter = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -51,6 +47,10 @@ namespace LCC.Components
             this.part_allowance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.min_remnant_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remove_image = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btn_analyze = new MaterialSkin.Controls.MaterialButton();
+            this.ST = new MaterialSkin.Controls.MaterialCheckbox();
+            this.BO = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dt_material)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +60,14 @@ namespace LCC.Components
             this.dt_material.AllowUserToResizeColumns = false;
             this.dt_material.AllowUserToResizeRows = false;
             this.dt_material.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_material.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dt_material.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_material.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chk_filter,
@@ -74,11 +82,11 @@ namespace LCC.Components
             this.min_remnant_length,
             this.remove_image});
             this.dt_material.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_material.Location = new System.Drawing.Point(0, 89);
+            this.dt_material.Location = new System.Drawing.Point(0, 54);
             this.dt_material.Name = "dt_material";
             this.dt_material.RowHeadersVisible = false;
             this.dt_material.RowTemplate.Height = 25;
-            this.dt_material.Size = new System.Drawing.Size(1080, 359);
+            this.dt_material.Size = new System.Drawing.Size(1080, 394);
             this.dt_material.TabIndex = 0;
             this.dt_material.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellClick);
             this.dt_material.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_material_CellDoubleClick);
@@ -87,95 +95,6 @@ namespace LCC.Components
             this.dt_material.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_material_DataError);
             this.dt_material.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dt_material_EditingControlShowing);
             this.dt_material.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dt_material_RowsAdded);
-            // 
-            // btn_add
-            // 
-            this.btn_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_add.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_add.Depth = 0;
-            this.btn_add.DrawShadows = true;
-            this.btn_add.HighEmphasis = true;
-            this.btn_add.Icon = global::LCC.Properties.Resources.add;
-            this.btn_add.Location = new System.Drawing.Point(368, 9);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_add.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_add.Size = new System.Drawing.Size(78, 36);
-            this.btn_add.TabIndex = 1;
-            this.btn_add.Text = "Add";
-            this.btn_add.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.btn_add.UseAccentColor = false;
-            this.btn_add.UseVisualStyleBackColor = false;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_analyze
-            // 
-            this.btn_analyze.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_analyze.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_analyze.Depth = 0;
-            this.btn_analyze.DrawShadows = true;
-            this.btn_analyze.HighEmphasis = true;
-            this.btn_analyze.Icon = global::LCC.Properties.Resources.play;
-            this.btn_analyze.Location = new System.Drawing.Point(454, 9);
-            this.btn_analyze.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_analyze.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_analyze.Name = "btn_analyze";
-            this.btn_analyze.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_analyze.Size = new System.Drawing.Size(114, 36);
-            this.btn_analyze.TabIndex = 1;
-            this.btn_analyze.Text = "Analyze";
-            this.btn_analyze.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.btn_analyze.UseAccentColor = false;
-            this.btn_analyze.UseVisualStyleBackColor = false;
-            this.btn_analyze.Click += new System.EventHandler(this.btn_analyze_Click);
-            // 
-            // ST
-            // 
-            this.ST.AutoSize = true;
-            this.ST.Checked = true;
-            this.ST.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ST.Depth = 0;
-            this.ST.Location = new System.Drawing.Point(576, 8);
-            this.ST.Margin = new System.Windows.Forms.Padding(0);
-            this.ST.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.ST.MouseState = MaterialSkin.MouseState.HOVER;
-            this.ST.Name = "ST";
-            this.ST.Ripple = true;
-            this.ST.Size = new System.Drawing.Size(130, 37);
-            this.ST.TabIndex = 2;
-            this.ST.Text = "Use Inventory";
-            this.ST.UseVisualStyleBackColor = true;
-            // 
-            // BO
-            // 
-            this.BO.AutoSize = true;
-            this.BO.Checked = true;
-            this.BO.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.BO.Depth = 0;
-            this.BO.Location = new System.Drawing.Point(720, 8);
-            this.BO.Margin = new System.Windows.Forms.Padding(0);
-            this.BO.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.BO.MouseState = MaterialSkin.MouseState.HOVER;
-            this.BO.Name = "BO";
-            this.BO.Ripple = true;
-            this.BO.Size = new System.Drawing.Size(233, 37);
-            this.BO.TabIndex = 2;
-            this.BO.Text = "Use Commercial Length List";
-            this.BO.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            this.materialLabel2.Location = new System.Drawing.Point(6, 13);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(164, 24);
-            this.materialLabel2.TabIndex = 12;
-            this.materialLabel2.Text = "Manage Materials";
             // 
             // chk_filter
             // 
@@ -187,19 +106,19 @@ namespace LCC.Components
             // no
             // 
             this.no.DataPropertyName = "no";
-            dataGridViewCellStyle6.NullValue = null;
-            this.no.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.NullValue = null;
+            this.no.DefaultCellStyle = dataGridViewCellStyle2;
             this.no.HeaderText = "No.";
             this.no.Name = "no";
             this.no.Width = 40;
             // 
             // stock
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(114)))), ((int)(((byte)(196)))));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.NullValue = "Stock";
-            this.stock.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(114)))), ((int)(((byte)(196)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.NullValue = "Stock";
+            this.stock.DefaultCellStyle = dataGridViewCellStyle3;
             this.stock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stock.HeaderText = "Stocks";
             this.stock.MinimumWidth = 10;
@@ -211,8 +130,8 @@ namespace LCC.Components
             // description
             // 
             this.description.DataPropertyName = "description";
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.description.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.description.DefaultCellStyle = dataGridViewCellStyle4;
             this.description.HeaderText = "Description";
             this.description.Name = "description";
             this.description.ReadOnly = true;
@@ -222,8 +141,8 @@ namespace LCC.Components
             // grade
             // 
             this.grade.DataPropertyName = "grade";
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.grade.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.grade.DefaultCellStyle = dataGridViewCellStyle5;
             this.grade.HeaderText = "Grade";
             this.grade.Name = "grade";
             this.grade.ReadOnly = true;
@@ -233,8 +152,8 @@ namespace LCC.Components
             // kerf
             // 
             this.kerf.DataPropertyName = "kerf";
-            dataGridViewCellStyle10.NullValue = null;
-            this.kerf.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.NullValue = null;
+            this.kerf.DefaultCellStyle = dataGridViewCellStyle6;
             this.kerf.HeaderText = "Kerf (mm)";
             this.kerf.Name = "kerf";
             this.kerf.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -273,6 +192,74 @@ namespace LCC.Components
             this.remove_image.Name = "remove_image";
             this.remove_image.Width = 50;
             // 
+            // btn_analyze
+            // 
+            this.btn_analyze.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_analyze.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_analyze.Depth = 0;
+            this.btn_analyze.DrawShadows = true;
+            this.btn_analyze.HighEmphasis = true;
+            this.btn_analyze.Icon = global::LCC.Properties.Resources.play;
+            this.btn_analyze.Location = new System.Drawing.Point(568, 9);
+            this.btn_analyze.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_analyze.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_analyze.Name = "btn_analyze";
+            this.btn_analyze.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_analyze.Size = new System.Drawing.Size(114, 36);
+            this.btn_analyze.TabIndex = 1;
+            this.btn_analyze.Text = "Analyze";
+            this.btn_analyze.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btn_analyze.UseAccentColor = false;
+            this.btn_analyze.UseVisualStyleBackColor = false;
+            this.btn_analyze.Click += new System.EventHandler(this.btn_analyze_Click);
+            // 
+            // ST
+            // 
+            this.ST.AutoSize = true;
+            this.ST.Checked = true;
+            this.ST.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ST.Depth = 0;
+            this.ST.Location = new System.Drawing.Point(690, 8);
+            this.ST.Margin = new System.Windows.Forms.Padding(0);
+            this.ST.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.ST.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ST.Name = "ST";
+            this.ST.Ripple = true;
+            this.ST.Size = new System.Drawing.Size(130, 37);
+            this.ST.TabIndex = 2;
+            this.ST.Text = "Use Inventory";
+            this.ST.UseVisualStyleBackColor = true;
+            // 
+            // BO
+            // 
+            this.BO.AutoSize = true;
+            this.BO.Checked = true;
+            this.BO.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.BO.Depth = 0;
+            this.BO.Location = new System.Drawing.Point(834, 8);
+            this.BO.Margin = new System.Windows.Forms.Padding(0);
+            this.BO.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.BO.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BO.Name = "BO";
+            this.BO.Ripple = true;
+            this.BO.Size = new System.Drawing.Size(233, 37);
+            this.BO.TabIndex = 2;
+            this.BO.Text = "Use Commercial Length List";
+            this.BO.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel2.Location = new System.Drawing.Point(6, 13);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(164, 24);
+            this.materialLabel2.TabIndex = 12;
+            this.materialLabel2.Text = "Manage Materials";
+            // 
             // MaterialComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -282,7 +269,6 @@ namespace LCC.Components
             this.Controls.Add(this.BO);
             this.Controls.Add(this.ST);
             this.Controls.Add(this.btn_analyze);
-            this.Controls.Add(this.btn_add);
             this.Controls.Add(this.dt_material);
             this.Name = "MaterialComponent";
             this.Size = new System.Drawing.Size(1080, 448);
@@ -295,7 +281,6 @@ namespace LCC.Components
         #endregion
 
         private System.Windows.Forms.DataGridView dt_material;
-        private MaterialSkin.Controls.MaterialButton btn_add;
         private MaterialSkin.Controls.MaterialButton btn_analyze;
         private MaterialSkin.Controls.MaterialCheckbox ST;
         private MaterialSkin.Controls.MaterialCheckbox BO;

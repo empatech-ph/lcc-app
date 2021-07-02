@@ -161,6 +161,7 @@ namespace LCC.Components
         {
             var row = this.dt_material.Rows[e.RowIndex];
             row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
+            row.Cells["chk_filter"].Value = true;
         }
 
         private void dt_material_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -179,6 +180,7 @@ namespace LCC.Components
         {
             var oCell = this.dt_material.Columns["chk_filter"].HeaderCell.Size;
             this.oHeaderCheckbox.BackColor = Color.White;
+            this.oHeaderCheckbox.Checked = true;
             this.oHeaderCheckbox.Size = new Size(15, 15);
             this.oHeaderCheckbox.Location = new Point((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2, oCell.Height / 2);
             this.oHeaderCheckbox.Click += new EventHandler(HeaderCheckBox_Clicked);
@@ -198,9 +200,9 @@ namespace LCC.Components
 
         private void dt_material_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var oRow = this.dt_material.Rows[e.RowIndex];
             if (e.RowIndex != -1 && this.dt_material.Columns[e.ColumnIndex].Name == "remove_image")
             {
+                var oRow = this.dt_material.Rows[e.RowIndex];
                 DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (oDialog == DialogResult.Yes)
                 {

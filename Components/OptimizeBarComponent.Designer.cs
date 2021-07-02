@@ -29,27 +29,22 @@ namespace LCC.Components
         /// </summary>
         private void InitializeComponent()
         {
-            this.optimizeBarPanel = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.optimizeBarPanel.SuspendLayout();
+            this.optimizeBarPanel = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
             // optimizeBarPanel
             // 
-            this.optimizeBarPanel.Controls.Add(this.panel2);
+            this.optimizeBarPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.optimizeBarPanel.ColumnCount = 1;
+            this.optimizeBarPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.optimizeBarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optimizeBarPanel.Location = new System.Drawing.Point(0, 0);
             this.optimizeBarPanel.Name = "optimizeBarPanel";
-            this.optimizeBarPanel.Size = new System.Drawing.Size(477, 27);
+            this.optimizeBarPanel.RowCount = 2;
+            this.optimizeBarPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.optimizeBarPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.optimizeBarPanel.Size = new System.Drawing.Size(1056, 84);
             this.optimizeBarPanel.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Gray;
-            this.panel2.Location = new System.Drawing.Point(0, 5);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(18, 18);
-            this.panel2.TabIndex = 0;
             // 
             // OptimizeBarComponent
             // 
@@ -58,15 +53,13 @@ namespace LCC.Components
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.optimizeBarPanel);
             this.Name = "OptimizeBarComponent";
-            this.Size = new System.Drawing.Size(477, 27);
-            this.optimizeBarPanel.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(1056, 84);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel optimizeBarPanel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TableLayoutPanel optimizeBarPanel;
     }
 }
