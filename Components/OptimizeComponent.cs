@@ -84,5 +84,13 @@ namespace LCC.Components
                 this.initOptimizedStockLengthDataTable(int.Parse(oCurrentRow.Cells["cutlength_id"].Value.ToString()));
             }
         }
+
+        private void stockLengthTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                this.optimizeBarPanel.AutoScrollPosition = new Point(3, e.RowIndex * 90);
+            }
+        }
     }
 }

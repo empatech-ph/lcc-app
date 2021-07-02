@@ -43,7 +43,12 @@ namespace LCC.Model
         public double length { get; set; }
         public int quantity { get; set; }
         public int uncut { get; set; }
+    }
 
-        
+    public class TempFilteredOptimized
+    {
+        public int cutlength_id { get; set; }
+        public double sum { get; set; }
+        public List<TempOptimizedModel> data { get; set; }
     }
 }

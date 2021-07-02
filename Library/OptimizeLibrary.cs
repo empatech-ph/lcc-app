@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace LCC.Library
 {
@@ -74,17 +75,36 @@ namespace LCC.Library
             GLOBAL.oTempOptimized.Clear();
             GLOBAL.oTempCutlength.Clear();
 
-            this.generateTempOptimize(ref this.oTempOptimized1, ref this.oTempCutlength1);
-            this.generateTempOptimize(ref this.oTempOptimized2, ref this.oTempCutlength2, true);
+            this.generateTempOptimize(ref this.oTempOptimized1);
+            this.generateTempOptimize(ref this.oTempOptimized2, true);
 
-            bool bIsSecondOptimized = (this.oTempOptimized1.Sum(e => e.remaining_stock_length) >= this.oTempOptimized2.Sum(e => e.remaining_stock_length));
-            GLOBAL.oTempCutlength = (bIsSecondOptimized) ? this.oTempCutlength2 : this.oTempCutlength1;
-            GLOBAL.oTempOptimized = (bIsSecondOptimized) ? this.oTempOptimized2 : this.oTempOptimized1;
+            List<TempFilteredOptimized> oFilteredOptimized1 = this.oTempOptimized1.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
+            {
+                cutlength_id = e.First().cutlength_id,
+                sum = e.Sum(e => e.remaining_stock_length),
+                data = e.ToList()
+            }).ToList();
+
+            List<TempFilteredOptimized> oFilteredOptimized2 = this.oTempOptimized2.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
+            {
+                cutlength_id = e.First().cutlength_id,
+                sum = e.Sum(e => e.remaining_stock_length),
+                data = e.ToList()
+            }).ToList();
+
+            for (int i = 0; i < oFilteredOptimized1.Count; i++)
+            {
+                int iCutLengthNo = oFilteredOptimized1[i].cutlength_id;
+                TempFilteredOptimized oFiltered1 = oFilteredOptimized1.Find(e => e.cutlength_id == iCutLengthNo);
+                TempFilteredOptimized oFiltered2 = oFilteredOptimized2.Find(e => e.cutlength_id == iCutLengthNo);
+                GLOBAL.oTempOptimized.AddRange((oFiltered1.sum >= oFiltered2.sum) ? oFiltered2.data : oFiltered1.data);
+            }
         }
 
-        private void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, ref List<TempCutlengthModel> oTempCutlength, bool bIsSecond = false)
+        private void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, bool bIsSecond = false)
         {
-            oTempCutlength = this.getCutLength().Select(e => new TempCutlengthModel
+            GLOBAL.oTempCutlength.Clear();
+            GLOBAL.oTempCutlength = this.getCutLength().Select(e => new TempCutlengthModel
             {
                 cutlength_id = e.id,
                 part_code = e.part_code,
@@ -96,7 +116,7 @@ namespace LCC.Library
                 uncut = e.quantity
             }).ToList();
             int iIdTempOptimized = 1;
-            foreach (TempCutlengthModel oCutLengthItem in oTempCutlength)
+            foreach (TempCutlengthModel oCutLengthItem in GLOBAL.oTempCutlength)
             {
                 List<StockModel> oStockModel = this.getStockPerProjectDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade, oCutLengthItem.length, bIsSecond);
                 for (int i = 0; i < oStockModel.Count; i++)
@@ -113,7 +133,7 @@ namespace LCC.Library
                             int iQtyCut = Convert.ToInt32(Math.Floor(double.Parse((oStockItem.length / oCutLengthItem.length).ToString())));
                             iQtyCut = (iQtyCut > oCutLengthItem.uncut) ? oCutLengthItem.uncut : iQtyCut;
                             iUsedStockQty += 1;
-                            oCutLengthItem.uncut -= iQtyCut; 
+                            oCutLengthItem.uncut -= iQtyCut;
                             iQtyCut = (oCutLengthItem.uncut < 0) ? iQtyCut + oCutLengthItem.uncut : iQtyCut;
                             double iRemStockLength = oStockItem.length - (oCutLengthItem.length * iQtyCut);
                             if (oStockModel.Count - 1 != i)

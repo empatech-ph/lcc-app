@@ -120,6 +120,7 @@ namespace LCC.Components
             this.stockLengthTable.ShowEditingIcon = false;
             this.stockLengthTable.Size = new System.Drawing.Size(508, 259);
             this.stockLengthTable.TabIndex = 2;
+            this.stockLengthTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
             // 
             // stockLength_stock_code
             // 
