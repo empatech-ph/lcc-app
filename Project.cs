@@ -205,7 +205,7 @@ namespace LCC
                                 grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
                                 quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
                                 uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                                length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                                length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0,
                                 order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                                 note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                             });
@@ -249,7 +249,7 @@ namespace LCC
                     grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
                     quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
                     uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                    length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                    length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0.00F,
                     order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                     note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                 });

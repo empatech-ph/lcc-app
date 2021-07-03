@@ -36,9 +36,10 @@ namespace LCC.Library
                     }
                 }
             }
-            return (bSecond == true) ? oStockModel.OrderBy(e => e.length % dLength).ToList() :
-                oStockModel.OrderByDescending(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
-                .ThenBy(e => e.length % dLength)
+            return (bSecond == true) ? 
+                oStockModel.OrderBy(e => e.length % dLength).ToList() :
+                oStockModel.OrderByDescending(e => e.length % dLength)
+                .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
                 .ToList();
         }
 
