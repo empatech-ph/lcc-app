@@ -103,7 +103,8 @@ namespace LCC
         {
             this.oFile.Reload();
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
-            projectTable.DataSource = oProjectList.ToList();
+            this.projectTable.DataSource = oProjectList.ToList();
+            this.projectTable.Columns["id"].Visible = false;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
             this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
         }

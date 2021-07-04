@@ -137,10 +137,6 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
-            var rowIndex = this.dt_material.CurrentCell.RowIndex;
-            var row = this.dt_material.Rows[rowIndex];
-            GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
             if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
             {
                 var oRow = this.dt_material.Rows[e.RowIndex];
@@ -158,7 +154,6 @@ namespace LCC.Components
                         oStockManager.bST = this.ST.Checked;
                         oStockManager.ShowDialog();
                     }
-                    MessageBox.Show("Please check atleast 1 in the filter.");
                 }
                 else
                 {
@@ -180,6 +175,7 @@ namespace LCC.Components
         {
             var row = this.dt_material.Rows[e.RowIndex];
             row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
+            row.Cells["chk_filter"].Value = true;
         }
 
         private void dt_material_DataError(object sender, DataGridViewDataErrorEventArgs e)

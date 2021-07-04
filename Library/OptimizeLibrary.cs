@@ -129,20 +129,20 @@ namespace LCC.Library
                     {
                         while ((iStockQty > 0 || iStockQty == -1) && oCutLengthItem.uncut > 0)
                         {
-                            double iAdvRemStockLength = 0;
+                            double dAdvRemStockLength = 0.00;
                             int iAdvQtyCut = 0;
                             int iQtyCut = Convert.ToInt32(Math.Floor(double.Parse((oStockItem.length / oCutLengthItem.length).ToString())));
                             iQtyCut = (iQtyCut > oCutLengthItem.uncut) ? oCutLengthItem.uncut : iQtyCut;
                             iUsedStockQty += 1;
                             oCutLengthItem.uncut -= iQtyCut;
                             iQtyCut = (oCutLengthItem.uncut < 0) ? iQtyCut + oCutLengthItem.uncut : iQtyCut;
-                            double iRemStockLength = oStockItem.length - (oCutLengthItem.length * iQtyCut);
+                            double dRemStockLength = oStockItem.length - (oCutLengthItem.length * iQtyCut);
                             if (oStockModel.Count - 1 != i)
                             {
                                 iAdvQtyCut = Convert.ToInt32(Math.Floor(double.Parse((oStockModel[i + 1].length / oCutLengthItem.length).ToString())));
-                                iAdvRemStockLength = oStockModel[i + 1].length - (oCutLengthItem.length * iAdvQtyCut);
+                                dAdvRemStockLength = oStockModel[i + 1].length - (oCutLengthItem.length * iAdvQtyCut);
                             }
-                            if (iAdvRemStockLength < iRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > oCutLengthItem.uncut)
+                            if (dAdvRemStockLength < dRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > oCutLengthItem.uncut)
                             {
                                 oCutLengthItem.uncut += iQtyCut;
                                 break;
@@ -159,7 +159,7 @@ namespace LCC.Library
                                 cutlength_desc = oCutLengthItem.description,
                                 total_cut = iQtyCut,
                                 total_uncut = oCutLengthItem.uncut,
-                                remaining_stock_length = iRemStockLength,
+                                remaining_stock_length = double.Parse(dRemStockLength.ToString("0.00")),
                                 cutlength_length = oCutLengthItem.length
                             });
                             if (oCutLengthItem.uncut <= 0 || (iQtyCut == iStockQty && iStockQty != -1)) break;
