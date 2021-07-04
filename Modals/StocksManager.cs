@@ -117,21 +117,33 @@ namespace LCC.Modals
                     oModifyQtyModal.oStockManager = this;
                     oModifyQtyModal.ShowDialog();
                 }
-                if (e.RowIndex != -1 && this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image")
+                if (e.RowIndex != -1 && this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image" || this.dt_stock.Columns[e.ColumnIndex].Name == "remove_image")
                 {
                     if (this.dt_stock.Columns[e.ColumnIndex].Name == "visibility_image")
                     {
                         oRow.Cells["visibility"].Value = !bool.Parse(oRow.Cells["visibility"].Value.ToString());
                         oRow.Cells["visibility_image"].Value = ((bool.Parse(oRow.Cells["visibility"].Value.ToString())) ? Properties.Resources.light_on : Properties.Resources.light_off);
                         (oRow.Cells["visibility_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["visibility"].Value.ToString())) ? "Visible" : "Not Visible");
+
+                        this.updateStock();
                     }
-                    else
+                    else if (this.dt_stock.Columns[e.ColumnIndex].Name == "editable_image")
                     {
                         oRow.Cells["editable"].Value = !bool.Parse(oRow.Cells["editable"].Value.ToString());
                         oRow.Cells["editable_image"].Value = ((bool.Parse(oRow.Cells["editable"].Value.ToString())) ? Properties.Resources.unlocked : Properties.Resources.locked);
                         (oRow.Cells["editable_image"] as DataGridViewImageCell).ToolTipText = ((bool.Parse(oRow.Cells["editable"].Value.ToString())) ? "Editable" : "Not Editable");
+
+                        this.updateStock();
                     }
-                    this.updateStock();
+                    else if (this.dt_stock.Columns[e.ColumnIndex].Name == "remove_image")
+                    {
+                        DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                        if(oDialog == DialogResult.Yes)
+                        {
+                            Library.UtilsLibrary.getUserFile().GetCollection<StockModel>().DeleteOne(oRow.Cells["id"].Value);
+                            this.dt_stock.Rows.RemoveAt(oRow.Index);
+                        }
+                    }
                 }
             }
             catch { }
