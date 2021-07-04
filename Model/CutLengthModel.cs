@@ -10,7 +10,7 @@
         public string grade { get; set; }
         public int quantity { get; set; }
         public int uncut_quantity { get; set; }
-        public int length { get; set; }
+        public double length { get; set; }
         public string order_number { get; set; }
         public string note { get; set; }
 

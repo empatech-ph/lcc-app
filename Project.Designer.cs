@@ -74,6 +74,7 @@ namespace LCC
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
+            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -89,6 +90,7 @@ namespace LCC
             // 
             this.projectBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.projectBtn.Depth = 0;
+            this.projectBtn.DrawShadows = true;
             this.projectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.projectBtn.HighEmphasis = true;
             this.projectBtn.Icon = global::LCC.Properties.Resources.folders;
@@ -97,7 +99,7 @@ namespace LCC
             this.projectBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.projectBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.projectBtn.Name = "projectBtn";
-            this.projectBtn.Size = new System.Drawing.Size(64, 36);
+            this.projectBtn.Size = new System.Drawing.Size(44, 36);
             this.projectBtn.TabIndex = 0;
             this.projectBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.projectBtn.UseAccentColor = false;
@@ -108,6 +110,7 @@ namespace LCC
             // 
             this.materialBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialBtn.Depth = 0;
+            this.materialBtn.DrawShadows = true;
             this.materialBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.materialBtn.HighEmphasis = true;
             this.materialBtn.Icon = global::LCC.Properties.Resources.paper_crafts;
@@ -116,7 +119,7 @@ namespace LCC
             this.materialBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialBtn.Name = "materialBtn";
-            this.materialBtn.Size = new System.Drawing.Size(64, 36);
+            this.materialBtn.Size = new System.Drawing.Size(44, 36);
             this.materialBtn.TabIndex = 1;
             this.materialBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialBtn.UseAccentColor = false;
@@ -126,6 +129,7 @@ namespace LCC
             // 
             this.assemblyBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.assemblyBtn.Depth = 0;
+            this.assemblyBtn.DrawShadows = true;
             this.assemblyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.assemblyBtn.HighEmphasis = true;
             this.assemblyBtn.Icon = global::LCC.Properties.Resources.partnership;
@@ -134,7 +138,7 @@ namespace LCC
             this.assemblyBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.assemblyBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.assemblyBtn.Name = "assemblyBtn";
-            this.assemblyBtn.Size = new System.Drawing.Size(64, 36);
+            this.assemblyBtn.Size = new System.Drawing.Size(44, 36);
             this.assemblyBtn.TabIndex = 2;
             this.assemblyBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.assemblyBtn.UseAccentColor = false;
@@ -144,6 +148,7 @@ namespace LCC
             // 
             this.storageBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.storageBtn.Depth = 0;
+            this.storageBtn.DrawShadows = true;
             this.storageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.storageBtn.HighEmphasis = true;
             this.storageBtn.Icon = global::LCC.Properties.Resources.open_box;
@@ -152,7 +157,7 @@ namespace LCC
             this.storageBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.storageBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.storageBtn.Name = "storageBtn";
-            this.storageBtn.Size = new System.Drawing.Size(64, 36);
+            this.storageBtn.Size = new System.Drawing.Size(44, 36);
             this.storageBtn.TabIndex = 3;
             this.storageBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.storageBtn.UseAccentColor = false;
@@ -184,6 +189,7 @@ namespace LCC
             // 
             this.exportBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.exportBtn.Depth = 0;
+            this.exportBtn.DrawShadows = true;
             this.exportBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exportBtn.HighEmphasis = true;
             this.exportBtn.Icon = global::LCC.Properties.Resources.export;
@@ -192,7 +198,7 @@ namespace LCC
             this.exportBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.exportBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(64, 36);
+            this.exportBtn.Size = new System.Drawing.Size(44, 36);
             this.exportBtn.TabIndex = 3;
             this.exportBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.exportBtn.UseAccentColor = false;
@@ -203,6 +209,7 @@ namespace LCC
             // 
             this.printerBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.printerBtn.Depth = 0;
+            this.printerBtn.DrawShadows = true;
             this.printerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.printerBtn.HighEmphasis = true;
             this.printerBtn.Icon = global::LCC.Properties.Resources.printer;
@@ -211,7 +218,7 @@ namespace LCC
             this.printerBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.printerBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.printerBtn.Name = "printerBtn";
-            this.printerBtn.Size = new System.Drawing.Size(64, 36);
+            this.printerBtn.Size = new System.Drawing.Size(44, 36);
             this.printerBtn.TabIndex = 0;
             this.printerBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.printerBtn.UseAccentColor = false;
@@ -222,6 +229,7 @@ namespace LCC
             // 
             this.filterBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.filterBtn.Depth = 0;
+            this.filterBtn.DrawShadows = true;
             this.filterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.filterBtn.HighEmphasis = true;
             this.filterBtn.Icon = global::LCC.Properties.Resources.filter;
@@ -230,7 +238,7 @@ namespace LCC
             this.filterBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.filterBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.filterBtn.Name = "filterBtn";
-            this.filterBtn.Size = new System.Drawing.Size(64, 36);
+            this.filterBtn.Size = new System.Drawing.Size(44, 36);
             this.filterBtn.TabIndex = 1;
             this.filterBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.filterBtn.UseAccentColor = false;
@@ -240,6 +248,7 @@ namespace LCC
             // 
             this.importBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.importBtn.Depth = 0;
+            this.importBtn.DrawShadows = true;
             this.importBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.importBtn.HighEmphasis = true;
             this.importBtn.Icon = global::LCC.Properties.Resources.import;
@@ -248,7 +257,7 @@ namespace LCC
             this.importBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.importBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.importBtn.Name = "importBtn";
-            this.importBtn.Size = new System.Drawing.Size(64, 36);
+            this.importBtn.Size = new System.Drawing.Size(44, 36);
             this.importBtn.TabIndex = 2;
             this.importBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.importBtn.UseAccentColor = false;
@@ -267,6 +276,7 @@ namespace LCC
             // 
             this.optimizeBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.optimizeBtn.Depth = 0;
+            this.optimizeBtn.DrawShadows = true;
             this.optimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.optimizeBtn.HighEmphasis = true;
             this.optimizeBtn.Icon = global::LCC.Properties.Resources.play;
@@ -275,7 +285,7 @@ namespace LCC
             this.optimizeBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.optimizeBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.optimizeBtn.Name = "optimizeBtn";
-            this.optimizeBtn.Size = new System.Drawing.Size(64, 36);
+            this.optimizeBtn.Size = new System.Drawing.Size(44, 36);
             this.optimizeBtn.TabIndex = 0;
             this.optimizeBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.optimizeBtn.UseAccentColor = false;
@@ -299,6 +309,7 @@ namespace LCC
             this.btn_logout.AutoSize = false;
             this.btn_logout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btn_logout.Depth = 0;
+            this.btn_logout.DrawShadows = true;
             this.btn_logout.HighEmphasis = true;
             this.btn_logout.Icon = null;
             this.btn_logout.Location = new System.Drawing.Point(250, 3);
@@ -319,6 +330,7 @@ namespace LCC
             this.materialButton4.AutoSize = false;
             this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton4.Depth = 0;
+            this.materialButton4.DrawShadows = true;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = null;
             this.materialButton4.Location = new System.Drawing.Point(157, 3);
@@ -338,6 +350,7 @@ namespace LCC
             this.materialButton3.AutoSize = false;
             this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton3.Depth = 0;
+            this.materialButton3.DrawShadows = true;
             this.materialButton3.HighEmphasis = true;
             this.materialButton3.Icon = null;
             this.materialButton3.Location = new System.Drawing.Point(202, 3);
@@ -357,6 +370,7 @@ namespace LCC
             this.materialButton2.AutoSize = false;
             this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton2.Depth = 0;
+            this.materialButton2.DrawShadows = true;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = null;
             this.materialButton2.Location = new System.Drawing.Point(112, 3);
@@ -376,6 +390,7 @@ namespace LCC
             this.materialButton1.AutoSize = false;
             this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.materialButton1.Depth = 0;
+            this.materialButton1.DrawShadows = true;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
             this.materialButton1.Location = new System.Drawing.Point(55, 3);
@@ -395,6 +410,7 @@ namespace LCC
             this.fileBtn.AutoSize = false;
             this.fileBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.fileBtn.Depth = 0;
+            this.fileBtn.DrawShadows = true;
             this.fileBtn.HighEmphasis = true;
             this.fileBtn.Icon = null;
             this.fileBtn.Location = new System.Drawing.Point(7, 3);
@@ -555,6 +571,7 @@ namespace LCC
             // 
             this.addProject.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.addProject.Depth = 0;
+            this.addProject.DrawShadows = true;
             this.addProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addProject.HighEmphasis = true;
             this.addProject.Icon = global::LCC.Properties.Resources.add;
@@ -618,6 +635,7 @@ namespace LCC
             // 
             this.materialTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialTab.Location = new System.Drawing.Point(4, 24);
+            this.materialTab.Controls.Add(this.materialComponent1);
             this.materialTab.Name = "materialTab";
             this.materialTab.Size = new System.Drawing.Size(1080, 448);
             this.materialTab.TabIndex = 2;
@@ -628,7 +646,7 @@ namespace LCC
             // 
             this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchString.Depth = 0;
-            this.searchString.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.searchString.Location = new System.Drawing.Point(865, 134);
             this.searchString.MaxLength = 50;
             this.searchString.MouseState = MaterialSkin.MouseState.OUT;

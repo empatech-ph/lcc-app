@@ -157,7 +157,7 @@ namespace LCC.Modals
                     qty = (row.Cells["qty"].Value == null) ? "0" : ((row.Cells["qty"].Value.ToString() == "∞") ? "-1" : row.Cells["qty"].Value.ToString()),
                     stock_type = row.Cells["stock_type"].Value.ToString(),
                     cost = (row.Cells["cost"].Value == null) ? 0.00 : double.Parse(row.Cells["cost"].Value.ToString()),
-                    length = (row.Cells["length"].Value == null) ? 0 : int.Parse(row.Cells["length"].Value.ToString()),
+                    length = (row.Cells["length"].Value == null) ? 0 : double.Parse(row.Cells["length"].Value.ToString()),
                     stock_code = (row.Cells["stock_code"].Value == null) ? "" : row.Cells["stock_code"].Value.ToString(),
                     note = (row.Cells["note"].Value == null) ? "" : row.Cells["note"].Value.ToString(),
                     visibility = bool.Parse(row.Cells["visibility"].Value.ToString()),
