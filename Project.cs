@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,7 +17,8 @@ using System.IO;
 using ChoETL;
 using System.Globalization;
 using CsvHelper;
-using CsvHelper.Configuration;
+using LCC.Components;
+
 namespace LCC
 {
     public partial class Project : MaterialForm
@@ -103,8 +104,8 @@ namespace LCC
             this.oFile.Reload();
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             projectTable.DataSource = oProjectList.ToList();
-            projectTable.Columns["id"].Visible = false;
-            var I = this.projectTable.CurrentCell;
+            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
+            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -205,7 +206,7 @@ namespace LCC
                                 grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
                                 quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
                                 uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                                length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0,
+                                length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0.00,
                                 order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                                 note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                             });
@@ -266,7 +267,7 @@ namespace LCC
             }
 
         }
-
+ 
         private void projectTable_SelectionChanged(object sender, EventArgs e)
         {
 
@@ -296,6 +297,41 @@ namespace LCC
         {
             if (e.Context.ToString() == "Parsing, Commit")
                 MessageBox.Show("Please check the format when editing the field.");
+        }
+        private void searchString_TextChanged(object sender, EventArgs e)
+        {
+            //var tableType = projectTab.SelectedTab.Name == "projTab" ? typeof(ProjectModel):  projectTab.SelectedTab.Name == "cutLengthTab" ? typeof(CutLengthModel) : typeof(MaterialModel);
+            if (projectTab.SelectedTab.Name == "projTab")
+            {
+                var oProjectList = this.oFile.GetCollection<ProjectModel>();
+                var matches = oProjectList.Find(searchString.Text);
+                projectTable.DataSource = matches.AsQueryable().ToList();
+                projectTable.Refresh();
+            }
+            else if (projectTab.SelectedTab.Name == "cutLengthTab")
+            {
+                var oProjectList = this.oFile.GetCollection<CutLengthModel>();
+                var matches = oProjectList.Find(searchString.Text);
+                cutLengthsTable.DataSource = matches.AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                cutLengthsTable.Refresh();
+            }
+            else
+            {
+                dynamic oList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
+                this.materialComponent1.dt_material.DataSource = oListModel;
+                this.materialComponent1.dt_material.Refresh();
+            }
+        }
+
+        private void projectTab_Selected(object sender, TabControlEventArgs e)
+        {
+            searchString.Text = "";
+        }
+
+        private void fileBtn_MouseEnter(object sender, EventArgs e)
+        {
+            //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
         }
     }
 }

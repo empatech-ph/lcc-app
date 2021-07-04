@@ -1,4 +1,3 @@
-﻿
 namespace LCC
 {
     partial class Project
@@ -30,11 +29,11 @@ namespace LCC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.projectBtn = new MaterialSkin.Controls.MaterialButton();
             this.materialBtn = new MaterialSkin.Controls.MaterialButton();
             this.assemblyBtn = new MaterialSkin.Controls.MaterialButton();
@@ -74,6 +73,7 @@ namespace LCC
             this.tabResult = new System.Windows.Forms.TabPage();
             this.optimizeComponent1 = new LCC.Components.OptimizeComponent();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
@@ -82,6 +82,7 @@ namespace LCC
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
@@ -437,6 +438,7 @@ namespace LCC
             this.fileBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.fileBtn.UseAccentColor = false;
             this.fileBtn.UseVisualStyleBackColor = true;
+            this.fileBtn.MouseEnter += new System.EventHandler(this.fileBtn_MouseEnter);
             // 
             // projectTab
             // 
@@ -453,6 +455,7 @@ namespace LCC
             this.projectTab.Size = new System.Drawing.Size(1088, 476);
             this.projectTab.TabIndex = 8;
             this.projectTab.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
+            this.projectTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.projectTab_Selected);
             // 
             // projTab
             // 
@@ -511,6 +514,14 @@ namespace LCC
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.projectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.project_reference,
@@ -532,6 +543,14 @@ namespace LCC
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
@@ -659,23 +678,29 @@ namespace LCC
             // materialTab
             // 
             this.materialTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.materialTab.Controls.Add(this.materialComponent1);
             this.materialTab.Location = new System.Drawing.Point(4, 24);
+            this.materialTab.Controls.Add(this.materialComponent1);
             this.materialTab.Name = "materialTab";
             this.materialTab.Size = new System.Drawing.Size(1080, 448);
             this.materialTab.TabIndex = 2;
             this.materialTab.Text = "Materials";
             this.materialTab.UseVisualStyleBackColor = true;
             // 
-            // materialComponent1
+            // searchString
             // 
-            this.materialComponent1.BackColor = System.Drawing.Color.White;
-            this.materialComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialComponent1.Location = new System.Drawing.Point(0, 0);
-            this.materialComponent1.Name = "materialComponent1";
-            this.materialComponent1.Padding = new System.Windows.Forms.Padding(3);
-            this.materialComponent1.Size = new System.Drawing.Size(1078, 446);
-            this.materialComponent1.TabIndex = 0;
+            this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchString.Depth = 0;
+            this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchString.Location = new System.Drawing.Point(865, 134);
+            this.searchString.MaxLength = 50;
+            this.searchString.MouseState = MaterialSkin.MouseState.OUT;
+            this.searchString.Multiline = false;
+            this.searchString.Name = "searchString";
+            this.searchString.Size = new System.Drawing.Size(221, 36);
+            this.searchString.TabIndex = 11;
+            this.searchString.Text = "";
+            this.searchString.UseTallSize = false;
+            this.searchString.TextChanged += new System.EventHandler(this.searchString_TextChanged);
             // 
             // tabResult
             // 
@@ -780,6 +805,7 @@ namespace LCC
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 663);
+            this.Controls.Add(this.searchString);
             this.Controls.Add(this.l_currentProject);
             this.Controls.Add(this.oProjectTabSelector);
             this.Controls.Add(this.projectTab);
@@ -868,5 +894,6 @@ namespace LCC
         private Components.OptimizeComponent optimizeComponent1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
+        private MaterialSkin.Controls.MaterialTextBox searchString;
     }
 }

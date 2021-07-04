@@ -1,4 +1,4 @@
-﻿using JsonFlatFileDataStore;
+using JsonFlatFileDataStore;
 using LCC.Components;
 using LCC.Model;
 using MaterialSkin;
@@ -42,8 +42,7 @@ namespace LCC.Modals
             });
             MessageBox.Show("Successfully inserted.", "Success");
             this.Close();
-            oStockManager.initStockData();
-
+            oStockManager.initStockData(); 
         }
 
         private void tb_kerf_KeyPress(object sender, KeyPressEventArgs e)
