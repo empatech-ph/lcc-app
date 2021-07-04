@@ -1,4 +1,3 @@
-﻿
 namespace LCC.Components
 {
     partial class MaterialComponent
@@ -293,8 +292,6 @@ namespace LCC.Components
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dt_material;
         private MaterialSkin.Controls.MaterialButton btn_add;
         private MaterialSkin.Controls.MaterialButton btn_analyze;
         private MaterialSkin.Controls.MaterialCheckbox ST;
@@ -310,6 +307,8 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn trim_right;
         private System.Windows.Forms.DataGridViewTextBoxColumn part_allowance;
         private System.Windows.Forms.DataGridViewTextBoxColumn min_remnant_length;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        public System.Windows.Forms.DataGridView dt_material;
         private System.Windows.Forms.DataGridViewImageColumn remove_image;
     }
 }
