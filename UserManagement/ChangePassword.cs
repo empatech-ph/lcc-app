@@ -39,7 +39,7 @@ namespace LCC.UserManagement
                 }
                 else
                 {
-                    MessageBox.Show("Password doesn't match.");
+                    MessageBox.Show("Passwords do not match.");
                 }
             }
         }

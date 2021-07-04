@@ -17,7 +17,8 @@ using System.IO;
 using ChoETL;
 using System.Globalization;
 using CsvHelper;
-using CsvHelper.Configuration;
+using LCC.Components;
+
 namespace LCC
 {
     public partial class Project : MaterialForm
@@ -103,8 +104,8 @@ namespace LCC
             this.oFile.Reload();
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             projectTable.DataSource = oProjectList.ToList();
-            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : int.Parse(this.projectTable.Rows[this.projectTable.CurrentCell.RowIndex].Cells["id"].Value.ToString());
-            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.Select(x => x.project_name).First().ToString());
+            GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
+            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
             projectTable.Columns["id"].Visible = false;
         }
 
@@ -240,20 +241,20 @@ namespace LCC
         private void cutLengthsTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var row = cutLengthsTable.Rows[e.RowIndex];
-            if(row.Cells["id"].Value != null)
-            this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
-            {
-                id = int.Parse(row.Cells["id"].Value.ToString()),
-                project_id = GLOBAL.iSelectedProjectId,
-                part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
-                description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
-                grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
-                quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
-                uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
-                order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
-                note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
-            });
+            if (row.Cells["id"].Value != null)
+                this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
+                {
+                    id = int.Parse(row.Cells["id"].Value.ToString()),
+                    project_id = GLOBAL.iSelectedProjectId,
+                    part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
+                    description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
+                    grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
+                    quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
+                    uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
+                    length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                    order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
+                    note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                });
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -266,6 +267,42 @@ namespace LCC
                 new UserManagement.Login().Show();
             }
 
+        }
+
+        private void searchString_TextChanged(object sender, EventArgs e)
+        {
+            //var tableType = projectTab.SelectedTab.Name == "projTab" ? typeof(ProjectModel):  projectTab.SelectedTab.Name == "cutLengthTab" ? typeof(CutLengthModel) : typeof(MaterialModel);
+            if (projectTab.SelectedTab.Name == "projTab")
+            {
+                var oProjectList = this.oFile.GetCollection<ProjectModel>();
+                var matches = oProjectList.Find(searchString.Text);
+                projectTable.DataSource = matches.AsQueryable().ToList();
+                projectTable.Refresh();
+            }
+            else if (projectTab.SelectedTab.Name == "cutLengthTab")
+            {
+                var oProjectList = this.oFile.GetCollection<CutLengthModel>();
+                var matches = oProjectList.Find(searchString.Text);
+                cutLengthsTable.DataSource = matches.AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                cutLengthsTable.Refresh();
+            }
+            else
+            {
+                dynamic oList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
+                this.materialComponent1.dt_material.DataSource = oListModel;
+                this.materialComponent1.dt_material.Refresh();
+            }
+        }
+
+        private void projectTab_Selected(object sender, TabControlEventArgs e)
+        {
+            searchString.Text = "";
+        }
+
+        private void fileBtn_MouseEnter(object sender, EventArgs e)
+        {
+            //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
         }
     }
 }

@@ -4,6 +4,7 @@
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
+		<ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\</ReferencePath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,25 +27,16 @@
 		<PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0-develop00306" />
 		<PackageReference Include="JsonFlatFileDataStore" Version="2.2.2" />
 		<PackageReference Include="MaterialSkin.2" Version="2.1.4" />
-		<PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
-		<PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
-		<PackageReference Include="IKVM" Version="8.1.5717" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="SchemaMapper" Version="1.1.0" />
+		<PackageReference Include="ReportViewerCore.WinForms" Version="15.1.13" />
     <PackageReference Include="System.Management" Version="5.0.0" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0-preview.1.21102.12" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Admin\AssignRoles.cs">
-		  <SubType>Form</SubType>
-		</Compile>
-		<Compile Update="Modals\AddStocksModal.cs">
-		  <SubType>Form</SubType>
-		</Compile>
-		<Compile Update="Modals\StocksManager.cs">
-		  <SubType>Form</SubType>
-		</Compile>
+		<Compile Update="Admin\AssignRoles.cs" />
+		<Compile Update="Modals\AddStocksModal.cs" />
+		<Compile Update="Modals\StocksManager.cs" />
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
