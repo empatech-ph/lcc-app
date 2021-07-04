@@ -40,7 +40,7 @@ namespace LCC.Modals
                     editable = this.ck_editable.Checked
                 });
 
-                DialogResult oDialogResult = MessageBox.Show("Successfully inserted.\nDo you want to insert another?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult oDialogResult = MessageBox.Show("Successfully inserted.\nYou want to insert another?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if(oDialogResult == DialogResult.Yes) {
                     this.rb_note.Clear();
                     this.tb_stock_code.Clear();

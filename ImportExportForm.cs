@@ -72,65 +72,48 @@ namespace LCC
                 else
                 {
                     string filePath = string.Empty;
-                    filePath = openFileDialog.FileName;
+                    filePath = openFileDialog.FileName; //get the path of the file
                     var extension = Path.GetExtension(openFileDialog.FileName);
-                    var reader = new ChoCSVReader(filePath).WithFirstLineHeader();
+                    var reader = new ChoCSVReader(filePath).IgnoreHeader();
                     dynamic rec;
                     if (extension == ".csv" || extension == ".txt")
                     {
-                        while ((rec = reader.Read()) != null)
+                        if (GLOBAL.iSelectedProjectId != 0 && importComboBox.SelectedItem.ToString() != "Project")
                         {
-                            if (importComboBox.SelectedItem.ToString() == "Project")
+                            while ((rec = reader.Read()) != null)
                             {
-                                var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
-                                collection.InsertOne(new ProjectModel { id = 1, project_name = rec.project_name, project_reference = rec.project_reference, rev_no = rec.rev_no, scope = rec.scope });
-                            }
-                            else
-                            {
-                                if (GLOBAL.iSelectedProjectId != 0 && importComboBox.SelectedItem.ToString() != "Project")
+                                if (importComboBox.SelectedItem.ToString() == "Project")
+                                {
+                                    var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
+                                    collection.InsertOne(new ProjectModel { id = 1, project_name = rec[1], project_reference = rec[0], rev_no = rec[3], scope = rec[2] });
+                                }
+                                else
                                 {
                                     if (extension != ".xlsx")
                                     {
-                                        if (importComboBox.SelectedItem.ToString() == "Cut Lengths")
-                                        {
-                                            var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
-                                            collection.InsertOne(
-                                                new CutLengthModel
-                                                {
-                                                    id = 1,
-                                                    project_id = GLOBAL.iSelectedProjectId,
-                                                    part_code = rec.part_code,
-                                                    description = rec.description,
-                                                    grade = rec.grade,
-                                                    quantity = int.Parse(rec.quantity),
-                                                    uncut_quantity = int.Parse(rec.uncut_quantity),
-                                                    length = int.Parse(rec.length),
-                                                    order_number = rec.order_number,
-                                                    note = rec.note
-                                                });
-                                        }
-                                        else
-                                        {
-                                            var collection = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>();
-                                            collection.InsertOne(
-                                                new StockModel
-                                                {
-                                                    id = 1,
-                                                    material_id = GLOBAL.iSelectedMaterialId,
-                                                    qty = rec.qty,
-                                                    length = int.Parse(rec.length),
-                                                    stock_type = rec.stock_type,
-                                                    cost = double.Parse(rec.cost),
-                                                    stock_code = rec.stock_code,
-                                                    note = rec.note,
-                                                    visibility = rec.visibility == "TRUE",
-                                                    editable = rec.editable == "TRUE"
-                                                });
-                                        }
-
+                                        var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
+                                        collection.InsertOne(
+                                            new CutLengthModel
+                                            {
+                                                id = 1,
+                                                project_id = GLOBAL.iSelectedProjectId,
+                                                part_code = rec[0],
+                                                description = rec[1],
+                                                grade = rec[2],
+                                                quantity = int.Parse(rec[3]),
+                                                uncut_quantity = int.Parse(rec[4]),
+                                                length = int.Parse(rec[5]),
+                                                order_number = rec[6],
+                                                note = rec[7]
+                                            });
                                     }
                                 }
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please select project.");
+                            return;
                         }
                     }
 
@@ -138,7 +121,6 @@ namespace LCC
                     {
                         if (GLOBAL.iSelectedProjectId != 0)
                         {
-                            var siteMapHeaderList = new List<string>() { "part_code", "description", "grade", "quantity", "uncut_quantity", "length", "order_number", "note", "qty", "length", "stock_type", "cost", "stock_code", "note", "visibility", "editable" };
                             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                             {
                                 using (var reader2 = ExcelReaderFactory.CreateReader(stream))
@@ -147,21 +129,20 @@ namespace LCC
                                     {
                                         ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration()
                                         {
-                                            UseHeaderRow = true,
-                                            FilterColumn = (rowReader, columnIndex) =>
-                                            {
-                                                return (siteMapHeaderList.Contains(rowReader.GetString(columnIndex)));
-                                            }
+                                            UseHeaderRow = true
                                         }
                                     });
-
                                     DataRowCollection row = result.Tables[0].Rows;
+
+                                    List<object> rowDataList = null;
+                                    List<object> allRowsList = new List<object>();
                                     foreach (DataRow item in row)
                                     {
-                                        if (importComboBox.SelectedItem.ToString() == "Cut Lengths")
-                                        {
-                                            List<CutLengthModel> allRowsList = new List<CutLengthModel>();
-                                            allRowsList.Add(new CutLengthModel
+                                        rowDataList = item.ItemArray.ToList();
+                                        allRowsList.Add(rowDataList);
+                                        var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
+                                        collection2.InsertOne(
+                                            new CutLengthModel
                                             {
                                                 id = 1,
                                                 project_id = GLOBAL.iSelectedProjectId,
@@ -174,32 +155,7 @@ namespace LCC
                                                 order_number = item.ItemArray[6].ToString(),
                                                 note = item.ItemArray[7].ToString()
                                             });
-
-                                            var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
-                                            collection2.InsertMany(allRowsList);
-                                        }
-                                        else
-                                        {
-                                            List<StockModel> allRowsList = new List<StockModel>();
-                                            allRowsList.Add(new StockModel
-                                            {
-                                                id = 1,
-                                                material_id = GLOBAL.iSelectedMaterialId,
-                                                qty = item.ItemArray[0].ToString(),
-                                                length = int.Parse(item.ItemArray[1].ToString()),
-                                                stock_type = item.ItemArray[2].ToString(),
-                                                cost = double.Parse(item.ItemArray[3].ToString()),
-                                                stock_code = item.ItemArray[4].ToString(),
-                                                note = item.ItemArray[5].ToString(),
-                                                visibility = item.ItemArray[6].Equals(true),
-                                                editable = item.ItemArray[7].Equals(true)
-                                            });
-
-                                            var collection2 = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>();
-                                            collection2.InsertMany(allRowsList);
-                                        }
                                     }
-
                                 }
                             }
                         }
