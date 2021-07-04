@@ -8,10 +8,11 @@ using System.Windows.Forms;
 namespace LCC.Library
 {
     class ThemeLibrary
-    {
+    { 
         public static void initMaterialDesign(MaterialForm oForm)
         {
             MaterialSkinManager oMaterialSkinManager = MaterialSkinManager.Instance;
+            oMaterialSkinManager.EnforceBackcolorOnAllComponents = false;
             oMaterialSkinManager.AddFormToManage(oForm);
             oMaterialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             oMaterialSkinManager.ColorScheme = new ColorScheme(

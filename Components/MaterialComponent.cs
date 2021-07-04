@@ -1,4 +1,4 @@
-﻿using JsonFlatFileDataStore;
+using JsonFlatFileDataStore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +15,12 @@ namespace LCC.Components
 {
     public partial class MaterialComponent : UserControl
     {
+        CheckBox oHeaderCheckbox = new CheckBox();
         public MaterialComponent()
         {
             InitializeComponent();
             this.initDatagrid();
+            this.addCheckboxHeader();
         }
 
         public void initDatagrid()
@@ -51,7 +53,14 @@ namespace LCC.Components
                 var row = this.dt_material.Rows[this.dt_material.CurrentCell.RowIndex];
                 var oStore = Library.UtilsLibrary.getUserFile();
                 var collection = oStore.GetCollection<MaterialModel>();
-
+                GLOBAL.aCheckedMaterials.Clear();
+                foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
+                {
+                    if (Convert.ToBoolean(oRowItem.Cells["chk_filter"].Value) == true)
+                    {
+                        GLOBAL.aCheckedMaterials.Add(int.Parse(oRowItem.Cells["id"].Value.ToString()));
+                    }
+                }
                 collection.UpdateOne(oRow => oRow.id == int.Parse(row.Cells["id"].Value.ToString()), new MaterialModel
                 {
                     id = int.Parse(row.Cells["id"].Value.ToString()),
@@ -128,13 +137,27 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex >= 0)
             var rowIndex = this.dt_material.CurrentCell.RowIndex;
             var row = this.dt_material.Rows[rowIndex];
             GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
             if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
             {
-                if (this.ST.Checked == false && this.BO.Checked == false)
+                var oRow = this.dt_material.Rows[e.RowIndex];
+                if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
                 {
+                    if (this.ST.Checked == false && this.BO.Checked == false)
+                    {
+                        MessageBox.Show("Please check atleast 1 in the filter.");
+                    }
+                    else
+                    {
+                        GLOBAL.iSelectedMaterialId = int.Parse(oRow.Cells["id"].Value.ToString());
+                        var oStockManager = new Modals.StocksManager();
+                        oStockManager.bBO = this.BO.Checked;
+                        oStockManager.bST = this.ST.Checked;
+                        oStockManager.ShowDialog();
+                    }
                     MessageBox.Show("Please check atleast 1 in the filter.");
                 }
                 else
@@ -146,11 +169,11 @@ namespace LCC.Components
                 }
             }
         }
-
         private void dt_material_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             var row = this.dt_material.Rows[e.RowIndex];
             row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
+            row.Cells["chk_filter"].Value = true;
         }
 
         private void dt_material_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -163,6 +186,42 @@ namespace LCC.Components
         {
             if (e.Context.ToString() == "Parsing, Commit")
                 MessageBox.Show("Please check the format when editing the field.");
+        }
+
+        private void addCheckboxHeader()
+        {
+            var oCell = this.dt_material.Columns["chk_filter"].HeaderCell.Size;
+            this.oHeaderCheckbox.BackColor = Color.White;
+            this.oHeaderCheckbox.Checked = true;
+            this.oHeaderCheckbox.Size = new Size(15, 15);
+            this.oHeaderCheckbox.Location = new Point((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2, oCell.Height / 2);
+            this.oHeaderCheckbox.Click += new EventHandler(HeaderCheckBox_Clicked);
+            this.dt_material.Controls.Add(this.oHeaderCheckbox);
+        }
+
+        private void HeaderCheckBox_Clicked(object sender, EventArgs e)
+        {
+            this.dt_material.EndEdit();
+            GLOBAL.aCheckedMaterials.Clear();
+            foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
+            {
+                oRowItem.Cells["chk_filter"].Value = this.oHeaderCheckbox.Checked;
+                GLOBAL.aCheckedMaterials.Add(int.Parse(oRowItem.Cells["id"].Value.ToString()));
+            }
+        }
+
+        private void dt_material_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1 && this.dt_material.Columns[e.ColumnIndex].Name == "remove_image")
+            {
+                var oRow = this.dt_material.Rows[e.RowIndex];
+                DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (oDialog == DialogResult.Yes)
+                {
+                    Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
+                    this.dt_material.Rows.RemoveAt(oRow.Index);
+                }
+            }
         }
     }
 }

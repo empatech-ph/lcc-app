@@ -99,17 +99,17 @@ namespace LCC.Modals
             this.c_qty.BackColor = System.Drawing.Color.LightGray;
             this.c_qty.DropDownHeight = 170;
             this.c_qty.DropDownWidth = 121;
-            this.c_qty.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.c_qty.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.c_qty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.c_qty.FormattingEnabled = true;
             this.c_qty.IntegralHeight = false;
-            this.c_qty.ItemHeight = 17;
+            this.c_qty.ItemHeight = 15;
             this.c_qty.Items.AddRange(new object[] {
             "∞"});
             this.c_qty.Location = new System.Drawing.Point(32, 178);
             this.c_qty.MaxDropDownItems = 4;
             this.c_qty.Name = "c_qty";
-            this.c_qty.Size = new System.Drawing.Size(92, 25);
+            this.c_qty.Size = new System.Drawing.Size(92, 23);
             this.c_qty.TabIndex = 2;
             this.c_qty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_kerf_KeyPress);
             // 
@@ -119,15 +119,15 @@ namespace LCC.Modals
             this.c_stockType.DropDownHeight = 170;
             this.c_stockType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.c_stockType.DropDownWidth = 121;
-            this.c_stockType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.c_stockType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.c_stockType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.c_stockType.FormattingEnabled = true;
             this.c_stockType.IntegralHeight = false;
-            this.c_stockType.ItemHeight = 17;
+            this.c_stockType.ItemHeight = 15;
             this.c_stockType.Location = new System.Drawing.Point(139, 178);
             this.c_stockType.MaxDropDownItems = 4;
             this.c_stockType.Name = "c_stockType";
-            this.c_stockType.Size = new System.Drawing.Size(100, 25);
+            this.c_stockType.Size = new System.Drawing.Size(100, 23);
             this.c_stockType.TabIndex = 3;
             // 
             // rb_note

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -106,7 +106,6 @@ namespace LCC
             projectTable.DataSource = oProjectList.ToList();
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
             this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
-            projectTable.Columns["id"].Visible = false;
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -251,7 +250,7 @@ namespace LCC
                     grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
                     quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
                     uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                    length = row.Cells["length"].Value != null ? int.Parse(row.Cells["length"].Value.ToString()) : 0,
+                    length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0.00F,
                     order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                     note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                 });
@@ -268,7 +267,37 @@ namespace LCC
             }
 
         }
+ 
+        private void projectTable_SelectionChanged(object sender, EventArgs e)
+        {
 
+            GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
+            this.materialComponent1.initDatagrid();
+            this.initCutLength();
+        }
+
+        private void optimizeBtn_Click(object sender, EventArgs e)
+        {
+            this.projectTab.SelectedIndex = 3;
+            optimizeComponent1.triggerOptimize(); 
+
+        }
+
+        private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.optimizeBtn.Visible = false;
+            if (this.projectTab.SelectedTab.Name == "materialTab")
+            {
+                this.optimizeBtn.Visible = true;
+            }
+        }
+
+        private void cutLengthsTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Context.ToString() == "Parsing, Commit")
+                MessageBox.Show("Please check the format when editing the field.");
+        }
         private void searchString_TextChanged(object sender, EventArgs e)
         {
             //var tableType = projectTab.SelectedTab.Name == "projTab" ? typeof(ProjectModel):  projectTab.SelectedTab.Name == "cutLengthTab" ? typeof(CutLengthModel) : typeof(MaterialModel);

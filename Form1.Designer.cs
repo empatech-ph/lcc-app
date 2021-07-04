@@ -1,4 +1,3 @@
-﻿
 namespace LCC
 {
     partial class Form1
@@ -29,6 +28,16 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
+            this.optimizeBarComponent1 = new LCC.Components.OptimizeBarComponent();
+            this.SuspendLayout();
+            // 
+            // optimizeBarComponent1
+            // 
+            this.optimizeBarComponent1.BackColor = System.Drawing.Color.White;
+            this.optimizeBarComponent1.Location = new System.Drawing.Point(12, 58);
+            this.optimizeBarComponent1.Name = "optimizeBarComponent1";
+            this.optimizeBarComponent1.Size = new System.Drawing.Size(689, 61);
+            this.optimizeBarComponent1.TabIndex = 0;
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
@@ -45,6 +54,8 @@ namespace LCC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(872, 450);
+            this.Controls.Add(this.optimizeBarComponent1);
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reportViewer1);
             this.Name = "Form1";
@@ -55,6 +66,7 @@ namespace LCC
 
         #endregion
 
+        private Components.OptimizeBarComponent optimizeBarComponent1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

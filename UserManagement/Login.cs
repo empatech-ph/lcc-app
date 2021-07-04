@@ -83,6 +83,9 @@ namespace LCC.UserManagement
                         { "timestamp",  UtilsLibrary.getTimestamp() }
                     };
                     this.oRegistry.registerEncrypt("login", JsonConvert.SerializeObject(oLogin));
+                    dynamic oInfoFile = new RegistryLibrary().getInfo();
+                    oInfoFile.date_recheck = int.Parse(oInfoFile.date_recheck.ToString()) + 864000;
+                    this.oRegistry.registerEncrypt("info", oInfoFile.ToString());
                     (new Project()).Show();
                 }
             }
