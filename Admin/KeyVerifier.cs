@@ -28,7 +28,7 @@ namespace LCC.Admin
         {
             if (this.tb_prodCode.TextLength <= 0 || this.tb_LicenseKey.TextLength <= 0 || this.tb_allowedEmail.TextLength <= 0)
             {
-                MessageBox.Show("Please provide required fields.");
+                MessageBox.Show("Please provide requered fields");
             }
             else
             {

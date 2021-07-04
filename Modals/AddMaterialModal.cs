@@ -47,7 +47,7 @@ namespace LCC.Modals
                     min_remnant_length = this.tb_min_remnant.TextLength <= 0 ? 0.00 : Convert.ToDouble(this.tb_min_remnant.Text),
                 });
 
-                DialogResult oDialogResult = MessageBox.Show("Successfully inserted.\nDo you want to insert another?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                DialogResult oDialogResult = MessageBox.Show("Successfully inserted.\nYou want to insert another?", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if(oDialogResult == DialogResult.Yes) {
                     this.tb_description.Clear();
                     this.tb_grade.Clear();

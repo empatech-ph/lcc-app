@@ -30,7 +30,7 @@ namespace LCC.UserManagement
         {
             if (this.tb_email.TextLength <= 0)
             {
-                MessageBox.Show("Please provide required fields.");
+                MessageBox.Show("Please provide requered fields");
             }
             else
             {
@@ -68,7 +68,7 @@ namespace LCC.UserManagement
                 }
                 else if (oResult.not_registered == true)
                 {
-                    MessageBox.Show("You are not registered, please register your email.");
+                    MessageBox.Show("You are not registered, please register your email");
                     (new Register(this.tb_email.Text, oResult.user_type.ToString())).ShowDialog();
                 }
                 else
