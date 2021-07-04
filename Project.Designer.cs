@@ -74,6 +74,7 @@ namespace LCC
             this.projectToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.oProjectTabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
+            this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -618,6 +619,7 @@ namespace LCC
             // 
             this.materialTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialTab.Location = new System.Drawing.Point(4, 24);
+            this.materialTab.Controls.Add(this.materialComponent1);
             this.materialTab.Name = "materialTab";
             this.materialTab.Size = new System.Drawing.Size(1080, 448);
             this.materialTab.TabIndex = 2;
