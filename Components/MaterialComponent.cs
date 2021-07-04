@@ -1,4 +1,4 @@
-using JsonFlatFileDataStore;
+﻿using JsonFlatFileDataStore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -130,9 +130,6 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var rowIndex = this.dt_material.CurrentCell.RowIndex;
-            var row = this.dt_material.Rows[rowIndex];
-            GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
             if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
             {
                 if (this.ST.Checked == false && this.BO.Checked == false)
@@ -141,6 +138,9 @@ namespace LCC.Components
                 }
                 else
                 {
+                    var rowIndex = this.dt_material.CurrentCell.RowIndex;
+                    var row = this.dt_material.Rows[rowIndex];
+                    GLOBAL.iSelectedMaterialId = int.Parse(row.Cells["id"].Value.ToString());
                     var oStockManager = new Modals.StocksManager();
                     oStockManager.bBO = this.BO.Checked;
                     oStockManager.bST = this.ST.Checked;

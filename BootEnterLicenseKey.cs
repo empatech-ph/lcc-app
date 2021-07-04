@@ -30,7 +30,7 @@ namespace LCC
         {
             if(this.tb_productCode.TextLength <= 0 || this.tb_licenseKey.TextLength <= 0)
             {
-                MessageBox.Show("Please fill the required fields.");
+                MessageBox.Show("Please fill the required fields");
             }
             else
             {

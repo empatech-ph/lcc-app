@@ -40,7 +40,7 @@ namespace LCC.UserManagement
             {
                 if (this.tb_password.Text != this.tb_confirmPassword.Text)
                 {
-                    MessageBox.Show("Passwords do not match.");
+                    MessageBox.Show("Password not match");
                 }
                 else
                 {
