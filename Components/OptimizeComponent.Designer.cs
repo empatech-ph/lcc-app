@@ -42,16 +42,16 @@ namespace LCC.Components
             this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cutLengthTable = new System.Windows.Forms.DataGridView();
-            this.cutlengthTable_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutlengthTable_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizeBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.cutlengthTable_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutLengthTable_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutlengthTable_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutLengthTable_quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutLengthTable_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockLengthTable)).BeginInit();
             this.panel5.SuspendLayout();
@@ -208,46 +208,6 @@ namespace LCC.Components
             this.cutLengthTable.TabIndex = 3;
             this.cutLengthTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthTable_CellClick);
             // 
-            // cutlengthTable_part_code
-            // 
-            this.cutlengthTable_part_code.DataPropertyName = "part_code";
-            this.cutlengthTable_part_code.HeaderText = "Part Code";
-            this.cutlengthTable_part_code.Name = "cutlengthTable_part_code";
-            this.cutlengthTable_part_code.ReadOnly = true;
-            this.cutlengthTable_part_code.Width = 135;
-            // 
-            // cutLengthTable_description
-            // 
-            this.cutLengthTable_description.DataPropertyName = "cutlength_desc_grade";
-            this.cutLengthTable_description.HeaderText = "Description";
-            this.cutLengthTable_description.Name = "cutLengthTable_description";
-            this.cutLengthTable_description.ReadOnly = true;
-            this.cutLengthTable_description.Width = 190;
-            // 
-            // cutlengthTable_length
-            // 
-            this.cutlengthTable_length.DataPropertyName = "length";
-            this.cutlengthTable_length.HeaderText = "Length (mm)";
-            this.cutlengthTable_length.Name = "cutlengthTable_length";
-            this.cutlengthTable_length.ReadOnly = true;
-            this.cutlengthTable_length.Width = 110;
-            // 
-            // cutLengthTable_quantity
-            // 
-            this.cutLengthTable_quantity.DataPropertyName = "quantity";
-            this.cutLengthTable_quantity.HeaderText = "Quantity";
-            this.cutLengthTable_quantity.Name = "cutLengthTable_quantity";
-            this.cutLengthTable_quantity.ReadOnly = true;
-            this.cutLengthTable_quantity.Width = 65;
-            // 
-            // cutLengthTable_uncut
-            // 
-            this.cutLengthTable_uncut.DataPropertyName = "uncut";
-            this.cutLengthTable_uncut.HeaderText = "Uncut";
-            this.cutLengthTable_uncut.Name = "cutLengthTable_uncut";
-            this.cutLengthTable_uncut.ReadOnly = true;
-            this.cutLengthTable_uncut.Width = 50;
-            // 
             // optimizeBarPanel
             // 
             this.optimizeBarPanel.AutoScroll = true;
@@ -310,6 +270,46 @@ namespace LCC.Components
             this.materialLabel4.Size = new System.Drawing.Size(205, 24);
             this.materialLabel4.TabIndex = 12;
             this.materialLabel4.Text = "Optimized Cut Lengths";
+            // 
+            // cutlengthTable_part_code
+            // 
+            this.cutlengthTable_part_code.DataPropertyName = "part_code";
+            this.cutlengthTable_part_code.HeaderText = "Part Code";
+            this.cutlengthTable_part_code.Name = "cutlengthTable_part_code";
+            this.cutlengthTable_part_code.ReadOnly = true;
+            this.cutlengthTable_part_code.Width = 135;
+            // 
+            // cutLengthTable_description
+            // 
+            this.cutLengthTable_description.DataPropertyName = "cutlength_desc_grade";
+            this.cutLengthTable_description.HeaderText = "Description";
+            this.cutLengthTable_description.Name = "cutLengthTable_description";
+            this.cutLengthTable_description.ReadOnly = true;
+            this.cutLengthTable_description.Width = 190;
+            // 
+            // cutlengthTable_length
+            // 
+            this.cutlengthTable_length.DataPropertyName = "length";
+            this.cutlengthTable_length.HeaderText = "Length (mm)";
+            this.cutlengthTable_length.Name = "cutlengthTable_length";
+            this.cutlengthTable_length.ReadOnly = true;
+            this.cutlengthTable_length.Width = 110;
+            // 
+            // cutLengthTable_quantity
+            // 
+            this.cutLengthTable_quantity.DataPropertyName = "quantity";
+            this.cutLengthTable_quantity.HeaderText = "Quantity";
+            this.cutLengthTable_quantity.Name = "cutLengthTable_quantity";
+            this.cutLengthTable_quantity.ReadOnly = true;
+            this.cutLengthTable_quantity.Width = 65;
+            // 
+            // cutLengthTable_uncut
+            // 
+            this.cutLengthTable_uncut.DataPropertyName = "uncut_quantity";
+            this.cutLengthTable_uncut.HeaderText = "Uncut";
+            this.cutLengthTable_uncut.Name = "cutLengthTable_uncut";
+            this.cutLengthTable_uncut.ReadOnly = true;
+            this.cutLengthTable_uncut.Width = 50;
             // 
             // OptimizeComponent
             // 

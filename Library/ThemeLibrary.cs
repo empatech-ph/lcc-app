@@ -19,7 +19,7 @@ namespace LCC.Library
                 Primary.Indigo500,
                 Primary.Indigo700,
                 Primary.Indigo100,
-                Accent.Blue400,
+                Accent.Pink700,
                 TextShade.WHITE
             );
         }

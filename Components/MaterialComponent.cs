@@ -175,7 +175,6 @@ namespace LCC.Components
         {
             var row = this.dt_material.Rows[e.RowIndex];
             row.Cells["no"].Value = String.Format("{0}", e.RowIndex + 1);
-            row.Cells["chk_filter"].Value = true;
         }
 
         private void dt_material_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -217,6 +216,16 @@ namespace LCC.Components
                     Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
                     this.dt_material.Rows.RemoveAt(oRow.Index);
                 }
+            }
+        }
+
+        private void dt_material_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            this.dt_material.EndEdit();
+            GLOBAL.aCheckedMaterials.Clear();
+            foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
+            {
+                oRowItem.Cells["chk_filter"].Value = true; 
             }
         }
     }

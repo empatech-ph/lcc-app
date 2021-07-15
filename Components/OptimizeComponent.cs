@@ -1,4 +1,7 @@
-﻿using LCC.Model;
+﻿using JsonFlatFileDataStore;
+using LCC.Library;
+using LCC.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +22,7 @@ namespace LCC.Components
 
         public void triggerOptimize()
         {
-            var oOptimize = new Library.OptimizeLibrary();
+            var oOptimize = new OptimizeLibrary();
             oOptimize.optimize();
             GLOBAL.oTempStockLengthOptimized = GLOBAL.oTempOptimized.GroupBy(o => new
             {
@@ -36,7 +39,10 @@ namespace LCC.Components
                 rest = o.Last().remaining_stock_length,
                 repeated = o.Count(),
                 total_cut = o.Last().total_cut,
-                cutlength_length = o.Last().cutlength_length,
+                cutlength_length = o.Last().computed_cutlength_length,
+                kerf = o.Last().kerf,
+                trim_left = o.Last().trim_left,
+                trim_right = o.Last().trim_right,
                 data = o.Last()
             }).ToList();
 
@@ -47,11 +53,21 @@ namespace LCC.Components
 
             this.cutLengthTable.DataSource = GLOBAL.oTempCutlength;
             this.cutLengthTable.Columns["grade"].Visible = false;
+            this.cutLengthTable.Columns["project_id"].Visible = false;
+            this.cutLengthTable.Columns["order_number"].Visible = false;
+            this.cutLengthTable.Columns["note"].Visible = false;
             this.cutLengthTable.Columns["description"].Visible = false;
-            this.cutLengthTable.Columns["cutlength_id"].Visible = false;
+            this.cutLengthTable.Columns["id"].Visible = false;
             if (this.cutLengthTable.RowCount > 0) 
             {
-                this.initOptimizedStockLengthDataTable(int.Parse(this.cutLengthTable.CurrentRow.Cells["cutlength_id"].Value.ToString())); 
+                this.initOptimizedStockLengthDataTable(int.Parse(this.cutLengthTable.CurrentRow.Cells["id"].Value.ToString())); 
+            }
+
+            foreach (TempCutlengthModel oCutLength in GLOBAL.oTempCutlength)
+            {
+                var oCutLengthCollection = UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
+                oCutLengthCollection.UpdateOne(e => e.id == oCutLength.id, oCutLength);
+
             }
         }
 
@@ -65,6 +81,9 @@ namespace LCC.Components
             this.stockLengthTable.Columns["data"].Visible = false;
             this.stockLengthTable.Columns["stock_desc_grade"].Visible = false;
             this.stockLengthTable.Columns["cutlength_length"].Visible = false;
+            this.stockLengthTable.Columns["trim_left"].Visible = false;
+            this.stockLengthTable.Columns["trim_right"].Visible = false;
+            this.stockLengthTable.Columns["kerf"].Visible = false;
 
             this.optimizeBarPanel.Controls.Clear();
             
@@ -81,7 +100,7 @@ namespace LCC.Components
             if (e.RowIndex != -1)
             {
                 DataGridViewRow oCurrentRow = this.cutLengthTable.Rows[e.RowIndex];
-                this.initOptimizedStockLengthDataTable(int.Parse(oCurrentRow.Cells["cutlength_id"].Value.ToString()));
+                this.initOptimizedStockLengthDataTable(int.Parse(oCurrentRow.Cells["id"].Value.ToString()));
             }
         }
 

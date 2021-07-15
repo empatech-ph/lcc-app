@@ -18,6 +18,10 @@ namespace LCC.Model
         public double remaining_stock_length{ get; set; }
         public double stock_length { get; set; }
         public double cutlength_length { get; set; }
+        public double computed_cutlength_length { get; set; }
+        public double kerf { get; set; }
+        public double trim_left { get; set; }
+        public double trim_right { get; set; }
     }
 
     public class TempStocklengthModel
@@ -30,19 +34,25 @@ namespace LCC.Model
         public double rest { get; set; }
         public int repeated { get; set; }
         public int total_cut { get; set; }
+        public double trim_left { get; set; }
+        public double trim_right { get; set; }
+        public double kerf { get; set; }
         public TempOptimizedModel data { get; set; }
     }
 
     public class TempCutlengthModel
     {
-        public int cutlength_id { get; set; }
+        public int id { get; set; }
+        public int project_id { get; set; }
         public string part_code { get; set; }
-        public string grade { get; set; }
         public string description { get; set; }
-        public string cutlength_desc_grade { get; set; }
+        public string grade { get; set; }
         public double length { get; set; }
         public int quantity { get; set; }
-        public int uncut { get; set; }
+        public int uncut_quantity { get; set; }
+        public string order_number { get; set; }
+        public string note { get; set; }
+        public string cutlength_desc_grade { get; set; }
     }
 
     public class TempFilteredOptimized

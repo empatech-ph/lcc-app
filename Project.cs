@@ -18,6 +18,7 @@ using ChoETL;
 using System.Globalization;
 using CsvHelper;
 using LCC.Components;
+using LCC.Library;
 
 namespace LCC
 {
@@ -32,9 +33,9 @@ namespace LCC
         public Project()
         {
             InitializeComponent();
-            Library.ThemeLibrary.initMaterialDesign(this);
+            ThemeLibrary.initMaterialDesign(this);
 
-            this.oFile = Library.UtilsLibrary.getUserFile();
+            this.oFile = UtilsLibrary.getUserFile();
             this.initProject();
             this.initCutLength();
         }
@@ -291,6 +292,10 @@ namespace LCC
             if (this.projectTab.SelectedTab.Name == "materialTab")
             {
                 this.optimizeBtn.Visible = true;
+            }
+            if(this.projectTab.SelectedTab.Name == "cutLengthTab")
+            {
+                this.initCutLength();
             }
         }
 

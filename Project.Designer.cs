@@ -754,6 +754,7 @@ namespace LCC
             this.oProjectTabSelector.Name = "oProjectTabSelector";
             this.oProjectTabSelector.Size = new System.Drawing.Size(1083, 48);
             this.oProjectTabSelector.TabIndex = 11;
+            this.oProjectTabSelector.TabIndicatorHeight = 5;
             this.oProjectTabSelector.Text = "materialTabSelector1";
             // 
             // l_currentProject
