@@ -89,7 +89,7 @@ namespace LCC
 
         private void projectBtn_Click(object sender, EventArgs e)
         {
-            projectTab.Visible = true;
+            tabOptiPlus.Visible = true;
         }
 
         private void addProject_Click(object sender, EventArgs e)
@@ -195,7 +195,7 @@ namespace LCC
                 try
                 {
                     var row = cutLengthsTable.Rows[e.RowIndex];
-                    if (projectTab.SelectedTab.Name == "cutLengthTab")
+                    if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
                         if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null)
                         {
@@ -281,19 +281,19 @@ namespace LCC
 
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
-            this.projectTab.SelectedIndex = 3;
-            optimizeComponent1.triggerOptimize(); 
+            this.tabOptiPlus.SelectedIndex = 3;
+            optimizeComponent1.triggerOptimize();
 
         }
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.optimizeBtn.Visible = false;
-            if (this.projectTab.SelectedTab.Name == "materialTab")
+            if (this.tabOptiPlus.SelectedTab.Name == "materialTab")
             {
                 this.optimizeBtn.Visible = true;
             }
-            if(this.projectTab.SelectedTab.Name == "cutLengthTab")
+            if(this.tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 this.initCutLength();
             }
@@ -307,14 +307,14 @@ namespace LCC
         private void searchString_TextChanged(object sender, EventArgs e)
         {
             //var tableType = projectTab.SelectedTab.Name == "projTab" ? typeof(ProjectModel):  projectTab.SelectedTab.Name == "cutLengthTab" ? typeof(CutLengthModel) : typeof(MaterialModel);
-            if (projectTab.SelectedTab.Name == "projTab")
+            if (tabOptiPlus.SelectedTab.Name == "projTab")
             {
                 var oProjectList = this.oFile.GetCollection<ProjectModel>();
                 var matches = oProjectList.Find(searchString.Text);
                 projectTable.DataSource = matches.AsQueryable().ToList();
                 projectTable.Refresh();
             }
-            else if (projectTab.SelectedTab.Name == "cutLengthTab")
+            else if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 var oProjectList = this.oFile.GetCollection<CutLengthModel>();
                 var matches = oProjectList.Find(searchString.Text);

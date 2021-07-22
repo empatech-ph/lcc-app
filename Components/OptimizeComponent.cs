@@ -37,30 +37,41 @@ namespace LCC.Components
                 stock_desc_grade = o.Last().stock_desc_grade,
                 length = o.Last().stock_length,
                 rest = o.Last().remaining_stock_length,
+                scrap = o.Last().scrap_stock_length,
                 repeated = o.Count(),
                 total_cut = o.Last().total_cut,
                 cutlength_length = o.Last().computed_cutlength_length,
                 kerf = o.Last().kerf,
                 trim_left = o.Last().trim_left,
                 trim_right = o.Last().trim_right,
+                stock_type = o.Last().stock_type,
+                cost = o.Last().cost,
+                note = o.Last().note,
                 data = o.Last()
             }).ToList();
 
+            foreach(TempStocklengthModel oStockLength in GLOBAL.oTempStockLengthOptimized)
+            {
+                GLOBAL.oTempCutlength.Find(o => o.id == oStockLength.cutlength_id).total_layout++;
+            }
+
             var dtStockLengthTable = this.stockLengthTable.DataSource as DataTable;
-            var dtCutLengthTable = this.cutLengthTable.DataSource as DataTable;
+            var dtCutLengthTable = this.dt_optimize.DataSource as DataTable;
             if (dtStockLengthTable != null) dtStockLengthTable.Rows.Clear();
             if (dtCutLengthTable != null) dtCutLengthTable.Rows.Clear();
 
-            this.cutLengthTable.DataSource = GLOBAL.oTempCutlength;
-            this.cutLengthTable.Columns["grade"].Visible = false;
-            this.cutLengthTable.Columns["project_id"].Visible = false;
-            this.cutLengthTable.Columns["order_number"].Visible = false;
-            this.cutLengthTable.Columns["note"].Visible = false;
-            this.cutLengthTable.Columns["description"].Visible = false;
-            this.cutLengthTable.Columns["id"].Visible = false;
-            if (this.cutLengthTable.RowCount > 0) 
+            this.dt_optimize.DataSource = GLOBAL.oTempCutlength;
+            this.dt_optimize.Columns["grade"].Visible = false;
+            this.dt_optimize.Columns["project_id"].Visible = false;
+            this.dt_optimize.Columns["order_number"].Visible = false;
+            this.dt_optimize.Columns["length"].Visible = false;
+            this.dt_optimize.Columns["part_code"].Visible = false;
+            this.dt_optimize.Columns["note"].Visible = false;
+            this.dt_optimize.Columns["description"].Visible = false;
+            this.dt_optimize.Columns["id"].Visible = false;
+            if (this.dt_optimize.RowCount > 0) 
             {
-                this.initOptimizedStockLengthDataTable(int.Parse(this.cutLengthTable.CurrentRow.Cells["id"].Value.ToString())); 
+                this.initOptimizedStockLengthDataTable(int.Parse(this.dt_optimize.CurrentRow.Cells["id"].Value.ToString())); 
             }
 
             foreach (TempCutlengthModel oCutLength in GLOBAL.oTempCutlength)
@@ -99,7 +110,7 @@ namespace LCC.Components
         {
             if (e.RowIndex != -1)
             {
-                DataGridViewRow oCurrentRow = this.cutLengthTable.Rows[e.RowIndex];
+                DataGridViewRow oCurrentRow = this.dt_optimize.Rows[e.RowIndex];
                 this.initOptimizedStockLengthDataTable(int.Parse(oCurrentRow.Cells["id"].Value.ToString()));
             }
         }

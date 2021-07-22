@@ -52,7 +52,7 @@ namespace LCC
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.fileBtn = new MaterialSkin.Controls.MaterialButton();
-            this.projectTab = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabOptiPlus = new MaterialSkin.Controls.MaterialTabControl();
             this.projTab = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.cellClickLabel = new System.Windows.Forms.Label();
@@ -73,6 +73,7 @@ namespace LCC
             this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.tabResult = new System.Windows.Forms.TabPage();
             this.optimizeComponent1 = new LCC.Components.OptimizeComponent();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -85,7 +86,7 @@ namespace LCC
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.projectTab.SuspendLayout();
+            this.tabOptiPlus.SuspendLayout();
             this.projTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).BeginInit();
             this.cutLengthTab.SuspendLayout();
@@ -438,22 +439,23 @@ namespace LCC
             this.fileBtn.UseVisualStyleBackColor = true;
             this.fileBtn.MouseEnter += new System.EventHandler(this.fileBtn_MouseEnter);
             // 
-            // projectTab
+            // tabOptiPlus
             // 
-            this.projectTab.Controls.Add(this.projTab);
-            this.projectTab.Controls.Add(this.cutLengthTab);
-            this.projectTab.Controls.Add(this.materialTab);
-            this.projectTab.Controls.Add(this.tabResult);
-            this.projectTab.Depth = 0;
-            this.projectTab.Location = new System.Drawing.Point(11, 181);
-            this.projectTab.MouseState = MaterialSkin.MouseState.HOVER;
-            this.projectTab.Multiline = true;
-            this.projectTab.Name = "projectTab";
-            this.projectTab.SelectedIndex = 0;
-            this.projectTab.Size = new System.Drawing.Size(1088, 476);
-            this.projectTab.TabIndex = 8;
-            this.projectTab.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
-            this.projectTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.projectTab_Selected);
+            this.tabOptiPlus.Controls.Add(this.projTab);
+            this.tabOptiPlus.Controls.Add(this.cutLengthTab);
+            this.tabOptiPlus.Controls.Add(this.materialTab);
+            this.tabOptiPlus.Controls.Add(this.tabResult);
+            this.tabOptiPlus.Controls.Add(this.tabPage1);
+            this.tabOptiPlus.Depth = 0;
+            this.tabOptiPlus.Location = new System.Drawing.Point(11, 181);
+            this.tabOptiPlus.MouseState = MaterialSkin.MouseState.HOVER;
+            this.tabOptiPlus.Multiline = true;
+            this.tabOptiPlus.Name = "tabOptiPlus";
+            this.tabOptiPlus.SelectedIndex = 0;
+            this.tabOptiPlus.Size = new System.Drawing.Size(1088, 476);
+            this.tabOptiPlus.TabIndex = 8;
+            this.tabOptiPlus.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
+            this.tabOptiPlus.Selected += new System.Windows.Forms.TabControlEventHandler(this.projectTab_Selected);
             // 
             // projTab
             // 
@@ -699,7 +701,7 @@ namespace LCC
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
             this.tabResult.Size = new System.Drawing.Size(1080, 448);
             this.tabResult.TabIndex = 3;
-            this.tabResult.Text = "Result";
+            this.tabResult.Text = "Results Summary";
             this.tabResult.UseVisualStyleBackColor = true;
             // 
             // optimizeComponent1
@@ -710,6 +712,16 @@ namespace LCC
             this.optimizeComponent1.Name = "optimizeComponent1";
             this.optimizeComponent1.Size = new System.Drawing.Size(1074, 442);
             this.optimizeComponent1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1080, 448);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Opti Plus";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // materialLabel3
             // 
@@ -729,12 +741,12 @@ namespace LCC
             this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchString.Depth = 0;
             this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.searchString.Location = new System.Drawing.Point(865, 134);
+            this.searchString.Location = new System.Drawing.Point(890, 134);
             this.searchString.MaxLength = 50;
             this.searchString.MouseState = MaterialSkin.MouseState.OUT;
             this.searchString.Multiline = false;
             this.searchString.Name = "searchString";
-            this.searchString.Size = new System.Drawing.Size(221, 36);
+            this.searchString.Size = new System.Drawing.Size(205, 36);
             this.searchString.TabIndex = 11;
             this.searchString.Text = "";
             this.searchString.UseTallSize = false;
@@ -746,13 +758,13 @@ namespace LCC
             // 
             // oProjectTabSelector
             // 
-            this.oProjectTabSelector.BaseTabControl = this.projectTab;
+            this.oProjectTabSelector.BaseTabControl = this.tabOptiPlus;
             this.oProjectTabSelector.Depth = 0;
-            this.oProjectTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.oProjectTabSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.oProjectTabSelector.Location = new System.Drawing.Point(12, 127);
             this.oProjectTabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.oProjectTabSelector.Name = "oProjectTabSelector";
-            this.oProjectTabSelector.Size = new System.Drawing.Size(1083, 48);
+            this.oProjectTabSelector.Size = new System.Drawing.Size(1087, 48);
             this.oProjectTabSelector.TabIndex = 11;
             this.oProjectTabSelector.TabIndicatorHeight = 5;
             this.oProjectTabSelector.Text = "materialTabSelector1";
@@ -798,7 +810,7 @@ namespace LCC
             this.Controls.Add(this.searchString);
             this.Controls.Add(this.l_currentProject);
             this.Controls.Add(this.oProjectTabSelector);
-            this.Controls.Add(this.projectTab);
+            this.Controls.Add(this.tabOptiPlus);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
@@ -818,7 +830,7 @@ namespace LCC
             this.panelOptimize.ResumeLayout(false);
             this.panelOptimize.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.projectTab.ResumeLayout(false);
+            this.tabOptiPlus.ResumeLayout(false);
             this.projTab.ResumeLayout(false);
             this.projTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).EndInit();
@@ -859,7 +871,7 @@ namespace LCC
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolTip projectToolTip;
         private MaterialSkin.Controls.MaterialButton addProject;
-        public MaterialSkin.Controls.MaterialTabControl projectTab;
+        public MaterialSkin.Controls.MaterialTabControl tabOptiPlus;
         public System.Windows.Forms.TabPage cutLengthTab;
         private System.Windows.Forms.DataGridView cutLengthsTable;
         private System.Windows.Forms.TabPage materialTab;
@@ -885,5 +897,6 @@ namespace LCC
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private MaterialSkin.Controls.MaterialTextBox searchString;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

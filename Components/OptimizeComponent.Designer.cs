@@ -30,53 +30,57 @@ namespace LCC.Components
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel6 = new System.Windows.Forms.Panel();
             this.stockLengthTable = new System.Windows.Forms.DataGridView();
             this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_scrap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockLength_rest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_total_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockLengthTable_total_cut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.cutLengthTable = new System.Windows.Forms.DataGridView();
+            this.stockLength_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizeBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.dt_optimize = new System.Windows.Forms.DataGridView();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            this.cutlengthTable_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutlengthTable_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cutLengthTable_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_no_of_parts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_part_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_stock_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_no_layout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockLengthTable)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cutLengthTable)).BeginInit();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).BeginInit();
             this.SuspendLayout();
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.stockLengthTable);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(568, 87);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 254);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(510, 261);
+            this.panel6.Size = new System.Drawing.Size(1078, 94);
             this.panel6.TabIndex = 15;
             // 
             // stockLengthTable
             // 
             this.stockLengthTable.AllowUserToAddRows = false;
             this.stockLengthTable.AllowUserToDeleteRows = false;
-            this.stockLengthTable.AllowUserToOrderColumns = true;
             this.stockLengthTable.AllowUserToResizeColumns = false;
             this.stockLengthTable.AllowUserToResizeRows = false;
-            this.stockLengthTable.BackgroundColor = System.Drawing.Color.LightGray;
+            this.stockLengthTable.BackgroundColor = System.Drawing.Color.White;
             this.stockLengthTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -90,35 +94,39 @@ namespace LCC.Components
             this.stockLengthTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.stockLength_stock_code,
             this.stockLength_length,
+            this.stockLength_stock_type,
+            this.stockLength_scrap,
             this.stockLength_rest,
+            this.stockLength_total_cost,
             this.stockLengthTable_total_cut,
-            this.stockLength_repeated});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.stockLengthTable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.stockLength_repeated,
+            this.stockLength_note});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.stockLengthTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.stockLengthTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stockLengthTable.Location = new System.Drawing.Point(0, 0);
             this.stockLengthTable.MultiSelect = false;
             this.stockLengthTable.Name = "stockLengthTable";
             this.stockLengthTable.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.stockLengthTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.stockLengthTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.stockLengthTable.RowHeadersVisible = false;
             this.stockLengthTable.RowTemplate.Height = 25;
             this.stockLengthTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.stockLengthTable.ShowEditingIcon = false;
-            this.stockLengthTable.Size = new System.Drawing.Size(508, 259);
+            this.stockLengthTable.Size = new System.Drawing.Size(1076, 92);
             this.stockLengthTable.TabIndex = 2;
             this.stockLengthTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
             // 
@@ -138,13 +146,36 @@ namespace LCC.Components
             this.stockLength_length.ReadOnly = true;
             this.stockLength_length.Width = 110;
             // 
+            // stockLength_stock_type
+            // 
+            this.stockLength_stock_type.DataPropertyName = "stock_type";
+            this.stockLength_stock_type.HeaderText = "Stock Type";
+            this.stockLength_stock_type.Name = "stockLength_stock_type";
+            this.stockLength_stock_type.ReadOnly = true;
+            // 
+            // stockLength_scrap
+            // 
+            this.stockLength_scrap.DataPropertyName = "scrap";
+            this.stockLength_scrap.HeaderText = "Scrap";
+            this.stockLength_scrap.Name = "stockLength_scrap";
+            this.stockLength_scrap.ReadOnly = true;
+            // 
             // stockLength_rest
             // 
             this.stockLength_rest.DataPropertyName = "rest";
-            this.stockLength_rest.HeaderText = "Rest (mm)";
+            this.stockLength_rest.HeaderText = "Remnant";
             this.stockLength_rest.Name = "stockLength_rest";
             this.stockLength_rest.ReadOnly = true;
             this.stockLength_rest.Width = 90;
+            // 
+            // stockLength_total_cost
+            // 
+            this.stockLength_total_cost.DataPropertyName = "cost";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.stockLength_total_cost.DefaultCellStyle = dataGridViewCellStyle2;
+            this.stockLength_total_cost.HeaderText = "Total Cost";
+            this.stockLength_total_cost.Name = "stockLength_total_cost";
+            this.stockLength_total_cost.ReadOnly = true;
             // 
             // stockLengthTable_total_cut
             // 
@@ -162,51 +193,13 @@ namespace LCC.Components
             this.stockLength_repeated.ReadOnly = true;
             this.stockLength_repeated.Width = 70;
             // 
-            // panel5
+            // stockLength_note
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.cutLengthTable);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 87);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(558, 261);
-            this.panel5.TabIndex = 18;
-            // 
-            // cutLengthTable
-            // 
-            this.cutLengthTable.AllowUserToAddRows = false;
-            this.cutLengthTable.AllowUserToDeleteRows = false;
-            this.cutLengthTable.AllowUserToOrderColumns = true;
-            this.cutLengthTable.AllowUserToResizeColumns = false;
-            this.cutLengthTable.AllowUserToResizeRows = false;
-            this.cutLengthTable.BackgroundColor = System.Drawing.Color.LightGray;
-            this.cutLengthTable.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cutLengthTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.cutLengthTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cutLengthTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cutlengthTable_part_code,
-            this.cutLengthTable_description,
-            this.cutlengthTable_length,
-            this.cutLengthTable_quantity,
-            this.cutLengthTable_uncut});
-            this.cutLengthTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cutLengthTable.Location = new System.Drawing.Point(0, 0);
-            this.cutLengthTable.MultiSelect = false;
-            this.cutLengthTable.Name = "cutLengthTable";
-            this.cutLengthTable.ReadOnly = true;
-            this.cutLengthTable.RowHeadersVisible = false;
-            this.cutLengthTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.cutLengthTable.ShowEditingIcon = false;
-            this.cutLengthTable.Size = new System.Drawing.Size(556, 259);
-            this.cutLengthTable.TabIndex = 3;
-            this.cutLengthTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthTable_CellClick);
+            this.stockLength_note.DataPropertyName = "note";
+            this.stockLength_note.HeaderText = "Note";
+            this.stockLength_note.Name = "stockLength_note";
+            this.stockLength_note.ReadOnly = true;
+            this.stockLength_note.Width = 250;
             // 
             // optimizeBarPanel
             // 
@@ -221,14 +214,51 @@ namespace LCC.Components
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.dt_optimize);
             this.panel8.Controls.Add(this.materialLabel6);
-            this.panel8.Controls.Add(this.materialLabel5);
             this.panel8.Controls.Add(this.materialLabel4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1078, 87);
+            this.panel8.Size = new System.Drawing.Size(1078, 254);
             this.panel8.TabIndex = 16;
+            // 
+            // dt_optimize
+            // 
+            this.dt_optimize.AllowUserToAddRows = false;
+            this.dt_optimize.AllowUserToDeleteRows = false;
+            this.dt_optimize.AllowUserToResizeColumns = false;
+            this.dt_optimize.AllowUserToResizeRows = false;
+            this.dt_optimize.BackgroundColor = System.Drawing.Color.White;
+            this.dt_optimize.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_optimize.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dt_optimize.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dt_optimize.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.optimize_description,
+            this.optimize_no_of_parts,
+            this.optimize_uncut,
+            this.optimize_part_length,
+            this.optimize_stock_length,
+            this.optimize_gross_yield,
+            this.optimize_cost,
+            this.optimize_no_layout});
+            this.dt_optimize.Location = new System.Drawing.Point(0, 55);
+            this.dt_optimize.MultiSelect = false;
+            this.dt_optimize.Name = "dt_optimize";
+            this.dt_optimize.ReadOnly = true;
+            this.dt_optimize.RowHeadersVisible = false;
+            this.dt_optimize.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dt_optimize.ShowEditingIcon = false;
+            this.dt_optimize.Size = new System.Drawing.Size(1078, 165);
+            this.dt_optimize.TabIndex = 13;
+            this.dt_optimize.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthTable_CellClick);
             // 
             // materialLabel6
             // 
@@ -237,26 +267,12 @@ namespace LCC.Components
             this.materialLabel6.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
             this.materialLabel6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
-            this.materialLabel6.Location = new System.Drawing.Point(578, 67);
+            this.materialLabel6.Location = new System.Drawing.Point(8, 234);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(78, 17);
+            this.materialLabel6.Size = new System.Drawing.Size(122, 17);
             this.materialLabel6.TabIndex = 12;
-            this.materialLabel6.Text = "Used Stocks";
-            // 
-            // materialLabel5
-            // 
-            this.materialLabel5.AutoSize = true;
-            this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            this.materialLabel5.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
-            this.materialLabel5.Location = new System.Drawing.Point(8, 67);
-            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(113, 17);
-            this.materialLabel5.TabIndex = 12;
-            this.materialLabel5.Text = "Used Cut Lengths";
+            this.materialLabel6.Text = "Summary of Stocks";
             // 
             // materialLabel4
             // 
@@ -271,45 +287,66 @@ namespace LCC.Components
             this.materialLabel4.TabIndex = 12;
             this.materialLabel4.Text = "Optimized Cut Lengths";
             // 
-            // cutlengthTable_part_code
+            // optimize_description
             // 
-            this.cutlengthTable_part_code.DataPropertyName = "part_code";
-            this.cutlengthTable_part_code.HeaderText = "Part Code";
-            this.cutlengthTable_part_code.Name = "cutlengthTable_part_code";
-            this.cutlengthTable_part_code.ReadOnly = true;
-            this.cutlengthTable_part_code.Width = 135;
+            this.optimize_description.DataPropertyName = "cutlength_desc_grade";
+            this.optimize_description.HeaderText = "Description (Grade)";
+            this.optimize_description.Name = "optimize_description";
+            this.optimize_description.ReadOnly = true;
+            this.optimize_description.Width = 265;
             // 
-            // cutLengthTable_description
+            // optimize_no_of_parts
             // 
-            this.cutLengthTable_description.DataPropertyName = "cutlength_desc_grade";
-            this.cutLengthTable_description.HeaderText = "Description";
-            this.cutLengthTable_description.Name = "cutLengthTable_description";
-            this.cutLengthTable_description.ReadOnly = true;
-            this.cutLengthTable_description.Width = 190;
+            this.optimize_no_of_parts.DataPropertyName = "quantity";
+            this.optimize_no_of_parts.HeaderText = "No. of Parts";
+            this.optimize_no_of_parts.Name = "optimize_no_of_parts";
+            this.optimize_no_of_parts.ReadOnly = true;
             // 
-            // cutlengthTable_length
+            // optimize_uncut
             // 
-            this.cutlengthTable_length.DataPropertyName = "length";
-            this.cutlengthTable_length.HeaderText = "Length (mm)";
-            this.cutlengthTable_length.Name = "cutlengthTable_length";
-            this.cutlengthTable_length.ReadOnly = true;
-            this.cutlengthTable_length.Width = 110;
+            this.optimize_uncut.DataPropertyName = "uncut_quantity";
+            this.optimize_uncut.HeaderText = "Uncut Parts";
+            this.optimize_uncut.Name = "optimize_uncut";
+            this.optimize_uncut.ReadOnly = true;
             // 
-            // cutLengthTable_quantity
+            // optimize_part_length
             // 
-            this.cutLengthTable_quantity.DataPropertyName = "quantity";
-            this.cutLengthTable_quantity.HeaderText = "Quantity";
-            this.cutLengthTable_quantity.Name = "cutLengthTable_quantity";
-            this.cutLengthTable_quantity.ReadOnly = true;
-            this.cutLengthTable_quantity.Width = 65;
+            this.optimize_part_length.DataPropertyName = "total_parts_length";
+            this.optimize_part_length.HeaderText = "Total Parts Length";
+            this.optimize_part_length.Name = "optimize_part_length";
+            this.optimize_part_length.ReadOnly = true;
+            this.optimize_part_length.Width = 135;
             // 
-            // cutLengthTable_uncut
+            // optimize_stock_length
             // 
-            this.cutLengthTable_uncut.DataPropertyName = "uncut_quantity";
-            this.cutLengthTable_uncut.HeaderText = "Uncut";
-            this.cutLengthTable_uncut.Name = "cutLengthTable_uncut";
-            this.cutLengthTable_uncut.ReadOnly = true;
-            this.cutLengthTable_uncut.Width = 50;
+            this.optimize_stock_length.DataPropertyName = "total_stock_length";
+            this.optimize_stock_length.HeaderText = "Total Stock Length";
+            this.optimize_stock_length.Name = "optimize_stock_length";
+            this.optimize_stock_length.ReadOnly = true;
+            this.optimize_stock_length.Width = 135;
+            // 
+            // optimize_gross_yield
+            // 
+            this.optimize_gross_yield.DataPropertyName = "gross_yield";
+            this.optimize_gross_yield.HeaderText = "Gross Yield %";
+            this.optimize_gross_yield.Name = "optimize_gross_yield";
+            this.optimize_gross_yield.ReadOnly = true;
+            this.optimize_gross_yield.Width = 110;
+            // 
+            // optimize_cost
+            // 
+            this.optimize_cost.DataPropertyName = "cost";
+            this.optimize_cost.HeaderText = "Cost";
+            this.optimize_cost.Name = "optimize_cost";
+            this.optimize_cost.ReadOnly = true;
+            // 
+            // optimize_no_layout
+            // 
+            this.optimize_no_layout.DataPropertyName = "total_layout";
+            this.optimize_no_layout.HeaderText = "No. of Layout";
+            this.optimize_no_layout.Name = "optimize_no_layout";
+            this.optimize_no_layout.ReadOnly = true;
+            this.optimize_no_layout.Width = 108;
             // 
             // OptimizeComponent
             // 
@@ -317,17 +354,15 @@ namespace LCC.Components
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.optimizeBarPanel);
             this.Controls.Add(this.panel8);
             this.Name = "OptimizeComponent";
             this.Size = new System.Drawing.Size(1078, 446);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stockLengthTable)).EndInit();
-            this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cutLengthTable)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,22 +371,27 @@ namespace LCC.Components
 
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridView stockLengthTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_length;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_rest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLengthTable_total_cut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_repeated;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView cutLengthTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cutlengthTable_part_code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cutLengthTable_description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cutlengthTable_length;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cutLengthTable_quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cutLengthTable_uncut;
         private System.Windows.Forms.FlowLayoutPanel optimizeBarPanel;
         private System.Windows.Forms.Panel panel8;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private System.Windows.Forms.DataGridView dt_optimize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_scrap;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_rest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_total_cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLengthTable_total_cut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_repeated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_note;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_no_of_parts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_uncut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_part_length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_stock_length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_gross_yield;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_cost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimize_no_layout;
     }
 }

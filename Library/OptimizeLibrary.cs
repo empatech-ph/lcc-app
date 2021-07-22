@@ -122,7 +122,12 @@ namespace LCC.Library
                 note = e.note,
                 order_number = e.order_number,
                 project_id = e.project_id,
-                uncut_quantity = e.quantity
+                uncut_quantity = e.quantity,
+                total_stock_length = 0,
+                total_parts_length = 0,
+                cost = 0,
+                gross_yield = 0,
+                total_layout = 0,
             }).ToList();
             int iIdTempOptimized = 1;
             foreach (TempCutlengthModel oCutLengthItem in GLOBAL.oTempCutlength)
@@ -137,6 +142,7 @@ namespace LCC.Library
                     StockModel oStockItem = oStockModel[i];
                     int iStockQty = int.Parse(oStockItem.qty);
                     int iUsedStockQty = 0;
+                    double dCost = 0;
                     double dComputedStockLength = oStockItem.length - dTotalMargins;
                     if (dComputedStockLength > 0 && dComputedCutlengthLength > 0 && dComputedStockLength >= dComputedCutlengthLength && ((int.Parse(oStockItem.qty) > 0) || int.Parse(oStockItem.qty) == -1))
                     {
@@ -170,6 +176,10 @@ namespace LCC.Library
                                 oCutLengthItem.uncut_quantity += iQtyCut;
                                 break;
                             };
+                            double dScrapOrRemnant = double.Parse(dRemStockLength.ToString("0.00"));
+                            dCost += oStockItem.cost;
+                            oCutLengthItem.cost += dCost;
+                            oCutLengthItem.total_stock_length += oStockItem.length;
                             oTempOptimize.Add(new TempOptimizedModel()
                             {
                                 id = iIdTempOptimized++,
@@ -182,18 +192,24 @@ namespace LCC.Library
                                 cutlength_desc = oCutLengthItem.description,
                                 total_cut = iQtyCut,
                                 total_uncut = oCutLengthItem.uncut_quantity,
-                                remaining_stock_length = double.Parse(dRemStockLength.ToString("0.00")),
+                                remaining_stock_length = (dScrapOrRemnant > oMaterialModel.min_remnant_length ) ? dScrapOrRemnant : 0.00,
+                                scrap_stock_length = (dScrapOrRemnant < oMaterialModel.min_remnant_length ) ? dScrapOrRemnant : 0.00,
                                 cutlength_length = oCutLengthItem.length,
                                 computed_cutlength_length = dComputedCutlengthLength,
                                 trim_right = oMaterialModel.trim_right,
                                 trim_left = oMaterialModel.trim_left,
-                                kerf = oMaterialModel.kerf
+                                kerf = oMaterialModel.kerf,
+                                stock_type = oStockItem.stock_type,
+                                cost = dCost,
+                                note = oStockItem.note
                             });
                             if (oCutLengthItem.uncut_quantity <= 0 || (iQtyCut == iStockQty && iStockQty != -1)) break;
                             if (iUsedStockQty >= iStockQty && iStockQty != -1) break;
                         }
                     }
                 }
+                oCutLengthItem.total_parts_length = Math.Round((dComputedCutlengthLength * (oCutLengthItem.quantity - oCutLengthItem.uncut_quantity)), 2);
+                oCutLengthItem.gross_yield = Math.Round(((oCutLengthItem.total_parts_length / oCutLengthItem.total_stock_length) * 100), 2);
             }
         }
 
