@@ -34,7 +34,6 @@ namespace LCC.Components
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.stockLengthTable = new System.Windows.Forms.DataGridView();
             this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,8 +47,6 @@ namespace LCC.Components
             this.optimizeBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dt_optimize = new System.Windows.Forms.DataGridView();
-            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.optimize_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimize_no_of_parts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimize_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,21 +55,12 @@ namespace LCC.Components
             this.optimize_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimize_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimize_no_layout = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel6.SuspendLayout();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.stockLengthTable)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.stockLengthTable);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 254);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1078, 94);
-            this.panel6.TabIndex = 15;
             // 
             // stockLengthTable
             // 
@@ -109,8 +97,7 @@ namespace LCC.Components
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.stockLengthTable.DefaultCellStyle = dataGridViewCellStyle3;
-            this.stockLengthTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stockLengthTable.Location = new System.Drawing.Point(0, 0);
+            this.stockLengthTable.Location = new System.Drawing.Point(8, 210);
             this.stockLengthTable.MultiSelect = false;
             this.stockLengthTable.Name = "stockLengthTable";
             this.stockLengthTable.ReadOnly = true;
@@ -126,7 +113,7 @@ namespace LCC.Components
             this.stockLengthTable.RowTemplate.Height = 25;
             this.stockLengthTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.stockLengthTable.ShowEditingIcon = false;
-            this.stockLengthTable.Size = new System.Drawing.Size(1076, 92);
+            this.stockLengthTable.Size = new System.Drawing.Size(1058, 132);
             this.stockLengthTable.TabIndex = 2;
             this.stockLengthTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
             // 
@@ -214,13 +201,14 @@ namespace LCC.Components
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.stockLengthTable);
             this.panel8.Controls.Add(this.dt_optimize);
             this.panel8.Controls.Add(this.materialLabel6);
             this.panel8.Controls.Add(this.materialLabel4);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1078, 254);
+            this.panel8.Size = new System.Drawing.Size(1078, 350);
             this.panel8.TabIndex = 16;
             // 
             // dt_optimize
@@ -249,43 +237,16 @@ namespace LCC.Components
             this.optimize_gross_yield,
             this.optimize_cost,
             this.optimize_no_layout});
-            this.dt_optimize.Location = new System.Drawing.Point(0, 55);
+            this.dt_optimize.Location = new System.Drawing.Point(8, 50);
             this.dt_optimize.MultiSelect = false;
             this.dt_optimize.Name = "dt_optimize";
             this.dt_optimize.ReadOnly = true;
             this.dt_optimize.RowHeadersVisible = false;
             this.dt_optimize.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_optimize.ShowEditingIcon = false;
-            this.dt_optimize.Size = new System.Drawing.Size(1078, 165);
+            this.dt_optimize.Size = new System.Drawing.Size(1058, 137);
             this.dt_optimize.TabIndex = 13;
             this.dt_optimize.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthTable_CellClick);
-            // 
-            // materialLabel6
-            // 
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            this.materialLabel6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
-            this.materialLabel6.Location = new System.Drawing.Point(8, 234);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(122, 17);
-            this.materialLabel6.TabIndex = 12;
-            this.materialLabel6.Text = "Summary of Stocks";
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
-            this.materialLabel4.Location = new System.Drawing.Point(8, 14);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(205, 24);
-            this.materialLabel4.TabIndex = 12;
-            this.materialLabel4.Text = "Optimized Cut Lengths";
             // 
             // optimize_description
             // 
@@ -348,17 +309,42 @@ namespace LCC.Components
             this.optimize_no_layout.ReadOnly = true;
             this.optimize_no_layout.Width = 108;
             // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
+            this.materialLabel6.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Assertive;
+            this.materialLabel6.Location = new System.Drawing.Point(8, 190);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(122, 17);
+            this.materialLabel6.TabIndex = 12;
+            this.materialLabel6.Text = "Summary of Stocks";
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.materialLabel4.Location = new System.Drawing.Point(8, 14);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(205, 24);
+            this.materialLabel4.TabIndex = 12;
+            this.materialLabel4.Text = "Optimized Cut Lengths";
+            // 
             // OptimizeComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel6);
             this.Controls.Add(this.optimizeBarPanel);
             this.Controls.Add(this.panel8);
             this.Name = "OptimizeComponent";
             this.Size = new System.Drawing.Size(1078, 446);
-            this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stockLengthTable)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -368,8 +354,6 @@ namespace LCC.Components
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridView stockLengthTable;
         private System.Windows.Forms.FlowLayoutPanel optimizeBarPanel;
         private System.Windows.Forms.Panel panel8;

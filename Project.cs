@@ -19,6 +19,8 @@ using System.Globalization;
 using CsvHelper;
 using LCC.Components;
 using LCC.Library;
+using System.Threading;
+using LCC.Modals;
 
 namespace LCC
 {
@@ -29,7 +31,6 @@ namespace LCC
         int LastNewRowIndex = -1;
 
         private DataStore oFile;
-
         public Project()
         {
             InitializeComponent();
@@ -283,8 +284,7 @@ namespace LCC
         {
             this.tabOptiPlus.SelectedIndex = 3;
             optimizeComponent1.triggerOptimize();
-
-        }
+        } 
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -293,10 +293,11 @@ namespace LCC
             {
                 this.optimizeBtn.Visible = true;
             }
-            if(this.tabOptiPlus.SelectedTab.Name == "cutLengthTab")
+            if (this.tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 this.initCutLength();
             }
+            searchString.Text = "";
         }
 
         private void cutLengthsTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -328,11 +329,6 @@ namespace LCC
                 this.materialComponent1.dt_material.DataSource = oListModel;
                 this.materialComponent1.dt_material.Refresh();
             }
-        }
-
-        private void projectTab_Selected(object sender, TabControlEventArgs e)
-        {
-            searchString.Text = "";
         }
 
         private void fileBtn_MouseEnter(object sender, EventArgs e)

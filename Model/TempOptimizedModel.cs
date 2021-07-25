@@ -31,6 +31,7 @@ namespace LCC.Model
     public class TempStocklengthModel
     {
         public int cutlength_id { get; set; }
+        public int material_id { get; set; }
         public string stock_code { get; set; }
         public double length { get; set; }
         public string stock_type { get; set; }
