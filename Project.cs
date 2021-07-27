@@ -351,7 +351,7 @@ namespace LCC
 
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
-            this.projectTab.SelectedIndex = 3;
+            this.tabOptiPlus.SelectedIndex = 3;
             optimizeComponent1.triggerOptimize();
 
         }
@@ -508,6 +508,12 @@ namespace LCC
 
         private void fileBtn_MouseEnter(object sender, EventArgs e)
         {
+            Help help = new Help();
+            help.ShowDialog();
+        }
+        private void helpBtn_Click(object sender, EventArgs e)
+        {
+            //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
             Help help = new Help();
             help.ShowDialog();
         }
