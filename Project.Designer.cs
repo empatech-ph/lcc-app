@@ -28,11 +28,19 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container()
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+          
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+          
             this.projectBtn = new MaterialSkin.Controls.MaterialButton();
             this.materialBtn = new MaterialSkin.Controls.MaterialButton();
             this.assemblyBtn = new MaterialSkin.Controls.MaterialButton();
@@ -45,6 +53,8 @@ namespace LCC
             this.importBtn = new MaterialSkin.Controls.MaterialButton();
             this.panelOptimize = new System.Windows.Forms.Panel();
             this.optimizeBtn = new MaterialSkin.Controls.MaterialButton();
+            this.projectTab = new MaterialSkin.Controls.MaterialTabControl();
+          
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_logout = new MaterialSkin.Controls.MaterialButton();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
@@ -53,6 +63,7 @@ namespace LCC
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.fileBtn = new MaterialSkin.Controls.MaterialButton();
             this.tabOptiPlus = new MaterialSkin.Controls.MaterialTabControl();
+          
             this.projTab = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.cellClickLabel = new System.Windows.Forms.Label();
@@ -65,6 +76,12 @@ namespace LCC
             this.view_column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.addProject = new MaterialSkin.Controls.MaterialButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton7 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton8 = new MaterialSkin.Controls.MaterialButton();
             this.cutLengthTab = new System.Windows.Forms.TabPage();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.cutLengthsTable = new System.Windows.Forms.DataGridView();
@@ -82,20 +99,44 @@ namespace LCC
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+          
+            this.fileMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.importItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCutLength = new System.Windows.Forms.ToolStripMenuItem();
+            this.importInventoryList = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCommercialLengths = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportProjects = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutBtn = new MaterialSkin.Controls.MaterialButton();
+            this.redoBtn = new MaterialSkin.Controls.MaterialButton();
+            this.undoBtn = new MaterialSkin.Controls.MaterialButton();
+            this.optionsBtn = new MaterialSkin.Controls.MaterialButton();
+            this.fileBtn = new MaterialSkin.Controls.MaterialButton();
+            this.helpBtn = new MaterialSkin.Controls.MaterialButton();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panelOptimize.SuspendLayout();
+            this.projectTab.SuspendLayout();
+          
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabOptiPlus.SuspendLayout();
+          
             this.projTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.cutLengthTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).BeginInit();
             this.materialTab.SuspendLayout();
             this.tabResult.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.fileMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // projectBtn
@@ -305,158 +346,6 @@ namespace LCC
             this.optimizeBtn.Visible = false;
             this.optimizeBtn.Click += new System.EventHandler(this.optimizeBtn_Click);
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btn_logout);
-            this.panel4.Controls.Add(this.materialButton4);
-            this.panel4.Controls.Add(this.materialButton3);
-            this.panel4.Controls.Add(this.materialButton2);
-            this.panel4.Controls.Add(this.materialButton1);
-            this.panel4.Controls.Add(this.fileBtn);
-            this.panel4.Location = new System.Drawing.Point(157, 28);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(317, 32);
-            this.panel4.TabIndex = 7;
-            // 
-            // btn_logout
-            // 
-            this.btn_logout.AutoSize = false;
-            this.btn_logout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_logout.Depth = 0;
-            this.btn_logout.DrawShadows = true;
-            this.btn_logout.HighEmphasis = true;
-            this.btn_logout.Icon = null;
-            this.btn_logout.Location = new System.Drawing.Point(250, 3);
-            this.btn_logout.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_logout.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_logout.Name = "btn_logout";
-            this.btn_logout.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_logout.Size = new System.Drawing.Size(62, 25);
-            this.btn_logout.TabIndex = 6;
-            this.btn_logout.Text = "Logout";
-            this.btn_logout.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.btn_logout.UseAccentColor = false;
-            this.btn_logout.UseVisualStyleBackColor = true;
-            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
-            // 
-            // materialButton4
-            // 
-            this.materialButton4.AutoSize = false;
-            this.materialButton4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton4.Depth = 0;
-            this.materialButton4.DrawShadows = true;
-            this.materialButton4.HighEmphasis = true;
-            this.materialButton4.Icon = null;
-            this.materialButton4.Location = new System.Drawing.Point(157, 3);
-            this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton4.Name = "materialButton4";
-            this.materialButton4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialButton4.Size = new System.Drawing.Size(40, 25);
-            this.materialButton4.TabIndex = 4;
-            this.materialButton4.Text = "help";
-            this.materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton4.UseAccentColor = false;
-            this.materialButton4.UseVisualStyleBackColor = true;
-            // 
-            // materialButton3
-            // 
-            this.materialButton3.AutoSize = false;
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.DrawShadows = true;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(202, 3);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialButton3.Size = new System.Drawing.Size(40, 25);
-            this.materialButton3.TabIndex = 3;
-            this.materialButton3.Text = "view";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.AutoSize = false;
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.DrawShadows = true;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(112, 3);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialButton2.Size = new System.Drawing.Size(40, 25);
-            this.materialButton2.TabIndex = 2;
-            this.materialButton2.Text = "Edit";
-            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.AutoSize = false;
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.DrawShadows = true;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(55, 3);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.materialButton1.Size = new System.Drawing.Size(53, 25);
-            this.materialButton1.TabIndex = 1;
-            this.materialButton1.Text = "Tools";
-            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            // 
-            // fileBtn
-            // 
-            this.fileBtn.AutoSize = false;
-            this.fileBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.fileBtn.Depth = 0;
-            this.fileBtn.DrawShadows = true;
-            this.fileBtn.HighEmphasis = true;
-            this.fileBtn.Icon = null;
-            this.fileBtn.Location = new System.Drawing.Point(7, 3);
-            this.fileBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.fileBtn.MouseState = MaterialSkin.MouseState.HOVER;
-            this.fileBtn.Name = "fileBtn";
-            this.fileBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.fileBtn.Size = new System.Drawing.Size(40, 25);
-            this.fileBtn.TabIndex = 0;
-            this.fileBtn.Text = "File";
-            this.fileBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.fileBtn.UseAccentColor = false;
-            this.fileBtn.UseVisualStyleBackColor = true;
-            this.fileBtn.MouseEnter += new System.EventHandler(this.fileBtn_MouseEnter);
-            // 
-            // tabOptiPlus
-            // 
-            this.tabOptiPlus.Controls.Add(this.projTab);
-            this.tabOptiPlus.Controls.Add(this.cutLengthTab);
-            this.tabOptiPlus.Controls.Add(this.materialTab);
-            this.tabOptiPlus.Controls.Add(this.tabResult);
-            this.tabOptiPlus.Controls.Add(this.tabPage1);
-            this.tabOptiPlus.Depth = 0;
-            this.tabOptiPlus.Location = new System.Drawing.Point(11, 181);
-            this.tabOptiPlus.MouseState = MaterialSkin.MouseState.HOVER;
-            this.tabOptiPlus.Multiline = true;
-            this.tabOptiPlus.Name = "tabOptiPlus";
-            this.tabOptiPlus.SelectedIndex = 0;
-            this.tabOptiPlus.Size = new System.Drawing.Size(1088, 476);
-            this.tabOptiPlus.TabIndex = 8;
-            this.tabOptiPlus.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
-            // 
             // projTab
             // 
             this.projTab.BackColor = System.Drawing.Color.White;
@@ -506,6 +395,7 @@ namespace LCC
             this.projectTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.projectTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.projectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -514,6 +404,7 @@ namespace LCC
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+          
             this.projectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.project_reference,
@@ -522,6 +413,14 @@ namespace LCC
             this.rev_no,
             this.edit_column,
             this.view_column});
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.projectTable.DefaultCellStyle = dataGridViewCellStyle28;
             this.projectTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.projectTable.Location = new System.Drawing.Point(3, 36);
             this.projectTable.MultiSelect = false;
@@ -533,6 +432,7 @@ namespace LCC
             this.projectTable.TabIndex = 3;
             this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTblView_CellClick);
             this.projectTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellEndEdit);
+            this.projectTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellValueChanged);
             this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.projectTable.SelectionChanged += new System.EventHandler(this.projectTable_SelectionChanged);
             this.projectTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
@@ -566,6 +466,7 @@ namespace LCC
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.NullValue = "Edit";
             this.edit_column.DefaultCellStyle = dataGridViewCellStyle6;
+          
             this.edit_column.HeaderText = "";
             this.edit_column.Name = "edit_column";
             this.edit_column.Text = "Edit";
@@ -581,6 +482,7 @@ namespace LCC
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.view_column.DefaultCellStyle = dataGridViewCellStyle7;
+          
             this.view_column.HeaderText = "";
             this.view_column.Name = "view_column";
             // 
@@ -607,11 +509,121 @@ namespace LCC
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.materialButton8);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1072, 440);
             this.panel3.TabIndex = 11;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.materialButton2);
+            this.panel6.Controls.Add(this.materialButton5);
+            this.panel6.Controls.Add(this.materialButton6);
+            this.panel6.Controls.Add(this.materialButton7);
+            this.panel6.Location = new System.Drawing.Point(54, -135);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(223, 56);
+            this.panel6.TabIndex = 4;
+            // 
+            // materialButton2
+            // 
+            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton2.Depth = 0;
+            this.materialButton2.DrawShadows = true;
+            this.materialButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.materialButton2.HighEmphasis = true;
+            this.materialButton2.Icon = global::LCC.Properties.Resources.folders;
+            this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.materialButton2.Location = new System.Drawing.Point(10, 9);
+            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton2.Name = "materialButton2";
+            this.materialButton2.Size = new System.Drawing.Size(44, 36);
+            this.materialButton2.TabIndex = 0;
+            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton2.UseAccentColor = false;
+            this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.projectBtn_Click);
+            // 
+            // materialButton5
+            // 
+            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton5.Depth = 0;
+            this.materialButton5.DrawShadows = true;
+            this.materialButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.materialButton5.HighEmphasis = true;
+            this.materialButton5.Icon = global::LCC.Properties.Resources.open_box;
+            this.materialButton5.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.materialButton5.Location = new System.Drawing.Point(166, 9);
+            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton5.Name = "materialButton5";
+            this.materialButton5.Size = new System.Drawing.Size(44, 36);
+            this.materialButton5.TabIndex = 3;
+            this.materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton5.UseAccentColor = false;
+            this.materialButton5.UseVisualStyleBackColor = true;
+            // 
+            // materialButton6
+            // 
+            this.materialButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton6.Depth = 0;
+            this.materialButton6.DrawShadows = true;
+            this.materialButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.materialButton6.HighEmphasis = true;
+            this.materialButton6.Icon = global::LCC.Properties.Resources.paper_crafts;
+            this.materialButton6.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.materialButton6.Location = new System.Drawing.Point(62, 9);
+            this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton6.Name = "materialButton6";
+            this.materialButton6.Size = new System.Drawing.Size(44, 36);
+            this.materialButton6.TabIndex = 1;
+            this.materialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton6.UseAccentColor = false;
+            this.materialButton6.UseVisualStyleBackColor = true;
+            // 
+            // materialButton7
+            // 
+            this.materialButton7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton7.Depth = 0;
+            this.materialButton7.DrawShadows = true;
+            this.materialButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.materialButton7.HighEmphasis = true;
+            this.materialButton7.Icon = global::LCC.Properties.Resources.partnership;
+            this.materialButton7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.materialButton7.Location = new System.Drawing.Point(114, 9);
+            this.materialButton7.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton7.Name = "materialButton7";
+            this.materialButton7.Size = new System.Drawing.Size(44, 36);
+            this.materialButton7.TabIndex = 2;
+            this.materialButton7.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton7.UseAccentColor = false;
+            this.materialButton7.UseVisualStyleBackColor = true;
+            // 
+            // materialButton8
+            // 
+            this.materialButton8.AutoSize = false;
+            this.materialButton8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton8.Depth = 0;
+            this.materialButton8.DrawShadows = true;
+            this.materialButton8.HighEmphasis = true;
+            this.materialButton8.Icon = null;
+            this.materialButton8.Location = new System.Drawing.Point(417, 112);
+            this.materialButton8.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton8.Name = "materialButton8";
+            this.materialButton8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.materialButton8.Size = new System.Drawing.Size(74, 38);
+            this.materialButton8.TabIndex = 12;
+            this.materialButton8.Text = "File";
+            this.materialButton8.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton8.UseAccentColor = false;
+            this.materialButton8.UseVisualStyleBackColor = true;
             // 
             // cutLengthTab
             // 
@@ -645,6 +657,7 @@ namespace LCC
             this.cutLengthsTable.AllowUserToOrderColumns = true;
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
+          
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -653,7 +666,16 @@ namespace LCC
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+          
             this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cutLengthsTable.DefaultCellStyle = dataGridViewCellStyle30;
             this.cutLengthsTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 36);
@@ -761,7 +783,7 @@ namespace LCC
             this.oProjectTabSelector.BaseTabControl = this.tabOptiPlus;
             this.oProjectTabSelector.Depth = 0;
             this.oProjectTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.oProjectTabSelector.Location = new System.Drawing.Point(12, 127);
+            this.oProjectTabSelector.Location = new System.Drawing.Point(54, 119);
             this.oProjectTabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.oProjectTabSelector.Name = "oProjectTabSelector";
             this.oProjectTabSelector.Size = new System.Drawing.Size(1087, 48);
@@ -802,6 +824,195 @@ namespace LCC
             this.dataGridView3.Size = new System.Drawing.Size(240, 150);
             this.dataGridView3.TabIndex = 1;
             // 
+            // fileMenuStrip
+            // 
+            this.fileMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importItem,
+            this.exportItem});
+            this.fileMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.fileMenuStrip.Name = "fileMenuStrip";
+            this.fileMenuStrip.Size = new System.Drawing.Size(111, 48);
+            this.fileMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileMenuStrip_ItemClicked);
+            this.fileMenuStrip.Click += new System.EventHandler(this.fileMenuStrip_Click);
+            // 
+            // importItem
+            // 
+            this.importItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importCutLength,
+            this.importInventoryList,
+            this.importCommercialLengths});
+            this.importItem.Name = "importItem";
+            this.importItem.Size = new System.Drawing.Size(110, 22);
+            this.importItem.Text = "Import";
+            // 
+            // importCutLength
+            // 
+            this.importCutLength.Name = "importCutLength";
+            this.importCutLength.Size = new System.Drawing.Size(184, 22);
+            this.importCutLength.Text = "Cut Lengths";
+            this.importCutLength.Click += new System.EventHandler(this.importCutLength_Click);
+            // 
+            // importInventoryList
+            // 
+            this.importInventoryList.Name = "importInventoryList";
+            this.importInventoryList.Size = new System.Drawing.Size(184, 22);
+            this.importInventoryList.Text = "Inventory List";
+            this.importInventoryList.Click += new System.EventHandler(this.importInventoryList_Click);
+            // 
+            // importCommercialLengths
+            // 
+            this.importCommercialLengths.Name = "importCommercialLengths";
+            this.importCommercialLengths.Size = new System.Drawing.Size(184, 22);
+            this.importCommercialLengths.Text = "Commercial Lengths";
+            this.importCommercialLengths.Click += new System.EventHandler(this.importCommercialLengths_Click);
+            // 
+            // exportItem
+            // 
+            this.exportItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportProjects,
+            this.exportReports});
+            this.exportItem.Name = "exportItem";
+            this.exportItem.Size = new System.Drawing.Size(110, 22);
+            this.exportItem.Text = "Export";
+            // 
+            // exportProjects
+            // 
+            this.exportProjects.Name = "exportProjects";
+            this.exportProjects.Size = new System.Drawing.Size(116, 22);
+            this.exportProjects.Text = "Projects";
+            this.exportProjects.Click += new System.EventHandler(this.exportProjects_Click);
+            // 
+            // exportReports
+            // 
+            this.exportReports.Name = "exportReports";
+            this.exportReports.Size = new System.Drawing.Size(116, 22);
+            this.exportReports.Text = "Reports";
+            this.exportReports.Click += new System.EventHandler(this.exportReports_Click);
+            // 
+            // logoutBtn
+            // 
+            this.logoutBtn.AutoSize = false;
+            this.logoutBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.logoutBtn.Depth = 0;
+            this.logoutBtn.DrawShadows = true;
+            this.logoutBtn.HighEmphasis = true;
+            this.logoutBtn.Icon = null;
+            this.logoutBtn.Location = new System.Drawing.Point(430, 24);
+            this.logoutBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.logoutBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.logoutBtn.Size = new System.Drawing.Size(80, 36);
+            this.logoutBtn.TabIndex = 17;
+            this.logoutBtn.Text = "logout";
+            this.logoutBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.logoutBtn.UseAccentColor = false;
+            this.logoutBtn.UseVisualStyleBackColor = true;
+            // 
+            // redoBtn
+            // 
+            this.redoBtn.AutoSize = false;
+            this.redoBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.redoBtn.Depth = 0;
+            this.redoBtn.DrawShadows = true;
+            this.redoBtn.HighEmphasis = true;
+            this.redoBtn.Icon = global::LCC.Properties.Resources.redo_removebg_preview;
+            this.redoBtn.Location = new System.Drawing.Point(238, 24);
+            this.redoBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.redoBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.redoBtn.Name = "redoBtn";
+            this.redoBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.redoBtn.Size = new System.Drawing.Size(44, 38);
+            this.redoBtn.TabIndex = 16;
+            this.redoBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.redoBtn.UseAccentColor = false;
+            this.redoBtn.UseVisualStyleBackColor = true;
+            this.redoBtn.Click += new System.EventHandler(this.redoBtn_Click);
+            // 
+            // undoBtn
+            // 
+            this.undoBtn.AutoSize = false;
+            this.undoBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.undoBtn.Depth = 0;
+            this.undoBtn.DrawShadows = true;
+            this.undoBtn.HighEmphasis = true;
+            this.undoBtn.Icon = global::LCC.Properties.Resources.undo__1_;
+            this.undoBtn.Location = new System.Drawing.Point(197, 24);
+            this.undoBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.undoBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.undoBtn.Name = "undoBtn";
+            this.undoBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.undoBtn.Size = new System.Drawing.Size(44, 38);
+            this.undoBtn.TabIndex = 15;
+            this.undoBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.undoBtn.UseAccentColor = false;
+            this.undoBtn.UseVisualStyleBackColor = true;
+            this.undoBtn.Click += new System.EventHandler(this.undoBtn_Click);
+            // 
+            // optionsBtn
+            // 
+            this.optionsBtn.AutoSize = false;
+            this.optionsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.optionsBtn.Depth = 0;
+            this.optionsBtn.DrawShadows = true;
+            this.optionsBtn.HighEmphasis = true;
+            this.optionsBtn.Icon = null;
+            this.optionsBtn.Location = new System.Drawing.Point(281, 24);
+            this.optionsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.optionsBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.optionsBtn.Name = "optionsBtn";
+            this.optionsBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.optionsBtn.Size = new System.Drawing.Size(80, 36);
+            this.optionsBtn.TabIndex = 14;
+            this.optionsBtn.Text = "options";
+            this.optionsBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.optionsBtn.UseAccentColor = false;
+            this.optionsBtn.UseVisualStyleBackColor = true;
+            this.optionsBtn.Click += new System.EventHandler(this.optionsBtn_Click);
+            // 
+            // fileBtn
+            // 
+            this.fileBtn.AutoSize = false;
+            this.fileBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fileBtn.Depth = 0;
+            this.fileBtn.DrawShadows = true;
+            this.fileBtn.HighEmphasis = true;
+            this.fileBtn.Icon = null;
+            this.fileBtn.Location = new System.Drawing.Point(135, 24);
+            this.fileBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.fileBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.fileBtn.Name = "fileBtn";
+            this.fileBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.fileBtn.Size = new System.Drawing.Size(74, 38);
+            this.fileBtn.TabIndex = 12;
+            this.fileBtn.Text = "File";
+            this.fileBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.fileBtn.UseAccentColor = false;
+            this.fileBtn.UseVisualStyleBackColor = true;
+            this.fileBtn.Click += new System.EventHandler(this.fileBtn_Click);
+            this.fileBtn.MouseHover += new System.EventHandler(this.fileBtn_MouseHover);
+            // 
+            // helpBtn
+            // 
+            this.helpBtn.AutoSize = false;
+            this.helpBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.helpBtn.Depth = 0;
+            this.helpBtn.DrawShadows = true;
+            this.helpBtn.HighEmphasis = true;
+            this.helpBtn.Icon = null;
+            this.helpBtn.Location = new System.Drawing.Point(355, 24);
+            this.helpBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.helpBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.helpBtn.Name = "helpBtn";
+            this.helpBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.helpBtn.Size = new System.Drawing.Size(80, 36);
+            this.helpBtn.TabIndex = 18;
+            this.helpBtn.Text = "help";
+            this.helpBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.helpBtn.UseAccentColor = false;
+            this.helpBtn.UseVisualStyleBackColor = true;
+            this.helpBtn.Click += new System.EventHandler(this.helpBtn_Click);
+            //
             // progressOptimize
             // 
             this.progressOptimize.Location = new System.Drawing.Point(736, 658);
@@ -814,13 +1025,19 @@ namespace LCC
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1105, 683);
-            this.Controls.Add(this.progressOptimize);
+          
+            this.ClientSize = new System.Drawing.Size(1105, 663);
+            this.Controls.Add(this.helpBtn);
+            this.Controls.Add(this.logoutBtn);
+            this.Controls.Add(this.redoBtn);
+            this.Controls.Add(this.undoBtn);
+            this.Controls.Add(this.optionsBtn);
+            this.Controls.Add(this.fileBtn);
             this.Controls.Add(this.searchString);
             this.Controls.Add(this.l_currentProject);
             this.Controls.Add(this.oProjectTabSelector);
-            this.Controls.Add(this.tabOptiPlus);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.projectTab);
+
             this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -831,17 +1048,23 @@ namespace LCC
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LinearCut1D";
             this.Load += new System.EventHandler(this.Project_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelOptimize.ResumeLayout(false);
             this.panelOptimize.PerformLayout();
+          
             this.panel4.ResumeLayout(false);
             this.tabOptiPlus.ResumeLayout(false);
+          
             this.projTab.ResumeLayout(false);
             this.projTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.cutLengthTab.ResumeLayout(false);
             this.cutLengthTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).EndInit();
@@ -849,6 +1072,7 @@ namespace LCC
             this.tabResult.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.fileMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -867,11 +1091,6 @@ namespace LCC
         private System.Windows.Forms.Panel panelOptimize;
         private MaterialSkin.Controls.MaterialButton optimizeBtn;
         private System.Windows.Forms.Panel panel4;
-        private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialButton materialButton3;
-        private MaterialSkin.Controls.MaterialButton materialButton2;
-        private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialButton fileBtn;
         private System.Windows.Forms.TabPage projTab;
         private System.Windows.Forms.Label cellClickLabel;
         private MaterialSkin.Controls.MaterialButton exportBtn;
@@ -895,7 +1114,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
         private MaterialSkin.Controls.MaterialLabel l_currentProject;
         private MaterialSkin.Controls.MaterialTabSelector oProjectTabSelector;
-        private MaterialSkin.Controls.MaterialButton btn_logout;
         private System.Windows.Forms.TabPage tabResult;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private System.Windows.Forms.Panel panel7;
@@ -905,6 +1123,29 @@ namespace LCC
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private MaterialSkin.Controls.MaterialTextBox searchString;
+      
+        private System.Windows.Forms.ContextMenuStrip fileMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem importItem;
+        private System.Windows.Forms.ToolStripMenuItem exportItem;
+        private System.Windows.Forms.ToolStripMenuItem exportProjects;
+        private System.Windows.Forms.ToolStripMenuItem exportReports;
+        private System.Windows.Forms.ToolStripMenuItem importCutLength;
+        private System.Windows.Forms.ToolStripMenuItem importInventoryList;
+        private System.Windows.Forms.ToolStripMenuItem importCommercialLengths;
+        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private System.Windows.Forms.Panel panel6;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private MaterialSkin.Controls.MaterialButton materialButton6;
+        private MaterialSkin.Controls.MaterialButton materialButton7;
+        private MaterialSkin.Controls.MaterialButton materialButton8;
+        private MaterialSkin.Controls.MaterialButton logoutBtn;
+        private MaterialSkin.Controls.MaterialButton redoBtn;
+        private MaterialSkin.Controls.MaterialButton undoBtn;
+        private MaterialSkin.Controls.MaterialButton optionsBtn;
+        private MaterialSkin.Controls.MaterialButton fileBtn;
+        private MaterialSkin.Controls.MaterialButton helpBtn;
+      
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ProgressBar progressOptimize;
     }

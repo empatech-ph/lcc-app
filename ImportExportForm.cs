@@ -48,12 +48,26 @@ namespace LCC
             }
         }
 
-        private void browseBtn_Click(object sender, EventArgs e)
+        public void browseBtn_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            var menuItem = btn.Text;
             openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             openFileDialog.Title = "Browse File";
             openFileDialog.ShowDialog();
-            importTxt.Text = openFileDialog.FileName;
+
+            if (menuItem == null)
+            {
+
+                importTxt.Text = openFileDialog.FileName;
+            }
+            else
+            {
+                openFileDialog.Tag = menuItem;
+                importBtn_Click(sender, e);
+            }
+
+
         }
 
         private void importTxt_TextChanged(object sender, EventArgs e)
@@ -63,7 +77,7 @@ namespace LCC
                 importExportBtn.Enabled = true;
             }
         }
-        private void importBtn_Click(object sender, EventArgs e)
+        public void importBtn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -80,18 +94,18 @@ namespace LCC
                     {
                         while ((rec = reader.Read()) != null)
                         {
-                            if (importComboBox.SelectedItem.ToString() == "Project")
+                            if (openFileDialog.Tag.ToString() == "" && importComboBox.SelectedItem.ToString() == "Project")
                             {
                                 var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                                 collection.InsertOne(new ProjectModel { id = 1, project_name = rec.project_name, project_reference = rec.project_reference, rev_no = rec.rev_no, scope = rec.scope });
                             }
                             else
                             {
-                                if (GLOBAL.iSelectedProjectId != 0 && importComboBox.SelectedItem.ToString() != "Project")
+                                if ((openFileDialog.Tag.ToString() != "" || importComboBox.SelectedItem.ToString() != "Project") && GLOBAL.iSelectedProjectId != 0)
                                 {
                                     if (extension != ".xlsx")
                                     {
-                                        if (importComboBox.SelectedItem.ToString() == "Cut Lengths")
+                                        if (importComboBox.SelectedItem.ToString() == "Cut Lengths" || openFileDialog.Tag.ToString() == "Cut Lengths")
                                         {
                                             var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
                                             collection.InsertOne(
@@ -119,7 +133,7 @@ namespace LCC
                                                     material_id = GLOBAL.iSelectedMaterialId,
                                                     qty = rec.qty,
                                                     length = int.Parse(rec.length),
-                                                    stock_type = rec.stock_type,
+                                                    stock_type = openFileDialog.Tag.ToString() == "Inventory List" ? rec.stock_type = "ST" : rec.stock_type = "BO",
                                                     cost = double.Parse(rec.cost),
                                                     stock_code = rec.stock_code,
                                                     note = rec.note,

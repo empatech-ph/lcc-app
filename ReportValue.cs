@@ -7,6 +7,16 @@ namespace LCC
     class ReportValue
     {
         public string RPT_Title { get; set; }
+        public string Result_clPartCode { get; set; }
+        public string Result_clDesc { get; set; }
+        public string Result_clLength { get; set; }
+        public string Result_clQty { get; set; }
+        public string Result_clUncut{ get; set; }
+        public string Result_stockStockCode { get; set; }
+        public string Result_stockLength { get; set; }
+        public string Result_stockRest { get; set; }
+        public string Result_stockTotalCut { get; set; }
+        public string Result_stockRepeated { get; set; }
         public string CutLengthRPT_LabelContent { get; set; }
         public string CutLengthRPT_PartLength { get; set; }
         public string CutLengthRPT_PartCode { get; set; }
