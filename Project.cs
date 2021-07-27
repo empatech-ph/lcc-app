@@ -19,16 +19,21 @@ using System.Globalization;
 using CsvHelper;
 using LCC.Components;
 using LCC.Library;
+using Microsoft.Reporting.WinForms;
+using GuiLabs.Undo;
 
 namespace LCC
 {
     public partial class Project : MaterialForm
     {
         //public static string importOrExport = "";
+        ActionManager actionManager = new ActionManager();
+        //Project project = new Project();
         public static int selectedProject = 0;
         int LastNewRowIndex = -1;
 
         private DataStore oFile;
+        ProjectModel proj = new ProjectModel();
 
         public Project()
         {
@@ -38,6 +43,33 @@ namespace LCC
             this.oFile = UtilsLibrary.getUserFile();
             this.initProject();
             this.initCutLength();
+
+            //for redo/undo commands
+            proj.ProjectNameChanged += proj_ProjectNameChanged;
+            UpdateUndoRedoButtons();
+        }
+        void UpdateUndoRedoButtons()
+        {
+            undoBtn.Enabled = actionManager.CanUndo;
+            redoBtn.Enabled = actionManager.CanRedo;
+        }
+        void proj_ProjectNameChanged()
+        {
+            reentrancyGuard = true;
+            projectTable.CurrentCell.Value = proj.project_name;
+            reentrancyGuard = false;
+        }
+
+        bool reentrancyGuard = false;
+        void SetProperty(string propertyName, object propertyValue)
+        {
+            if (reentrancyGuard)
+            {
+                return;
+            }
+            SetPropertyAction action = new SetPropertyAction(proj, propertyName, propertyValue);
+            actionManager.RecordAction(action);
+            UpdateUndoRedoButtons();
         }
 
         public void Project_Load(object sender, EventArgs e)
@@ -56,6 +88,7 @@ namespace LCC
 
             //var rowIndex = cutLengthsTable.CurrentCell.IsNull() ? 0 : cutLengthsTable.CurrentCell.RowIndex;
             //DataGridViewRow row = cutLengthsTable.Rows[rowIndex];
+
 
         }
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -120,10 +153,17 @@ namespace LCC
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
+            var getType = sender.GetType().Name.ToString();
+            if (getType != "MaterialButton")
+            {
+                ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+                var menuItem = btn.Text;
+                saveFileDialog.Tag = menuItem;
+            }
             //importOrExport = "Export";
             //ImportExportForm importExportForm = new ImportExportForm();
             //importExportForm.ShowDialog();
-
+            saveFileDialog.Tag = "";
             saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
             saveFileDialog.Title = "Save File";
             saveFileDialog.ShowDialog();
@@ -141,6 +181,8 @@ namespace LCC
                 rev_no = row.Cells["rev_no"].Value.ToString(),
                 scope = row.Cells["scope"].Value.ToString()
             });
+
+            SetProperty("project_name", row.Cells["project_name"].Value.ToString());
         }
 
         private void printerBtn_Click(object sender, EventArgs e)
@@ -151,12 +193,38 @@ namespace LCC
         {
             try
             {
-                var records = this.oFile.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
-                using (var writer = new StreamWriter(saveFileDialog.FileName))
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                if (saveFileDialog.Tag.ToString() == "Projects")
                 {
-                    csv.WriteRecords(records);
+                    var records = from p in this.oFile.GetCollection<ProjectModel>().AsQueryable()
+                                  join cl in this.oFile.GetCollection<CutLengthModel>().AsQueryable()
+                                  on p.id equals cl.project_id
+                                  join m in this.oFile.GetCollection<MaterialModel>().AsQueryable()
+                                  on p.id equals m.project_id
+                                  join sl in this.oFile.GetCollection<StockModel>().AsQueryable()
+                                  on m.id equals sl.material_id
+                                  select new
+                                  {
+                                      p,
+                                      cl,
+                                      sl,
+                                      m
+                                  };
+                    using (var writer = new StreamWriter(saveFileDialog.FileName))
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecords(records);
+                    }
                 }
+                else
+                {
+                    var records = this.oFile.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
+                    using (var writer = new StreamWriter(saveFileDialog.FileName))
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecords(records);
+                    }
+                }
+
                 MessageBox.Show("File has been downloaded. Data has been exported succesfully.");
             }
             catch
@@ -269,7 +337,7 @@ namespace LCC
             }
 
         }
- 
+
         private void projectTable_SelectionChanged(object sender, EventArgs e)
         {
 
@@ -282,7 +350,7 @@ namespace LCC
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
             this.projectTab.SelectedIndex = 3;
-            optimizeComponent1.triggerOptimize(); 
+            optimizeComponent1.triggerOptimize();
 
         }
 
@@ -293,7 +361,7 @@ namespace LCC
             {
                 this.optimizeBtn.Visible = true;
             }
-            if(this.projectTab.SelectedTab.Name == "cutLengthTab")
+            if (this.projectTab.SelectedTab.Name == "cutLengthTab")
             {
                 this.initCutLength();
             }
@@ -335,9 +403,109 @@ namespace LCC
             searchString.Text = "";
         }
 
-        private void fileBtn_MouseEnter(object sender, EventArgs e)
+        private void fileMenuStrip_Click(object sender, EventArgs e)
         {
-            //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
+            fileMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
+        }
+
+        private void fileMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Import")
+            {
+                importBtn_Click(sender, e);
+            }
+            else if (e.ClickedItem.Text == "Export")
+            {
+                //
+            }
+        }
+
+        private void exportProjects_Click(object sender, EventArgs e)
+        {
+            exportBtn_Click(sender, e);
+        }
+
+        private void exportReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void importCutLength_Click(object sender, EventArgs e)
+        {
+            ImportExportForm import = new ImportExportForm();
+            import.oProject = this;
+            import.browseBtn_Click(sender, e);
+        }
+
+        private void importInventoryList_Click(object sender, EventArgs e)
+        {
+            ImportExportForm import = new ImportExportForm();
+            import.oProject = this;
+            import.browseBtn_Click(sender, e);
+        }
+
+        private void importCommercialLengths_Click(object sender, EventArgs e)
+        {
+            ImportExportForm import = new ImportExportForm();
+            import.oProject = this;
+            import.browseBtn_Click(sender, e);
+        }
+
+        private void Project_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Y)
+            {
+                undoBtn_Click(sender, e);
+            }
+
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                redoBtn_Click(sender, e);
+            }
+        }
+
+        private void undoBtn_Click(object sender, EventArgs e)
+        {
+            actionManager.Undo();
+            UpdateUndoRedoButtons();
+        }
+
+        private void redoBtn_Click(object sender, EventArgs e)
+        {
+            actionManager.Redo();
+            UpdateUndoRedoButtons();
+        }
+
+        private void fileBtn_MouseHover(object sender, EventArgs e)
+        {
+            fileMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
+        }
+
+        private void fileBtn_Click(object sender, EventArgs e)
+        {
+            fileMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
+        }
+
+        private void optionsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void projectTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //this.projectTable.EndEdit();
+            //if (e.RowIndex != -1)
+            //{
+            //    var row = projectTable.Rows[e.RowIndex];
+            //    var changedValue = (row.Cells[e.ColumnIndex].Value ?? "").ToString();
+            //    SetProperty("project_name", changedValue);
+            //}
+        }
+
+        private void helpBtn_Click(object sender, EventArgs e)
+        {
+            Help help = new Help();
+            help.ShowDialog();
         }
     }
 }
