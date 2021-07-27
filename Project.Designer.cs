@@ -28,13 +28,19 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.components = new System.ComponentModel.Container()
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+          
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+          
             this.projectBtn = new MaterialSkin.Controls.MaterialButton();
             this.materialBtn = new MaterialSkin.Controls.MaterialButton();
             this.assemblyBtn = new MaterialSkin.Controls.MaterialButton();
@@ -48,6 +54,16 @@ namespace LCC
             this.panelOptimize = new System.Windows.Forms.Panel();
             this.optimizeBtn = new MaterialSkin.Controls.MaterialButton();
             this.projectTab = new MaterialSkin.Controls.MaterialTabControl();
+          
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btn_logout = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.fileBtn = new MaterialSkin.Controls.MaterialButton();
+            this.tabOptiPlus = new MaterialSkin.Controls.MaterialTabControl();
+          
             this.projTab = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.cellClickLabel = new System.Windows.Forms.Label();
@@ -74,6 +90,7 @@ namespace LCC
             this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.tabResult = new System.Windows.Forms.TabPage();
             this.optimizeComponent1 = new LCC.Components.OptimizeComponent();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -82,6 +99,7 @@ namespace LCC
             this.l_currentProject = new MaterialSkin.Controls.MaterialLabel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+          
             this.fileMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.importItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCutLength = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +118,14 @@ namespace LCC
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.projectTab.SuspendLayout();
+          
+            this.progressOptimize = new System.Windows.Forms.ProgressBar();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panelOptimize.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.tabOptiPlus.SuspendLayout();
+          
             this.projTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).BeginInit();
             this.panel3.SuspendLayout();
@@ -320,23 +346,6 @@ namespace LCC
             this.optimizeBtn.Visible = false;
             this.optimizeBtn.Click += new System.EventHandler(this.optimizeBtn_Click);
             // 
-            // projectTab
-            // 
-            this.projectTab.Controls.Add(this.projTab);
-            this.projectTab.Controls.Add(this.cutLengthTab);
-            this.projectTab.Controls.Add(this.materialTab);
-            this.projectTab.Controls.Add(this.tabResult);
-            this.projectTab.Depth = 0;
-            this.projectTab.Location = new System.Drawing.Point(11, 181);
-            this.projectTab.MouseState = MaterialSkin.MouseState.HOVER;
-            this.projectTab.Multiline = true;
-            this.projectTab.Name = "projectTab";
-            this.projectTab.SelectedIndex = 0;
-            this.projectTab.Size = new System.Drawing.Size(1088, 476);
-            this.projectTab.TabIndex = 8;
-            this.projectTab.SelectedIndexChanged += new System.EventHandler(this.projectTab_SelectedIndexChanged);
-            this.projectTab.Selected += new System.Windows.Forms.TabControlEventHandler(this.projectTab_Selected);
-            // 
             // projTab
             // 
             this.projTab.BackColor = System.Drawing.Color.White;
@@ -386,14 +395,16 @@ namespace LCC
             this.projectTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.projectTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.projectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+          
             this.projectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.project_reference,
@@ -415,7 +426,7 @@ namespace LCC
             this.projectTable.MultiSelect = false;
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
@@ -452,24 +463,26 @@ namespace LCC
             // 
             // edit_column
             // 
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.NullValue = "Edit";
-            this.edit_column.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = "Edit";
+            this.edit_column.DefaultCellStyle = dataGridViewCellStyle6;
+          
             this.edit_column.HeaderText = "";
             this.edit_column.Name = "edit_column";
             this.edit_column.Text = "Edit";
             // 
             // view_column
             // 
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.NullValue = "View";
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.view_column.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.NullValue = "View";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.view_column.DefaultCellStyle = dataGridViewCellStyle7;
+          
             this.view_column.HeaderText = "";
             this.view_column.Name = "view_column";
             // 
@@ -644,14 +657,16 @@ namespace LCC
             this.cutLengthsTable.AllowUserToOrderColumns = true;
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+          
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+          
             this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
@@ -708,7 +723,7 @@ namespace LCC
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
             this.tabResult.Size = new System.Drawing.Size(1080, 448);
             this.tabResult.TabIndex = 3;
-            this.tabResult.Text = "Result";
+            this.tabResult.Text = "Results Summary";
             this.tabResult.UseVisualStyleBackColor = true;
             // 
             // optimizeComponent1
@@ -719,6 +734,16 @@ namespace LCC
             this.optimizeComponent1.Name = "optimizeComponent1";
             this.optimizeComponent1.Size = new System.Drawing.Size(1074, 442);
             this.optimizeComponent1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1080, 448);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Opti Plus";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // materialLabel3
             // 
@@ -738,12 +763,12 @@ namespace LCC
             this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchString.Depth = 0;
             this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.searchString.Location = new System.Drawing.Point(865, 134);
+            this.searchString.Location = new System.Drawing.Point(890, 134);
             this.searchString.MaxLength = 50;
             this.searchString.MouseState = MaterialSkin.MouseState.OUT;
             this.searchString.Multiline = false;
             this.searchString.Name = "searchString";
-            this.searchString.Size = new System.Drawing.Size(221, 36);
+            this.searchString.Size = new System.Drawing.Size(205, 36);
             this.searchString.TabIndex = 11;
             this.searchString.Text = "";
             this.searchString.UseTallSize = false;
@@ -755,15 +780,16 @@ namespace LCC
             // 
             // oProjectTabSelector
             // 
-            this.oProjectTabSelector.BaseTabControl = this.projectTab;
+            this.oProjectTabSelector.BaseTabControl = this.tabOptiPlus;
             this.oProjectTabSelector.Depth = 0;
             this.oProjectTabSelector.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.oProjectTabSelector.Location = new System.Drawing.Point(54, 119);
             this.oProjectTabSelector.MouseState = MaterialSkin.MouseState.HOVER;
             this.oProjectTabSelector.Name = "oProjectTabSelector";
-            this.oProjectTabSelector.Size = new System.Drawing.Size(1083, 48);
+            this.oProjectTabSelector.Size = new System.Drawing.Size(1087, 48);
             this.oProjectTabSelector.TabIndex = 11;
             this.oProjectTabSelector.TabIndicatorHeight = 5;
+            this.oProjectTabSelector.TabStop = false;
             this.oProjectTabSelector.Text = "materialTabSelector1";
             // 
             // l_currentProject
@@ -986,12 +1012,20 @@ namespace LCC
             this.helpBtn.UseAccentColor = false;
             this.helpBtn.UseVisualStyleBackColor = true;
             this.helpBtn.Click += new System.EventHandler(this.helpBtn_Click);
+            //
+            // progressOptimize
+            // 
+            this.progressOptimize.Location = new System.Drawing.Point(736, 658);
+            this.progressOptimize.Name = "progressOptimize";
+            this.progressOptimize.Size = new System.Drawing.Size(359, 19);
+            this.progressOptimize.TabIndex = 12;
             // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+          
             this.ClientSize = new System.Drawing.Size(1105, 663);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.logoutBtn);
@@ -1003,12 +1037,12 @@ namespace LCC
             this.Controls.Add(this.l_currentProject);
             this.Controls.Add(this.oProjectTabSelector);
             this.Controls.Add(this.projectTab);
+
             this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DrawerShowIconsWhenHidden = true;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1105, 663);
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1021,7 +1055,10 @@ namespace LCC
             this.panel2.PerformLayout();
             this.panelOptimize.ResumeLayout(false);
             this.panelOptimize.PerformLayout();
-            this.projectTab.ResumeLayout(false);
+          
+            this.panel4.ResumeLayout(false);
+            this.tabOptiPlus.ResumeLayout(false);
+          
             this.projTab.ResumeLayout(false);
             this.projTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectTable)).EndInit();
@@ -1061,7 +1098,7 @@ namespace LCC
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ToolTip projectToolTip;
         private MaterialSkin.Controls.MaterialButton addProject;
-        public MaterialSkin.Controls.MaterialTabControl projectTab;
+        public MaterialSkin.Controls.MaterialTabControl tabOptiPlus;
         public System.Windows.Forms.TabPage cutLengthTab;
         private System.Windows.Forms.DataGridView cutLengthsTable;
         private System.Windows.Forms.TabPage materialTab;
@@ -1086,6 +1123,7 @@ namespace LCC
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private MaterialSkin.Controls.MaterialTextBox searchString;
+      
         private System.Windows.Forms.ContextMenuStrip fileMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem importItem;
         private System.Windows.Forms.ToolStripMenuItem exportItem;
@@ -1107,5 +1145,8 @@ namespace LCC
         private MaterialSkin.Controls.MaterialButton optionsBtn;
         private MaterialSkin.Controls.MaterialButton fileBtn;
         private MaterialSkin.Controls.MaterialButton helpBtn;
+      
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ProgressBar progressOptimize;
     }
 }

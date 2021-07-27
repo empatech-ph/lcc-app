@@ -21,6 +21,8 @@ using LCC.Components;
 using LCC.Library;
 using Microsoft.Reporting.WinForms;
 using GuiLabs.Undo;
+using System.Threading;
+using LCC.Modals;
 
 namespace LCC
 {
@@ -34,7 +36,7 @@ namespace LCC
 
         private DataStore oFile;
         ProjectModel proj = new ProjectModel();
-
+        
         public Project()
         {
             InitializeComponent();
@@ -122,7 +124,7 @@ namespace LCC
 
         private void projectBtn_Click(object sender, EventArgs e)
         {
-            projectTab.Visible = true;
+            tabOptiPlus.Visible = true;
         }
 
         private void addProject_Click(object sender, EventArgs e)
@@ -263,7 +265,7 @@ namespace LCC
                 try
                 {
                     var row = cutLengthsTable.Rows[e.RowIndex];
-                    if (projectTab.SelectedTab.Name == "cutLengthTab")
+                    if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
                         if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null)
                         {
@@ -357,14 +359,16 @@ namespace LCC
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.optimizeBtn.Visible = false;
-            if (this.projectTab.SelectedTab.Name == "materialTab")
+            if (this.tabOptiPlus.SelectedTab.Name == "materialTab")
             {
                 this.optimizeBtn.Visible = true;
             }
-            if (this.projectTab.SelectedTab.Name == "cutLengthTab")
+            
+            if (this.tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 this.initCutLength();
             }
+            searchString.Text = "";
         }
 
         private void cutLengthsTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -375,14 +379,14 @@ namespace LCC
         private void searchString_TextChanged(object sender, EventArgs e)
         {
             //var tableType = projectTab.SelectedTab.Name == "projTab" ? typeof(ProjectModel):  projectTab.SelectedTab.Name == "cutLengthTab" ? typeof(CutLengthModel) : typeof(MaterialModel);
-            if (projectTab.SelectedTab.Name == "projTab")
+            if (tabOptiPlus.SelectedTab.Name == "projTab")
             {
                 var oProjectList = this.oFile.GetCollection<ProjectModel>();
                 var matches = oProjectList.Find(searchString.Text);
                 projectTable.DataSource = matches.AsQueryable().ToList();
                 projectTable.Refresh();
             }
-            else if (projectTab.SelectedTab.Name == "cutLengthTab")
+            else if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 var oProjectList = this.oFile.GetCollection<CutLengthModel>();
                 var matches = oProjectList.Find(searchString.Text);
@@ -502,7 +506,7 @@ namespace LCC
             //}
         }
 
-        private void helpBtn_Click(object sender, EventArgs e)
+        private void fileBtn_MouseEnter(object sender, EventArgs e)
         {
             Help help = new Help();
             help.ShowDialog();

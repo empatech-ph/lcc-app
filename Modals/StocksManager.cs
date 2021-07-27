@@ -57,6 +57,7 @@ namespace LCC.Modals
             BindingList<StockModel> oListModel = new BindingList<StockModel>(oList.ToList());
             this.dt_stock.DataSource = oListModel;
             this.dt_stock.Columns["id"].Visible = false;
+            this.dt_stock.Columns["cut_stock_type"].Visible = false;
             this.dt_stock.Columns["material_id"].Visible = false;
             this.dt_stock.Columns["visibility"].Visible = false;
             this.dt_stock.Columns["editable"].Visible = false;

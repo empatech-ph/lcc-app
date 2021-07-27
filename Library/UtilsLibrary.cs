@@ -44,6 +44,5 @@ namespace LCC.Library
 
             return new DataStore(AppDomain.CurrentDomain.BaseDirectory + sFileName);
         }
-
     }
 }

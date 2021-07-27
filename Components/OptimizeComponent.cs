@@ -1,4 +1,4 @@
-﻿using JsonFlatFileDataStore;
+using JsonFlatFileDataStore;
 using LCC.Library;
 using LCC.Model;
 using Microsoft.Reporting.WinForms;
@@ -27,8 +27,10 @@ namespace LCC.Components
 
         public void triggerOptimize()
         {
+
             var oOptimize = new OptimizeLibrary();
             oOptimize.optimize();
+
             GLOBAL.oTempStockLengthOptimized = GLOBAL.oTempOptimized.GroupBy(o => new
             {
                 o.stock_id,
@@ -38,45 +40,101 @@ namespace LCC.Components
             }).Select(o => new TempStocklengthModel
             {
                 cutlength_id = o.Last().cutlength_id,
+                material_id = o.Last().material_id,
                 stock_code = o.Last().stock_code,
                 stock_desc_grade = o.Last().stock_desc_grade,
                 length = o.Last().stock_length,
                 rest = o.Last().remaining_stock_length,
+                scrap = o.Last().scrap_stock_length,
                 repeated = o.Count(),
                 total_cut = o.Last().total_cut,
                 cutlength_length = o.Last().computed_cutlength_length,
                 kerf = o.Last().kerf,
                 trim_left = o.Last().trim_left,
                 trim_right = o.Last().trim_right,
+                stock_type = o.Last().stock_type,
+                cost = o.Last().cost,
+                note = o.Last().note,
                 data = o.Last()
             }).ToList();
 
-            var dtStockLengthTable = this.stockLengthTable.DataSource as DataTable;
-            var dtCutLengthTable = this.cutLengthTable.DataSource as DataTable;
-            if (dtStockLengthTable != null) dtStockLengthTable.Rows.Clear();
+            var dtCutLengthTable = this.dt_optimize.DataSource as DataTable;
             if (dtCutLengthTable != null) dtCutLengthTable.Rows.Clear();
+            this.dt_optimize.DataSource = GLOBAL.oTempCutlength;
 
-            this.cutLengthTable.DataSource = GLOBAL.oTempCutlength;
-            this.cutLengthTable.Columns["grade"].Visible = false;
-            this.cutLengthTable.Columns["project_id"].Visible = false;
-            this.cutLengthTable.Columns["order_number"].Visible = false;
-            this.cutLengthTable.Columns["note"].Visible = false;
-            this.cutLengthTable.Columns["description"].Visible = false;
-            this.cutLengthTable.Columns["id"].Visible = false;
-
+            this.dt_optimize.Columns["grade"].Visible = false;
+            this.dt_optimize.Columns["project_id"].Visible = false;
+            this.dt_optimize.Columns["order_number"].Visible = false;
+            this.dt_optimize.Columns["length"].Visible = false;
+            this.dt_optimize.Columns["part_code"].Visible = false;
+            this.dt_optimize.Columns["note"].Visible = false;
+            this.dt_optimize.Columns["description"].Visible = false;
+            this.dt_optimize.Columns["id"].Visible = false;
+            
             var iCutLength = int.Parse(this.cutLengthTable.CurrentRow.Cells["id"].Value.ToString());
+            
             List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.cutlength_id == iCutLength);
             if (this.cutLengthTable.RowCount > 0)
             {
                 this.initOptimizedStockLengthDataTable(iCutLength, GLOBAL.oTempCutlength, oTempStockLengthModel);
             }
 
-            foreach (TempCutlengthModel oCutLength in GLOBAL.oTempCutlength)
-            {
-                var oCutLengthCollection = UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
-                oCutLengthCollection.UpdateOne(e => e.id == oCutLength.id, oCutLength);
-            }
             assignReportParameters(oTempStockLengthModel);
+
+            if (this.dt_optimize.RowCount > 0)
+            {
+                this.initOptimizedStockLengthDataTable(int.Parse(this.dt_optimize.Rows[0].Cells["id"].Value.ToString()));
+            }
+
+            foreach (TempStocklengthModel oTempStockLength in GLOBAL.oTempStockLengthOptimized)
+            {
+                GLOBAL.oTempCutlength.Find(o => o.id == oTempStockLength.cutlength_id).total_layout++;
+                if (oTempStockLength.rest != 0)
+                {
+                    this.saveRemnantScrapStock(oTempStockLength);
+                    continue;
+
+                }
+                else if (oTempStockLength.scrap != 0)
+                {
+                    this.saveRemnantScrapStock(oTempStockLength);
+                    continue;
+                }
+            }
+        }
+
+        private void saveRemnantScrapStock(TempStocklengthModel oTempStockLength)
+        {
+            var oStockCollection = UtilsLibrary.getUserFile().GetCollection<StockModel>();
+            string sCutStockType = ((oTempStockLength.rest != 0) ? "remnant" : "scrap");
+            double dLength = ((oTempStockLength.rest != 0) ? oTempStockLength.rest : oTempStockLength.scrap);
+            var oExistingStockLength = oStockCollection.AsQueryable().Where(e => e.cut_stock_type == sCutStockType && e.length == dLength &&
+                        e.stock_code == oTempStockLength.stock_code && e.material_id == oTempStockLength.material_id).FirstOrDefault();
+            if (oExistingStockLength != null)
+            {
+
+                oStockCollection.UpdateOne(e => e.id == oExistingStockLength.id, new StockModel
+                {
+                    qty = (oTempStockLength.repeated + int.Parse(oExistingStockLength.qty)).ToString()
+                });
+            }
+            else
+            {
+                oStockCollection.InsertOne(new StockModel
+                {
+                    cost = 0.00,
+                    cut_stock_type = sCutStockType,
+                    length = dLength,
+                    stock_code = oTempStockLength.stock_code,
+                    stock_type = oTempStockLength.stock_type,
+                    material_id = oTempStockLength.material_id,
+                    note = oTempStockLength.note,
+                    qty = oTempStockLength.repeated.ToString(),
+                    editable = false,
+                    visibility = true,
+
+                });
+            }
         }
 
         private void initOptimizedStockLengthDataTable(int iCutLength, List<TempCutlengthModel> oTempCutlength, List<TempStocklengthModel> oTempStockLengthModel)
@@ -85,6 +143,7 @@ namespace LCC.Components
             if (dtStockLengthTable != null) dtStockLengthTable.Rows.Clear();
             this.stockLengthTable.DataSource = oTempStockLengthModel;
             this.stockLengthTable.Columns["cutlength_id"].Visible = false;
+            this.stockLengthTable.Columns["material_id"].Visible = false;
             this.stockLengthTable.Columns["data"].Visible = false;
             this.stockLengthTable.Columns["stock_desc_grade"].Visible = false;
             this.stockLengthTable.Columns["cutlength_length"].Visible = false;
@@ -96,6 +155,7 @@ namespace LCC.Components
 
             foreach (TempStocklengthModel oTempStockLength in oTempStockLengthModel)
             {
+                var oStockCollection = UtilsLibrary.getUserFile().GetCollection<StockModel>();
                 OptimizeBarComponent oOptimizeBar = new OptimizeBarComponent();
                 oOptimizeBar.initializeBar(oTempStockLength);
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);

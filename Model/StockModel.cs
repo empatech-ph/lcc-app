@@ -14,6 +14,12 @@ namespace LCC.Model
         public double cost { get; set; }
         public string stock_code { get; set; }
         public string note { get; set; }
+        /**
+         * stock
+         * remnant
+         * scrap
+         */
+        public string cut_stock_type { get; set; } = "stock";
         public bool visibility { get; set; }
         public bool editable { get; set; }
     }
