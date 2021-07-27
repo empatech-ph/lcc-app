@@ -191,7 +191,6 @@ namespace LCC.Components
             // optimizeBarPanel
             // 
             this.optimizeBarPanel.AutoScroll = true;
-            this.optimizeBarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.optimizeBarPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.optimizeBarPanel.Location = new System.Drawing.Point(0, 348);
             this.optimizeBarPanel.Name = "optimizeBarPanel";
