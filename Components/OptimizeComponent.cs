@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace LCC.Components
@@ -20,11 +21,14 @@ namespace LCC.Components
             InitializeComponent();
         }
 
-        public void triggerOptimize()
+        public void triggerOptimize(BackgroundWorker oBackgroundWorker)
         {
+            oBackgroundWorker.ReportProgress(0);
 
             var oOptimize = new OptimizeLibrary();
-            oOptimize.optimize();
+            oOptimize.optimize(oBackgroundWorker);
+
+            oBackgroundWorker.ReportProgress(50);
 
             GLOBAL.oTempStockLengthOptimized = GLOBAL.oTempOptimized.GroupBy(o => new
             {
@@ -53,8 +57,11 @@ namespace LCC.Components
                 data = o.Last()
             }).ToList();
 
+            oBackgroundWorker.ReportProgress(55);
+
             var dtCutLengthTable = this.dt_optimize.DataSource as DataTable;
             if (dtCutLengthTable != null) dtCutLengthTable.Rows.Clear();
+
             this.dt_optimize.DataSource = GLOBAL.oTempCutlength;
 
             this.dt_optimize.Columns["grade"].Visible = false;
@@ -73,6 +80,8 @@ namespace LCC.Components
                 oCutLengthCollection.UpdateOne(e => e.id == oCutLength.id, oCutLength);
 
             }
+
+            oBackgroundWorker.ReportProgress(80);
 
             if (this.dt_optimize.RowCount > 0)
             {
@@ -94,6 +103,8 @@ namespace LCC.Components
                     continue;
                 }
             }
+
+            oBackgroundWorker.ReportProgress(90);
         }
 
         private void saveRemnantScrapStock(TempStocklengthModel oTempStockLength)

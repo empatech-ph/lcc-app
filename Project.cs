@@ -148,6 +148,7 @@ namespace LCC
         {
 
         }
+
         private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             try
@@ -282,8 +283,8 @@ namespace LCC
 
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
-            this.tabOptiPlus.SelectedIndex = 3;
-            optimizeComponent1.triggerOptimize();
+            this.optimizeBtn.Enabled = false;
+            this.oBackgroundWorker.RunWorkerAsync(2000);
         } 
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -334,6 +335,24 @@ namespace LCC
         private void fileBtn_MouseEnter(object sender, EventArgs e)
         {
             //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
+        }
+
+        private void oBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        { 
+            this.optimizeComponent1.triggerOptimize(this.oBackgroundWorker);
+            this.oBackgroundWorker.ReportProgress(100);
+        }
+
+        private void oBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.progressOptimize.Value = e.ProgressPercentage;
+        }
+
+        private void oBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.optimizeBtn.Enabled = true;
+            this.tabOptiPlus.SelectedIndex = 3;
+            this.progressOptimize.Value = 0;
         }
     }
 }

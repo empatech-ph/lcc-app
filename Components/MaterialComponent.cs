@@ -137,7 +137,7 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
+            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index && e.RowIndex != 1)
             {
                 var oRow = this.dt_material.Rows[e.RowIndex];
                 if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)

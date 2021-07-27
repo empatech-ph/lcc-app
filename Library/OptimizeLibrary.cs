@@ -3,6 +3,7 @@ using LCC.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -91,13 +92,15 @@ namespace LCC.Library
                 .ToList();
         }
 
-        public void optimize()
+        public void optimize(BackgroundWorker oBackgroundWorker)
         {
             GLOBAL.oTempOptimized.Clear();
             GLOBAL.oTempCutlength.Clear();
 
             this.generateTempOptimize(ref this.oRestOptimized1, "rest1");
             this.generateTempOptimize(ref this.oRestOptimized2, "rest2");
+
+            oBackgroundWorker.ReportProgress(25);
 
             List<TempFilteredOptimized> oFilteredOptimized1 = this.oRestOptimized1.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
             {
@@ -113,6 +116,8 @@ namespace LCC.Library
                 data = e.ToList()
             }).ToList();
 
+            oBackgroundWorker.ReportProgress(35);
+
             for (int i = 0; i < oFilteredOptimized1.Count; i++)
             {
                 int iCutLengthNo = oFilteredOptimized1[i].cutlength_id;
@@ -120,6 +125,8 @@ namespace LCC.Library
                 TempFilteredOptimized oFiltered2 = oFilteredOptimized2.Find(e => e.cutlength_id == iCutLengthNo);
                 GLOBAL.oTempOptimized.AddRange((oFiltered1.sum >= oFiltered2.sum) ? oFiltered2.data : oFiltered1.data);
             }
+
+            oBackgroundWorker.ReportProgress(45);
         }
 
         private void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, string sType)
@@ -144,6 +151,7 @@ namespace LCC.Library
                 gross_yield = 0,
                 total_layout = 0,
             }).ToList();
+
             int iIdTempOptimized = 1;
             foreach (TempCutlengthModel oCutLengthItem in GLOBAL.oTempCutlength)
             {

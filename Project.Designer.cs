@@ -29,10 +29,10 @@ namespace LCC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.projectBtn = new MaterialSkin.Controls.MaterialButton();
             this.materialBtn = new MaterialSkin.Controls.MaterialButton();
             this.assemblyBtn = new MaterialSkin.Controls.MaterialButton();
@@ -83,6 +83,7 @@ namespace LCC
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
+            this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
@@ -506,14 +507,14 @@ namespace LCC
             this.projectTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.projectTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.projectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.projectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.project_reference,
@@ -527,7 +528,7 @@ namespace LCC
             this.projectTable.MultiSelect = false;
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
@@ -563,24 +564,24 @@ namespace LCC
             // 
             // edit_column
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.NullValue = "Edit";
-            this.edit_column.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.NullValue = "Edit";
+            this.edit_column.DefaultCellStyle = dataGridViewCellStyle14;
             this.edit_column.HeaderText = "";
             this.edit_column.Name = "edit_column";
             this.edit_column.Text = "Edit";
             // 
             // view_column
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.NullValue = "View";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.view_column.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.NullValue = "View";
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.view_column.DefaultCellStyle = dataGridViewCellStyle15;
             this.view_column.HeaderText = "";
             this.view_column.Name = "view_column";
             // 
@@ -645,14 +646,14 @@ namespace LCC
             this.cutLengthsTable.AllowUserToOrderColumns = true;
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cutLengthsTable.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
@@ -809,6 +810,14 @@ namespace LCC
             this.progressOptimize.Size = new System.Drawing.Size(359, 19);
             this.progressOptimize.TabIndex = 12;
             // 
+            // oBackgroundWorker
+            // 
+            this.oBackgroundWorker.WorkerReportsProgress = true;
+            this.oBackgroundWorker.WorkerSupportsCancellation = true;
+            this.oBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.oBackgroundWorker_DoWork);
+            this.oBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.oBackgroundWorker_ProgressChanged);
+            this.oBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.oBackgroundWorker_RunWorkerCompleted);
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -907,5 +916,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialTextBox searchString;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ProgressBar progressOptimize;
+        private System.ComponentModel.BackgroundWorker oBackgroundWorker;
     }
 }
