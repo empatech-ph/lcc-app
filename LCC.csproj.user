@@ -23,6 +23,9 @@
     <Compile Update="Components\OptimizeComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\OptiplusComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Components\ReportViewerForm.cs">
       <SubType>Form</SubType>
     </Compile>
