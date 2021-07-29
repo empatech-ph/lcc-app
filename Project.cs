@@ -118,6 +118,7 @@ namespace LCC
 
                 }
                 this.materialComponent1.initDatagrid();
+                this.optiplusComponent1.initDatagrid();
                 this.initCutLength();
             }
         }
@@ -347,6 +348,7 @@ namespace LCC
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
             this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
             this.materialComponent1.initDatagrid();
+            this.optiplusComponent1.initDatagrid();
             this.initCutLength();
         }
 

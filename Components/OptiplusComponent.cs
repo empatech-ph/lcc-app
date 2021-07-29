@@ -1,8 +1,12 @@
-﻿using System;
+﻿using JsonFlatFileDataStore;
+using LCC.Library;
+using LCC.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -10,6 +14,7 @@ namespace LCC.Components
 {
     public partial class OptiplusComponent : UserControl
     {
+        DataStore oFile;
         private string sCurrentSelected = "btn_gross_yield";
         private Dictionary<string, string> oParameters = new Dictionary<string, string>(){
                 { "btn_gross_yield", "Gross Yield" },
@@ -20,10 +25,14 @@ namespace LCC.Components
         public OptiplusComponent()
         {
             InitializeComponent();
+
+            this.oFile = UtilsLibrary.getUserFile();
             this.setParameters();
 
             Button _btn_gross_yield = this.table_parameters.Controls[sCurrentSelected] as Button;
             _btn_gross_yield.BackColor = Color.SkyBlue;
+
+            this.initDatagrid();
         }
 
         private void setParameters()
@@ -35,7 +44,15 @@ namespace LCC.Components
                 i++;
             }
         }
-
+        public void initDatagrid()
+        {
+            dynamic oList = this.oFile.GetCollection<MaterialModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+            BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
+            this.dt_materials.DataSource = oListModel;
+            this.dt_materials.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
+            this.dt_materials.Columns["optiplus_materials"].Visible = true;
+            this.dt_materials.Columns["optiplus_grade"].Visible = true;
+        }
         private Button getNewGeneratedButton(string sKey, string sText)
         {
             Button oButton = new Button();
