@@ -27,9 +27,9 @@ namespace LCC
 
         protected override void OnLoad(EventArgs e)
         {
-            Report.Load(reportViewer.LocalReport);
-            reportViewer.RefreshReport();
-            base.OnLoad(e);
+            //Report.Load(reportViewer.LocalReport);
+            //reportViewer.RefreshReport();
+            //base.OnLoad(e);
         }
     }
 }

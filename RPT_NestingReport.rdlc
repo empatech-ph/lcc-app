@@ -1296,7 +1296,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>2.42247cm</Top>
-            <Left>0.74083cm</Left>
+            <Left>0.74085cm</Left>
             <Height>1.79062cm</Height>
             <Width>25.63812cm</Width>
             <ZIndex>2</ZIndex>
@@ -3045,7 +3045,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>13.33817in</Width>
+      <Width>11.11942in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

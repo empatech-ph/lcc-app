@@ -23,10 +23,16 @@
     <Compile Update="Components\OptimizeComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Components\ReportViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GeneralReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Help.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ImportExportForm.cs">
@@ -48,6 +54,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="NewOrEditProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Options.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Project.cs">

@@ -84,7 +84,6 @@ namespace LCC
             this.importExportBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.importExportBtn.UseAccentColor = false;
             this.importExportBtn.UseVisualStyleBackColor = true;
-            this.importExportBtn.Click += new System.EventHandler(this.importBtn_Click);
             // 
             // importLbl
             // 

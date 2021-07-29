@@ -17,6 +17,7 @@ namespace LCC.Model
         public int total_uncut{ get; set; }
         public double remaining_stock_length{ get; set; }
         public double scrap_stock_length { get; set; }
+        public double total_rest { get; set; }
         public double stock_length { get; set; }
         public double cutlength_length { get; set; }
         public double computed_cutlength_length { get; set; }
