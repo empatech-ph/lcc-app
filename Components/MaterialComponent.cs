@@ -10,22 +10,25 @@ using LCC.Model;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using LCC.Library;
 
 namespace LCC.Components
 {
     public partial class MaterialComponent : UserControl
     {
         CheckBox oHeaderCheckbox = new CheckBox();
+        DataStore oFile;
         public MaterialComponent()
         {
             InitializeComponent();
+            this.oFile = UtilsLibrary.getUserFile();
             this.initDatagrid();
             this.addCheckboxHeader();
         }
 
         public void initDatagrid()
         {
-            dynamic oList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+            dynamic oList = this.oFile.GetCollection<MaterialModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
             BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
             this.dt_material.DataSource = oListModel;
             this.dt_material.Columns["id"].Visible = false;
@@ -51,8 +54,7 @@ namespace LCC.Components
             try
             {
                 var row = this.dt_material.Rows[this.dt_material.CurrentCell.RowIndex];
-                var oStore = Library.UtilsLibrary.getUserFile();
-                var collection = oStore.GetCollection<MaterialModel>();
+                var collection = this.oFile.GetCollection<MaterialModel>();
                 GLOBAL.aCheckedMaterials.Clear();
                 foreach (DataGridViewRow oRowItem in this.dt_material.Rows)
                 {
@@ -102,12 +104,12 @@ namespace LCC.Components
         {
             if (GLOBAL.iSelectedProjectId != 0)
             {
-                dynamic oCutLength = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>().AsQueryable()
+                dynamic oCutLength = this.oFile.GetCollection<CutLengthModel>().AsQueryable()
                         .Where(e => e.project_id == GLOBAL.iSelectedProjectId)
                         .Select(o => new { o.description, o.grade })
                         .Distinct()
                         .ToList();
-                var oMaterialModel = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>();
+                var oMaterialModel = this.oFile.GetCollection<MaterialModel>();
                 foreach (dynamic oItem in oCutLength)
                 {
                     int mExistingRowsCount = oMaterialModel.AsQueryable()
@@ -137,7 +139,7 @@ namespace LCC.Components
 
         private void dt_material_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
+            if (e.ColumnIndex == this.dt_material.Columns["stock"].Index && e.RowIndex != -1)
             {
                 var oRow = this.dt_material.Rows[e.RowIndex];
                 if (e.ColumnIndex == this.dt_material.Columns["stock"].Index)
@@ -213,7 +215,7 @@ namespace LCC.Components
                 DialogResult oDialog = MessageBox.Show("Do you want to continue to remove this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                 if (oDialog == DialogResult.Yes)
                 {
-                    Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
+                    this.oFile.GetCollection<MaterialModel>().DeleteOne(oRow.Cells["id"].Value);
                     this.dt_material.Rows.RemoveAt(oRow.Index);
                 }
             }

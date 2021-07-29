@@ -52,7 +52,8 @@ namespace LCC.Components
                     iCounter++;
                 }
             }
-            this.generateWastePanel(iCounter, (float)(oStockLength.rest / oStockLength.length) * 100);
+            double dRestScrap = ((oStockLength.rest <= 0) ? oStockLength.scrap : oStockLength.rest);
+            this.generateWastePanel(iCounter, (float)(dRestScrap / oStockLength.length) * 100);
             if (oStockLength.trim_right > 0)
             {
                 Panel oPanel = this.getNewGeneratedPanel(Color.White);
@@ -63,17 +64,17 @@ namespace LCC.Components
                 oPanel.Paint += this.paintPanelTrim;
                 this.optimizeBarPanel.Controls.Add(oPanel, iCounter + 1, 0);
             }
-            this.generateDetails((oStockLength.kerf > 0) ? (oStockLength.total_cut * 2) - 1 : oStockLength.total_cut, oStockLength.cutlength_length, oStockLength.rest, oStockLength.stock_code, oStockLength.trim_left, oStockLength.trim_right);
+            this.generateDetails((oStockLength.kerf > 0) ? (oStockLength.total_cut * 2) - 1 : oStockLength.total_cut, oStockLength.cutlength_length, dRestScrap, oStockLength.stock_code, oStockLength.trim_left, oStockLength.trim_right);
         }
 
         private void generateDetails(int iTotalCut, double fCutlengthLength, double dRest, string sStockCode, double dTrimLeft, double dTrimRight)
         {
-            this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + "mm x " + iTotalCut), (dTrimLeft > 0) ? 1 : 0, 1);
+            this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + " mm x " + iTotalCut), (dTrimLeft > 0) ? 1 : 0, 1);
             this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 1 : 0, 1), iTotalCut);
 
             if (dRest > 0)
             {
-                this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(dRest + "mm"), (dTrimLeft > 0) ? 2 : 1, 1);
+                this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(dRest + " mm"), (dTrimLeft > 0) ? 2 : 1, 1);
                 this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 2 : 1, 1), iTotalCut);
             }
 
@@ -83,7 +84,7 @@ namespace LCC.Components
         {
             Label oLabel = new Label();
             oLabel.Text = sText;
-            oLabel.Font = new Font(Label.DefaultFont, FontStyle.Bold);
+            oLabel.Font = new Font(FontFamily.GenericSansSerif, 7F, FontStyle.Regular);
             oLabel.TextAlign = ContentAlignment.MiddleCenter;
             oLabel.Dock = DockStyle.Fill;
             return oLabel;

@@ -100,6 +100,7 @@ namespace LCC
             this.optionsBtn = new MaterialSkin.Controls.MaterialButton();
             this.helpBtn = new MaterialSkin.Controls.MaterialButton();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
+            this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
@@ -1032,12 +1033,20 @@ namespace LCC
             this.progressOptimize.Size = new System.Drawing.Size(359, 19);
             this.progressOptimize.TabIndex = 12;
             // 
+            // oBackgroundWorker
+            // 
+            this.oBackgroundWorker.WorkerReportsProgress = true;
+            this.oBackgroundWorker.WorkerSupportsCancellation = true;
+            this.oBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.oBackgroundWorker_DoWork);
+            this.oBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.oBackgroundWorker_ProgressChanged);
+            this.oBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.oBackgroundWorker_RunWorkerCompleted);
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1105, 663);
+            this.ClientSize = new System.Drawing.Size(1105, 682);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.logoutBtn);
             this.Controls.Add(this.redoBtn);
@@ -1051,8 +1060,11 @@ namespace LCC
             this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.progressOptimize);
             this.DrawerShowIconsWhenHidden = true;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1105, 682);
+            this.MinimumSize = new System.Drawing.Size(1105, 682);
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1155,5 +1167,6 @@ namespace LCC
       
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ProgressBar progressOptimize;
+        private System.ComponentModel.BackgroundWorker oBackgroundWorker;
     }
 }
