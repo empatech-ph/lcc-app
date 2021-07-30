@@ -73,7 +73,6 @@ namespace LCC.UserManagement
                     { "license_id", oInfo.id.ToString() },
                     { "timestamp", UtilsLibrary.getTimestamp() },
                 };
-                MessageBox.Show(JsonConvert.SerializeObject(oParamUser));
                 dynamic oUserResult = await this.oClient.send("/api/user", oParamUser);
                 MessageBox.Show(oUserResult.message.ToString());
                 if (oUserResult.success == true)

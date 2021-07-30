@@ -28,6 +28,7 @@ namespace LCC
 
         private void btn_proceed_Click(object sender, EventArgs e)
         {
+            this.btn_proceed.Enabled = false;
             if(this.tb_productCode.TextLength <= 0 || this.tb_licenseKey.TextLength <= 0)
             {
                 MessageBox.Show("Please fill the required fields.");
@@ -44,6 +45,7 @@ namespace LCC
                     this.verify();
                 }
             }
+            this.btn_proceed.Enabled = true;
         }
 
         private async void verify()

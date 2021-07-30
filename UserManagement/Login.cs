@@ -28,6 +28,7 @@ namespace LCC.UserManagement
 
         private void btn_login_Click(object sender, EventArgs e)
         {
+            this.btn_login.Enabled = false;
             if (this.tb_email.TextLength <= 0)
             {
                 MessageBox.Show("Please provide required fields.");
@@ -37,13 +38,14 @@ namespace LCC.UserManagement
                 if(this.tb_email.Text == "admin" && this.tb_password.Text == "pashword123")
                 {
                     this.Hide();
-                    (new Admin.KeyGenerator()).Show();
+                    (new Admin.AdminDashboard()).Show();
                 }
                 else
                 {
                     this.login();
                 }
             }
+            this.btn_login.Enabled = true;
 
         }
 
@@ -98,6 +100,13 @@ namespace LCC.UserManagement
                     (new BootEnterLicenseKey()).Show();
                 }
             }
+        }
+
+        private void btn_enterlicense_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Library.RegistryLibrary().deleteRegistry("info");
+            (new BootEnterLicenseKey()).Show();
         }
     }
 }
