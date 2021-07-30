@@ -42,8 +42,9 @@ namespace LCC
             }
             else
             {
-                SaveControlAsImage(optimizeBarPnl, Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"));
-                Report.Load(reportViewer.LocalReport, oTempCutlength, oTempStockLengthModel);
+                MessageBox.Show("Report not availabe");
+                //SaveControlAsImage(optimizeBarPnl, Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"));
+                //Report.Load(reportViewer.LocalReport, oTempCutlength, oTempStockLengthModel);
             }
             reportViewer.RefreshReport();
             base.OnLoad(e);
@@ -51,13 +52,16 @@ namespace LCC
 
         private void SaveControlAsImage(Control control, string path)
         {
-            Bitmap bitmap = new Bitmap(control.Width, control.Height);
-            control.DrawToBitmap(bitmap, control.Bounds);
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            try
             {
-                /* using ImageFormat.Png or ImageFormat.Bmp saves the image with better quality */
-                bitmap.Save(fs, ImageFormat.Png);
-            }
+                Bitmap bitmap = new Bitmap(control.Width, control.Height);
+                control.DrawToBitmap(bitmap, control.Bounds);
+                using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+                {
+                    /* using ImageFormat.Png or ImageFormat.Bmp saves the image with better quality */
+                    bitmap.Save(fs, ImageFormat.Png);
+                }
+            } catch (Exception) { }
         }
     }
 }
