@@ -192,6 +192,7 @@ namespace LCC
             GeneralReport generateReport = new GeneralReport();
             generateReport.ShowDialog();
         }
+
         private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             try
@@ -240,7 +241,7 @@ namespace LCC
         public void initCutLength()
         {
             var collection = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
-            cutLengthsTable.DataSource = null;
+            cutLengthsTable.DataSource = new List<CutLengthModel>();
             cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
             cutLengthsTable.Columns["id"].Visible = false;
             cutLengthsTable.Columns["project_id"].Visible = false;
@@ -352,10 +353,32 @@ namespace LCC
 
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
+            this.optimizeBtn.Enabled = false;
             this.tabOptiPlus.SelectedIndex = 3;
-            optimizeComponent1.triggerOptimize();
+            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
+            this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
 
-        }
+            this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["project_id"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["order_number"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["length"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["part_code"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["note"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["description"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["id"].Visible = false;
+
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["material_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["data"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["stock_desc_grade"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_length"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_left"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_right"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
+
+            this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
+            this.oBackgroundWorker.RunWorkerAsync();
+        } 
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -396,7 +419,7 @@ namespace LCC
             }
             else
             {
-                dynamic oList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
+                dynamic oList = this.oFile.GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
                 BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
                 this.materialComponent1.dt_material.DataSource = oListModel;
                 this.materialComponent1.dt_material.Refresh();
@@ -517,6 +540,30 @@ namespace LCC
             //fileBtnContextMenuStrip.Show(fileBtn, new Point(0, fileBtn.Height));
             Help help = new Help();
             help.ShowDialog();
+        }
+
+        private void oBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            this.optimizeComponent1.triggerOptimize(this.oBackgroundWorker);
+            this.oBackgroundWorker.ReportProgress(100);
+        }
+
+        private void oBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            this.progressOptimize.Value = e.ProgressPercentage;
+        }
+
+        private void oBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            this.optimizeBtn.Enabled = true;
+            this.progressOptimize.Value = 0;
+
+            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.ToArray();
+
+            if (this.optimizeComponent1.dt_optimize.RowCount > 0)
+            {
+                this.optimizeComponent1.initOptimizedStockLengthDataTable(int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString()));
+            }
         }
     }
 }
