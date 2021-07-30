@@ -76,7 +76,6 @@ namespace LCC.Components
             {
                 var oCutLengthCollection = UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
                 oCutLengthCollection.UpdateOne(e => e.id == oCutLength.id, oCutLength);
-
             }
 
             if (this.dt_optimize.RowCount > 0)
@@ -99,6 +98,7 @@ namespace LCC.Components
                     continue;
                 }
             }
+            //assignReportParameters(GLOBAL.oTempStockLengthOptimized);
         }
 
         private void saveRemnantScrapStock(TempStocklengthModel oTempStockLength)
@@ -159,11 +159,11 @@ namespace LCC.Components
                 oOptimizeBar.initializeBar(oTempStockLength);
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);
             }
-            assignReportParameters(oTempStockLengthModel);
             //Report.Load(reportViewer.LocalReport, GLOBAL.oTempCutlength, oTempStockLengthModel);
             //reportViewer.RefreshReport();
         }
-        public void assignReportParameters(List<TempStocklengthModel> oTempStockLengthModel) {
+        public void assignReportParameters(List<TempStocklengthModel> oTempStockLengthModel)
+        {
 
             ReportViewerForm.oTempCutlength = GLOBAL.oTempCutlength;
             ReportViewerForm.oTempStockLengthModel = oTempStockLengthModel;
@@ -180,7 +180,7 @@ namespace LCC.Components
                 var iCutLength = int.Parse(oCurrentRow.Cells["id"].Value.ToString());
                 List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.cutlength_id == iCutLength);
                 this.initOptimizedStockLengthDataTable(int.Parse(oCurrentRow.Cells["id"].Value.ToString()));
-                assignReportParameters(oTempStockLengthModel);
+                //assignReportParameters(oTempStockLengthModel);
             }
         }
 

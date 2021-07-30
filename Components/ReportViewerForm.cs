@@ -10,38 +10,54 @@ using System.IO;
 
 namespace LCC
 {
-	public partial class ReportViewerForm : Form
-	{
-		private readonly ReportViewer reportViewer;
-		public static List<TempCutlengthModel> oTempCutlength;
-		public static List<TempStocklengthModel> oTempStockLengthModel;
-		public static FlowLayoutPanel optimizeBarPnl;
-		public ReportViewerForm()
-		{
-			Text = "Report viewer";
-			WindowState = FormWindowState.Maximized;
-			reportViewer = new ReportViewer();
-			reportViewer.Dock = DockStyle.Fill;
-			Controls.Add(reportViewer);
-		}
+    public partial class ReportViewerForm : Form
+    {
+        private readonly ReportViewer reportViewer;
+        public static List<TempCutlengthModel> oTempCutlength;
+        public static List<TempStocklengthModel> oTempStockLengthModel;
+        public static FlowLayoutPanel optimizeBarPnl;
+        public static string reportType;
+        public ReportViewerForm()
+        {
+            Text = "Report viewer";
+            WindowState = FormWindowState.Maximized;
+            reportViewer = new ReportViewer();
+            reportViewer.Dock = DockStyle.Fill;
+            Controls.Add(reportViewer);
+        }
 
-		 protected override void OnLoad(EventArgs e)
-		{
-			SaveControlAsImage(optimizeBarPnl, Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"));
-			Report.Load(reportViewer.LocalReport, oTempCutlength, oTempStockLengthModel);
-			reportViewer.RefreshReport();
-			base.OnLoad(e);
-		}
+        protected override void OnLoad(EventArgs e)
+        {
+            if (reportType == "Label - Parts / Cut Lengths")
+            {
+                Report.LoadCutLengthReport(reportViewer.LocalReport);
+            }
+            else if (reportType == "Inventory List")
+            {
+                Report.LoadInventoryCommListReport(reportViewer.LocalReport, true);
+            }
+            else if (reportType == "Commercial Lengths List")
+            {
+                Report.LoadInventoryCommListReport(reportViewer.LocalReport, false);
+            }
+            else
+            {
+                SaveControlAsImage(optimizeBarPnl, Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"));
+                Report.Load(reportViewer.LocalReport, oTempCutlength, oTempStockLengthModel);
+            }
+            reportViewer.RefreshReport();
+            base.OnLoad(e);
+        }
 
-		private void SaveControlAsImage(Control control, string path)
-		{
-			Bitmap bitmap = new Bitmap(control.Width, control.Height);
-			control.DrawToBitmap(bitmap, control.Bounds);
-			using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
-			{
-				/* using ImageFormat.Png or ImageFormat.Bmp saves the image with better quality */
-				bitmap.Save(fs, ImageFormat.Png);
-			}
-		}
-	}
+        private void SaveControlAsImage(Control control, string path)
+        {
+            Bitmap bitmap = new Bitmap(control.Width, control.Height);
+            control.DrawToBitmap(bitmap, control.Bounds);
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.ReadWrite))
+            {
+                /* using ImageFormat.Png or ImageFormat.Bmp saves the image with better quality */
+                bitmap.Save(fs, ImageFormat.Png);
+            }
+        }
+    }
 }

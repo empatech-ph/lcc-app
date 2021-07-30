@@ -30,7 +30,7 @@ namespace LCC
         private void InitializeComponent()
         {
             this.generateReportBtn = new MaterialSkin.Controls.MaterialButton();
-            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            this.generateReportDropdown = new MaterialSkin.Controls.MaterialComboBox();
             this.SuspendLayout();
             // 
             // generateReportBtn
@@ -53,34 +53,42 @@ namespace LCC
             this.generateReportBtn.UseVisualStyleBackColor = true;
             this.generateReportBtn.Click += new System.EventHandler(this.generateReportBtn_Click);
             // 
-            // materialComboBox1
+            // generateReportDropdown
             // 
-            this.materialComboBox1.AutoResize = false;
-            this.materialComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox1.Depth = 0;
-            this.materialComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox1.DropDownHeight = 174;
-            this.materialComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox1.DropDownWidth = 121;
-            this.materialComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox1.FormattingEnabled = true;
-            this.materialComboBox1.IntegralHeight = false;
-            this.materialComboBox1.ItemHeight = 43;
-            this.materialComboBox1.Location = new System.Drawing.Point(28, 85);
-            this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(336, 49);
-            this.materialComboBox1.StartIndex = 0;
-            this.materialComboBox1.TabIndex = 1;
+            this.generateReportDropdown.AutoResize = false;
+            this.generateReportDropdown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.generateReportDropdown.Depth = 0;
+            this.generateReportDropdown.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.generateReportDropdown.DropDownHeight = 174;
+            this.generateReportDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.generateReportDropdown.DropDownWidth = 121;
+            this.generateReportDropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.generateReportDropdown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.generateReportDropdown.FormattingEnabled = true;
+            this.generateReportDropdown.IntegralHeight = false;
+            this.generateReportDropdown.ItemHeight = 43;
+            this.generateReportDropdown.Items.AddRange(new object[] {
+            "Nesting Layout ",
+            "Nesting Layout (Compressed)",
+            "Material Quantity - Storage and Buyout",
+            "Material Quantity - Remnants & Scraps",
+            "Label - Parts / Cut Lengths",
+            "Inventory List",
+            "Commercial Lengths List"});
+            this.generateReportDropdown.Location = new System.Drawing.Point(28, 85);
+            this.generateReportDropdown.MaxDropDownItems = 4;
+            this.generateReportDropdown.MouseState = MaterialSkin.MouseState.OUT;
+            this.generateReportDropdown.Name = "generateReportDropdown";
+            this.generateReportDropdown.Size = new System.Drawing.Size(336, 49);
+            this.generateReportDropdown.StartIndex = 0;
+            this.generateReportDropdown.TabIndex = 1;
             // 
             // GeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 442);
-            this.Controls.Add(this.materialComboBox1);
+            this.ClientSize = new System.Drawing.Size(549, 168);
+            this.Controls.Add(this.generateReportDropdown);
             this.Controls.Add(this.generateReportBtn);
             this.Name = "GeneralReport";
             this.Sizable = false;
@@ -94,6 +102,6 @@ namespace LCC
 
         private MaterialSkin.Controls.MaterialButton generateBtn;
         private MaterialSkin.Controls.MaterialButton generateReportBtn;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox generateReportDropdown;
     }
 }

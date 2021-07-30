@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using JsonFlatFileDataStore;
+using System.Linq;
 
 namespace LCC
 {
@@ -56,6 +58,81 @@ namespace LCC
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("optimizeComponent", clItems));
             report.DataSources.Add(new ReportDataSource("optimizeComponent", slItems));
+            report.SetParameters(parameters);
+        }
+
+        public static void LoadCutLengthReport(LocalReport report)
+        {
+            var collection = (from p in UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable()
+                              join cl in UtilsLibrary.getUserFile().GetCollection<CutLengthModel>().AsQueryable()
+                              on p.id equals cl.project_id
+                              join m in UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
+                              on p.id equals m.project_id
+                              join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
+                              on m.id equals sl.material_id
+                              select new
+                              {
+                                  p,
+                                  cl,
+                                  sl,
+                                  m
+                              }).ToList();
+            var items = new ReportValue[collection.Count];
+            int count = 0;
+            foreach (var oCutLength in collection)
+            {
+                items[count] = new ReportValue
+                {
+                    CutLengthRPT_PartLength = oCutLength.cl.length.ToString(),
+                    CutLengthRPT_MaterialDesc = oCutLength.m.description.ToString(),
+                    CutLengthRPT_PartCode = oCutLength.cl.part_code.ToString(),
+                    MaterialRPT_ProjectNumber = oCutLength.p.project_reference.ToString(),
+                    NestingRPT_Project = oCutLength.p.project_reference.ToString(),
+                    MaterialRPT_Scope = oCutLength.p.scope.ToString(),
+                    MaterialRPT_Rev = oCutLength.p.rev_no.ToString()
+                };
+                count++;
+            }
+            using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_CutLengthReport.rdlc"), FileMode.Open);
+            report.LoadReportDefinition(fs);
+            report.DataSources.Add(new ReportDataSource("Items", items));
+        }
+        public static void LoadInventoryCommListReport(LocalReport report, bool isInventoryList)
+        {
+            var stockType = isInventoryList ? "ST" : "BO";
+            var collection = (from p in UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable()
+                              join m in UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
+                              on p.id equals m.project_id
+                              join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
+                              on m.id equals sl.material_id
+                              where sl.stock_type == stockType
+                              select new
+                              {
+                                  p,
+                                  sl,
+                                  m
+                              }).ToList();
+            var items = new ReportValue[collection.Count];
+            int count = 0;
+            foreach (var oInventory in collection)
+            {
+                items[count] = new ReportValue
+                {
+                    CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
+                    NestingRPT_Project = oInventory.p.project_reference.ToString(),
+                    MaterialRPT_Qty = oInventory.sl.qty.ToString(),
+                    MaterialRPT_Length = oInventory.sl.length.ToString(),
+                    MaterialRPT_UnitCost = oInventory.sl.cost.ToString(),
+                    MaterialRPT_StockCode = oInventory.sl.stock_code.ToString(),
+                    MaterialRPT_Note = oInventory.sl.note.ToString()
+                };
+                count++;
+            }
+            var title = isInventoryList ? "Inventory List Report" : "Commercial Lengths Report";
+            var parameters = new[] { new ReportParameter("rptTitle", title) };
+            using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_InventoryList.rdlc"), FileMode.Open);
+            report.LoadReportDefinition(fs);
+            report.DataSources.Add(new ReportDataSource("inventoryListReport", items));
             report.SetParameters(parameters);
         }
     }

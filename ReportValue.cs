@@ -32,7 +32,7 @@ namespace LCC
         public string MaterialRPT_TotalCost { get; set; }
         public string MaterialRPT_StockCode { get; set; }
         public string MaterialRPT_Note { get; set; }
-        public string NestingRPT_Project { get; set; } //reuse in material report
+        public string NestingRPT_Project { get; set; } //reuse in material report, cutlength
         public string NestingRPT_Date { get; set; } //reuse in material report
         public string NestingRPT_Note { get; set; }
         public string NestingRPT_Cost{ get; set; }
