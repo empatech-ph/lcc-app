@@ -137,13 +137,12 @@ namespace LCC.Components
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);
             }
         }
-        public void assignReportParameters(List<TempStocklengthModel> oTempStockLengthModel)
+        public void assignReportParameters()
         {
-
-            ReportViewerForm.oTempCutlength = GLOBAL.oTempCutlength;
-            ReportViewerForm.oTempStockLengthModel = oTempStockLengthModel;
-            ReportViewerForm.optimizeBarPnl = this.optimizeBarPanel;
             ReportViewerForm reportViewerForm = new ReportViewerForm();
+            reportViewerForm.oTempCutlength = GLOBAL.oTempCutlength;
+            reportViewerForm.oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized;
+            reportViewerForm.optimizeBarPnl = this.optimizeBarPanel;
             reportViewerForm.Show();
         }
 

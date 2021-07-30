@@ -13,10 +13,10 @@ namespace LCC
     public partial class ReportViewerForm : Form
     {
         private readonly ReportViewer reportViewer;
-        public static List<TempCutlengthModel> oTempCutlength;
-        public static List<TempStocklengthModel> oTempStockLengthModel;
-        public static FlowLayoutPanel optimizeBarPnl;
-        public static string reportType;
+        public List<TempCutlengthModel> oTempCutlength = new List<TempCutlengthModel>();
+        public List<TempStocklengthModel> oTempStockLengthModel = new List<TempStocklengthModel>();
+        public FlowLayoutPanel optimizeBarPnl = new FlowLayoutPanel();
+        public string reportType;
         public ReportViewerForm()
         {
             Text = "Report viewer";

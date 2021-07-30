@@ -190,6 +190,7 @@ namespace LCC
         private void printerBtn_Click(object sender, EventArgs e)
         {
             GeneralReport generateReport = new GeneralReport();
+
             generateReport.ShowDialog();
         }
 
