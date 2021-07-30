@@ -101,6 +101,7 @@ namespace LCC
             this.helpBtn = new MaterialSkin.Controls.MaterialButton();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.optiplusComponent1 = new LCC.Components.OptiplusComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
@@ -113,6 +114,7 @@ namespace LCC
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).BeginInit();
             this.materialTab.SuspendLayout();
             this.tabResult.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
@@ -772,6 +774,7 @@ namespace LCC
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.optiplusComponent1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1041,6 +1044,15 @@ namespace LCC
             this.oBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.oBackgroundWorker_ProgressChanged);
             this.oBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.oBackgroundWorker_RunWorkerCompleted);
             // 
+            // optiplusComponent1
+            // 
+            this.optiplusComponent1.BackColor = System.Drawing.Color.White;
+            this.optiplusComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optiplusComponent1.Location = new System.Drawing.Point(3, 3);
+            this.optiplusComponent1.Name = "optiplusComponent1";
+            this.optiplusComponent1.Size = new System.Drawing.Size(1074, 442);
+            this.optiplusComponent1.TabIndex = 0;
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1089,6 +1101,7 @@ namespace LCC
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).EndInit();
             this.materialTab.ResumeLayout(false);
             this.tabResult.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.fileMenuStrip.ResumeLayout(false);
@@ -1168,5 +1181,6 @@ namespace LCC
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ProgressBar progressOptimize;
         private System.ComponentModel.BackgroundWorker oBackgroundWorker;
+        private Components.OptiplusComponent optiplusComponent1;
     }
 }
