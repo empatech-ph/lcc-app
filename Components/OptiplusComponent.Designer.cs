@@ -50,9 +50,7 @@ namespace LCC.Components
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
-            this.optiplus_materials = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_desc_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_materials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optiplus)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,16 +75,15 @@ namespace LCC.Components
             this.dt_materials.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dt_materials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_materials.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.optiplus_materials,
-            this.optiplus_grade});
-            this.dt_materials.Location = new System.Drawing.Point(3, 149);
+            this.optiplus_desc_grade});
+            this.dt_materials.Location = new System.Drawing.Point(3, 125);
             this.dt_materials.MultiSelect = false;
             this.dt_materials.Name = "dt_materials";
             this.dt_materials.ReadOnly = true;
             this.dt_materials.RowHeadersVisible = false;
             this.dt_materials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_materials.ShowEditingIcon = false;
-            this.dt_materials.Size = new System.Drawing.Size(262, 290);
+            this.dt_materials.Size = new System.Drawing.Size(262, 314);
             this.dt_materials.TabIndex = 14;
             // 
             // dt_optiplus
@@ -335,40 +332,19 @@ namespace LCC.Components
             this.materialLabel3.TabIndex = 18;
             this.materialLabel3.Text = "1st";
             // 
-            // materialLabel7
+            // optiplus_desc_grade
             // 
-            this.materialLabel7.AutoSize = true;
-            this.materialLabel7.Depth = 0;
-            this.materialLabel7.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel7.FontType = MaterialSkin.MaterialSkinManager.fontType.Subtitle2;
-            this.materialLabel7.Location = new System.Drawing.Point(6, 129);
-            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel7.Name = "materialLabel7";
-            this.materialLabel7.Size = new System.Drawing.Size(62, 17);
-            this.materialLabel7.TabIndex = 21;
-            this.materialLabel7.Text = "Materials";
-            // 
-            // optiplus_materials
-            // 
-            this.optiplus_materials.DataPropertyName = "description";
-            this.optiplus_materials.HeaderText = "Description";
-            this.optiplus_materials.Name = "optiplus_materials";
-            this.optiplus_materials.ReadOnly = true;
-            this.optiplus_materials.Width = 135;
-            // 
-            // optiplus_grade
-            // 
-            this.optiplus_grade.DataPropertyName = "grade";
-            this.optiplus_grade.HeaderText = "Grade";
-            this.optiplus_grade.Name = "optiplus_grade";
-            this.optiplus_grade.ReadOnly = true;
+            this.optiplus_desc_grade.DataPropertyName = "cutlength_desc_grade";
+            this.optiplus_desc_grade.HeaderText = "Materials";
+            this.optiplus_desc_grade.Name = "optiplus_desc_grade";
+            this.optiplus_desc_grade.ReadOnly = true;
+            this.optiplus_desc_grade.Width = 235;
             // 
             // OptiplusComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.materialLabel7);
             this.Controls.Add(this.dt_optiplus);
             this.Controls.Add(this.dt_materials);
             this.Controls.Add(this.panel1);
@@ -379,7 +355,6 @@ namespace LCC.Components
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -404,8 +379,6 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_gross_yield;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_storage_part;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_no_of_layouts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_materials;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_grade;
-        private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_desc_grade;
     }
 }

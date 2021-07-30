@@ -27,6 +27,7 @@ namespace LCC.Model
         public double cost { get; set; }
         public string stock_type { get; set; }
         public string note { get; set; }
+        public string optimize_type { get; set; }
     }
 
     public class TempStocklengthModel
@@ -74,6 +75,7 @@ namespace LCC.Model
     {
         public int cutlength_id { get; set; }
         public double sum { get; set; }
+        public string optimize_type { get; set; }
         public List<TempOptimizedModel> data { get; set; }
     }
 }

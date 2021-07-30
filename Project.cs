@@ -118,7 +118,6 @@ namespace LCC
 
                 }
                 this.materialComponent1.initDatagrid();
-                this.optiplusComponent1.initDatagrid();
                 this.initCutLength();
             }
         }
@@ -348,7 +347,6 @@ namespace LCC
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
             this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
             this.materialComponent1.initDatagrid();
-            this.optiplusComponent1.initDatagrid();
             this.initCutLength();
         }
 
@@ -358,6 +356,10 @@ namespace LCC
             this.tabOptiPlus.SelectedIndex = 3;
             this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
             this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
+            this.optiplusComponent1.dt_materials.DataSource = new List<TempCutlengthModel>();
+
+            this.optiplusComponent1.dt_materials.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
+            this.optiplusComponent1.dt_materials.Columns["optiplus_desc_grade"].Visible = true;
 
             this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["project_id"].Visible = false;
@@ -560,6 +562,7 @@ namespace LCC
             this.progressOptimize.Value = 0;
 
             this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.ToArray();
+            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.ToArray();
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {

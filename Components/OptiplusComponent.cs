@@ -31,8 +31,6 @@ namespace LCC.Components
 
             Button _btn_gross_yield = this.table_parameters.Controls[sCurrentSelected] as Button;
             _btn_gross_yield.BackColor = Color.SkyBlue;
-
-            this.initDatagrid();
         }
 
         private void setParameters()
@@ -43,15 +41,6 @@ namespace LCC.Components
                 this.table_parameters.Controls.Add(this.getNewGeneratedButton(oParameter.Key, oParameter.Value), i, 0);
                 i++;
             }
-        }
-        public void initDatagrid()
-        {
-            dynamic oList = this.oFile.GetCollection<MaterialModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
-            BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
-            this.dt_materials.DataSource = oListModel;
-            this.dt_materials.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
-            this.dt_materials.Columns["optiplus_materials"].Visible = true;
-            this.dt_materials.Columns["optiplus_grade"].Visible = true;
         }
         private Button getNewGeneratedButton(string sKey, string sText)
         {
