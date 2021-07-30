@@ -65,7 +65,6 @@ namespace LCC.Components
             {
                 var oCutLengthCollection = this.oFile.GetCollection<CutLengthModel>();
                 oCutLengthCollection.UpdateOne(e => e.id == oCutLength.id, oCutLength);
-
             }
 
             oBackgroundWorker.ReportProgress(80);
@@ -85,7 +84,6 @@ namespace LCC.Components
                     continue;
                 }
             }
-
             oBackgroundWorker.ReportProgress(90);
         }
 
@@ -138,6 +136,15 @@ namespace LCC.Components
                 oOptimizeBar.initializeBar(oTempStockLength);
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);
             }
+        }
+        public void assignReportParameters(List<TempStocklengthModel> oTempStockLengthModel)
+        {
+
+            ReportViewerForm.oTempCutlength = GLOBAL.oTempCutlength;
+            ReportViewerForm.oTempStockLengthModel = oTempStockLengthModel;
+            ReportViewerForm.optimizeBarPnl = this.optimizeBarPanel;
+            ReportViewerForm reportViewerForm = new ReportViewerForm();
+            reportViewerForm.Show();
         }
 
         private void cutLengthTable_CellClick(object sender, DataGridViewCellEventArgs e)

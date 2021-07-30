@@ -31,7 +31,10 @@ namespace LCC
 
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
-
+            var reportTypeString = generateReportDropdown.SelectedItem.ToString();
+            ReportViewerForm.reportType = reportTypeString;
+            ReportViewerForm reportViewerForm = new ReportViewerForm();
+            reportViewerForm.Show();
         }
     }
 }
