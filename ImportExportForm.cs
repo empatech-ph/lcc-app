@@ -15,7 +15,9 @@ using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.IO;
 using ChoETL;
+using CsvHelper;
 using ExcelDataReader;
+using System.Globalization;
 
 namespace LCC
 {
@@ -31,12 +33,6 @@ namespace LCC
 
         private void ImportForm_Load(object sender, EventArgs e)
         {
-            //importExportBtn.Text = Project.importOrExport;
-            //this.Text = Project.importOrExport;
-            //importLbl.Text = Project.importOrExport + " entity:";
-            //browseBtn.Enabled = Project.importOrExport == "Import";
-            //browsePanel.Enabled = Project.importOrExport == "Import";
-            //importExportBtn.Enabled = Project.importOrExport == "Export";
             importComboBox.SelectedItem = "Project";
         }
 
@@ -238,6 +234,47 @@ namespace LCC
         private void cancelImportBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void sampleTemplateLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            saveFileDialog.Tag = "";
+            saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+            saveFileDialog.Title = "Save File";
+            saveFileDialog.ShowDialog();
+        }
+
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            List<string> fileHeaders = new List<string>();
+            string[] projectHeaders = new string[4] { "project_reference", "project_name", "rev", "scope" };
+            string[] clHeaders = new string[8] { "part_code", "description", "grade", "quantity", "uncut_quantity",
+                "length", "order_number", "note" };
+            string[] mtrlHeaders = new string[8] { "qty", "length", "stocky_type", "cost", "stock_code",
+                "note", "visibility", "editable" };
+
+            var importTemplate = importComboBox.SelectedItem.ToString();
+            if (importTemplate == "Project")
+            {
+                fileHeaders.AddRange(projectHeaders);
+            }
+            else if (importTemplate == "Cut Lengths")
+            {
+                fileHeaders.AddRange(clHeaders);
+            }
+            else
+            {
+                fileHeaders.AddRange(mtrlHeaders);
+            }
+            using (var writer = new StreamWriter(saveFileDialog.FileName))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                // Write out header
+                fileHeaders.ForEach(delegate (String name)
+                {
+                    csv.WriteField(name);
+                });
+            }
         }
     }
 }

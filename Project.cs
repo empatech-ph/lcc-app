@@ -84,13 +84,9 @@ namespace LCC
         public void Project_Load(object sender, EventArgs e)
         {
             //tool tips
-            projectToolTip.SetToolTip(projectBtn, "Projects");
             projectToolTip.SetToolTip(addProject, "Create New Project");
-            projectToolTip.SetToolTip(materialBtn, "Materials");
-            projectToolTip.SetToolTip(assemblyBtn, "Assemblies");
             projectToolTip.SetToolTip(storageBtn, "Audit Logs");
             projectToolTip.SetToolTip(printerBtn, "Print Reports");
-            projectToolTip.SetToolTip(filterBtn, "Search and Filter");
             projectToolTip.SetToolTip(importBtn, "Import File");
             projectToolTip.SetToolTip(exportBtn, "Export File");
             projectToolTip.SetToolTip(optimizeBtn, "Optimize");
@@ -141,9 +137,7 @@ namespace LCC
                 var menuItem = btn.Text;
                 saveFileDialog.Tag = menuItem;
             }
-            //importOrExport = "Export";
-            //ImportExportForm importExportForm = new ImportExportForm();
-            //importExportForm.ShowDialog();
+
             saveFileDialog.Tag = "";
             saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
             saveFileDialog.Title = "Save File";

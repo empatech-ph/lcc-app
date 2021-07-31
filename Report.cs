@@ -70,6 +70,7 @@ namespace LCC
                               on p.id equals m.project_id
                               join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
                               on m.id equals sl.material_id
+                              where p.id == GLOBAL.iSelectedProjectId
                               select new
                               {
                                   p,
@@ -105,7 +106,7 @@ namespace LCC
                               on p.id equals m.project_id
                               join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
                               on m.id equals sl.material_id
-                              where sl.stock_type == stockType
+                              where sl.stock_type == stockType && p.id == GLOBAL.iSelectedProjectId
                               select new
                               {
                                   p,
