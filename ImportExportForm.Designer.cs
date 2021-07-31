@@ -36,6 +36,8 @@ namespace LCC
             this.cancelImportBtn = new MaterialSkin.Controls.MaterialButton();
             this.importTxt = new MaterialSkin.Controls.MaterialTextBox();
             this.browseBtn = new MaterialSkin.Controls.MaterialButton();
+            this.sampleTemplateLink = new System.Windows.Forms.LinkLabel();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // importComboBox
@@ -152,11 +154,27 @@ namespace LCC
             this.browseBtn.UseVisualStyleBackColor = true;
             this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
+            // sampleTemplateLink
+            // 
+            this.sampleTemplateLink.AutoSize = true;
+            this.sampleTemplateLink.Location = new System.Drawing.Point(45, 241);
+            this.sampleTemplateLink.Name = "sampleTemplateLink";
+            this.sampleTemplateLink.Size = new System.Drawing.Size(87, 15);
+            this.sampleTemplateLink.TabIndex = 9;
+            this.sampleTemplateLink.TabStop = true;
+            this.sampleTemplateLink.Text = "Sample Format";
+            this.sampleTemplateLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.sampleTemplateLink_LinkClicked);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
+            // 
             // ImportExportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(478, 276);
+            this.Controls.Add(this.sampleTemplateLink);
             this.Controls.Add(this.importTxt);
             this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.cancelImportBtn);
@@ -183,5 +201,7 @@ namespace LCC
         private MaterialSkin.Controls.MaterialButton cancelImportBtn;
         private MaterialSkin.Controls.MaterialTextBox importTxt;
         private MaterialSkin.Controls.MaterialButton browseBtn;
+        private System.Windows.Forms.LinkLabel sampleTemplateLink;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
