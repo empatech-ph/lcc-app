@@ -95,7 +95,6 @@ namespace LCC
             this.helpBtn = new MaterialSkin.Controls.MaterialButton();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.tabOptiPlus.SuspendLayout();
@@ -942,7 +941,6 @@ namespace LCC
             this.Controls.Add(this.tabOptiPlus);
             this.Controls.Add(this.panelOptimize);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.progressOptimize);
             this.DrawerShowIconsWhenHidden = true;
             this.MaximizeBox = false;
