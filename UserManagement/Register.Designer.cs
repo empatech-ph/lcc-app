@@ -189,6 +189,7 @@ namespace LCC.UserManagement
             this.Name = "Register";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Register_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

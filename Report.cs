@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using JsonFlatFileDataStore;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace LCC
 {
@@ -54,7 +55,7 @@ namespace LCC
             //var image = Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.jpeg"));
             var parameters = new[] { new ReportParameter("optBarPanelImage", Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"), true) };
             report.EnableExternalImages = true;
-            using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_ResultSummary.rdlc"), FileMode.Open);
+            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_ResultSummary.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("optimizeComponent", clItems));
             report.DataSources.Add(new ReportDataSource("optimizeComponent", slItems));
@@ -94,7 +95,7 @@ namespace LCC
                 };
                 count++;
             }
-            using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_CutLengthReport.rdlc"), FileMode.Open);
+            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_CutLengthReport.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("Items", items));
         }
@@ -131,7 +132,7 @@ namespace LCC
             }
             var title = isInventoryList ? "Inventory List Report" : "Commercial Lengths Report";
             var parameters = new[] { new ReportParameter("rptTitle", title) };
-            using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_InventoryList.rdlc"), FileMode.Open);
+            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_InventoryList.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("inventoryListReport", items));
             report.SetParameters(parameters);
@@ -166,94 +167,102 @@ namespace LCC
 
         public static void filterMaterialData(IEnumerable<dynamic> materialData, bool isRemnantScrap, LocalReport report)
         {
-            if (!isRemnantScrap)
+            try
             {
-                var items = new ReportValue[materialData.ToList().Count];
-                var items2 = new ReportValue[materialData.ToList().Count];
-                int count = 0;
-                foreach (var oInventory in materialData.Where(x => x.sl.stock_type == "ST").ToList())
+                if (!isRemnantScrap)
                 {
-                    items[count] = new ReportValue
+                    var items = new ReportValue[materialData.ToList().Count];
+                    var items2 = new ReportValue[materialData.ToList().Count];
+                    int count = 0;
+                    foreach (var oInventory in materialData.Where(x => x.sl.stock_type == "ST").ToList())
                     {
-                        CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
-                        MaterialRPT_Qty = oInventory.sl.qty.ToString(),
-                        MaterialRPT_Length = oInventory.sl.length.ToString(),
-                        MaterialRPT_UnitCost = oInventory.sl.cost.ToString(),
-                        MaterialRPT_TotalCost = oInventory.sl.cost.ToString()
-                    };
-                    count++;
-                }
-                count = 0;
+                        items[count] = new ReportValue
+                        {
+                            CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
+                            MaterialRPT_Qty = oInventory.sl.qty.ToString(),
+                            MaterialRPT_Length = oInventory.sl.length.ToString(),
+                            MaterialRPT_UnitCost = oInventory.sl.cost.ToString(),
+                            MaterialRPT_TotalCost = oInventory.sl.cost.ToString()
+                        };
+                        count++;
+                    }
+                    count = 0;
 
-                foreach (var oInventory in materialData.Where(x => x.sl.stock_type == "BO").ToList())
-                {
-                    items2[count] = new ReportValue
+                    foreach (var oInventory in materialData.Where(x => x.sl.stock_type == "BO").ToList())
                     {
-                        CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
-                        MaterialRPT_QtyS = oInventory.sl.qty.ToString(),
-                        MaterialRPT_LengthS = oInventory.sl.length.ToString(),
-                        MaterialRPT_StockCodeS = oInventory.sl.stock_code.ToString(),
-                        MaterialRPT_NoteS = oInventory.sl.note.ToString()
-                    };
-                    count++;
-                }
+                        items2[count] = new ReportValue
+                        {
+                            CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
+                            MaterialRPT_QtyS = oInventory.sl.qty.ToString(),
+                            MaterialRPT_LengthS = oInventory.sl.length.ToString(),
+                            MaterialRPT_StockCodeS = oInventory.sl.stock_code.ToString(),
+                            MaterialRPT_NoteS = oInventory.sl.note.ToString()
+                        };
+                        count++;
+                    }
 
-                var parameters = new[] { new ReportParameter("projRef", materialData.Select(x => x.p.project_reference.ToString()).FirstOrDefault())
+                    var parameters = new[] { new ReportParameter("projRef", materialData.Select(x => x.p.project_reference.ToString()).FirstOrDefault())
                     ,new ReportParameter("projName", materialData.Select(x => x.p.project_name.ToString()).FirstOrDefault())
                     ,new ReportParameter("scope", materialData.Select(x => x.p.scope.ToString()).FirstOrDefault())
                     ,new ReportParameter("rev_no", materialData.Select(x => x.p.rev_no.ToString()).FirstOrDefault())
                     ,new ReportParameter("CurDate", DateTime.Now.ToString())
                 };
-                using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_MaterialReport_STBO.rdlc"), FileMode.Open);
-                report.LoadReportDefinition(fs);
-                report.DataSources.Add(new ReportDataSource("Items", items));
-                report.DataSources.Add(new ReportDataSource("Items", items2));
-                report.SetParameters(parameters);
-            }
-            else
-            {
-                var remnants = new ReportValue[materialData.ToList().Count];
-                var scraps = new ReportValue[materialData.ToList().Count];
-                int count = 0;
-
-                foreach (var rem in materialData.Where(x => x.sl.cut_stock_type == "remnant").ToList())
-                {
-                    remnants[count] = new ReportValue
-                    {
-
-                        MaterialRPT_Material = rem.m.description.ToString(),
-                        MaterialRPT_Grade = rem.m.grade.ToString(),
-                        MaterialRPT_Qty = rem.sl.qty.ToString(),
-                        MaterialRPT_Length = rem.sl.length.ToString()
-                    };
-                    count++;
+                    using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_MaterialReport_STBO.rdlc", FileMode.Open);
+                    report.LoadReportDefinition(fs);
+                    report.DataSources.Add(new ReportDataSource("Items", items));
+                    report.DataSources.Add(new ReportDataSource("Items", items2));
+                    report.SetParameters(parameters);
                 }
-
-                count = 0;
-
-                foreach (var scrap in materialData.Where(x => x.sl.cut_stock_type == "scrap").ToList())
+                else
                 {
-                    scraps[count] = new ReportValue
+                    var remnants = new ReportValue[materialData.ToList().Count];
+                    var scraps = new ReportValue[materialData.ToList().Count];
+                    int count = 0;
+
+                    foreach (var rem in materialData.Where(x => x.sl.cut_stock_type == "remnant").ToList())
                     {
-                        MaterialRPT_MaterialS = scrap.m.description.ToString(),
-                        MaterialRPT_GradeS = scrap.m.grade.ToString(),
-                        MaterialRPT_QtyS = scrap.sl.qty.ToString(),
-                        MaterialRPT_LengthS = scrap.sl.length.ToString()
-                    };
-                    count++;
-                }
-                var parameters = new[] { new ReportParameter("projRef", materialData.Select(x => x.p.project_reference.ToString()).FirstOrDefault())
+                        remnants[count] = new ReportValue
+                        {
+
+                            MaterialRPT_Material = rem.m.description.ToString(),
+                            MaterialRPT_Grade = rem.m.grade.ToString(),
+                            MaterialRPT_Qty = rem.sl.qty.ToString(),
+                            MaterialRPT_Length = rem.sl.length.ToString()
+                        };
+                        count++;
+                    }
+
+                    count = 0;
+
+                    foreach (var scrap in materialData.Where(x => x.sl.cut_stock_type == "scrap").ToList())
+                    {
+                        scraps[count] = new ReportValue
+                        {
+                            MaterialRPT_MaterialS = scrap.m.description.ToString(),
+                            MaterialRPT_GradeS = scrap.m.grade.ToString(),
+                            MaterialRPT_QtyS = scrap.sl.qty.ToString(),
+                            MaterialRPT_LengthS = scrap.sl.length.ToString()
+                        };
+                        count++;
+                    }
+                    var parameters = new[] { new ReportParameter("projRef", materialData.Select(x => x.p.project_reference.ToString()).FirstOrDefault())
                     ,new ReportParameter("projName", materialData.Select(x => x.p.project_name.ToString()).FirstOrDefault())
                     ,new ReportParameter("scope", materialData.Select(x => x.p.scope.ToString()).FirstOrDefault())
                     ,new ReportParameter("rev_no", materialData.Select(x => x.p.rev_no.ToString()).FirstOrDefault())
                     ,new ReportParameter("curDate", DateTime.Now.ToString())
                 };
-                using var fs = new FileStream(Path.Combine(Path.GetFullPath(@"..\..\"), "RPT_MaterialReport_RS.rdlc"), FileMode.Open);
-                report.LoadReportDefinition(fs);
-                report.DataSources.Add(new ReportDataSource("Items", remnants));
-                report.DataSources.Add(new ReportDataSource("Items", scraps));
-                report.SetParameters(parameters);
+                    using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_MaterialReport_RS.rdlc", FileMode.Open);
+                    report.LoadReportDefinition(fs);
+                    report.SetParameters(parameters);
+                    report.DataSources.Add(new ReportDataSource("Items", remnants));
+                    report.DataSources.Add(new ReportDataSource("Items", scraps));
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Report not available.");
             }
         }
+
     }
 }

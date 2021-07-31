@@ -69,17 +69,17 @@ namespace LCC
         }
 
         bool reentrancyGuard = false;
-        void SetProperty(string propertyName, object propertyValue)
-        {
-            if (reentrancyGuard)
-            {
-                return;
-            }
-            SetPropertyAction action = new SetPropertyAction(proj, propertyName, propertyValue);
-            actionManager.RecordAction(action);
-            UpdateUndoRedoButtons();
-            this.initProject();
-        }
+        //void SetProperty(string propertyName, object propertyValue)
+        //{
+        //    if (reentrancyGuard)
+        //    {
+        //        return;
+        //    }
+        //    SetPropertyAction action = new SetPropertyAction(proj, propertyName, propertyValue);
+        //    actionManager.RecordAction(action);
+        //    UpdateUndoRedoButtons();
+        //    this.initProject();
+        //}
 
         public void Project_Load(object sender, EventArgs e)
         {
@@ -183,7 +183,7 @@ namespace LCC
                 scope = row.Cells["scope"].Value.ToString()
             });
 
-            SetProperty("project_name", row.Cells["project_name"].Value.ToString());
+            //SetProperty("project_name", row.Cells["project_name"].Value.ToString());
         }
 
         private void printerBtn_Click(object sender, EventArgs e)
@@ -530,7 +530,7 @@ namespace LCC
             {
                 var row = projectTable.Rows[e.RowIndex];
                 var changedValue = (row.Cells[e.ColumnIndex].Value ?? "").ToString();
-                SetProperty("project_name", changedValue);
+                //SetProperty("project_name", changedValue);
             }
         }
 

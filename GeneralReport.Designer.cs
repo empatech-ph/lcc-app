@@ -90,8 +90,12 @@ namespace LCC
             this.ClientSize = new System.Drawing.Size(549, 168);
             this.Controls.Add(this.generateReportDropdown);
             this.Controls.Add(this.generateReportBtn);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(549, 168);
+            this.MinimumSize = new System.Drawing.Size(549, 168);
             this.Name = "GeneralReport";
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Reports";
             this.Load += new System.EventHandler(this.GeneralReport_Load);
             this.ResumeLayout(false);

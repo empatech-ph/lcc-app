@@ -93,5 +93,10 @@ namespace LCC
                 this.proceed();
             }
         }
+
+        private void BootEnterLicenseKey_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

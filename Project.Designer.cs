@@ -139,7 +139,7 @@ namespace LCC
             this.panel2.Controls.Add(this.redoBtn);
             this.panel2.Controls.Add(this.undoBtn);
             this.panel2.Controls.Add(this.importBtn);
-            this.panel2.Location = new System.Drawing.Point(14, 65);
+            this.panel2.Location = new System.Drawing.Point(4, 65);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(324, 56);
             this.panel2.TabIndex = 5;
@@ -247,7 +247,7 @@ namespace LCC
             // panelOptimize
             // 
             this.panelOptimize.Controls.Add(this.optimizeBtn);
-            this.panelOptimize.Location = new System.Drawing.Point(348, 65);
+            this.panelOptimize.Location = new System.Drawing.Point(338, 65);
             this.panelOptimize.Name = "panelOptimize";
             this.panelOptimize.Size = new System.Drawing.Size(64, 56);
             this.panelOptimize.TabIndex = 6;
@@ -324,7 +324,7 @@ namespace LCC
             this.fileBtn.DrawShadows = true;
             this.fileBtn.HighEmphasis = true;
             this.fileBtn.Icon = null;
-            this.fileBtn.Location = new System.Drawing.Point(135, 24);
+            this.fileBtn.Location = new System.Drawing.Point(157, 25);
             this.fileBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.fileBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.fileBtn.Name = "fileBtn";
@@ -858,7 +858,7 @@ namespace LCC
             this.logoutBtn.DrawShadows = true;
             this.logoutBtn.HighEmphasis = true;
             this.logoutBtn.Icon = null;
-            this.logoutBtn.Location = new System.Drawing.Point(352, 24);
+            this.logoutBtn.Location = new System.Drawing.Point(374, 25);
             this.logoutBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.logoutBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.logoutBtn.Name = "logoutBtn";
@@ -879,7 +879,7 @@ namespace LCC
             this.optionsBtn.DrawShadows = true;
             this.optionsBtn.HighEmphasis = true;
             this.optionsBtn.Icon = null;
-            this.optionsBtn.Location = new System.Drawing.Point(203, 24);
+            this.optionsBtn.Location = new System.Drawing.Point(225, 25);
             this.optionsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.optionsBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.optionsBtn.Name = "optionsBtn";
@@ -900,7 +900,7 @@ namespace LCC
             this.helpBtn.DrawShadows = true;
             this.helpBtn.HighEmphasis = true;
             this.helpBtn.Icon = null;
-            this.helpBtn.Location = new System.Drawing.Point(277, 24);
+            this.helpBtn.Location = new System.Drawing.Point(299, 25);
             this.helpBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.helpBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.helpBtn.Name = "helpBtn";
@@ -952,7 +952,7 @@ namespace LCC
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LenearCut1D";
+            this.Text = "LeanearCut1D";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);

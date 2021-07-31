@@ -142,6 +142,7 @@ namespace LCC
             this.Name = "BootEnterLicenseKey";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome to LeanearCut1D";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BootEnterLicenseKey_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

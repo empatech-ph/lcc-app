@@ -98,5 +98,10 @@ namespace LCC.UserManagement
             }
         }
 
+        private void Register_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            (new Login()).Show();
+        }
     }
 }
