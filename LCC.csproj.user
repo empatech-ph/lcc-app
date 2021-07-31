@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Admin\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Admin\AssignRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -21,6 +24,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\OptimizeComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Components\OptiplusComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Components\ReportViewerForm.cs">

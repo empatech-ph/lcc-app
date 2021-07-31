@@ -83,9 +83,29 @@ namespace LCC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap checked_user_male_480px {
+            get {
+                object obj = ResourceManager.GetObject("checked_user_male_480px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_bin_480px {
             get {
                 object obj = ResourceManager.GetObject("delete_bin_480px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap denied_480px {
+            get {
+                object obj = ResourceManager.GetObject("denied_480px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +266,16 @@ namespace LCC.Properties {
         internal static System.Drawing.Bitmap redo_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("redo-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset_480px {
+            get {
+                object obj = ResourceManager.GetObject("reset_480px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

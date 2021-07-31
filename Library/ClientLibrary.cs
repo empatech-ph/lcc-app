@@ -55,7 +55,7 @@ namespace LCC.Library
                 var oResponse = await this.oClient.PostAsync(this.sBaseUrl + sUrl, sParameters);
                 return JObject.Parse(await oResponse.Content.ReadAsStringAsync());
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 var oDictionary = new Dictionary<dynamic, dynamic> {
                     { "success", false },

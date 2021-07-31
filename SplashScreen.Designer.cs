@@ -61,9 +61,9 @@ namespace LCC
             // 
             // l_currentLoggedUser
             // 
-            this.l_currentLoggedUser.Location = new System.Drawing.Point(344, 246);
+            this.l_currentLoggedUser.Location = new System.Drawing.Point(220, 246);
             this.l_currentLoggedUser.Name = "l_currentLoggedUser";
-            this.l_currentLoggedUser.Size = new System.Drawing.Size(137, 15);
+            this.l_currentLoggedUser.Size = new System.Drawing.Size(261, 15);
             this.l_currentLoggedUser.TabIndex = 4;
             this.l_currentLoggedUser.Text = "None";
             this.l_currentLoggedUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -102,11 +102,11 @@ namespace LCC
             this.l_AppName.AutoSize = true;
             this.l_AppName.BackColor = System.Drawing.Color.White;
             this.l_AppName.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.l_AppName.Location = new System.Drawing.Point(172, 142);
+            this.l_AppName.Location = new System.Drawing.Point(164, 139);
             this.l_AppName.Name = "l_AppName";
-            this.l_AppName.Size = new System.Drawing.Size(141, 29);
+            this.l_AppName.Size = new System.Drawing.Size(159, 29);
             this.l_AppName.TabIndex = 0;
-            this.l_AppName.Text = "LinearCut 1D";
+            this.l_AppName.Text = "LeanearCut 1D";
             // 
             // pictureBox1
             // 

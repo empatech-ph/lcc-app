@@ -137,7 +137,7 @@ namespace LCC.Modals
             this.length.HeaderText = "Length (mm)";
             this.length.Name = "length";
             this.length.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.length.Width = 150;
+            this.length.Width = 120;
             // 
             // stock_type
             // 

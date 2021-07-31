@@ -13,8 +13,7 @@ namespace LCC.Library
     {
         private static DataStore oFile = UtilsLibrary.getUserFile();
 
-        private static List<TempOptimizedModel> oRestOptimized1 = new List<TempOptimizedModel>();
-        private static List<TempOptimizedModel> oRestOptimized2 = new List<TempOptimizedModel>();
+        private static List<TempOptimizedModel> oTempOptimized = new List<TempOptimizedModel>();
 
         public OptimizeLibrary()
         {
@@ -95,42 +94,34 @@ namespace LCC.Library
         {
             GLOBAL.oTempOptimized.Clear();
             GLOBAL.oTempCutlength.Clear();
-            OptimizeLibrary.oRestOptimized1.Clear();
-            OptimizeLibrary.oRestOptimized2.Clear();
+            OptimizeLibrary.oTempOptimized.Clear();
 
-            OptimizeLibrary.generateTempOptimize(ref OptimizeLibrary.oRestOptimized1, "rest1");
-            OptimizeLibrary.generateTempOptimize(ref OptimizeLibrary.oRestOptimized2, "rest2");
+            OptimizeLibrary.generateTempOptimize("rest1");
+            OptimizeLibrary.generateTempOptimize("rest2");
 
             oBackgroundWorker.ReportProgress(25);
 
-            List<TempFilteredOptimized> oFilteredOptimized1 = OptimizeLibrary.oRestOptimized1.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
+            List<TempFilteredOptimized> oFilteredOptimized = OptimizeLibrary.oTempOptimized.GroupBy(e => new { e.cutlength_id, e.optimize_type }).Select(e => new TempFilteredOptimized
             {
                 cutlength_id = e.First().cutlength_id,
+                optimize_type = e.First().optimize_type,
                 sum = e.Sum(e => e.total_rest),
                 data = e.ToList()
-            }).ToList();
-
-            List<TempFilteredOptimized> oFilteredOptimized2 = OptimizeLibrary.oRestOptimized2.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
-            {
-                cutlength_id = e.First().cutlength_id,
-                sum = e.Sum(e => e.total_rest),
-                data = e.ToList()
-            }).ToList();
+            }).OrderBy(e => e.sum).ToList();
 
             oBackgroundWorker.ReportProgress(35);
 
-            for (int i = 0; i < oFilteredOptimized1.Count; i++)
+            for (int i = 0; i < oFilteredOptimized.Count / 2; i++)
             {
-                int iCutLengthNo = oFilteredOptimized1[i].cutlength_id;
-                TempFilteredOptimized oFiltered1 = oFilteredOptimized1.Find(e => e.cutlength_id == iCutLengthNo);
-                TempFilteredOptimized oFiltered2 = oFilteredOptimized2.Find(e => e.cutlength_id == iCutLengthNo);
-                GLOBAL.oTempOptimized.AddRange((oFiltered1.sum >= oFiltered2.sum) ? oFiltered2.data : oFiltered1.data);
+                int iCutLengthNo = oFilteredOptimized[i].cutlength_id;
+                TempFilteredOptimized oFiltered = oFilteredOptimized.First(e => e.cutlength_id == iCutLengthNo);
+                GLOBAL.oTempOptimized.AddRange(oFiltered.data);
             }
 
             oBackgroundWorker.ReportProgress(45);
         }
 
-        private static void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, string sType)
+        private static void generateTempOptimize(string sType)
         {
             GLOBAL.oTempCutlength.Clear();
             GLOBAL.oTempCutlength = OptimizeLibrary.getCutLength().Select(e => new TempCutlengthModel
@@ -204,7 +195,7 @@ namespace LCC.Library
                             dCost += oStockItem.cost;
                             oCutLengthItem.cost += dCost;
                             oCutLengthItem.total_stock_length += oStockItem.length;
-                            oTempOptimize.Add(new TempOptimizedModel()
+                            OptimizeLibrary.oTempOptimized.Add(new TempOptimizedModel()
                             {
                                 id = iIdTempOptimized++,
                                 stock_id = oStockItem.id,
@@ -226,7 +217,8 @@ namespace LCC.Library
                                 kerf = oMaterialModel.kerf,
                                 stock_type = oStockItem.stock_type,
                                 cost = dCost,
-                                note = oStockItem.note
+                                note = oStockItem.note,
+                                optimize_type = sType,
                             });
                             if (oCutLengthItem.uncut_quantity <= 0 || (iQtyCut == iStockQty && iStockQty != -1)) break;
                             if (iUsedStockQty >= iStockQty && iStockQty != -1) break;

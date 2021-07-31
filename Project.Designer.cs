@@ -73,6 +73,7 @@ namespace LCC
             this.tabResult = new System.Windows.Forms.TabPage();
             this.optimizeComponent1 = new LCC.Components.OptimizeComponent();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.optiplusComponent1 = new LCC.Components.OptiplusComponent();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -105,6 +106,7 @@ namespace LCC
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).BeginInit();
             this.materialTab.SuspendLayout();
             this.tabResult.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
@@ -431,6 +433,7 @@ namespace LCC
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.projectTable.RowHeadersVisible = false;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
@@ -626,6 +629,7 @@ namespace LCC
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 36);
             this.cutLengthsTable.Name = "cutLengthsTable";
+            this.cutLengthsTable.RowHeadersVisible = false;
             this.cutLengthsTable.RowTemplate.Height = 25;
             this.cutLengthsTable.Size = new System.Drawing.Size(1072, 407);
             this.cutLengthsTable.TabIndex = 0;
@@ -683,6 +687,7 @@ namespace LCC
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.optiplusComponent1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -690,6 +695,15 @@ namespace LCC
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Opti Plus";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // optiplusComponent1
+            // 
+            this.optiplusComponent1.BackColor = System.Drawing.Color.White;
+            this.optiplusComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optiplusComponent1.Location = new System.Drawing.Point(3, 3);
+            this.optiplusComponent1.Name = "optiplusComponent1";
+            this.optiplusComponent1.Size = new System.Drawing.Size(1074, 442);
+            this.optiplusComponent1.TabIndex = 0;
             // 
             // materialLabel3
             // 
@@ -709,6 +723,7 @@ namespace LCC
             this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchString.Depth = 0;
             this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchString.Hint = "Search";
             this.searchString.Location = new System.Drawing.Point(890, 127);
             this.searchString.MaxLength = 50;
             this.searchString.MouseState = MaterialSkin.MouseState.OUT;
@@ -854,6 +869,7 @@ namespace LCC
             this.logoutBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.logoutBtn.UseAccentColor = false;
             this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // optionsBtn
             // 
@@ -937,6 +953,7 @@ namespace LCC
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LenearCut1D";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);
             this.panel2.ResumeLayout(false);
@@ -955,6 +972,7 @@ namespace LCC
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).EndInit();
             this.materialTab.ResumeLayout(false);
             this.tabResult.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.fileMenuStrip.ResumeLayout(false);
@@ -1026,5 +1044,6 @@ namespace LCC
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.ProgressBar progressOptimize;
         private System.ComponentModel.BackgroundWorker oBackgroundWorker;
+        private Components.OptiplusComponent optiplusComponent1;
     }
 }

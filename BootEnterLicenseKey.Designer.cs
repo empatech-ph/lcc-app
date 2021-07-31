@@ -63,6 +63,7 @@ namespace LCC
             this.tb_productCode.Size = new System.Drawing.Size(383, 50);
             this.tb_productCode.TabIndex = 1;
             this.tb_productCode.Text = "";
+            this.tb_productCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_productCode_KeyDown);
             // 
             // tb_licenseKey
             // 
@@ -78,6 +79,7 @@ namespace LCC
             this.tb_licenseKey.Size = new System.Drawing.Size(383, 50);
             this.tb_licenseKey.TabIndex = 2;
             this.tb_licenseKey.Text = "";
+            this.tb_licenseKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_productCode_KeyDown);
             // 
             // materialLabel2
             // 
@@ -139,7 +141,7 @@ namespace LCC
             this.MaximumSize = new System.Drawing.Size(563, 450);
             this.Name = "BootEnterLicenseKey";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Welcome to LenearCut1D";
+            this.Text = "Welcome to LeanearCut1D";
             this.ResumeLayout(false);
             this.PerformLayout();
 
