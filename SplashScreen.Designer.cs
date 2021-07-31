@@ -61,9 +61,9 @@ namespace LCC
             // 
             // l_currentLoggedUser
             // 
-            this.l_currentLoggedUser.Location = new System.Drawing.Point(344, 246);
+            this.l_currentLoggedUser.Location = new System.Drawing.Point(220, 246);
             this.l_currentLoggedUser.Name = "l_currentLoggedUser";
-            this.l_currentLoggedUser.Size = new System.Drawing.Size(137, 15);
+            this.l_currentLoggedUser.Size = new System.Drawing.Size(261, 15);
             this.l_currentLoggedUser.TabIndex = 4;
             this.l_currentLoggedUser.Text = "None";
             this.l_currentLoggedUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

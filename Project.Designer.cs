@@ -433,10 +433,11 @@ namespace LCC
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.projectTable.RowHeadersVisible = false;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
-            this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellValueChanged);
+            this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTblView_CellClick);
             this.projectTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellEndEdit);
             this.projectTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellValueChanged);
             this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
@@ -628,6 +629,7 @@ namespace LCC
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 36);
             this.cutLengthsTable.Name = "cutLengthsTable";
+            this.cutLengthsTable.RowHeadersVisible = false;
             this.cutLengthsTable.RowTemplate.Height = 25;
             this.cutLengthsTable.Size = new System.Drawing.Size(1072, 407);
             this.cutLengthsTable.TabIndex = 0;
@@ -721,6 +723,7 @@ namespace LCC
             this.searchString.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.searchString.Depth = 0;
             this.searchString.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.searchString.Hint = "Search";
             this.searchString.Location = new System.Drawing.Point(890, 127);
             this.searchString.MaxLength = 50;
             this.searchString.MouseState = MaterialSkin.MouseState.OUT;
@@ -836,14 +839,14 @@ namespace LCC
             // exportProjects
             // 
             this.exportProjects.Name = "exportProjects";
-            this.exportProjects.Size = new System.Drawing.Size(180, 22);
+            this.exportProjects.Size = new System.Drawing.Size(116, 22);
             this.exportProjects.Text = "Projects";
             this.exportProjects.Click += new System.EventHandler(this.exportProjects_Click);
             // 
             // exportReports
             // 
             this.exportReports.Name = "exportReports";
-            this.exportReports.Size = new System.Drawing.Size(180, 22);
+            this.exportReports.Size = new System.Drawing.Size(116, 22);
             this.exportReports.Text = "Reports";
             this.exportReports.Click += new System.EventHandler(this.exportReports_Click);
             // 
@@ -949,9 +952,8 @@ namespace LCC
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LinearCut1D";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Text = "LenearCut1D";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);
             this.panel2.ResumeLayout(false);

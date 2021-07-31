@@ -120,6 +120,32 @@ namespace LCC
             this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
         }
 
+        private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                var row = projectTable.Rows[e.RowIndex];
+                GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
+                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString();
+
+                if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
+                {
+                    NewOrEditProject editProject = new NewOrEditProject();
+                    editProject.oProject = this;
+                    editProject.projNameTxt.Text = row.Cells["project_name"].Value.ToString();
+                    editProject.projNameReferenceTxt.Text = row.Cells["project_reference"].Value.ToString();
+                    editProject.scopeOfWorksTxt.Text = row.Cells["scope"].Value.ToString();
+                    editProject.revNumberTxt.Text = row.Cells["rev_no"].Value.ToString();
+                    NewOrEditProject.editProjectId = int.Parse(row.Cells["id"].Value.ToString());
+                    NewOrEditProject.isAdd = false;
+                    editProject.ShowDialog();
+                }
+
+                this.materialComponent1.initDatagrid();
+                this.initCutLength();
+            }
+        }
+
         private void importBtn_Click(object sender, EventArgs e)
         {
             //importOrExport = "Import";
