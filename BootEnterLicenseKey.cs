@@ -28,7 +28,12 @@ namespace LCC
 
         private void btn_proceed_Click(object sender, EventArgs e)
         {
-            if(this.tb_productCode.TextLength <= 0 || this.tb_licenseKey.TextLength <= 0)
+            this.proceed();
+        }
+
+        private void proceed() {
+            this.btn_proceed.Enabled = false;
+            if (this.tb_productCode.TextLength <= 0 || this.tb_licenseKey.TextLength <= 0)
             {
                 MessageBox.Show("Please fill the required fields.");
             }
@@ -44,6 +49,7 @@ namespace LCC
                     this.verify();
                 }
             }
+            this.btn_proceed.Enabled = true;
         }
 
         private async void verify()
@@ -77,6 +83,14 @@ namespace LCC
             else
             {
                 MessageBox.Show(oResult.message.ToString());
+            }
+        }
+
+        private void tb_productCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.proceed();
             }
         }
     }

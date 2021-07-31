@@ -42,6 +42,12 @@ namespace LCC
             InitializeComponent();
             ThemeLibrary.initMaterialDesign(this);
 
+            if(((new Library.RegistryLibrary()).getLogin()).user_type != 2)
+            {
+                this.importInventoryList.Visible = false;
+                this.importCommercialLengths.Visible = false;
+            }
+
             this.oFile = UtilsLibrary.getUserFile();
             this.initProject();
             this.initCutLength();
@@ -72,6 +78,7 @@ namespace LCC
             SetPropertyAction action = new SetPropertyAction(proj, propertyName, propertyValue);
             actionManager.RecordAction(action);
             UpdateUndoRedoButtons();
+            this.initProject();
         }
 
         public void Project_Load(object sender, EventArgs e)
@@ -88,31 +95,6 @@ namespace LCC
             //DataGridViewRow row = cutLengthsTable.Rows[rowIndex];
 
 
-        }
-        private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex != -1)
-            {
-                var row = projectTable.Rows[e.RowIndex];
-                GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
-                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString();
-                
-                if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
-                {
-                    NewOrEditProject editProject = new NewOrEditProject();
-                    editProject.oProject = this;
-                    editProject.projNameTxt.Text = row.Cells["project_name"].Value.ToString();
-                    editProject.projNameReferenceTxt.Text = row.Cells["project_reference"].Value.ToString();
-                    editProject.scopeOfWorksTxt.Text = row.Cells["scope"].Value.ToString();
-                    editProject.revNumberTxt.Text = row.Cells["rev_no"].Value.ToString();
-                    NewOrEditProject.editProjectId = int.Parse(row.Cells["id"].Value.ToString());
-                    NewOrEditProject.isAdd = false;
-                    editProject.ShowDialog();
-                }
-
-                this.materialComponent1.initDatagrid();
-                this.initCutLength();
-            }
         }
 
         private void projectBtn_Click(object sender, EventArgs e)
@@ -517,13 +499,13 @@ namespace LCC
 
         private void projectTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //this.projectTable.EndEdit();
-            //if (e.RowIndex != -1)
-            //{
-            //    var row = projectTable.Rows[e.RowIndex];
-            //    var changedValue = (row.Cells[e.ColumnIndex].Value ?? "").ToString();
-            //    SetProperty("project_name", changedValue);
-            //}
+            this.projectTable.EndEdit();
+            if (e.RowIndex != -1)
+            {
+                var row = projectTable.Rows[e.RowIndex];
+                var changedValue = (row.Cells[e.ColumnIndex].Value ?? "").ToString();
+                SetProperty("project_name", changedValue);
+            }
         }
 
         private void fileBtn_MouseEnter(object sender, EventArgs e)
@@ -561,6 +543,22 @@ namespace LCC
             {
                 this.optimizeComponent1.initOptimizedStockLengthDataTable(int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString()));
             }
+        }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult oDialogResult = MessageBox.Show("Do you want to logout?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                new Library.RegistryLibrary().deleteRegistry("login");
+                this.Hide();
+                new UserManagement.Login().Show();
+            }
+        }
+
+        private void Project_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

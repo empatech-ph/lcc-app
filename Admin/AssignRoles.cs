@@ -36,9 +36,11 @@ namespace LCC.Admin
             {
                 var oRowView = dgv_usersToBeAdded.Rows[i];
                 if (oRowView.Cells["email"].Value != null && oRowView.Cells["role"].Value != null)
+                {
                     sEmailsWithRoles += oRowView.Cells["email"].Value.ToString() + "/" + oRowView.Cells["role"].Value.ToString() + ",";
+                }
             }
-            this.oAssignRoles.Text = sEmailsWithRoles;
+            this.oAssignRoles.Text = sEmailsWithRoles.Trim(',');
             this.Hide();
         }
     }

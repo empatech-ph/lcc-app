@@ -73,6 +73,7 @@ namespace LCC
             this.tabResult = new System.Windows.Forms.TabPage();
             this.optimizeComponent1 = new LCC.Components.OptimizeComponent();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.optiplusComponent1 = new LCC.Components.OptiplusComponent();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -94,7 +95,6 @@ namespace LCC
             this.helpBtn = new MaterialSkin.Controls.MaterialButton();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.optiplusComponent1 = new LCC.Components.OptiplusComponent();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
@@ -437,7 +437,7 @@ namespace LCC
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 407);
             this.projectTable.TabIndex = 3;
-            this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTblView_CellClick);
+            this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellValueChanged);
             this.projectTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellEndEdit);
             this.projectTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTable_CellValueChanged);
             this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
@@ -695,6 +695,15 @@ namespace LCC
             this.tabPage1.Text = "Opti Plus";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // optiplusComponent1
+            // 
+            this.optiplusComponent1.BackColor = System.Drawing.Color.White;
+            this.optiplusComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.optiplusComponent1.Location = new System.Drawing.Point(3, 3);
+            this.optiplusComponent1.Name = "optiplusComponent1";
+            this.optiplusComponent1.Size = new System.Drawing.Size(1074, 442);
+            this.optiplusComponent1.TabIndex = 0;
+            // 
             // materialLabel3
             // 
             this.materialLabel3.AutoSize = true;
@@ -828,14 +837,14 @@ namespace LCC
             // exportProjects
             // 
             this.exportProjects.Name = "exportProjects";
-            this.exportProjects.Size = new System.Drawing.Size(116, 22);
+            this.exportProjects.Size = new System.Drawing.Size(180, 22);
             this.exportProjects.Text = "Projects";
             this.exportProjects.Click += new System.EventHandler(this.exportProjects_Click);
             // 
             // exportReports
             // 
             this.exportReports.Name = "exportReports";
-            this.exportReports.Size = new System.Drawing.Size(116, 22);
+            this.exportReports.Size = new System.Drawing.Size(180, 22);
             this.exportReports.Text = "Reports";
             this.exportReports.Click += new System.EventHandler(this.exportReports_Click);
             // 
@@ -858,6 +867,7 @@ namespace LCC
             this.logoutBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.logoutBtn.UseAccentColor = false;
             this.logoutBtn.UseVisualStyleBackColor = true;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // optionsBtn
             // 
@@ -916,15 +926,6 @@ namespace LCC
             this.oBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.oBackgroundWorker_ProgressChanged);
             this.oBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.oBackgroundWorker_RunWorkerCompleted);
             // 
-            // optiplusComponent1
-            // 
-            this.optiplusComponent1.BackColor = System.Drawing.Color.White;
-            this.optiplusComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optiplusComponent1.Location = new System.Drawing.Point(3, 3);
-            this.optiplusComponent1.Name = "optiplusComponent1";
-            this.optiplusComponent1.Size = new System.Drawing.Size(1074, 442);
-            this.optiplusComponent1.TabIndex = 0;
-            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -950,6 +951,8 @@ namespace LCC
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "LinearCut1D";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Text = "LenearCut1D";
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);

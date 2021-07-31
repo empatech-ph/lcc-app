@@ -35,6 +35,7 @@ namespace LCC.UserManagement
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.btn_enterlicense = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // btn_login
@@ -45,7 +46,7 @@ namespace LCC.UserManagement
             this.btn_login.DrawShadows = true;
             this.btn_login.HighEmphasis = true;
             this.btn_login.Icon = null;
-            this.btn_login.Location = new System.Drawing.Point(238, 342);
+            this.btn_login.Location = new System.Drawing.Point(249, 323);
             this.btn_login.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_login.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_login.Name = "btn_login";
@@ -63,7 +64,7 @@ namespace LCC.UserManagement
             this.tb_password.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_password.Depth = 0;
             this.tb_password.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tb_password.Location = new System.Drawing.Point(91, 264);
+            this.tb_password.Location = new System.Drawing.Point(91, 247);
             this.tb_password.MaxLength = 50;
             this.tb_password.MouseState = MaterialSkin.MouseState.OUT;
             this.tb_password.Multiline = false;
@@ -72,6 +73,7 @@ namespace LCC.UserManagement
             this.tb_password.Size = new System.Drawing.Size(383, 50);
             this.tb_password.TabIndex = 13;
             this.tb_password.Text = "";
+            this.tb_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             // 
             // tb_email
             // 
@@ -87,13 +89,14 @@ namespace LCC.UserManagement
             this.tb_email.Size = new System.Drawing.Size(383, 50);
             this.tb_email.TabIndex = 12;
             this.tb_email.Text = "";
+            this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             // 
             // materialLabel3
             // 
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(91, 242);
+            this.materialLabel3.Location = new System.Drawing.Point(91, 225);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(71, 19);
@@ -125,11 +128,33 @@ namespace LCC.UserManagement
     "";
             this.materialLabel1.UseAccent = true;
             // 
+            // btn_enterlicense
+            // 
+            this.btn_enterlicense.AutoSize = false;
+            this.btn_enterlicense.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_enterlicense.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_enterlicense.Depth = 0;
+            this.btn_enterlicense.DrawShadows = true;
+            this.btn_enterlicense.HighEmphasis = true;
+            this.btn_enterlicense.Icon = null;
+            this.btn_enterlicense.Location = new System.Drawing.Point(391, 367);
+            this.btn_enterlicense.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_enterlicense.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_enterlicense.Name = "btn_enterlicense";
+            this.btn_enterlicense.Size = new System.Drawing.Size(155, 21);
+            this.btn_enterlicense.TabIndex = 14;
+            this.btn_enterlicense.Text = "Enter new license";
+            this.btn_enterlicense.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.btn_enterlicense.UseAccentColor = false;
+            this.btn_enterlicense.UseVisualStyleBackColor = true;
+            this.btn_enterlicense.Click += new System.EventHandler(this.btn_enterlicense_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 397);
+            this.Controls.Add(this.btn_enterlicense);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.tb_password);
             this.Controls.Add(this.tb_email);
@@ -154,5 +179,6 @@ namespace LCC.UserManagement
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialButton btn_enterlicense;
     }
 }
