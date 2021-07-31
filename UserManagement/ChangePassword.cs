@@ -57,6 +57,7 @@ namespace LCC.UserManagement
             if(oResult.success == true)
             {
                 this.Hide();
+                (new Login()).Show();
             }
         }
 

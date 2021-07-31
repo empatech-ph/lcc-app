@@ -73,6 +73,7 @@ namespace LCC.UserManagement
             this.tb_password.Size = new System.Drawing.Size(383, 50);
             this.tb_password.TabIndex = 13;
             this.tb_password.Text = "";
+            this.tb_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             // 
             // tb_email
             // 
@@ -88,6 +89,7 @@ namespace LCC.UserManagement
             this.tb_email.Size = new System.Drawing.Size(383, 50);
             this.tb_email.TabIndex = 12;
             this.tb_email.Text = "";
+            this.tb_email.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_email_KeyDown);
             // 
             // materialLabel3
             // 

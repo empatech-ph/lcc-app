@@ -68,7 +68,7 @@ namespace LCC.UserManagement
                     { "name", this.tb_name.Text },
                     { "email", this.tb_email.Text },
                     { "password", this.tb_confirmPassword.Text },
-                    { "user_type", this.getUserType(this.sUserType) },
+                    { "user_type", this.getUserType(this.sUserType.ToString()) },
                     { "is_new", false },
                     { "license_id", oInfo.id.ToString() },
                     { "timestamp", UtilsLibrary.getTimestamp() },
@@ -78,6 +78,7 @@ namespace LCC.UserManagement
                 if (oUserResult.success == true)
                 {
                     this.Hide();
+                    (new Login()).Show();
                 }
             }
             else
@@ -90,7 +91,7 @@ namespace LCC.UserManagement
         {
             switch (sUserType)
             {
-                case "System Administrator": return 1;
+                case "SystemAdministrator": return 1;
                 case "Moderator": return 2;
                 case "Estimator": return 3;
                 default: return 0;

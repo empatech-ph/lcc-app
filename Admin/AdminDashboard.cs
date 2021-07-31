@@ -112,5 +112,10 @@ namespace LCC.Admin
             this.initLicenseData();
             this.btn_reload.Enabled = true;
         }
+
+        private void AdminDashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

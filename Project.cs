@@ -42,6 +42,12 @@ namespace LCC
             InitializeComponent();
             ThemeLibrary.initMaterialDesign(this);
 
+            if(((new Library.RegistryLibrary()).getLogin()).user_type != 2)
+            {
+                this.importInventoryList.Visible = false;
+                this.importCommercialLengths.Visible = false;
+            }
+
             this.oFile = UtilsLibrary.getUserFile();
             this.initProject();
             this.initCutLength();
@@ -554,6 +560,11 @@ namespace LCC
                 this.Hide();
                 new UserManagement.Login().Show();
             }
+        }
+
+        private void Project_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

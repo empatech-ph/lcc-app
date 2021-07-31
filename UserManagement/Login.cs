@@ -35,15 +35,7 @@ namespace LCC.UserManagement
             }
             else
             {
-                if(this.tb_email.Text == "admin" && this.tb_password.Text == "pashword123")
-                {
-                    this.Hide();
-                    (new Admin.AdminDashboard()).Show();
-                }
-                else
-                {
-                    this.login();
-                }
+                this.login();
             }
             this.btn_login.Enabled = true;
 
@@ -66,12 +58,19 @@ namespace LCC.UserManagement
                 if (oResult.change_password == true)
                 {
                     MessageBox.Show("Please change your password.");
-                    (new ChangePassword((int)oResult.id, this.tb_email.Text)).ShowDialog();
+                    this.Hide();
+                    (new ChangePassword((int)oResult.id, this.tb_email.Text)).Show();
                 }
                 else if (oResult.not_registered == true)
                 {
                     MessageBox.Show("You are not registered, please register your email.");
-                    (new Register(this.tb_email.Text, oResult.user_type.ToString())).ShowDialog();
+                    this.Hide();
+                    (new Register(this.tb_email.Text, oResult.user_type.ToString())).Show();
+                }
+                else if (this.getUserType(oResult.user_type.ToString()) == 1)
+                {
+                    this.Hide();
+                    (new Admin.AdminDashboard()).Show();
                 }
                 else
                 {
@@ -80,7 +79,7 @@ namespace LCC.UserManagement
                     {
                         { "id",  oResult.id.ToString()},
                         { "file_name", EncryptionDecryptionLibrary.getEncryptBase64(oResult.id.ToString() + oResult.email.ToString())},
-                        { "user_type", oResult.user_type.ToString()},
+                        { "user_type", this.getUserType(oResult.user_type.ToString())},
                         { "email", oResult.email.ToString()},
                         { "timestamp",  UtilsLibrary.getTimestamp() }
                     };
@@ -107,6 +106,24 @@ namespace LCC.UserManagement
             this.Hide();
             new Library.RegistryLibrary().deleteRegistry("info");
             (new BootEnterLicenseKey()).Show();
+        }
+        private int getUserType(string sUserType)
+        {
+            switch (sUserType)
+            {
+                case "SystemAdministrator": return 1;
+                case "Moderator": return 2;
+                case "Estimator": return 3;
+                default: return 0;
+            }
+        }
+
+        private void tb_email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.login();
+            }
         }
     }
 }
