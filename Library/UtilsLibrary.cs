@@ -41,8 +41,7 @@ namespace LCC.Library
             {
                 sFileName = "data.json";
             }
-
-            return new DataStore(AppDomain.CurrentDomain.BaseDirectory + sFileName);
+            return new DataStore(AppDomain.CurrentDomain.BaseDirectory + sFileName, reloadBeforeGetCollection: true);
         }
     }
 }

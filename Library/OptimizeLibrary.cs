@@ -3,6 +3,7 @@ using LCC.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,24 +11,23 @@ namespace LCC.Library
 {
     class OptimizeLibrary
     {
-        private DataStore oFile;
+        private static DataStore oFile = UtilsLibrary.getUserFile();
 
-        private List<TempOptimizedModel> oRestOptimized1 = new List<TempOptimizedModel>();
-        private List<TempOptimizedModel> oRestOptimized2 = new List<TempOptimizedModel>();
+        private static List<TempOptimizedModel> oRestOptimized1 = new List<TempOptimizedModel>();
+        private static List<TempOptimizedModel> oRestOptimized2 = new List<TempOptimizedModel>();
 
         public OptimizeLibrary()
         {
-            this.oFile = UtilsLibrary.getUserFile();
         }
 
-        private List<StockModel> getStockPerProjectDescriptionAndGrade(string sDescription, string sGrade, double dLength, string sType)
+        private static List<StockModel> getStockPerProjectDescriptionAndGrade(string sDescription, string sGrade, double dLength, string sType)
         {
             List<StockModel> oStockModel = new List<StockModel>();
-            foreach (MaterialModel oMaterialItem in this.getMaterialsPerProject())
+            foreach (MaterialModel oMaterialItem in OptimizeLibrary.getMaterialsPerProject())
             {
                 if (oMaterialItem.description == sDescription && oMaterialItem.grade == sGrade)
                 {
-                    foreach (StockModel oStockItem in this.getStockPerMaterial(int.Parse(oMaterialItem.id.ToString())))
+                    foreach (StockModel oStockItem in OptimizeLibrary.getStockPerMaterial(int.Parse(oMaterialItem.id.ToString())))
                     {
                         oStockModel.Add(oStockItem);
                     }
@@ -55,63 +55,69 @@ namespace LCC.Library
 
         }
 
-        private List<StockModel> getStockPerMaterial(int iMaterialId)
+        private static List<StockModel> getStockPerMaterial(int iMaterialId)
         {
-            return this.oFile
+            return OptimizeLibrary.oFile
                 .GetCollection<StockModel>()
                 .AsQueryable()
                 .Where(e => e.material_id == iMaterialId && e.visibility == true)
                 .ToList();
         }
 
-        private MaterialModel getMaterialByDescriptionAndGrade(string sDescription, string sGrade)
+        private static MaterialModel getMaterialByDescriptionAndGrade(string sDescription, string sGrade)
         {
-            return this.oFile.GetCollection<MaterialModel>()
+            return OptimizeLibrary.oFile.GetCollection<MaterialModel>()
                 .AsQueryable()
                 .Where(e => e.description == sDescription && e.grade == sGrade)
                 .First();
         }
 
-        private List<MaterialModel> getMaterialsPerProject()
+        private static List<MaterialModel> getMaterialsPerProject()
         {
-            return this.oFile
+            return OptimizeLibrary.oFile
                 .GetCollection<MaterialModel>()
                 .AsQueryable()
                 .Where(e => e.project_id == GLOBAL.iSelectedProjectId && GLOBAL.aCheckedMaterials.Contains(e.id))
                 .ToList();
         }
 
-        private List<CutLengthModel> getCutLength()
+        private static List<CutLengthModel> getCutLength()
         {
-            return this.oFile
+            return OptimizeLibrary.oFile
                 .GetCollection<CutLengthModel>()
                 .AsQueryable()
-                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && this.getMaterialsPerProject().Select(e => new { desc_grade = e.description + e.grade }).Select(e => e.desc_grade).ToList().Contains((e.description + e.grade)))
+                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && OptimizeLibrary.getMaterialsPerProject().Select(e => new { desc_grade = e.description + e.grade }).Select(e => e.desc_grade).ToList().Contains((e.description + e.grade)))
                 .OrderByDescending(e => e.length)
                 .ToList();
         }
 
-        public void optimize()
+        public static void optimize(BackgroundWorker oBackgroundWorker)
         {
             GLOBAL.oTempOptimized.Clear();
             GLOBAL.oTempCutlength.Clear();
+            OptimizeLibrary.oRestOptimized1.Clear();
+            OptimizeLibrary.oRestOptimized2.Clear();
 
-            this.generateTempOptimize(ref this.oRestOptimized1, "rest1");
-            this.generateTempOptimize(ref this.oRestOptimized2, "rest2");
+            OptimizeLibrary.generateTempOptimize(ref OptimizeLibrary.oRestOptimized1, "rest1");
+            OptimizeLibrary.generateTempOptimize(ref OptimizeLibrary.oRestOptimized2, "rest2");
 
-            List<TempFilteredOptimized> oFilteredOptimized1 = this.oRestOptimized1.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
+            oBackgroundWorker.ReportProgress(25);
+
+            List<TempFilteredOptimized> oFilteredOptimized1 = OptimizeLibrary.oRestOptimized1.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
             {
                 cutlength_id = e.First().cutlength_id,
-                sum = e.Sum(e => e.remaining_stock_length),
+                sum = e.Sum(e => e.total_rest),
                 data = e.ToList()
             }).ToList();
 
-            List<TempFilteredOptimized> oFilteredOptimized2 = this.oRestOptimized2.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
+            List<TempFilteredOptimized> oFilteredOptimized2 = OptimizeLibrary.oRestOptimized2.GroupBy(e => e.cutlength_id).Select(e => new TempFilteredOptimized
             {
                 cutlength_id = e.First().cutlength_id,
-                sum = e.Sum(e => e.remaining_stock_length),
+                sum = e.Sum(e => e.total_rest),
                 data = e.ToList()
             }).ToList();
+
+            oBackgroundWorker.ReportProgress(35);
 
             for (int i = 0; i < oFilteredOptimized1.Count; i++)
             {
@@ -120,12 +126,14 @@ namespace LCC.Library
                 TempFilteredOptimized oFiltered2 = oFilteredOptimized2.Find(e => e.cutlength_id == iCutLengthNo);
                 GLOBAL.oTempOptimized.AddRange((oFiltered1.sum >= oFiltered2.sum) ? oFiltered2.data : oFiltered1.data);
             }
+
+            oBackgroundWorker.ReportProgress(45);
         }
 
-        private void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, string sType)
+        private static void generateTempOptimize(ref List<TempOptimizedModel> oTempOptimize, string sType)
         {
             GLOBAL.oTempCutlength.Clear();
-            GLOBAL.oTempCutlength = this.getCutLength().Select(e => new TempCutlengthModel
+            GLOBAL.oTempCutlength = OptimizeLibrary.getCutLength().Select(e => new TempCutlengthModel
             {
                 id = e.id,
                 part_code = e.part_code,
@@ -144,14 +152,15 @@ namespace LCC.Library
                 gross_yield = 0,
                 total_layout = 0,
             }).ToList();
+
             int iIdTempOptimized = 1;
             foreach (TempCutlengthModel oCutLengthItem in GLOBAL.oTempCutlength)
             {
-                MaterialModel oMaterialModel = this.getMaterialByDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade);
+                MaterialModel oMaterialModel = OptimizeLibrary.getMaterialByDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade);
                 double dTotalMargins = oMaterialModel.trim_left + oMaterialModel.trim_right;
                 double dPartAllowance = oMaterialModel.part_allowance * 2;
                 double dComputedCutlengthLength = dPartAllowance + oCutLengthItem.length;
-                List<StockModel> oStockModel = this.getStockPerProjectDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade, dComputedCutlengthLength, sType);
+                List<StockModel> oStockModel = OptimizeLibrary.getStockPerProjectDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade, dComputedCutlengthLength, sType);
                 for (int i = 0; i < oStockModel.Count; i++)
                 {
                     StockModel oStockItem = oStockModel[i];
@@ -209,6 +218,7 @@ namespace LCC.Library
                                 total_uncut = oCutLengthItem.uncut_quantity,
                                 remaining_stock_length = (dScrapOrRemnant > oMaterialModel.min_remnant_length) ? dScrapOrRemnant : 0.00,
                                 scrap_stock_length = (dScrapOrRemnant < oMaterialModel.min_remnant_length) ? dScrapOrRemnant : 0.00,
+                                total_rest = dScrapOrRemnant,
                                 cutlength_length = oCutLengthItem.length,
                                 computed_cutlength_length = dComputedCutlengthLength,
                                 trim_right = oMaterialModel.trim_right,
@@ -224,9 +234,9 @@ namespace LCC.Library
                     }
                 }
                 double dPartLength = Math.Round((dComputedCutlengthLength * (oCutLengthItem.quantity - oCutLengthItem.uncut_quantity)), 2);
-                double dGrossYield = Math.Round(((oCutLengthItem.total_parts_length / oCutLengthItem.total_stock_length) * 100), 2);
-
                 oCutLengthItem.total_parts_length = (Double.IsNaN(dPartLength) == true) ? 0.00 : dPartLength;
+
+                double dGrossYield = Math.Round(((oCutLengthItem.total_parts_length / oCutLengthItem.total_stock_length) * 100), 2);
                 oCutLengthItem.gross_yield = (Double.IsNaN(dGrossYield) == true) ? 0.00 : dGrossYield;
             }
         }
