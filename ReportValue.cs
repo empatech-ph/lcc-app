@@ -32,6 +32,14 @@ namespace LCC
         public string MaterialRPT_TotalCost { get; set; }
         public string MaterialRPT_StockCode { get; set; }
         public string MaterialRPT_Note { get; set; }
+        public string MaterialRPT_MaterialS { get; set; }
+        public string MaterialRPT_GradeS { get; set; }
+        public string MaterialRPT_QtyS { get; set; }
+        public string MaterialRPT_LengthS { get; set; }
+        public string MaterialRPT_UnitCostS { get; set; }
+        public string MaterialRPT_TotalCostS { get; set; }
+        public string MaterialRPT_StockCodeS { get; set; }
+        public string MaterialRPT_NoteS { get; set; }
         public string NestingRPT_Project { get; set; } //reuse in material report, cutlength
         public string NestingRPT_Date { get; set; } //reuse in material report
         public string NestingRPT_Note { get; set; }

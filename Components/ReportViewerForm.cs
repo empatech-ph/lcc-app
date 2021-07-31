@@ -40,6 +40,14 @@ namespace LCC
             {
                 Report.LoadInventoryCommListReport(reportViewer.LocalReport, false);
             }
+            else if (reportType == "Material Quantity - Storage and Buyout")
+            {
+                Report.LoadMaterialReport(reportViewer.LocalReport, false);
+            }
+            else if (reportType == "Material Quantity - Remnants & Scraps")
+            {
+                Report.LoadMaterialReport(reportViewer.LocalReport, true);
+            }
             else
             {
                 SaveControlAsImage(optimizeBarPnl, Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.png"));
