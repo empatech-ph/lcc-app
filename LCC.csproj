@@ -29,6 +29,7 @@
 		<PackageReference Include="GuiLabs.Undo" Version="1.0.2" />
 		<PackageReference Include="JsonFlatFileDataStore" Version="2.2.2" />
 		<PackageReference Include="MaterialSkin.2" Version="2.1.4" />
+		<PackageReference Include="MUF" Version="2.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="ReportViewerCore.WinForms" Version="15.1.13" />
     <PackageReference Include="System.Management" Version="5.0.0" />

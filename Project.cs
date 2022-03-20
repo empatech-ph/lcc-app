@@ -39,6 +39,7 @@ namespace LCC
         
         public Project()
         {
+            //this.Icon = Properties.Resources.;
             InitializeComponent();
             ThemeLibrary.initMaterialDesign(this);
 
@@ -116,6 +117,8 @@ namespace LCC
             var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
             this.projectTable.DataSource = oProjectList.ToList();
             this.projectTable.Columns["id"].Visible = false;
+            this.projectTable.Columns["project_reference"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.projectTable.Columns["rev_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
             this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
         }
@@ -148,10 +151,17 @@ namespace LCC
 
         private void importBtn_Click(object sender, EventArgs e)
         {
-            //importOrExport = "Import";
-            ImportExportForm importExportForm = new ImportExportForm();
-            importExportForm.oProject = this;
-            importExportForm.ShowDialog();
+            ImportFieldMapping importFieldMapping = new ImportFieldMapping();
+            importFieldMapping.oProject = this;
+            importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
+            importFieldMapping.openFileDialog.Title = "Browse File";
+            importFieldMapping.openFileDialog.ShowDialog();
+
+            if (tabOptiPlus.SelectedTab.Text != null)
+            { 
+                importFieldMapping.openFileDialog.Tag = tabOptiPlus.SelectedTab.Text;
+                importFieldMapping.importFieldMappingDisplay(sender, e);
+            }
         }
 
         private void exportBtn_Click(object sender, EventArgs e)
@@ -250,9 +260,13 @@ namespace LCC
             cutLengthsTable.Columns["grade"].HeaderText = "Grade";
             cutLengthsTable.Columns["quantity"].HeaderText = "Quantity";
             cutLengthsTable.Columns["uncut_quantity"].HeaderText = "Uncut Quantity";
+            cutLengthsTable.Columns["uncut_quantity"].ReadOnly = true;
             cutLengthsTable.Columns["length"].HeaderText = "Length";
             cutLengthsTable.Columns["order_number"].HeaderText = "Order Number";
             cutLengthsTable.Columns["note"].HeaderText = "Note";
+            cutLengthsTable.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            cutLengthsTable.Columns["description"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            cutLengthsTable.Columns["note"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
         private void cutLengthsTable_UserAddedRow(object sender, DataGridViewRowEventArgs e)
@@ -426,7 +440,7 @@ namespace LCC
                 dynamic oList = this.oFile.GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
                 BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
                 this.materialComponent1.dt_material.DataSource = oListModel;
-                this.materialComponent1.dt_material.Refresh();
+                this.materialComponent1.dt_material.Refresh();  
             }
         }
 
