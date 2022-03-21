@@ -1,12 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_LastSelectedProfileId>C:\Users\loyol\Documents\Projects\My Desktop Applications\LCC\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Admin\AdminDashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Admin\AssignRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -28,19 +25,10 @@
     <Compile Update="Components\OptimizeComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Components\OptiplusComponent.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Components\ReportViewerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GeneralReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Help.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ImportExportForm.cs">
@@ -64,16 +52,11 @@
     <Compile Update="NewOrEditProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Options.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Project.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Properties\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="SplashScreen.cs">
+    <Compile Update="Properties\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UserManagement\ChangePassword.cs">
