@@ -32,13 +32,8 @@ namespace LCC.Components
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dt_materials = new System.Windows.Forms.DataGridView();
+            this.optiplus_desc_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dt_optiplus = new System.Windows.Forms.DataGridView();
-            this.optiplus_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_solutions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_storage_part = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_no_of_layouts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,7 +45,12 @@ namespace LCC.Components
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.optiplus_desc_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_solutions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_storage_part = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_no_of_layouts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_materials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optiplus)).BeginInit();
             this.panel1.SuspendLayout();
@@ -85,6 +85,16 @@ namespace LCC.Components
             this.dt_materials.ShowEditingIcon = false;
             this.dt_materials.Size = new System.Drawing.Size(262, 314);
             this.dt_materials.TabIndex = 14;
+            this.dt_materials.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_materials_CellClick);
+            this.dt_materials.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dt_materials_DataBindingComplete);
+            // 
+            // optiplus_desc_grade
+            // 
+            this.optiplus_desc_grade.DataPropertyName = "cutlength_desc_grade";
+            this.optiplus_desc_grade.HeaderText = "Materials";
+            this.optiplus_desc_grade.Name = "optiplus_desc_grade";
+            this.optiplus_desc_grade.ReadOnly = true;
+            this.optiplus_desc_grade.Width = 235;
             // 
             // dt_optiplus
             // 
@@ -120,47 +130,6 @@ namespace LCC.Components
             this.dt_optiplus.ShowEditingIcon = false;
             this.dt_optiplus.Size = new System.Drawing.Size(800, 314);
             this.dt_optiplus.TabIndex = 15;
-            // 
-            // optiplus_no
-            // 
-            this.optiplus_no.HeaderText = "#";
-            this.optiplus_no.Name = "optiplus_no";
-            this.optiplus_no.ReadOnly = true;
-            this.optiplus_no.Width = 25;
-            // 
-            // optiplus_solutions
-            // 
-            this.optiplus_solutions.HeaderText = "Solutions";
-            this.optiplus_solutions.Name = "optiplus_solutions";
-            this.optiplus_solutions.ReadOnly = true;
-            this.optiplus_solutions.Width = 200;
-            // 
-            // optiplus_cost
-            // 
-            this.optiplus_cost.HeaderText = "Cost";
-            this.optiplus_cost.Name = "optiplus_cost";
-            this.optiplus_cost.ReadOnly = true;
-            // 
-            // optiplus_gross_yield
-            // 
-            this.optiplus_gross_yield.HeaderText = "Gross Yield %";
-            this.optiplus_gross_yield.Name = "optiplus_gross_yield";
-            this.optiplus_gross_yield.ReadOnly = true;
-            this.optiplus_gross_yield.Width = 150;
-            // 
-            // optiplus_storage_part
-            // 
-            this.optiplus_storage_part.HeaderText = "Storage Parts Used";
-            this.optiplus_storage_part.Name = "optiplus_storage_part";
-            this.optiplus_storage_part.ReadOnly = true;
-            this.optiplus_storage_part.Width = 150;
-            // 
-            // optiplus_no_of_layouts
-            // 
-            this.optiplus_no_of_layouts.HeaderText = "No. of Layouts";
-            this.optiplus_no_of_layouts.Name = "optiplus_no_of_layouts";
-            this.optiplus_no_of_layouts.ReadOnly = true;
-            this.optiplus_no_of_layouts.Width = 150;
             // 
             // materialLabel2
             // 
@@ -332,13 +301,52 @@ namespace LCC.Components
             this.materialLabel3.TabIndex = 18;
             this.materialLabel3.Text = "1st";
             // 
-            // optiplus_desc_grade
+            // optiplus_no
             // 
-            this.optiplus_desc_grade.DataPropertyName = "cutlength_desc_grade";
-            this.optiplus_desc_grade.HeaderText = "Materials";
-            this.optiplus_desc_grade.Name = "optiplus_desc_grade";
-            this.optiplus_desc_grade.ReadOnly = true;
-            this.optiplus_desc_grade.Width = 235;
+            this.optiplus_no.DataPropertyName = "auto_no";
+            this.optiplus_no.HeaderText = "#";
+            this.optiplus_no.Name = "optiplus_no";
+            this.optiplus_no.ReadOnly = true;
+            this.optiplus_no.Width = 25;
+            // 
+            // optiplus_solutions
+            // 
+            this.optiplus_solutions.DataPropertyName = "solution_no";
+            this.optiplus_solutions.HeaderText = "Solutions";
+            this.optiplus_solutions.Name = "optiplus_solutions";
+            this.optiplus_solutions.ReadOnly = true;
+            this.optiplus_solutions.Width = 200;
+            // 
+            // optiplus_cost
+            // 
+            this.optiplus_cost.DataPropertyName = "total_cost";
+            this.optiplus_cost.HeaderText = "Cost";
+            this.optiplus_cost.Name = "optiplus_cost";
+            this.optiplus_cost.ReadOnly = true;
+            // 
+            // optiplus_gross_yield
+            // 
+            this.optiplus_gross_yield.DataPropertyName = "gross_yield";
+            this.optiplus_gross_yield.HeaderText = "Gross Yield %";
+            this.optiplus_gross_yield.Name = "optiplus_gross_yield";
+            this.optiplus_gross_yield.ReadOnly = true;
+            this.optiplus_gross_yield.Width = 150;
+            // 
+            // optiplus_storage_part
+            // 
+            this.optiplus_storage_part.DataPropertyName = "total_storage_part";
+            this.optiplus_storage_part.HeaderText = "Storage Parts Used";
+            this.optiplus_storage_part.Name = "optiplus_storage_part";
+            this.optiplus_storage_part.ReadOnly = true;
+            this.optiplus_storage_part.Width = 150;
+            // 
+            // optiplus_no_of_layouts
+            // 
+            this.optiplus_no_of_layouts.DataPropertyName = "total_no_of_layout";
+            this.optiplus_no_of_layouts.HeaderText = "No. of Layouts";
+            this.optiplus_no_of_layouts.Name = "optiplus_no_of_layouts";
+            this.optiplus_no_of_layouts.ReadOnly = true;
+            this.optiplus_no_of_layouts.Width = 150;
             // 
             // OptiplusComponent
             // 
@@ -365,7 +373,7 @@ namespace LCC.Components
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel table_parameters;
+        public System.Windows.Forms.TableLayoutPanel table_parameters;
         private MaterialSkin.Controls.MaterialButton btn_right;
         private MaterialSkin.Controls.MaterialButton btn_left;
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
@@ -373,12 +381,12 @@ namespace LCC.Components
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialCheckbox chk_use_soln;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_desc_grade;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_solutions;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_cost;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_gross_yield;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_storage_part;
         private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_no_of_layouts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optiplus_desc_grade;
     }
 }

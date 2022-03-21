@@ -376,6 +376,7 @@ namespace LCC
             this.optiplusComponent1.dt_materials.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
             this.optiplusComponent1.dt_materials.Columns["optiplus_desc_grade"].Visible = true;
 
+            
             this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["project_id"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["order_number"].Visible = false;
@@ -384,6 +385,8 @@ namespace LCC
             this.optimizeComponent1.dt_optimize.Columns["note"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["description"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["id"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["optimize_type"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["solution_no"].Visible = false;
 
             this.optimizeComponent1.dt_stockLength.Columns["cutlength_id"].Visible = false;
             this.optimizeComponent1.dt_stockLength.Columns["material_id"].Visible = false;
@@ -393,6 +396,7 @@ namespace LCC
             this.optimizeComponent1.dt_stockLength.Columns["trim_left"].Visible = false;
             this.optimizeComponent1.dt_stockLength.Columns["trim_right"].Visible = false;
             this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["optimize_type"].Visible = false;
 
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
             this.oBackgroundWorker.RunWorkerAsync();
@@ -576,8 +580,8 @@ namespace LCC
             this.optimizeBtn.Enabled = true;
             this.progressOptimize.Value = 0;
 
-            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.ToArray();
-            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.ToArray();
+            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type  + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
+            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {

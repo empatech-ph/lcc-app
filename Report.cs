@@ -13,7 +13,7 @@ namespace LCC
 {
     class Report
     {
-        public static void Load(LocalReport report, List<TempCutlengthModel> oTempCutlength, List<TempStocklengthModel> oTempStockLengthModel)
+        public static void loadNestedReport(LocalReport report, List<TempCutlengthModel> oTempCutlength, List<TempStocklengthModel> oTempStockLengthModel)
         {
             //var items = new[] {
             //    new ReportValue { RPT_Title = "Cutting layouts", NestingRPT_Cost = "104.99m", NestingRPT_Yield = "93.20%", NestingRPT_GrossYield = "93.20%",

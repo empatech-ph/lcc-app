@@ -44,6 +44,7 @@ namespace LCC.Model
         public int repeated { get; set; }
         public string note { get; set; }
         public string stock_desc_grade { get; set; }
+        public string optimize_type { get; set; }
         public double cutlength_length { get; set; }
         public double trim_left { get; set; }
         public double trim_right { get; set; }
@@ -66,9 +67,11 @@ namespace LCC.Model
         public string part_code { get; set; }
         public string description { get; set; }
         public string grade { get; set; }
+        public string optimize_type { get; set; }
         public double length { get; set; }
         public string order_number { get; set; }
         public string note { get; set; }
+        public int solution_no { get; set; }
     }
 
     public class TempFilteredOptimized
@@ -77,5 +80,35 @@ namespace LCC.Model
         public double sum { get; set; }
         public string optimize_type { get; set; }
         public List<TempOptimizedModel> data { get; set; }
+    }
+
+    public class TempFilteredOptimizedGrouped
+    {
+        public int cutlength_id { get; set; }
+        public double sum { get; set; }
+        public List<TempFilteredOptimized> data { get; set; }
+    }
+
+    public class TempDepthFilteredOptimized
+    {
+        public int cutlength_id { get; set; }
+        public double sum { get; set; }
+        public List<TempOptimizedModel> data { get; set; }
+    }
+
+    public class TempCurrentUseOptimizeType
+    {
+        public int cutlength_id { get; set; }
+        public string optimize_type{ get; set; }
+    }
+
+    public class TempOptiplusData
+    {
+        public int auto_no { get; set; }
+        public int solution_no { get; set; }
+        public double total_cost { get; set; }
+        public double gross_yield { get; set; }
+        public double total_storage_part { get; set; }
+        public double total_no_of_layout { get; set; }
     }
 }

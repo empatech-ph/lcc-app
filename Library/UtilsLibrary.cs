@@ -1,9 +1,8 @@
 ﻿using JsonFlatFileDataStore;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 using System.Management;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LCC.Library
@@ -42,6 +41,15 @@ namespace LCC.Library
                 sFileName = "data.json";
             }
             return new DataStore(AppDomain.CurrentDomain.BaseDirectory + sFileName, reloadBeforeGetCollection: true);
+        }
+
+        public static List<Control> getAllControls(Control oListControls, Type oType)
+        {
+            var oControls = oListControls.Controls.Cast<Control>();
+            return oControls.SelectMany(oControl => getAllControls(oControl, oType))
+                                      .Concat(oControls)
+                                      .Where(oControl => oControl.GetType() == oType)
+                                      .ToList();
         }
     }
 }

@@ -14,8 +14,6 @@ namespace LCC
     public partial class ReportViewerForm : Form
     {
         private readonly ReportViewer reportViewer;
-        public List<TempCutlengthModel> oTempCutlength = new List<TempCutlengthModel>();
-        public List<TempStocklengthModel> oTempStockLengthModel = new List<TempStocklengthModel>();
         public FlowLayoutPanel optimizeBarPnl = new FlowLayoutPanel();
         public string reportType;
         public ReportViewerForm()
@@ -48,6 +46,10 @@ namespace LCC
             else if (reportType == "Material Quantity - Remnants & Scraps")
             {
                 Report.LoadMaterialReport(reportViewer.LocalReport, true);
+            }
+            else if (reportType == "Nesting Layout")
+            {
+                Report.loadNestedReport(reportViewer.LocalReport, GLOBAL.oTempCutlength, GLOBAL.oTempStockLengthOptimized);
             }
             else
             {

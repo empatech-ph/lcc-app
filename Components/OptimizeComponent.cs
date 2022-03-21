@@ -37,9 +37,11 @@ namespace LCC.Components
                 o.stock_id,
                 o.cutlength_id,
                 o.total_cut,
-                o.total_rest
+                o.total_rest,
+                o.optimize_type
             }).Select(o => new TempStocklengthModel
             {
+                optimize_type = o.Last().optimize_type,
                 cutlength_id = o.Last().cutlength_id,
                 material_id = o.Last().material_id,
                 stock_code = o.Last().stock_code,
@@ -71,7 +73,6 @@ namespace LCC.Components
 
             foreach (TempStocklengthModel oTempStockLength in GLOBAL.oTempStockLengthOptimized)
             {
-                GLOBAL.oTempCutlength.Find(o => o.id == oTempStockLength.cutlength_id).total_layout++;
                 if (oTempStockLength.rest != 0)
                 {
                     this.saveRemnantScrapStock(oTempStockLength);
@@ -124,7 +125,7 @@ namespace LCC.Components
         {
 
             this.dt_stockLength.DataSource = new List<TempStocklengthModel>();
-            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.cutlength_id == iCutLength);
+            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.cutlength_id == iCutLength && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
             this.dt_stockLength.DataSource = oTempStockLengthModel.ToArray();
 
             this.optimizeBarPanel.Controls.Clear();
@@ -140,8 +141,6 @@ namespace LCC.Components
         public void assignReportParameters()
         {
             ReportViewerForm reportViewerForm = new ReportViewerForm();
-            reportViewerForm.oTempCutlength = GLOBAL.oTempCutlength;
-            reportViewerForm.oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized;
             reportViewerForm.optimizeBarPnl = this.optimizeBarPanel;
             reportViewerForm.Show();
         }

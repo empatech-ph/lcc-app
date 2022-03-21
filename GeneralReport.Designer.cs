@@ -68,7 +68,7 @@ namespace LCC
             this.generateReportDropdown.IntegralHeight = false;
             this.generateReportDropdown.ItemHeight = 43;
             this.generateReportDropdown.Items.AddRange(new object[] {
-            "Nesting Layout ",
+            "Nesting Layout",
             "Nesting Layout (Compressed)",
             "Material Quantity - Storage and Buyout",
             "Material Quantity - Remnants & Scraps",

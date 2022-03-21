@@ -141,8 +141,16 @@
             // 
             // dataGridViewImportData
             // 
+            this.dataGridViewImportData.AllowUserToAddRows = false;
+            this.dataGridViewImportData.AllowUserToDeleteRows = false;
+            this.dataGridViewImportData.AllowUserToResizeColumns = false;
+            this.dataGridViewImportData.AllowUserToResizeRows = false;
+            this.dataGridViewImportData.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewImportData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewImportData.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewImportData.Location = new System.Drawing.Point(30, 36);
             this.dataGridViewImportData.Name = "dataGridViewImportData";
+            this.dataGridViewImportData.RowHeadersVisible = false;
             this.dataGridViewImportData.Size = new System.Drawing.Size(672, 97);
             this.dataGridViewImportData.TabIndex = 0;
             // 
@@ -168,9 +176,16 @@
             // 
             // dataGridViewFieldMap
             // 
+            this.dataGridViewFieldMap.AllowUserToAddRows = false;
+            this.dataGridViewFieldMap.AllowUserToDeleteRows = false;
+            this.dataGridViewFieldMap.AllowUserToResizeColumns = false;
+            this.dataGridViewFieldMap.AllowUserToResizeRows = false;
+            this.dataGridViewFieldMap.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridViewFieldMap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewFieldMap.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewFieldMap.Location = new System.Drawing.Point(30, 35);
             this.dataGridViewFieldMap.Name = "dataGridViewFieldMap";
+            this.dataGridViewFieldMap.RowHeadersVisible = false;
             this.dataGridViewFieldMap.RowTemplate.Height = 25;
             this.dataGridViewFieldMap.Size = new System.Drawing.Size(672, 182);
             this.dataGridViewFieldMap.TabIndex = 2;
@@ -253,6 +268,8 @@
             this.Controls.Add(this.grpBxData);
             this.Controls.Add(this.importOptionsgrpbx);
             this.Name = "ImportFieldMapping";
+            this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Import ";
             this.Load += new System.EventHandler(this.ImportFieldMapping_Load);
             this.importOptionsgrpbx.ResumeLayout(false);

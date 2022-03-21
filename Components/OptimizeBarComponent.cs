@@ -13,6 +13,7 @@ namespace LCC.Components
 {
     public partial class OptimizeBarComponent : UserControl
     {
+        private bool bHasLastKerf = false;
         public OptimizeBarComponent()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace LCC.Components
                 this.optimizeBarPanel.ColumnStyles.Insert(iCounter, new ColumnStyle(SizeType.Percent, fPercent));
                 this.optimizeBarPanel.Controls.Add(this.getNewGeneratedPanel(Color.FromArgb(200, 63, 81, 181)), iCounter, 0);
                 iCounter++;
-                if (oStockLength.kerf > 0 && iVal != oStockLength.total_cut)
+                if ((oStockLength.kerf > 0 && iVal != oStockLength.total_cut) || oStockLength.rest >= oStockLength.kerf)
                 {
                     Panel oPanel = this.getNewGeneratedPanel(Color.White);
                     oPanel.Dock = DockStyle.Fill;
@@ -50,6 +51,14 @@ namespace LCC.Components
                     oPanel.Paint += this.paintPanelKerf;
                     this.optimizeBarPanel.Controls.Add(oPanel, iCounter, 0);
                     iCounter++;
+                }
+                if (oStockLength.rest >= oStockLength.kerf)
+                {
+                    this.bHasLastKerf = true;
+                }
+                else
+                {
+                    this.bHasLastKerf = false;
                 }
             }
             double dRestScrap = ((oStockLength.rest <= 0) ? oStockLength.scrap : oStockLength.rest);
@@ -69,13 +78,13 @@ namespace LCC.Components
 
         private void generateDetails(int iTotalCut, double fCutlengthLength, double dRest, string sStockCode, double dTrimLeft, double dTrimRight)
         {
-            this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + " mm x " + iTotalCut), (dTrimLeft > 0) ? 1 : 0, 1);
-            this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 1 : 0, 1), iTotalCut);
+            this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + " mm x " + iTotalCut + ((bHasLastKerf == true) ? 1 : 0)), (dTrimLeft > 0) ? 1 : 0, 1);
+            this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 1 : 0, 1), iTotalCut + ((bHasLastKerf == true) ? 1 : 0));
 
             if (dRest > 0)
             {
                 this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(dRest + " mm"), (dTrimLeft > 0) ? 2 : 1, 1);
-                this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 2 : 1, 1), iTotalCut);
+                this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 2 : 1, 1), iTotalCut  + ((bHasLastKerf == true) ? 1 : 0));
             }
 
         }

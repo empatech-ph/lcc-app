@@ -79,8 +79,8 @@ namespace LCC
             string filePath = string.Empty;
             filePath = openFileDialog.FileName;
             var extension = Path.GetExtension(openFileDialog.FileName);
-            if (extension == ".csv" || extension == ".txt")
-            {
+            //if (extension == ".csv" || extension == ".txt")
+            //{
                 DataGridViewComboBoxColumn sourceField = new DataGridViewComboBoxColumn();
                 sourceField.HeaderText = "Source Field";
                 sourceField.Name = "sourceField";
@@ -114,7 +114,7 @@ namespace LCC
                 }
                 dataGridViewFieldMap.Columns["defaultValue"].ReadOnly = true;
                 ShowDialog();
-            }
+            //}
             this.oProject.initProject();
             this.oProject.initCutLength();
         }

@@ -1,12 +1,14 @@
 ﻿using JsonFlatFileDataStore;
 using LCC.Library;
 using LCC.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,23 +16,59 @@ namespace LCC.Components
 {
     public partial class OptiplusComponent : UserControl
     {
-        DataStore oFile;
+        readonly DataStore oFile;
+        const int GROSS_YIELD = 0;
+        const int COST = 1;
+        const int STORAGE_PART = 2;
+        const int LAYOUT = 3;
+        private Dictionary<int, string> MAP_PARAMETER = new Dictionary<int, string>(){
+                { GROSS_YIELD, "total_cost" },
+                { COST, "gross_yield" },
+                { STORAGE_PART, "total_storage_part" },
+                { LAYOUT, "total_no_of_layout" },
+            };
         private string sCurrentSelected = "btn_gross_yield";
         private Dictionary<string, string> oParameters = new Dictionary<string, string>(){
                 { "btn_gross_yield", "Gross Yield" },
-                { "btn_cost", "Cost" },
-                { "btn_storage_part", "Storage Parts Used" },
-                { "btn_layout", "No. of Layouts" },
+                { "btn_total_cost", "Cost" },
+                { "btn_total_storage_part", "Storage Parts Used" },
+                { "btn_total_no_of_layout", "No. of Layouts" },
             };
+        private List<TempOptiplusData> oTempOptiplusData = new List<TempOptiplusData>();
         public OptiplusComponent()
         {
             InitializeComponent();
 
             this.oFile = UtilsLibrary.getUserFile();
             this.setParameters();
-
             Button _btn_gross_yield = this.table_parameters.Controls[sCurrentSelected] as Button;
             _btn_gross_yield.BackColor = Color.SkyBlue;
+        }
+
+        private void initOptiplusData(int iCutlengthNo)
+        {
+            this.dt_optiplus.DataSource = new List<TempOptiplusData>();
+            int iCounter = 1;
+            this.oTempOptiplusData = GLOBAL.oTempCutlength.Where(e => e.id == iCutlengthNo).GroupBy(e => new
+            {
+                e.cutlength_desc_grade,
+                e.part_code,
+                e.gross_yield,
+                e.quantity,
+                e.cost,
+                e.total_layout,
+                e.total_parts_length,
+                e.total_stock_length
+            }).Select(e => new TempOptiplusData()
+            {
+                auto_no = iCounter++,
+                gross_yield = e.Last().gross_yield,
+                solution_no = e.Last().solution_no,
+                total_cost = e.Last().cost,
+                total_no_of_layout = e.Last().total_layout,
+                total_storage_part = e.Last().total_parts_length
+            }).ToList();
+            this.dt_optiplus.DataSource = this.oTempOptiplusData;
         }
 
         private void setParameters()
@@ -38,11 +76,13 @@ namespace LCC.Components
             int i = 0;
             foreach (KeyValuePair<string, string> oParameter in oParameters)
             {
-                this.table_parameters.Controls.Add(this.getNewGeneratedButton(oParameter.Key, oParameter.Value), i, 0);
+                this.table_parameters.Controls.Add(this.getNewGeneratedButton(oParameter.Key, oParameter.Value, i), i, 0);
                 i++;
             }
+            this.sortOptiplus();
         }
-        private Button getNewGeneratedButton(string sKey, string sText)
+
+        private Button getNewGeneratedButton(string sKey, string sText, int iTag = 1)
         {
             Button oButton = new Button();
             oButton.Text = sText;
@@ -53,6 +93,7 @@ namespace LCC.Components
             oButton.Dock = DockStyle.Fill;
             oButton.Cursor = Cursors.Hand;
             oButton.Click += new EventHandler(btn_parameter_Click);
+            oButton.Tag = iTag;
             return oButton;
         }
 
@@ -76,6 +117,7 @@ namespace LCC.Components
                     }
                 }
             }
+            this.sortOptiplus();
         }
 
         private void btn_right_Click(object sender, EventArgs e)
@@ -99,16 +141,17 @@ namespace LCC.Components
                     }
                 }
             }
+            this.sortOptiplus();
         }
 
         private void btn_parameter_Click(object sender, EventArgs e)
         {
             Button _btn_current = sender as Button;
 
-            Button _btn_layout = this.table_parameters.Controls["btn_layout"] as Button;
+            Button _btn_layout = this.table_parameters.Controls["btn_total_no_of_layout"] as Button;
             Button _btn_gross_yield = this.table_parameters.Controls["btn_gross_yield"] as Button;
-            Button _btn_cost = this.table_parameters.Controls["btn_cost"] as Button;
-            Button _btn_storage_part = this.table_parameters.Controls["btn_storage_part"] as Button;
+            Button _btn_cost = this.table_parameters.Controls["btn_total_cost"] as Button;
+            Button _btn_storage_part = this.table_parameters.Controls["btn_total_storage_part"] as Button;
 
             _btn_layout.BackColor = Color.White;
             _btn_gross_yield.BackColor = Color.White;
@@ -118,5 +161,38 @@ namespace LCC.Components
             _btn_current.BackColor = Color.SkyBlue;
             this.sCurrentSelected = _btn_current.Name;
         }
+
+        private void dt_materials_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int iRowIndex = e.RowIndex;
+            if (iRowIndex != -1)
+            {
+                int iCutlengthId = int.Parse(this.dt_materials.Rows[iRowIndex].Cells["id"].Value.ToString());
+                this.initOptiplusData(iCutlengthId);
+            }
+            this.sortOptiplus();
+        }
+
+        private void dt_materials_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (this.dt_materials.RowCount > 0)
+            {
+                int iCutlengthId = int.Parse(this.dt_materials.Rows[0].Cells["id"].Value.ToString());
+                this.initOptiplusData(iCutlengthId);
+            }
+        }
+
+        private void sortOptiplus()
+        {
+            string sSortString = "";
+            List<Control> oParameters = this.table_parameters.Controls.Cast<Control>().OrderBy(c => this.table_parameters.GetCellPosition(c).Column).ToList();
+            foreach (Control oControl in oParameters)
+            {
+                sSortString += MAP_PARAMETER.FirstOrDefault(e => "btn_" + e.Value == oControl.Name).Value + " DESC,";
+            }
+
+            this.dt_optiplus.DataSource = this.oTempOptiplusData.AsQueryable().OrderBy(sSortString.TrimEnd(',')).ToList();
+        }
     }
+
 }
