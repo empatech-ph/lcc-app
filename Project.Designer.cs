@@ -35,6 +35,7 @@ namespace LCC
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Project));
             this.storageBtn = new MaterialSkin.Controls.MaterialButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.exportBtn = new MaterialSkin.Controls.MaterialButton();
@@ -90,11 +91,14 @@ namespace LCC
             this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportProjects = new System.Windows.Forms.ToolStripMenuItem();
             this.exportReports = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryListItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commLengthListItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutBtn = new MaterialSkin.Controls.MaterialButton();
             this.optionsBtn = new MaterialSkin.Controls.MaterialButton();
             this.helpBtn = new MaterialSkin.Controls.MaterialButton();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.statusBarLbl = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.tabOptiPlus.SuspendLayout();
@@ -633,6 +637,7 @@ namespace LCC
             this.cutLengthsTable.RowTemplate.Height = 25;
             this.cutLengthsTable.Size = new System.Drawing.Size(1072, 407);
             this.cutLengthsTable.TabIndex = 0;
+            this.cutLengthsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellClick);
             this.cutLengthsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellEndEdit);
             this.cutLengthsTable.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.cutLengthsTable_DataError);
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
@@ -789,10 +794,12 @@ namespace LCC
             // 
             this.fileMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importItem,
-            this.exportItem});
+            this.exportItem,
+            this.inventoryListItem,
+            this.commLengthListItem});
             this.fileMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.fileMenuStrip.Name = "fileMenuStrip";
-            this.fileMenuStrip.Size = new System.Drawing.Size(111, 48);
+            this.fileMenuStrip.Size = new System.Drawing.Size(201, 92);
             this.fileMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileMenuStrip_ItemClicked);
             this.fileMenuStrip.Click += new System.EventHandler(this.fileMenuStrip_Click);
             // 
@@ -803,7 +810,7 @@ namespace LCC
             this.importInventoryList,
             this.importCommercialLengths});
             this.importItem.Name = "importItem";
-            this.importItem.Size = new System.Drawing.Size(110, 22);
+            this.importItem.Size = new System.Drawing.Size(200, 22);
             this.importItem.Text = "Import";
             // 
             // importCutLength
@@ -833,7 +840,7 @@ namespace LCC
             this.exportProjects,
             this.exportReports});
             this.exportItem.Name = "exportItem";
-            this.exportItem.Size = new System.Drawing.Size(110, 22);
+            this.exportItem.Size = new System.Drawing.Size(200, 22);
             this.exportItem.Text = "Export";
             // 
             // exportProjects
@@ -849,6 +856,18 @@ namespace LCC
             this.exportReports.Size = new System.Drawing.Size(116, 22);
             this.exportReports.Text = "Reports";
             this.exportReports.Click += new System.EventHandler(this.exportReports_Click);
+            // 
+            // inventoryListItem
+            // 
+            this.inventoryListItem.Name = "inventoryListItem";
+            this.inventoryListItem.Size = new System.Drawing.Size(200, 22);
+            this.inventoryListItem.Text = "Inventory List";
+            // 
+            // commLengthListItem
+            // 
+            this.commLengthListItem.Name = "commLengthListItem";
+            this.commLengthListItem.Size = new System.Drawing.Size(200, 22);
+            this.commLengthListItem.Text = "Commercial Length List";
             // 
             // logoutBtn
             // 
@@ -928,12 +947,21 @@ namespace LCC
             this.oBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.oBackgroundWorker_ProgressChanged);
             this.oBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.oBackgroundWorker_RunWorkerCompleted);
             // 
+            // statusBarLbl
+            // 
+            this.statusBarLbl.AutoSize = true;
+            this.statusBarLbl.Location = new System.Drawing.Point(743, 660);
+            this.statusBarLbl.Name = "statusBarLbl";
+            this.statusBarLbl.Size = new System.Drawing.Size(0, 15);
+            this.statusBarLbl.TabIndex = 19;
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 682);
+            this.Controls.Add(this.statusBarLbl);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.logoutBtn);
             this.Controls.Add(this.optionsBtn);
@@ -946,6 +974,7 @@ namespace LCC
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.progressOptimize);
             this.DrawerShowIconsWhenHidden = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1105, 682);
             this.MinimumSize = new System.Drawing.Size(1105, 682);
@@ -977,6 +1006,7 @@ namespace LCC
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.fileMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1045,5 +1075,8 @@ namespace LCC
         private System.Windows.Forms.ProgressBar progressOptimize;
         private System.ComponentModel.BackgroundWorker oBackgroundWorker;
         private Components.OptiplusComponent optiplusComponent1;
+        private System.Windows.Forms.Label statusBarLbl;
+        private System.Windows.Forms.ToolStripMenuItem inventoryListItem;
+        private System.Windows.Forms.ToolStripMenuItem commLengthListItem;
     }
 }
