@@ -29,6 +29,7 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
             this.symbolDropdown = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -299,7 +300,7 @@ namespace LCC
             this.costTab.Location = new System.Drawing.Point(4, 24);
             this.costTab.Name = "costTab";
             this.costTab.Padding = new System.Windows.Forms.Padding(3);
-            this.costTab.Size = new System.Drawing.Size(474, 324);
+            this.costTab.Size = new System.Drawing.Size(474, 351);
             this.costTab.TabIndex = 1;
             this.costTab.Text = "Cost Unit";
             this.costTab.UseVisualStyleBackColor = true;
@@ -323,6 +324,7 @@ namespace LCC
             this.ClientSize = new System.Drawing.Size(498, 479);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.optionTab);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Options";
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);

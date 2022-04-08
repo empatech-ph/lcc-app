@@ -30,19 +30,11 @@ namespace LCC
         private void InitializeComponent()
         {
             MaterialSkin.Controls.MaterialLabel helpLbl;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Help));
             this.panel1 = new System.Windows.Forms.Panel();
             helpLbl = new MaterialSkin.Controls.MaterialLabel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel1.Controls.Add(helpLbl);
-            this.panel1.Location = new System.Drawing.Point(44, 118);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 281);
-            this.panel1.TabIndex = 0;
             // 
             // helpLbl
             // 
@@ -56,12 +48,22 @@ namespace LCC
             helpLbl.TabIndex = 0;
             helpLbl.Text = "sample content";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(helpLbl);
+            this.panel1.Location = new System.Drawing.Point(44, 118);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 281);
+            this.panel1.TabIndex = 0;
+            // 
             // Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 471);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Help";
             this.Text = "Help";
             this.panel1.ResumeLayout(false);

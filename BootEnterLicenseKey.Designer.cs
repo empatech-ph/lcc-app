@@ -29,6 +29,7 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootEnterLicenseKey));
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.tb_productCode = new MaterialSkin.Controls.MaterialTextBox();
             this.tb_licenseKey = new MaterialSkin.Controls.MaterialTextBox();
@@ -137,6 +138,7 @@ namespace LCC
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(563, 450);
             this.Name = "BootEnterLicenseKey";

@@ -29,6 +29,7 @@ namespace LCC
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.SuspendLayout();
@@ -50,7 +51,7 @@ namespace LCC
             this.materialDrawer1.HighlightWithAccent = true;
             this.materialDrawer1.IndicatorWidth = 0;
             this.materialDrawer1.IsOpen = true;
-            this.materialDrawer1.Location = new System.Drawing.Point(6, 68);
+            this.materialDrawer1.Location = new System.Drawing.Point(0, 68);
             this.materialDrawer1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDrawer1.Name = "materialDrawer1";
             this.materialDrawer1.ShowIconsWhenHidden = false;
@@ -65,6 +66,7 @@ namespace LCC
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1215, 523);
             this.Controls.Add(this.materialDrawer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Project";
             this.ResumeLayout(false);

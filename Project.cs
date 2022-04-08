@@ -85,6 +85,7 @@ namespace LCC
         public void Project_Load(object sender, EventArgs e)
         {
             //tool tips
+            this.Icon = Properties.Resources.taskbar_icon;
             projectToolTip.SetToolTip(addProject, "Create New Project");
             projectToolTip.SetToolTip(storageBtn, "Audit Logs");
             projectToolTip.SetToolTip(printerBtn, "Print Reports");
@@ -603,6 +604,18 @@ namespace LCC
         private void Project_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void cutLengthsTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                var row = cutLengthsTable.Rows[e.RowIndex];
+                this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
+
+                this.materialComponent1.initDatagrid();
+                this.initCutLength();
+            }
         }
     }
 }

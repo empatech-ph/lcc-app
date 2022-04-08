@@ -30,6 +30,7 @@ namespace LCC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.panel1 = new System.Windows.Forms.Panel();
             this.l_currentLoggedUser = new System.Windows.Forms.Label();
             this.l_licenseCode = new System.Windows.Forms.Label();
@@ -151,6 +152,7 @@ namespace LCC
             this.Controls.Add(this.progressContainer);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(518, 318);
             this.Name = "SplashScreen";
             this.ShowIcon = false;

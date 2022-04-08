@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImportFieldMapping));
             this.importOptionsgrpbx = new System.Windows.Forms.GroupBox();
             this.comboBoxTxtDef = new System.Windows.Forms.ComboBox();
             this.lblTxtDef = new System.Windows.Forms.Label();
@@ -267,6 +268,7 @@
             this.Controls.Add(this.grpBxFieldMap);
             this.Controls.Add(this.grpBxData);
             this.Controls.Add(this.importOptionsgrpbx);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ImportFieldMapping";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
