@@ -156,7 +156,9 @@ namespace LCC
             importFieldMapping.oProject = this;
             importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             importFieldMapping.openFileDialog.Title = "Browse File";
-            importFieldMapping.openFileDialog.ShowDialog();
+            System.Windows.Forms.DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();
+
+            if (dialogResult == System.Windows.Forms.DialogResult.Cancel) return;
 
             if (tabOptiPlus.SelectedTab.Text != null)
             { 
