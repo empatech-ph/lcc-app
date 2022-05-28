@@ -121,7 +121,7 @@ namespace LCC
             this.projectTable.Columns["project_reference"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.projectTable.Columns["rev_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
-            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_reference.ToString() + " - " + oProjectList.FirstOrDefault().project_name.ToString());
         }
 
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -130,7 +130,7 @@ namespace LCC
             {
                 var row = projectTable.Rows[e.RowIndex];
                 GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
-                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString();
+                this.l_currentProject.Text = "Current Project : " + row.Cells["project_reference"].Value.ToString() + " - " + row.Cells["project_name"].Value.ToString();
 
                 if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
                 {
@@ -363,7 +363,7 @@ namespace LCC
         {
 
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
-            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_reference"].Value.ToString() + " - " + this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
             this.materialComponent1.initDatagrid();
             this.initCutLength();
         }
