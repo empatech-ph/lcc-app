@@ -19,7 +19,7 @@ namespace LCC.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -67,6 +67,15 @@ namespace LCC.Properties {
             get {
                 object obj = ResourceManager.GetObject("183331897_150351457100256_4252464618922505131_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://lcc-api.herokuapp.com.
+        /// </summary>
+        internal static string _webhost {
+            get {
+                return ResourceManager.GetString("_webhost", resourceCulture);
             }
         }
         
@@ -331,7 +340,7 @@ namespace LCC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://lcc-api.herokuapp.com.
+        ///   Looks up a localized string similar to http://lcc-tool.com.
         /// </summary>
         internal static string webhost {
             get {

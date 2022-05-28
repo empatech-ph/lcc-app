@@ -25,7 +25,7 @@ namespace LCC
             {
                 Application.Exit();
             }
-            Application.Run(new Project());
+            Application.Run(new SplashScreen());
         }
     }
 }
