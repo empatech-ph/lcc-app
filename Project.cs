@@ -36,14 +36,14 @@ namespace LCC
 
         private DataStore oFile;
         ProjectModel proj = new ProjectModel();
-        
+
         public Project()
         {
             //this.Icon = Properties.Resources.;
             InitializeComponent();
             ThemeLibrary.initMaterialDesign(this);
 
-            if(((new Library.RegistryLibrary()).getLogin()).user_type != 2)
+            if (((new Library.RegistryLibrary()).getLogin()).user_type != 2)
             {
                 this.importInventoryList.Visible = false;
                 this.importCommercialLengths.Visible = false;
@@ -65,7 +65,7 @@ namespace LCC
         void proj_ProjectNameChanged()
         {
             reentrancyGuard = true;
-            projectTable.CurrentCell.Value = proj.project_name;
+            projectTable.CurrentCell.Value = proj.project_name + " - " + proj.project_reference;
             reentrancyGuard = false;
         }
 
@@ -121,7 +121,7 @@ namespace LCC
             this.projectTable.Columns["project_reference"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.projectTable.Columns["rev_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
-            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString() + " - " +oProjectList.FirstOrDefault().project_reference.ToString());
         }
 
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -130,7 +130,7 @@ namespace LCC
             {
                 var row = projectTable.Rows[e.RowIndex];
                 GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
-                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString();
+                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString() + " - " + row.Cells["project_reference"].Value.ToString();
 
                 if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
                 {
@@ -159,7 +159,7 @@ namespace LCC
             importFieldMapping.openFileDialog.ShowDialog();
 
             if (tabOptiPlus.SelectedTab.Text != null)
-            { 
+            {
                 importFieldMapping.openFileDialog.Tag = tabOptiPlus.SelectedTab.Text;
                 importFieldMapping.importFieldMappingDisplay(sender, e);
             }
@@ -284,7 +284,8 @@ namespace LCC
                     var row = cutLengthsTable.Rows[e.RowIndex];
                     if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
-                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null)
+                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null && row.Cells["part_code"].Value != null && row.Cells["quantity"].Value != null && row.Cells["uncut_quantity"].Value != null 
+                            && row.Cells["length"].Value != null && row.Cells["order_number"].Value != null && row.Cells["note"].Value != null)
                         {
                             this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
                             {
@@ -302,7 +303,7 @@ namespace LCC
                         }
                         else
                         {
-                            MessageBox.Show("Description and Grade fields can't be null.");
+                            MessageBox.Show("Fields are required and can't be null.");
                         }
                     }
                     else
@@ -361,7 +362,7 @@ namespace LCC
         {
 
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
-            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString() + " - " + this.projectTable.CurrentRow.Cells["project_reference"].Value.ToString());
             this.materialComponent1.initDatagrid();
             this.initCutLength();
         }
@@ -397,7 +398,7 @@ namespace LCC
 
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
             this.oBackgroundWorker.RunWorkerAsync();
-        } 
+        }
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -406,7 +407,7 @@ namespace LCC
             {
                 this.optimizeBtn.Visible = true;
             }
-            
+
             if (this.tabOptiPlus.SelectedTab.Name == "cutLengthTab")
             {
                 this.initCutLength();
@@ -441,7 +442,7 @@ namespace LCC
                 dynamic oList = this.oFile.GetCollection<MaterialModel>().Find(searchString.Text).AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
                 BindingList<MaterialModel> oListModel = new BindingList<MaterialModel>(oList);
                 this.materialComponent1.dt_material.DataSource = oListModel;
-                this.materialComponent1.dt_material.Refresh();  
+                this.materialComponent1.dt_material.Refresh();
             }
         }
 
@@ -604,14 +605,27 @@ namespace LCC
 
         private void cutLengthsTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex != -1)
-            {
-                var row = cutLengthsTable.Rows[e.RowIndex];
-                this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
+            //try
+            //{
+            //    if (e.RowIndex != -1)
+            //    {
+            //        var row = cutLengthsTable.Rows[e.RowIndex];
+            //        //this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
+            //        this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
+            //        this.materialComponent1.initDatagrid();
+            //        this.initCutLength();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
 
-                this.materialComponent1.initDatagrid();
-                this.initCutLength();
-            }
+            //}
+
+        }
+
+        private void cutLengthsTable_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            cutLengthsTable.Refresh();
         }
     }
 }
