@@ -99,6 +99,7 @@ namespace LCC
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.statusBarLbl = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panelOptimize.SuspendLayout();
             this.tabOptiPlus.SuspendLayout();
@@ -328,7 +329,7 @@ namespace LCC
             this.fileBtn.DrawShadows = true;
             this.fileBtn.HighEmphasis = true;
             this.fileBtn.Icon = null;
-            this.fileBtn.Location = new System.Drawing.Point(157, 25);
+            this.fileBtn.Location = new System.Drawing.Point(90, 26);
             this.fileBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.fileBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.fileBtn.Name = "fileBtn";
@@ -639,6 +640,7 @@ namespace LCC
             this.cutLengthsTable.TabIndex = 0;
             this.cutLengthsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellClick);
             this.cutLengthsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellEndEdit);
+            this.cutLengthsTable.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellLeave);
             this.cutLengthsTable.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.cutLengthsTable_DataError);
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.cutLengthsTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
@@ -875,7 +877,7 @@ namespace LCC
             this.logoutBtn.DrawShadows = true;
             this.logoutBtn.HighEmphasis = true;
             this.logoutBtn.Icon = null;
-            this.logoutBtn.Location = new System.Drawing.Point(374, 25);
+            this.logoutBtn.Location = new System.Drawing.Point(348, 26);
             this.logoutBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.logoutBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.logoutBtn.Name = "logoutBtn";
@@ -896,7 +898,7 @@ namespace LCC
             this.optionsBtn.DrawShadows = true;
             this.optionsBtn.HighEmphasis = true;
             this.optionsBtn.Icon = null;
-            this.optionsBtn.Location = new System.Drawing.Point(225, 25);
+            this.optionsBtn.Location = new System.Drawing.Point(172, 26);
             this.optionsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.optionsBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.optionsBtn.Name = "optionsBtn";
@@ -917,7 +919,7 @@ namespace LCC
             this.helpBtn.DrawShadows = true;
             this.helpBtn.HighEmphasis = true;
             this.helpBtn.Icon = null;
-            this.helpBtn.Location = new System.Drawing.Point(299, 25);
+            this.helpBtn.Location = new System.Drawing.Point(260, 26);
             this.helpBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.helpBtn.MouseState = MaterialSkin.MouseState.HOVER;
             this.helpBtn.Name = "helpBtn";
@@ -953,12 +955,24 @@ namespace LCC
             this.statusBarLbl.Size = new System.Drawing.Size(0, 15);
             this.statusBarLbl.TabIndex = 19;
             // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::LCC.Properties.Resources.logo3;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button1.Location = new System.Drawing.Point(13, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 53);
+            this.button1.TabIndex = 20;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 682);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusBarLbl);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.logoutBtn);
@@ -979,7 +993,6 @@ namespace LCC
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LeanearCut1D";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);
@@ -1076,5 +1089,6 @@ namespace LCC
         private System.Windows.Forms.Label statusBarLbl;
         private System.Windows.Forms.ToolStripMenuItem inventoryListItem;
         private System.Windows.Forms.ToolStripMenuItem commLengthListItem;
+        private System.Windows.Forms.Button button1;
     }
 }

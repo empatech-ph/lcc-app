@@ -42,7 +42,6 @@ namespace LCC.Modals
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.visibility_image = new System.Windows.Forms.DataGridViewImageColumn();
             this.editable_image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.remove_image = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,8 +60,7 @@ namespace LCC.Modals
             this.stock_code,
             this.note,
             this.visibility_image,
-            this.editable_image,
-            this.remove_image});
+            this.editable_image});
             this.dt_stock.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dt_stock.Location = new System.Drawing.Point(3, 156);
             this.dt_stock.Name = "dt_stock";
@@ -175,7 +173,7 @@ namespace LCC.Modals
             this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.visibility_image.Name = "visibility_image";
             this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.visibility_image.Width = 65;
+            this.visibility_image.Width = 120;
             // 
             // editable_image
             // 
@@ -183,15 +181,7 @@ namespace LCC.Modals
             this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.editable_image.Name = "editable_image";
             this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editable_image.Width = 65;
-            // 
-            // remove_image
-            // 
-            this.remove_image.HeaderText = "Delete";
-            this.remove_image.Image = global::LCC.Properties.Resources.delete_bin_480px;
-            this.remove_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.remove_image.Name = "remove_image";
-            this.remove_image.Width = 65;
+            this.editable_image.Width = 120;
             // 
             // StocksManager
             // 
@@ -227,6 +217,5 @@ namespace LCC.Modals
         private System.Windows.Forms.DataGridViewTextBoxColumn note;
         private System.Windows.Forms.DataGridViewImageColumn visibility_image;
         private System.Windows.Forms.DataGridViewImageColumn editable_image;
-        private System.Windows.Forms.DataGridViewImageColumn remove_image;
     }
 }
