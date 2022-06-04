@@ -399,12 +399,15 @@ namespace LCC
             this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
 
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
+            this.optimizeBtn.Visible = false;
+            this.stopButton.Visible = true;
             this.oBackgroundWorker.RunWorkerAsync();
         }
 
         private void projectTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.optimizeBtn.Visible = false;
+            this.stopButton.Visible = false;
             if (this.tabOptiPlus.SelectedTab.Name == "materialTab")
             {
                 this.optimizeBtn.Visible = true;
@@ -587,6 +590,12 @@ namespace LCC
             {
                 this.optimizeComponent1.initOptimizedStockLengthDataTable(int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString()));
             }
+
+            this.stopButton.Visible = false;
+            if (this.tabOptiPlus.SelectedTab.Name == "materialTab")
+            {
+                this.optimizeBtn.Visible = true;
+            }
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
@@ -628,6 +637,11 @@ namespace LCC
         private void cutLengthsTable_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             cutLengthsTable.Refresh();
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            this.oBackgroundWorker.CancelAsync();
         }
     }
 }

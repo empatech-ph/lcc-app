@@ -41,7 +41,7 @@ namespace LCC.Library
                     break;
                 case "rest2":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / dLength).ToString()))))
                         .ToList();
                     break;
                 case "cost":
