@@ -344,6 +344,8 @@ namespace LCC
                     order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                     note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                 });
+            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
+            this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
