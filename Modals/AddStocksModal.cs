@@ -78,5 +78,17 @@ namespace LCC.Modals
         {
             this.c_qty.DropDownStyle = ComboBoxStyle.DropDown;
         }
+
+        private void c_stockType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.c_stockType.SelectedIndex == 1)
+            {
+                this.c_qty.SelectedIndex = 0;
+                this.c_qty.Enabled = false;
+            }
+            else {
+                this.c_qty.Enabled = true;
+            }
+        }
     }
 }

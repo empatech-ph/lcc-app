@@ -30,18 +30,18 @@ namespace LCC.Modals
         private void InitializeComponent()
         {
             this.dt_stock = new System.Windows.Forms.DataGridView();
-            this.stockType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.l_material = new MaterialSkin.Controls.MaterialLabel();
-            this.btn_add = new MaterialSkin.Controls.MaterialButton();
             this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stock_type = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.visibility_image = new System.Windows.Forms.DataGridViewImageColumn();
             this.editable_image = new System.Windows.Forms.DataGridViewImageColumn();
+            this.stockType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.l_material = new MaterialSkin.Controls.MaterialLabel();
+            this.btn_add = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +75,66 @@ namespace LCC.Modals
             this.dt_stock.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_stock_CellEndEdit);
             this.dt_stock.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dt_stock_CellFormatting);
             this.dt_stock.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dt_stock_DataBindingComplete);
+            // 
+            // qty
+            // 
+            this.qty.DataPropertyName = "qty";
+            this.qty.HeaderText = "Quantity";
+            this.qty.Name = "qty";
+            this.qty.ReadOnly = true;
+            this.qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.qty.Width = 60;
+            // 
+            // length
+            // 
+            this.length.DataPropertyName = "length";
+            this.length.HeaderText = "Length (mm)";
+            this.length.Name = "length";
+            this.length.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.length.Width = 120;
+            // 
+            // stock_type
+            // 
+            this.stock_type.DataPropertyName = "stock_type";
+            this.stock_type.HeaderText = "Stock Type";
+            this.stock_type.Name = "stock_type";
+            this.stock_type.ReadOnly = true;
+            // 
+            // cost
+            // 
+            this.cost.DataPropertyName = "cost";
+            this.cost.HeaderText = "Cost (AUD) / EA";
+            this.cost.Name = "cost";
+            this.cost.Width = 135;
+            // 
+            // stock_code
+            // 
+            this.stock_code.DataPropertyName = "stock_code";
+            this.stock_code.HeaderText = "Stock Code";
+            this.stock_code.Name = "stock_code";
+            // 
+            // note
+            // 
+            this.note.DataPropertyName = "note";
+            this.note.HeaderText = "Note";
+            this.note.Name = "note";
+            this.note.Width = 240;
+            // 
+            // visibility_image
+            // 
+            this.visibility_image.HeaderText = "Visibility";
+            this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.visibility_image.Name = "visibility_image";
+            this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.visibility_image.Width = 120;
+            // 
+            // editable_image
+            // 
+            this.editable_image.HeaderText = "Editable";
+            this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.editable_image.Name = "editable_image";
+            this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.editable_image.Width = 120;
             // 
             // stockType
             // 
@@ -120,69 +180,6 @@ namespace LCC.Modals
             this.btn_add.UseVisualStyleBackColor = false;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // qty
-            // 
-            this.qty.DataPropertyName = "qty";
-            this.qty.HeaderText = "Quantity";
-            this.qty.Name = "qty";
-            this.qty.ReadOnly = true;
-            this.qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.qty.Width = 60;
-            // 
-            // length
-            // 
-            this.length.DataPropertyName = "length";
-            this.length.HeaderText = "Length (mm)";
-            this.length.Name = "length";
-            this.length.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.length.Width = 120;
-            // 
-            // stock_type
-            // 
-            this.stock_type.DataPropertyName = "stock_type";
-            this.stock_type.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stock_type.HeaderText = "Stock Type";
-            this.stock_type.Name = "stock_type";
-            this.stock_type.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.stock_type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.stock_type.Width = 90;
-            // 
-            // cost
-            // 
-            this.cost.DataPropertyName = "cost";
-            this.cost.HeaderText = "Cost (AUD) / EA";
-            this.cost.Name = "cost";
-            this.cost.Width = 135;
-            // 
-            // stock_code
-            // 
-            this.stock_code.DataPropertyName = "stock_code";
-            this.stock_code.HeaderText = "Stock Code";
-            this.stock_code.Name = "stock_code";
-            // 
-            // note
-            // 
-            this.note.DataPropertyName = "note";
-            this.note.HeaderText = "Note";
-            this.note.Name = "note";
-            this.note.Width = 240;
-            // 
-            // visibility_image
-            // 
-            this.visibility_image.HeaderText = "Visibility";
-            this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.visibility_image.Name = "visibility_image";
-            this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.visibility_image.Width = 120;
-            // 
-            // editable_image
-            // 
-            this.editable_image.HeaderText = "Editable";
-            this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.editable_image.Name = "editable_image";
-            this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editable_image.Width = 120;
-            // 
             // StocksManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -211,7 +208,7 @@ namespace LCC.Modals
         private MaterialSkin.Controls.MaterialButton btn_add;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn length;
-        private System.Windows.Forms.DataGridViewComboBoxColumn stock_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stock_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn cost;
         private System.Windows.Forms.DataGridViewTextBoxColumn stock_code;
         private System.Windows.Forms.DataGridViewTextBoxColumn note;

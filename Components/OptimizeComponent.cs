@@ -71,42 +71,6 @@ namespace LCC.Components
 
             oBackgroundWorker.ReportProgress(80);
 
-            foreach (TempStocklengthModel oTempStockLength in GLOBAL.oTempStockLengthOptimized)
-            {
-                if (oTempStockLength.rest != 0)
-                {
-                    this.saveRemnantScrapStock(oTempStockLength);
-                    continue;
-
-                }
-                else if (oTempStockLength.scrap != 0)
-                {
-                    this.saveRemnantScrapStock(oTempStockLength);
-                    continue;
-                }
-            }
-            oBackgroundWorker.ReportProgress(90);
-        }
-
-        private void saveRemnantScrapStock(TempStocklengthModel oTempStockLength)
-        {
-            var oStockCollection = this.oFile.GetCollection<RemnantStockModel>();
-            string sCutStockType = ((oTempStockLength.rest != 0) ? "remnant" : "scrap");
-            double dLength = ((oTempStockLength.rest != 0) ? oTempStockLength.rest : oTempStockLength.scrap);
-            oStockCollection.InsertOne(new RemnantStockModel
-            {
-                cost = 0.00,
-                cut_stock_type = sCutStockType,
-                length = dLength,
-                stock_code = oTempStockLength.stock_code,
-                stock_type = oTempStockLength.stock_type,
-                material_id = oTempStockLength.material_id,
-                note = oTempStockLength.note,
-                qty = oTempStockLength.repeated.ToString(),
-                editable = false,
-                visibility = true,
-
-            });
         }
        
         public void initOptimizedStockLengthDataTable(int iCutLength)

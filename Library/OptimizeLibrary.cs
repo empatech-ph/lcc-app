@@ -44,12 +44,12 @@ namespace LCC.Library
                     break;
                 case "length-with-rest-desc":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / (dLength == 0 ? 1 : dLength)).ToString()))))
                         .ToList();
                     break;
                 case "length-with-rest-asc":
                     oStockList = oStockModel.OrderBy(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / (dLength == 0 ? 1 : dLength)).ToString()))))
                         .ToList();
                     break;
                 case "cost-asc":
@@ -365,7 +365,7 @@ namespace LCC.Library
                         mTempCutlength.total_layout++;
                     }
                 }
-                //OptimizeLibrary.oTempOptimized.AddRange(oTempOptimizedList);
+                OptimizeLibrary.oTempOptimized.AddRange(oTempOptimizedList);
             }
 
         }

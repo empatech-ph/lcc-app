@@ -118,7 +118,6 @@ namespace LCC.Components
 
                     if (mExistingRowsCount <= 0)
                     {
-
                         oMaterialModel.InsertOne(new MaterialModel
                         {
                             id = 1,

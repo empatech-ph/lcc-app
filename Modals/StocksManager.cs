@@ -38,25 +38,11 @@ namespace LCC.Modals
             IEnumerable<StockModel> oList = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>()
                 .AsQueryable()
                 .Where(e => e.material_id == GLOBAL.iSelectedMaterialId);
-            if (this.bST == false && this.bBO == true)
-            {
-                oList = oList.Where(e => e.stock_type == "BO");
-                stock_type.Items.Add("BO");
-            }
-            else if (this.bST == true && this.bBO == false)
-            {
-                oList = oList.Where(e => e.stock_type == "ST");
-                stock_type.Items.Add("ST");
-            }
-            else
-            {
-                oList = oList.Where(e => e.stock_type == "BO" || e.stock_type == "ST");
-                stock_type.Items.Add("ST");
-                stock_type.Items.Add("BO");
-            }
+          
             BindingList<StockModel> oListModel = new BindingList<StockModel>(oList.ToList());
             this.dt_stock.DataSource = oListModel;
             this.dt_stock.Columns["id"].Visible = false;
+            this.dt_stock.Columns["stock_type"].ReadOnly = true;
             this.dt_stock.Columns["cut_stock_type"].Visible = false;
             this.dt_stock.Columns["material_id"].Visible = false;
             this.dt_stock.Columns["visibility"].Visible = false;
@@ -96,6 +82,7 @@ namespace LCC.Modals
                         oRow.Cells[e.ColumnIndex].ReadOnly = false;
                     }
                 }
+                this.dt_stock.Columns["stock_type"].ReadOnly = true;
             }
             catch
             { }
@@ -111,7 +98,7 @@ namespace LCC.Modals
             try
             {
                 var oRow = this.dt_stock.Rows[e.RowIndex];
-                if (bool.Parse(oRow.Cells["editable"].Value.ToString()) == true && this.dt_stock.Columns[e.ColumnIndex].Name == "qty")
+                if (bool.Parse(oRow.Cells["editable"].Value.ToString()) == true && this.dt_stock.Columns[e.ColumnIndex].Name == "qty" && oRow.Cells["stock_type"].Value.ToString() != "BO")
                 {
                     var oModifyQtyModal = new ModifyQtyModal();
                     oModifyQtyModal.oCurrentRow = oRow;

@@ -78,9 +78,12 @@ namespace LCC.Components
 
         private void generateDetails(int iTotalCut, double fCutlengthLength, double dRest, string sStockCode, double dTrimLeft, double dTrimRight)
         {
-            this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + " mm x " + iTotalCut + ((bHasLastKerf == true) ? 1 : 0)), (dTrimLeft > 0) ? 1 : 0, 1);
-            this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 1 : 0, 1), iTotalCut + ((bHasLastKerf == true) ? 1 : 0));
-
+            try
+            {
+                this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(sStockCode + "\n" + fCutlengthLength + " mm x " + iTotalCut + ((bHasLastKerf == true) ? 1 : 0)), (dTrimLeft > 0) ? 1 : 0, 1);
+                this.optimizeBarPanel.SetColumnSpan(this.optimizeBarPanel.GetControlFromPosition((dTrimLeft > 0) ? 1 : 0, 1), iTotalCut + ((bHasLastKerf == true) ? 1 : 0));
+            }
+            catch (Exception e) { }
             if (dRest > 0)
             {
                 this.optimizeBarPanel.Controls.Add(this.getNewGeneratedLabel(dRest + " mm"), (dTrimLeft > 0) ? 2 : 1, 1);
