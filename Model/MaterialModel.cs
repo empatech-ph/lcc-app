@@ -16,4 +16,11 @@ namespace LCC.Model
         public double part_allowance { get; set; }
         public double min_remnant_length { get; set; }
     }
+
+    public class MaterialDescAndGradeModel
+    {
+        public string description { get; set; }
+        public string grade { get; set; }
+        public string formatted { get; set; }
+    }
 }

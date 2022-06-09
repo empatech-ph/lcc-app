@@ -297,7 +297,7 @@ namespace LCC.Library
 
                     if(oTempOptimizeModel.id == 0) {
 
-                        int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse((dComputedStockLength / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
+                        int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
                         iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
                         iUsedStockQty += 1;
                         oTempOptimizeModel = new TempOptimizedModel()

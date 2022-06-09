@@ -104,19 +104,21 @@ namespace LCC.Components
         {
             if (GLOBAL.iSelectedProjectId != 0)
             {
-                dynamic oCutLength = this.oFile.GetCollection<CutLengthModel>().AsQueryable()
+                List<MaterialDescAndGradeModel> oCutLength = this.oFile.GetCollection<CutLengthModel>().AsQueryable()
                         .Where(e => e.project_id == GLOBAL.iSelectedProjectId)
-                        .Select(o => new { o.description, o.grade })
+                        .Select(o => new MaterialDescAndGradeModel { description =  o.description, grade = o.grade, formatted = o.description + " - " + o.grade })
                         .Distinct()
                         .ToList();
                 var oMaterialModel = this.oFile.GetCollection<MaterialModel>();
-                oMaterialModel.DeleteMany(e => true);
                 foreach (dynamic oItem in oCutLength)
                 {
-                    int mExistingRowsCount = oMaterialModel.AsQueryable()
-                        .Where(e => e.description == oItem.description.ToString() && e.grade == oItem.grade.ToString()).ToList().Count;
+                    List<MaterialModel> mExistingRows = oMaterialModel.AsQueryable()
+                        .Where(e => e.description == oItem.description.ToString() && e.grade == oItem.grade.ToString()).ToList();
+                    int mExistingRowsCount = mExistingRows.Count;
 
                     if (mExistingRowsCount <= 0)
+                    {
+
                         oMaterialModel.InsertOne(new MaterialModel
                         {
                             id = 1,
@@ -129,7 +131,10 @@ namespace LCC.Components
                             min_remnant_length = 0.00,
                             project_id = GLOBAL.iSelectedProjectId,
                         });
+                    }
                 }
+                List<MaterialModel> oMaterialList = this.oFile.GetCollection<MaterialModel>().AsQueryable().ToList();
+                oMaterialModel.DeleteMany(e => oCutLength.Select(o => o.formatted).ToArray().Contains(e.description + " - " + e.grade) == false);
                 this.initDatagrid();
             }
             else
