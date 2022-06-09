@@ -110,6 +110,7 @@ namespace LCC.Components
                         .Distinct()
                         .ToList();
                 var oMaterialModel = this.oFile.GetCollection<MaterialModel>();
+                oMaterialModel.DeleteMany(e => true);
                 foreach (dynamic oItem in oCutLength)
                 {
                     int mExistingRowsCount = oMaterialModel.AsQueryable()

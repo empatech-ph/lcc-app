@@ -44,6 +44,7 @@ namespace LCC
             this.undoBtn = new MaterialSkin.Controls.MaterialButton();
             this.importBtn = new MaterialSkin.Controls.MaterialButton();
             this.panelOptimize = new System.Windows.Forms.Panel();
+            this.stopButton = new MaterialSkin.Controls.MaterialButton();
             this.optimizeBtn = new MaterialSkin.Controls.MaterialButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
@@ -251,11 +252,33 @@ namespace LCC
             // 
             // panelOptimize
             // 
+            this.panelOptimize.Controls.Add(this.stopButton);
             this.panelOptimize.Controls.Add(this.optimizeBtn);
             this.panelOptimize.Location = new System.Drawing.Point(338, 65);
             this.panelOptimize.Name = "panelOptimize";
             this.panelOptimize.Size = new System.Drawing.Size(64, 56);
             this.panelOptimize.TabIndex = 6;
+            // 
+            // stopButton
+            // 
+            this.stopButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.stopButton.Depth = 0;
+            this.stopButton.DrawShadows = true;
+            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stopButton.HighEmphasis = true;
+            this.stopButton.Icon = global::LCC.Properties.Resources.stop_480px;
+            this.stopButton.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.stopButton.Location = new System.Drawing.Point(10, 9);
+            this.stopButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.stopButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(44, 36);
+            this.stopButton.TabIndex = 0;
+            this.stopButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.stopButton.UseAccentColor = false;
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Visible = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // optimizeBtn
             // 
@@ -1090,5 +1113,6 @@ namespace LCC
         private System.Windows.Forms.ToolStripMenuItem inventoryListItem;
         private System.Windows.Forms.ToolStripMenuItem commLengthListItem;
         private System.Windows.Forms.Button button1;
+        private MaterialSkin.Controls.MaterialButton stopButton;
     }
 }

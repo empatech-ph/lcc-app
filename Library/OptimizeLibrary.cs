@@ -44,7 +44,7 @@ namespace LCC.Library
                     break;
                 case "length-with-rest-desc":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / dLength).ToString()))))
                         .ToList();
                     break;
                 case "length-with-rest-asc":

@@ -90,37 +90,25 @@ namespace LCC.Components
 
         private void saveRemnantScrapStock(TempStocklengthModel oTempStockLength)
         {
-            var oStockCollection = this.oFile.GetCollection<StockModel>();
+            var oStockCollection = this.oFile.GetCollection<RemnantStockModel>();
             string sCutStockType = ((oTempStockLength.rest != 0) ? "remnant" : "scrap");
             double dLength = ((oTempStockLength.rest != 0) ? oTempStockLength.rest : oTempStockLength.scrap);
-            var oExistingStockLength = oStockCollection.AsQueryable().Where(e => e.cut_stock_type == sCutStockType && e.length == dLength &&
-                        e.stock_code == oTempStockLength.stock_code && e.material_id == oTempStockLength.material_id).FirstOrDefault();
-            if (oExistingStockLength != null)
+            oStockCollection.InsertOne(new RemnantStockModel
             {
-                oStockCollection.UpdateOne(e => e.id == oExistingStockLength.id, new StockModel
-                {
-                    qty = (oTempStockLength.repeated + int.Parse(oExistingStockLength.qty)).ToString()
-                });
-            }
-            else
-            {
-                oStockCollection.InsertOne(new StockModel
-                {
-                    cost = 0.00,
-                    cut_stock_type = sCutStockType,
-                    length = dLength,
-                    stock_code = oTempStockLength.stock_code,
-                    stock_type = oTempStockLength.stock_type,
-                    material_id = oTempStockLength.material_id,
-                    note = oTempStockLength.note,
-                    qty = oTempStockLength.repeated.ToString(),
-                    editable = false,
-                    visibility = true,
+                cost = 0.00,
+                cut_stock_type = sCutStockType,
+                length = dLength,
+                stock_code = oTempStockLength.stock_code,
+                stock_type = oTempStockLength.stock_type,
+                material_id = oTempStockLength.material_id,
+                note = oTempStockLength.note,
+                qty = oTempStockLength.repeated.ToString(),
+                editable = false,
+                visibility = true,
 
-                });
-            }
+            });
         }
-
+       
         public void initOptimizedStockLengthDataTable(int iCutLength)
         {
 
