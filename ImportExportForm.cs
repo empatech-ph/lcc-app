@@ -100,9 +100,16 @@ namespace LCC
                         fieldMap.dataGridViewFieldMap.Columns.Add("destinationField", "Destination Field");
                         fieldMap.dataGridViewFieldMap.Columns.Add(sourceField);
                         fieldMap.dataGridViewFieldMap.Columns.Add("defaultValue", "Default Value");
+                        //var importEntity = importComboBox.SelectedItem.ToString();
+                        var siteMapHeaderList = new List<string>() { "Project Reference", "Project Name", "Revision Number", "Scope", };
 
-                        var siteMapHeaderList = importComboBox.SelectedItem.ToString() == "Project" ? new List<string>() { "Project Reference", "Project Name", "Revision Number", "Scope",}
-                                                : new List<string>() { "Part Code", "Description", "Grade", "Length", "Quantity", "Uncut Quantity", "Order Number", "Note" };
+                        if (importComboBox.SelectedItem.ToString() == "Cut Lengths")
+                        {
+                            siteMapHeaderList = new List<string>() { "Part Code", "Description", "Grade", "Length", "Quantity", "Uncut Quantity", "Order Number", "Note" };
+                        }
+                        else {
+                            siteMapHeaderList = new List<string>() { "Material", "Quantity", "Length", "Stock Type", "Cost", "Stock Code", "Note" };
+                        }
                         List<DataGridViewRow> rows = new List<DataGridViewRow>(siteMapHeaderList.Count);
                         foreach (var dest in siteMapHeaderList)
                         {

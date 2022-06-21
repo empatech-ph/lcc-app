@@ -48,6 +48,9 @@ namespace LCC
             {
                 if (oProject.tabOptiPlus.SelectedTab.Text == "Project")
                 {
+                    //if (default value walang laman) { 
+                    
+                    //}
                     var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                     collection.InsertOne(new ProjectModel { id = 1, project_reference = rec[dataGridViewFieldMapping[0][1]], project_name = rec[dataGridViewFieldMapping[1][1]], rev_no = rec[dataGridViewFieldMapping[2][1]], scope = rec[dataGridViewFieldMapping[3][1]] });
                 }
@@ -62,7 +65,7 @@ namespace LCC
                             part_code = rec[dataGridViewFieldMapping[0][1]],
                             description = rec[dataGridViewFieldMapping[1][1]],
                             grade = rec[dataGridViewFieldMapping[2][1]],
-                            length = int.Parse(rec[dataGridViewFieldMapping[3][1]]),
+                            length = double.Parse(rec[dataGridViewFieldMapping[3][1]]),
                             quantity = int.Parse(rec[dataGridViewFieldMapping[4][1]]),
                             uncut_quantity = int.Parse(rec[dataGridViewFieldMapping[5][1]]),
                             order_number = rec[dataGridViewFieldMapping[6][1]],
@@ -110,7 +113,6 @@ namespace LCC
                     DataTable dt = reader.AsDataTable();
                     dataGridViewImportData.DataSource = dt;
                     sourceField.Items.AddRange(reader.Context.Headers);
-
                 }
                 dataGridViewFieldMap.Columns["defaultValue"].ReadOnly = true;
                 ShowDialog();

@@ -30,5 +30,12 @@ namespace LCC
 
             symbolDropdown.DataSource = allCurrencies.Select(x=> x.displayItem).ToList();
         }
+
+        private void optOkBtn_Click(object sender, EventArgs e)
+        {
+            if (unitDropdown.SelectedItem.ToString() == "mm") {
+                //
+            }
+        }
     }
 }

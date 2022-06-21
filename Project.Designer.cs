@@ -86,7 +86,6 @@ namespace LCC
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.fileMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.importItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importCutLength = new System.Windows.Forms.ToolStripMenuItem();
             this.importInventoryList = new System.Windows.Forms.ToolStripMenuItem();
             this.importCommercialLengths = new System.Windows.Forms.ToolStripMenuItem();
             this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -824,26 +823,18 @@ namespace LCC
             this.commLengthListItem});
             this.fileMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.fileMenuStrip.Name = "fileMenuStrip";
-            this.fileMenuStrip.Size = new System.Drawing.Size(201, 92);
+            this.fileMenuStrip.Size = new System.Drawing.Size(201, 114);
             this.fileMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileMenuStrip_ItemClicked);
             this.fileMenuStrip.Click += new System.EventHandler(this.fileMenuStrip_Click);
             // 
             // importItem
             // 
             this.importItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importCutLength,
             this.importInventoryList,
             this.importCommercialLengths});
             this.importItem.Name = "importItem";
             this.importItem.Size = new System.Drawing.Size(200, 22);
             this.importItem.Text = "Import";
-            // 
-            // importCutLength
-            // 
-            this.importCutLength.Name = "importCutLength";
-            this.importCutLength.Size = new System.Drawing.Size(184, 22);
-            this.importCutLength.Text = "Cut Lengths";
-            this.importCutLength.Click += new System.EventHandler(this.importCutLength_Click);
             // 
             // importInventoryList
             // 
@@ -982,14 +973,15 @@ namespace LCC
             // 
             // button1
             // 
-            this.button1.BackgroundImage = global::LCC.Properties.Resources.logo3;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button1.Location = new System.Drawing.Point(13, 6);
+            this.button1.Location = new System.Drawing.Point(19, 26);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 53);
+            this.button1.Size = new System.Drawing.Size(53, 33);
             this.button1.TabIndex = 20;
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // Project
             // 
@@ -1091,7 +1083,6 @@ namespace LCC
         private System.Windows.Forms.ToolStripMenuItem exportItem;
         private System.Windows.Forms.ToolStripMenuItem exportProjects;
         private System.Windows.Forms.ToolStripMenuItem exportReports;
-        private System.Windows.Forms.ToolStripMenuItem importCutLength;
         private System.Windows.Forms.ToolStripMenuItem importInventoryList;
         private System.Windows.Forms.ToolStripMenuItem importCommercialLengths;
         private MaterialSkin.Controls.MaterialButton materialButton3;
