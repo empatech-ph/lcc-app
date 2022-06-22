@@ -55,6 +55,8 @@ namespace LCC
             this.formatMaxLengthLbl = new System.Windows.Forms.Label();
             this.costTab = new System.Windows.Forms.TabPage();
             this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            this.optOkBtn = new MaterialSkin.Controls.MaterialButton();
+            this.cancelOptBtn = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel3.SuspendLayout();
             this.optionTab.SuspendLayout();
@@ -190,6 +192,7 @@ namespace LCC
             // trailingChkBtn
             // 
             this.trailingChkBtn.AutoSize = true;
+            this.trailingChkBtn.Enabled = false;
             this.trailingChkBtn.Location = new System.Drawing.Point(14, 34);
             this.trailingChkBtn.Name = "trailingChkBtn";
             this.trailingChkBtn.Size = new System.Drawing.Size(64, 19);
@@ -200,6 +203,7 @@ namespace LCC
             // leadingChkBtn
             // 
             this.leadingChkBtn.AutoSize = true;
+            this.leadingChkBtn.Enabled = false;
             this.leadingChkBtn.Location = new System.Drawing.Point(14, 9);
             this.leadingChkBtn.Name = "leadingChkBtn";
             this.leadingChkBtn.Size = new System.Drawing.Size(68, 19);
@@ -220,6 +224,12 @@ namespace LCC
             // unitDropdown
             // 
             this.unitDropdown.FormattingEnabled = true;
+            this.unitDropdown.Items.AddRange(new object[] {
+            "",
+            "mm",
+            "cm",
+            "dm",
+            "m"});
             this.unitDropdown.Location = new System.Drawing.Point(268, 133);
             this.unitDropdown.Name = "unitDropdown";
             this.unitDropdown.Size = new System.Drawing.Size(87, 23);
@@ -238,6 +248,14 @@ namespace LCC
             // precisionDropdown
             // 
             this.precisionDropdown.FormattingEnabled = true;
+            this.precisionDropdown.Items.AddRange(new object[] {
+            "1",
+            "0.1",
+            "0.01",
+            "0.001",
+            "0.0001",
+            "0.00001",
+            "0.000001"});
             this.precisionDropdown.Location = new System.Drawing.Point(202, 104);
             this.precisionDropdown.Name = "precisionDropdown";
             this.precisionDropdown.Size = new System.Drawing.Size(153, 23);
@@ -256,6 +274,11 @@ namespace LCC
             // typeDropdown
             // 
             this.typeDropdown.FormattingEnabled = true;
+            this.typeDropdown.Items.AddRange(new object[] {
+            "Decimal",
+            "Feet and Decimal Inches",
+            "Fractional",
+            "Feet and Fractional Inches"});
             this.typeDropdown.Location = new System.Drawing.Point(100, 70);
             this.typeDropdown.Name = "typeDropdown";
             this.typeDropdown.Size = new System.Drawing.Size(251, 23);
@@ -317,11 +340,50 @@ namespace LCC
             this.materialTabSelector1.TabIndex = 2;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
+            // optOkBtn
+            // 
+            this.optOkBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.optOkBtn.Depth = 0;
+            this.optOkBtn.DrawShadows = true;
+            this.optOkBtn.HighEmphasis = true;
+            this.optOkBtn.Icon = null;
+            this.optOkBtn.Location = new System.Drawing.Point(333, 477);
+            this.optOkBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.optOkBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.optOkBtn.Name = "optOkBtn";
+            this.optOkBtn.Size = new System.Drawing.Size(41, 36);
+            this.optOkBtn.TabIndex = 3;
+            this.optOkBtn.Text = "Ok";
+            this.optOkBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.optOkBtn.UseAccentColor = false;
+            this.optOkBtn.UseVisualStyleBackColor = true;
+            this.optOkBtn.Click += new System.EventHandler(this.optOkBtn_Click);
+            // 
+            // cancelOptBtn
+            // 
+            this.cancelOptBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cancelOptBtn.Depth = 0;
+            this.cancelOptBtn.DrawShadows = true;
+            this.cancelOptBtn.HighEmphasis = true;
+            this.cancelOptBtn.Icon = null;
+            this.cancelOptBtn.Location = new System.Drawing.Point(387, 477);
+            this.cancelOptBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.cancelOptBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cancelOptBtn.Name = "cancelOptBtn";
+            this.cancelOptBtn.Size = new System.Drawing.Size(77, 36);
+            this.cancelOptBtn.TabIndex = 4;
+            this.cancelOptBtn.Text = "Cancel";
+            this.cancelOptBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.cancelOptBtn.UseAccentColor = false;
+            this.cancelOptBtn.UseVisualStyleBackColor = true;
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 479);
+            this.ClientSize = new System.Drawing.Size(493, 522);
+            this.Controls.Add(this.cancelOptBtn);
+            this.Controls.Add(this.optOkBtn);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.optionTab);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -341,6 +403,7 @@ namespace LCC
             this.costTab.ResumeLayout(false);
             this.costTab.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -370,5 +433,7 @@ namespace LCC
         private System.Windows.Forms.Label formatMaxLengthLbl;
         private System.Windows.Forms.TabPage costTab;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private MaterialSkin.Controls.MaterialButton optOkBtn;
+        private MaterialSkin.Controls.MaterialButton cancelOptBtn;
     }
 }

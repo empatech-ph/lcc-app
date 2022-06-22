@@ -121,7 +121,7 @@ namespace LCC
             this.projectTable.Columns["project_reference"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.projectTable.Columns["rev_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
-            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_name.ToString() + " - " +oProjectList.FirstOrDefault().project_reference.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((oProjectList.ToList().Count <= 0) ? "No selected project" : oProjectList.FirstOrDefault().project_reference.ToString() + " - " +oProjectList.FirstOrDefault().project_name.ToString());
         }
 
         private void projectTblView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -130,7 +130,7 @@ namespace LCC
             {
                 var row = projectTable.Rows[e.RowIndex];
                 GLOBAL.iSelectedProjectId = int.Parse(row.Cells["id"].Value.ToString());
-                this.l_currentProject.Text = "Current Project :" + row.Cells["project_name"].Value.ToString() + " - " + row.Cells["project_reference"].Value.ToString();
+                this.l_currentProject.Text = "Current Project :" + row.Cells["project_reference"].Value.ToString() + " - " + row.Cells["project_name"].Value.ToString();
 
                 if (e.ColumnIndex == projectTable.Columns["edit_column"].Index)
                 {
@@ -177,10 +177,13 @@ namespace LCC
                 saveFileDialog.Tag = menuItem;
             }
 
-            saveFileDialog.Tag = "";
-            saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
-            saveFileDialog.Title = "Save File";
-            saveFileDialog.ShowDialog();
+            if (tabOptiPlus.SelectedTab.Text != null)
+            {
+                saveFileDialog.Tag = tabOptiPlus.SelectedTab.Text;
+                saveFileDialog.Filter = "CSV Files (*.csv)|*.csv";
+                saveFileDialog.Title = "Save File";
+                saveFileDialog.ShowDialog();
+            }
         }
 
         private void projectTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -232,9 +235,17 @@ namespace LCC
                         csv.WriteRecords(records);
                     }
                 }
-                else
+                else if (saveFileDialog.Tag.ToString() == "Cut Lengths")
                 {
-                    var records = this.oFile.GetCollection<ProjectModel>().AsQueryable().Select(x => new { x.project_reference, x.project_name, x.scope, x.rev_no }).ToList();
+                    var records = this.oFile.GetCollection<CutLengthModel>().AsQueryable().Where(x => x.project_id == GLOBAL.iSelectedProjectId).Select(x => new { x.part_code, x.description, x.grade, x.quantity, x.uncut_quantity, x.length, x.order_number, x.note }).ToList();
+                    using (var writer = new StreamWriter(saveFileDialog.FileName))
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecords(records);
+                    }
+                }
+                else {
+                    var records = this.oFile.GetCollection<MaterialModel>().AsQueryable().Where(x => x.project_id == GLOBAL.iSelectedProjectId).Select(x => new { x.description, x.grade, x.kerf, x.trim_left, x.trim_right, x.part_allowance, x.min_remnant_length }).ToList();
                     using (var writer = new StreamWriter(saveFileDialog.FileName))
                     using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                     {
@@ -366,7 +377,7 @@ namespace LCC
         {
 
             GLOBAL.iSelectedProjectId = (this.projectTable.Rows.Count <= 0) ? 0 : int.Parse(this.projectTable.CurrentRow.Cells["id"].Value.ToString());
-            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_name"].Value.ToString() + " - " + this.projectTable.CurrentRow.Cells["project_reference"].Value.ToString());
+            this.l_currentProject.Text = "Current Project : " + ((this.projectTable.Rows.Count <= 0) ? "No selected project" : this.projectTable.CurrentRow.Cells["project_reference"].Value.ToString() + " - " + this.projectTable.CurrentRow.Cells["project_name"].Value.ToString());
             this.materialComponent1.initDatagrid();
             this.initCutLength();
         }
@@ -547,7 +558,8 @@ namespace LCC
 
         private void optionsBtn_Click(object sender, EventArgs e)
         {
-
+            Options opt = new Options();
+            opt.ShowDialog();
         }
 
         private void projectTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
