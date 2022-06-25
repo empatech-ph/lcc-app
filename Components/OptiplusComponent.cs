@@ -59,15 +59,27 @@ namespace LCC.Components
                 e.total_layout,
                 e.total_parts_length,
                 e.total_stock_length
-            }).Select(e => new TempOptiplusData()
+            })
+            .Select(e => new TempOptiplusData()
             {
-                auto_no = iCounter++,
-                gross_yield = e.Last().gross_yield,
+                auto_no = 0,
                 solution_no = e.Last().solution_no,
+                gross_yield = e.Last().gross_yield,
                 total_cost = e.Last().cost,
                 total_no_of_layout = e.Last().total_layout,
                 total_storage_part = e.Last().total_parts_length
-            }).ToList();
+            })
+            .GroupBy(e => new { e.gross_yield, e.total_cost, e.total_no_of_layout, e.total_storage_part })
+            .Select(e => new TempOptiplusData()
+             {
+                 auto_no = iCounter++,
+                 solution_no = e.Last().solution_no,
+                 gross_yield = e.Last().gross_yield,
+                 total_cost = e.Last().total_cost,
+                 total_no_of_layout = e.Last().total_no_of_layout,
+                 total_storage_part = e.Last().total_storage_part
+            })
+            .ToList();
             this.dt_optiplus.DataSource = this.oTempOptiplusData;
         }
 
