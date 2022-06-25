@@ -633,6 +633,8 @@ namespace LCC
             // cutLengthsTable
             // 
             this.cutLengthsTable.AllowUserToOrderColumns = true;
+            this.cutLengthsTable.AllowUserToResizeColumns = false;
+            this.cutLengthsTable.AllowUserToResizeRows = false;
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -657,12 +659,14 @@ namespace LCC
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 36);
             this.cutLengthsTable.Name = "cutLengthsTable";
             this.cutLengthsTable.RowHeadersVisible = false;
+            this.cutLengthsTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.cutLengthsTable.RowTemplate.Height = 25;
             this.cutLengthsTable.Size = new System.Drawing.Size(1072, 407);
             this.cutLengthsTable.TabIndex = 0;
             this.cutLengthsTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellClick);
             this.cutLengthsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellEndEdit);
             this.cutLengthsTable.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellLeave);
+            this.cutLengthsTable.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_CellValueChanged);
             this.cutLengthsTable.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.cutLengthsTable_DataError);
             this.cutLengthsTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.cutLengthsTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
@@ -821,7 +825,7 @@ namespace LCC
             this.commLengthListItem});
             this.fileMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.fileMenuStrip.Name = "fileMenuStrip";
-            this.fileMenuStrip.Size = new System.Drawing.Size(201, 114);
+            this.fileMenuStrip.Size = new System.Drawing.Size(201, 92);
             this.fileMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileMenuStrip_ItemClicked);
             this.fileMenuStrip.Click += new System.EventHandler(this.fileMenuStrip_Click);
             // 

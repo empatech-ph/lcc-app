@@ -42,6 +42,12 @@ namespace LCC.Library
                 case "length-desc":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength).ToList();
                     break;
+                case "stock-length-asc":
+                    oStockList = oStockModel.OrderBy(e => e.length).ToList();
+                    break;
+                case "stock-length-desc":
+                    oStockList = oStockModel.OrderByDescending(e => e.length).ToList();
+                    break;
                 case "length-with-rest-desc":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength)
                         .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / (dLength == 0 ? 1 : dLength)).ToString()))))
@@ -71,8 +77,6 @@ namespace LCC.Library
                     oStockList = oStockModel.OrderByDescending(e => e.stock_type).ToList();
                     break;
             }
-
-
             return oStockList;
 
         }
@@ -119,7 +123,9 @@ namespace LCC.Library
             GLOBAL.oTempCutlength.Clear();
             GLOBAL.oTempCurrentUseOptimizeType.Clear();
             OptimizeLibrary.oTempOptimized.Clear();
-            
+
+            OptimizeLibrary.generateTempOptimize("stock-length-desc");
+            OptimizeLibrary.generateTempOptimize("stock-length-asc");
             OptimizeLibrary.generateTempOptimize("length-asc");
             OptimizeLibrary.generateTempOptimize("length-desc");
             OptimizeLibrary.generateTempOptimize("length-with-rest-asc");
@@ -139,8 +145,7 @@ namespace LCC.Library
                 optimize_type = e.First().optimize_type,
                 sum = e.Sum(e => e.total_rest),
                 data = e.ToList()
-            }).OrderBy(e => e.sum)
-            .ToList();
+            }).ToList();
 
             oBackgroundWorker.ReportProgress(25);
 
@@ -220,7 +225,6 @@ namespace LCC.Library
                     TempOptimizedModel oTempOptimizeModel = new TempOptimizedModel();
                     int iStockQty = int.Parse(oStockItem.qty);
                     int iUsedStockQty = 0;
-                    double dCost = 0;
                     double dComputedStockLength = oStockItem.length - dTotalMargins;
                     if (dComputedStockLength > 0 && dComputedCutlengthLength > 0 && dComputedStockLength >= dComputedCutlengthLength && ((int.Parse(oStockItem.qty) > 0) || int.Parse(oStockItem.qty) == -1))
                     {
@@ -249,14 +253,13 @@ namespace LCC.Library
                                     dAdvRemStockLength = oStockModel[i + 1].length - ((dComputedCutlengthLength + oMaterialModel.kerf) * iAdvQtyCut) + oMaterialModel.kerf;
                                 }
                             }
-                            if (dAdvRemStockLength < dRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > oCutLengthItem.uncut_quantity)
+                            if (dAdvRemStockLength < dRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > iQtyCut)
                             {
                                 oCutLengthItem.uncut_quantity += iQtyCut;
                                 break;
                             };
                             double dScrapOrRemnant = double.Parse(dRemStockLength.ToString("0.00"));
-                            dCost += oStockItem.cost;
-                            oCutLengthItem.cost += dCost;
+                            oCutLengthItem.cost += oStockItem.cost;
                             oCutLengthItem.total_stock_length += oStockItem.length;
                             oTempOptimizeModel = new TempOptimizedModel()
                             {
@@ -279,7 +282,7 @@ namespace LCC.Library
                                 trim_left = oMaterialModel.trim_left,
                                 kerf = oMaterialModel.kerf,
                                 stock_type = oStockItem.stock_type,
-                                cost = dCost,
+                                cost = oStockItem.cost,
                                 note = oStockItem.note,
                                 optimize_type = sType
                             };
@@ -300,6 +303,7 @@ namespace LCC.Library
                         int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
                         iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
                         iUsedStockQty += 1;
+                        if (iQtyCut1 <= 0) break;
                         oTempOptimizeModel = new TempOptimizedModel()
                         {
 
@@ -322,7 +326,7 @@ namespace LCC.Library
                             trim_left = oMaterialModel.trim_left,
                             kerf = oMaterialModel.kerf,
                             stock_type = oStockItem.stock_type,
-                            cost = dCost,
+                            cost = oStockItem.cost,
                             note = oStockItem.note,
                             optimize_type = sType
                         };
@@ -339,23 +343,23 @@ namespace LCC.Library
                     o.optimize_type
                 }).Select(o => new TempStocklengthModel
                 {
-                    optimize_type = o.Last().optimize_type,
-                    cutlength_id = o.Last().cutlength_id,
-                    material_id = o.Last().material_id,
-                    stock_code = o.Last().stock_code,
-                    stock_desc_grade = o.Last().stock_desc_grade,
-                    length = o.Last().stock_length,
-                    rest = o.Last().remaining_stock_length,
-                    scrap = o.Last().scrap_stock_length,
+                    optimize_type = o.First().optimize_type,
+                    cutlength_id = o.First().cutlength_id,
+                    material_id = o.First().material_id,
+                    stock_code = o.First().stock_code,
+                    stock_desc_grade = o.First().stock_desc_grade,
+                    length = o.First().stock_length,
+                    rest = o.First().remaining_stock_length,
+                    scrap = o.First().scrap_stock_length,
                     repeated = o.Count(),
-                    total_cut = o.Last().total_cut,
-                    cutlength_length = o.Last().computed_cutlength_length,
-                    kerf = o.Last().kerf,
-                    trim_left = o.Last().trim_left,
-                    trim_right = o.Last().trim_right,
-                    stock_type = o.Last().stock_type,
-                    cost = o.Last().cost,
-                    note = o.Last().note
+                    total_cut = o.First().total_cut,
+                    cutlength_length = o.First().computed_cutlength_length,
+                    kerf = o.First().kerf,
+                    trim_left = o.First().trim_left,
+                    trim_right = o.First().trim_right,
+                    stock_type = o.First().stock_type,
+                    cost = o.First().cost * o.Count(),
+                    note = o.First().note
                 }).ToList();
 
                 foreach (TempStocklengthModel oTempOptimized in oGroupedOptimized)
