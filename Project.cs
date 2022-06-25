@@ -344,6 +344,7 @@ namespace LCC
         {
             var row = cutLengthsTable.Rows[e.RowIndex];
             if (row.Cells["id"].Value != null)
+            {
                 this.oFile.GetCollection<CutLengthModel>().UpdateOne(x => x.id == (int)row.Cells["id"].Value, new CutLengthModel
                 {
                     id = int.Parse(row.Cells["id"].Value.ToString()),
@@ -357,9 +358,7 @@ namespace LCC
                     order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
                     note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
                 });
-            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
-            this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
-            this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
+            }
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
@@ -661,6 +660,13 @@ namespace LCC
         private void stopButton_Click(object sender, EventArgs e)
         {
             this.oBackgroundWorker.CancelAsync();
+        }
+
+        private void cutLengthsTable_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
+            this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
+            this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
         }
     }
 }
