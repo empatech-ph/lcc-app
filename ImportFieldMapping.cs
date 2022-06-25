@@ -62,22 +62,25 @@ namespace LCC
                         materialItem = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
                            .Where(e => e.description == item.V && e.grade == item.Y).FirstOrDefault();
 
-                        var insertStockPerMaterial = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
+                            var insertStockPerMaterial = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
                             .Where(e => e.description == "" && e.grade == "").ToList();
-                        collection.InsertOne(
-                            new StockModel
+                            if(materialItem != null)
                             {
-                                id = 1,
-                                material_id = materialItem.id,
-                                qty = "",
-                                stock_type = "",
-                                length = double.Parse(rec[dataGridViewFieldMapping[0][1]]),
-                                cost = double.Parse(rec[dataGridViewFieldMapping[1][1]]),
-                                stock_code = "",
-                                note = "",
-                                visibility = false,
-                                editable = false
-                            });
+                                collection.InsertOne(
+                                    new StockModel
+                                    {
+                                        id = 1,
+                                        material_id = materialItem.id,
+                                        qty = "",
+                                        stock_type = "",
+                                        length = double.Parse(rec[dataGridViewFieldMapping[0][1]]),
+                                        cost = double.Parse(rec[dataGridViewFieldMapping[1][1]]),
+                                        stock_code = "",
+                                        note = "",
+                                        visibility = false,
+                                        editable = false
+                                    });
+                            }
                         break;
                     }
                 }
