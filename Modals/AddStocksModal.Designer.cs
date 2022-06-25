@@ -129,6 +129,7 @@ namespace LCC.Modals
             this.c_stockType.Name = "c_stockType";
             this.c_stockType.Size = new System.Drawing.Size(100, 23);
             this.c_stockType.TabIndex = 3;
+            this.c_stockType.SelectedIndexChanged += new System.EventHandler(this.c_stockType_SelectedIndexChanged);
             // 
             // rb_note
             // 

@@ -359,6 +359,7 @@ namespace LCC
                 });
             this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
             this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
+            this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)

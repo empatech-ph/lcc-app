@@ -44,12 +44,12 @@ namespace LCC.Library
                     break;
                 case "length-with-rest-desc":
                     oStockList = oStockModel.OrderByDescending(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToDouble(Math.Floor(double.Parse((e.length / (dLength == 0 ? 1 : dLength)).ToString()))))
                         .ToList();
                     break;
                 case "length-with-rest-asc":
                     oStockList = oStockModel.OrderBy(e => e.length % dLength)
-                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / dLength).ToString()))))
+                        .ThenBy(e => Convert.ToInt32(Math.Floor(double.Parse((e.length / (dLength == 0 ? 1 : dLength)).ToString()))))
                         .ToList();
                     break;
                 case "cost-asc":
@@ -297,7 +297,7 @@ namespace LCC.Library
 
                     if(oTempOptimizeModel.id == 0) {
 
-                        int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse((dComputedStockLength / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
+                        int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
                         iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
                         iUsedStockQty += 1;
                         oTempOptimizeModel = new TempOptimizedModel()
@@ -365,7 +365,7 @@ namespace LCC.Library
                         mTempCutlength.total_layout++;
                     }
                 }
-                //OptimizeLibrary.oTempOptimized.AddRange(oTempOptimizedList);
+                OptimizeLibrary.oTempOptimized.AddRange(oTempOptimizedList);
             }
 
         }
