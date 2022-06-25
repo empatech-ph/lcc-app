@@ -57,7 +57,8 @@ namespace LCC
             this.importComboBox.Items.AddRange(new object[] {
             "Project",
             "Cut Lengths",
-            "Materials"});
+            "Inventory List",
+            "Commercial List"});
             this.importComboBox.Location = new System.Drawing.Point(174, 79);
             this.importComboBox.MaxDropDownItems = 4;
             this.importComboBox.MouseState = MaterialSkin.MouseState.OUT;
