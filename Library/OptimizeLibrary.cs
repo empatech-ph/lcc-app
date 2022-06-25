@@ -253,7 +253,7 @@ namespace LCC.Library
                                     dAdvRemStockLength = oStockModel[i + 1].length - ((dComputedCutlengthLength + oMaterialModel.kerf) * iAdvQtyCut) + oMaterialModel.kerf;
                                 }
                             }
-                            if (dAdvRemStockLength < dRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > oCutLengthItem.uncut_quantity)
+                            if (dAdvRemStockLength < dRemStockLength && oStockModel.Count - 1 != i && iAdvQtyCut > iQtyCut)
                             {
                                 oCutLengthItem.uncut_quantity += iQtyCut;
                                 break;
@@ -303,6 +303,7 @@ namespace LCC.Library
                         int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
                         iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
                         iUsedStockQty += 1;
+                        if (iQtyCut1 <= 0) break;
                         oTempOptimizeModel = new TempOptimizedModel()
                         {
 
