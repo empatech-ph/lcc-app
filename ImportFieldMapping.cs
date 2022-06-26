@@ -62,9 +62,28 @@ namespace LCC
                         materialItem = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
                            .Where(e => e.description == item.V && e.grade == item.Y).FirstOrDefault();
 
-                            var insertStockPerMaterial = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
-                            .Where(e => e.description == "" && e.grade == "").ToList();
-                            if(materialItem != null)
+                        var insertStockPerMaterial = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
+                        .Where(e => e.description == "" && e.grade == "").ToList();
+                        if (materialItem != null)
+                        {
+                            if (dataGridViewImportData.ColumnCount > 4)
+                            {
+                                collection.InsertOne(
+                                        new StockModel
+                                        {
+                                            id = 1,
+                                            material_id = materialItem.id,
+                                            qty = rec[dataGridViewFieldMapping[1][1]] ?? "",
+                                            stock_type = "ST",
+                                            length = double.Parse(rec[dataGridViewFieldMapping[2][1]]) ?? 0.00,
+                                            cost = 0.00,
+                                            stock_code = rec[dataGridViewFieldMapping[0][1]] ?? "",
+                                            note = rec[dataGridViewFieldMapping[3][1]] ?? "",
+                                            visibility = false,
+                                            editable = false
+                                        });
+                            }
+                            else
                             {
                                 collection.InsertOne(
                                     new StockModel
@@ -72,15 +91,16 @@ namespace LCC
                                         id = 1,
                                         material_id = materialItem.id,
                                         qty = "",
-                                        stock_type = "",
-                                        length = double.Parse(rec[dataGridViewFieldMapping[0][1]]),
-                                        cost = double.Parse(rec[dataGridViewFieldMapping[1][1]]),
+                                        stock_type = "BO",
+                                        length = double.Parse(rec[dataGridViewFieldMapping[0][1]]) ?? 0.00,
+                                        cost = double.Parse(rec[dataGridViewFieldMapping[1][1]]) ?? 0.00,
                                         stock_code = "",
                                         note = "",
                                         visibility = false,
                                         editable = false
                                     });
                             }
+                        }
                         break;
                     }
                 }
@@ -141,6 +161,13 @@ namespace LCC
             dataGridViewFieldMap.Columns.Add("defaultValue", "Default Value");
 
             var siteMapHeaderList = new List<string>() { };
+
+            using (var reader = new ChoCSVReader(filePath).WithFirstLineHeader())
+            {
+                DataTable dt = reader.AsDataTable();
+                dataGridViewImportData.DataSource = dt;
+                sourceField.Items.AddRange(reader.Context.Headers);
+            }
             if (oProject.tabOptiPlus.SelectedTab.Text == "Project")
             {
                 siteMapHeaderList = new List<string>() { "Project Reference", "Project Name", "Revision Number", "Scope", };
@@ -151,7 +178,7 @@ namespace LCC
             }
             else
             {
-                siteMapHeaderList = new List<string>() { "Length", "Cost" };
+                siteMapHeaderList = dataGridViewImportData.ColumnCount > 4 ? new List<string>() { "Stock Code", "Quantity", "Length", "Note" } : new List<string>() { "Length", "Cost" };
             }
 
             List<DataGridViewRow> rows = new List<DataGridViewRow>(siteMapHeaderList.Count);
@@ -163,13 +190,6 @@ namespace LCC
             }
 
             dataGridViewFieldMap.Rows.AddRange(rows.ToArray());
-
-            using (var reader = new ChoCSVReader(filePath).WithFirstLineHeader())
-            {
-                DataTable dt = reader.AsDataTable();
-                dataGridViewImportData.DataSource = dt;
-                sourceField.Items.AddRange(reader.Context.Headers);
-            }
             dataGridViewFieldMap.Columns["defaultValue"].ReadOnly = true;
             ShowDialog();
             //}
