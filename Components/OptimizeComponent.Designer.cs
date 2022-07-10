@@ -32,18 +32,9 @@ namespace LCC.Components
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dt_stockLength = new System.Windows.Forms.DataGridView();
-            this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_scrap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_rest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_total_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLengthTable_total_cut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizeBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dt_optimize = new System.Windows.Forms.DataGridView();
@@ -57,6 +48,14 @@ namespace LCC.Components
             this.optimize_no_layout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_rest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_total_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLengthTable_total_cut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stockLength)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).BeginInit();
@@ -84,7 +83,6 @@ namespace LCC.Components
             this.stockLength_stock_code,
             this.stockLength_length,
             this.stockLength_stock_type,
-            this.stockLength_scrap,
             this.stockLength_rest,
             this.stockLength_total_cost,
             this.stockLengthTable_total_cut,
@@ -118,77 +116,6 @@ namespace LCC.Components
             this.dt_stockLength.TabIndex = 2;
             this.dt_stockLength.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
             this.dt_stockLength.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_optimize_DataError);
-            // 
-            // stockLength_stock_code
-            // 
-            this.stockLength_stock_code.DataPropertyName = "stock_code";
-            this.stockLength_stock_code.HeaderText = "Stock Code";
-            this.stockLength_stock_code.Name = "stockLength_stock_code";
-            this.stockLength_stock_code.ReadOnly = true;
-            this.stockLength_stock_code.Width = 150;
-            // 
-            // stockLength_length
-            // 
-            this.stockLength_length.DataPropertyName = "length";
-            this.stockLength_length.HeaderText = "Length (mm)";
-            this.stockLength_length.Name = "stockLength_length";
-            this.stockLength_length.ReadOnly = true;
-            this.stockLength_length.Width = 110;
-            // 
-            // stockLength_stock_type
-            // 
-            this.stockLength_stock_type.DataPropertyName = "stock_type";
-            this.stockLength_stock_type.HeaderText = "Stock Type";
-            this.stockLength_stock_type.Name = "stockLength_stock_type";
-            this.stockLength_stock_type.ReadOnly = true;
-            // 
-            // stockLength_scrap
-            // 
-            this.stockLength_scrap.DataPropertyName = "scrap";
-            this.stockLength_scrap.HeaderText = "Scrap";
-            this.stockLength_scrap.Name = "stockLength_scrap";
-            this.stockLength_scrap.ReadOnly = true;
-            // 
-            // stockLength_rest
-            // 
-            this.stockLength_rest.DataPropertyName = "rest";
-            this.stockLength_rest.HeaderText = "Remnant";
-            this.stockLength_rest.Name = "stockLength_rest";
-            this.stockLength_rest.ReadOnly = true;
-            this.stockLength_rest.Width = 90;
-            // 
-            // stockLength_total_cost
-            // 
-            this.stockLength_total_cost.DataPropertyName = "cost";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.stockLength_total_cost.DefaultCellStyle = dataGridViewCellStyle2;
-            this.stockLength_total_cost.HeaderText = "Total Cost";
-            this.stockLength_total_cost.Name = "stockLength_total_cost";
-            this.stockLength_total_cost.ReadOnly = true;
-            // 
-            // stockLengthTable_total_cut
-            // 
-            this.stockLengthTable_total_cut.DataPropertyName = "total_cut";
-            this.stockLengthTable_total_cut.HeaderText = "Total Cut";
-            this.stockLengthTable_total_cut.Name = "stockLengthTable_total_cut";
-            this.stockLengthTable_total_cut.ReadOnly = true;
-            this.stockLengthTable_total_cut.Width = 85;
-            // 
-            // stockLength_repeated
-            // 
-            this.stockLength_repeated.DataPropertyName = "repeated";
-            this.stockLength_repeated.HeaderText = "Repeated";
-            this.stockLength_repeated.Name = "stockLength_repeated";
-            this.stockLength_repeated.ReadOnly = true;
-            this.stockLength_repeated.Width = 70;
-            // 
-            // stockLength_note
-            // 
-            this.stockLength_note.DataPropertyName = "note";
-            this.stockLength_note.HeaderText = "Note";
-            this.stockLength_note.Name = "stockLength_note";
-            this.stockLength_note.ReadOnly = true;
-            this.stockLength_note.Width = 225;
             // 
             // optimizeBarPanel
             // 
@@ -340,6 +267,70 @@ namespace LCC.Components
             this.materialLabel4.Size = new System.Drawing.Size(147, 24);
             this.materialLabel4.TabIndex = 12;
             this.materialLabel4.Text = "Result Summary";
+            // 
+            // stockLength_stock_code
+            // 
+            this.stockLength_stock_code.DataPropertyName = "stock_code";
+            this.stockLength_stock_code.HeaderText = "Stock Code";
+            this.stockLength_stock_code.Name = "stockLength_stock_code";
+            this.stockLength_stock_code.ReadOnly = true;
+            this.stockLength_stock_code.Width = 150;
+            // 
+            // stockLength_length
+            // 
+            this.stockLength_length.DataPropertyName = "length";
+            this.stockLength_length.HeaderText = "Length (mm)";
+            this.stockLength_length.Name = "stockLength_length";
+            this.stockLength_length.ReadOnly = true;
+            this.stockLength_length.Width = 110;
+            // 
+            // stockLength_stock_type
+            // 
+            this.stockLength_stock_type.DataPropertyName = "stock_type";
+            this.stockLength_stock_type.HeaderText = "Stock Type";
+            this.stockLength_stock_type.Name = "stockLength_stock_type";
+            this.stockLength_stock_type.ReadOnly = true;
+            // 
+            // stockLength_rest
+            // 
+            this.stockLength_rest.DataPropertyName = "rest";
+            this.stockLength_rest.HeaderText = "Remnant";
+            this.stockLength_rest.Name = "stockLength_rest";
+            this.stockLength_rest.ReadOnly = true;
+            this.stockLength_rest.Width = 90;
+            // 
+            // stockLength_total_cost
+            // 
+            this.stockLength_total_cost.DataPropertyName = "cost";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.stockLength_total_cost.DefaultCellStyle = dataGridViewCellStyle2;
+            this.stockLength_total_cost.HeaderText = "Total Cost";
+            this.stockLength_total_cost.Name = "stockLength_total_cost";
+            this.stockLength_total_cost.ReadOnly = true;
+            // 
+            // stockLengthTable_total_cut
+            // 
+            this.stockLengthTable_total_cut.DataPropertyName = "total_cut";
+            this.stockLengthTable_total_cut.HeaderText = "Total Cut";
+            this.stockLengthTable_total_cut.Name = "stockLengthTable_total_cut";
+            this.stockLengthTable_total_cut.ReadOnly = true;
+            this.stockLengthTable_total_cut.Width = 85;
+            // 
+            // stockLength_repeated
+            // 
+            this.stockLength_repeated.DataPropertyName = "repeated";
+            this.stockLength_repeated.HeaderText = "Repeated";
+            this.stockLength_repeated.Name = "stockLength_repeated";
+            this.stockLength_repeated.ReadOnly = true;
+            this.stockLength_repeated.Width = 70;
+            // 
+            // stockLength_note
+            // 
+            this.stockLength_note.DataPropertyName = "note";
+            this.stockLength_note.HeaderText = "Note";
+            this.stockLength_note.Name = "stockLength_note";
+            this.stockLength_note.ReadOnly = true;
+            this.stockLength_note.Width = 225;
             // 
             // OptimizeComponent
             // 

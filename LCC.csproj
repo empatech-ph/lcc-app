@@ -54,6 +54,9 @@
 		<Compile Update="Admin\AssignRoles.cs" />
 		<Compile Update="Modals\AddStocksModal.cs" />
 		<Compile Update="Modals\StocksManager.cs" />
+		<Compile Update="NewOrEditProject - Copy.cs">
+		  <SubType>Form</SubType>
+		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>

@@ -70,6 +70,7 @@ namespace LCC
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.cutLengthsTable = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.addCutlength = new MaterialSkin.Controls.MaterialButton();
             this.materialTab = new System.Windows.Forms.TabPage();
             this.materialComponent1 = new LCC.Components.MaterialComponent();
             this.tabResult = new System.Windows.Forms.TabPage();
@@ -109,6 +110,7 @@ namespace LCC
             this.panel6.SuspendLayout();
             this.cutLengthTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).BeginInit();
+            this.panel5.SuspendLayout();
             this.materialTab.SuspendLayout();
             this.tabResult.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -632,6 +634,7 @@ namespace LCC
             // 
             // cutLengthsTable
             // 
+            this.cutLengthsTable.AllowUserToAddRows = false;
             this.cutLengthsTable.AllowUserToOrderColumns = true;
             this.cutLengthsTable.AllowUserToResizeColumns = false;
             this.cutLengthsTable.AllowUserToResizeRows = false;
@@ -673,11 +676,33 @@ namespace LCC
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.addCutlength);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1072, 440);
             this.panel5.TabIndex = 12;
+            // 
+            // addCutlength
+            // 
+            this.addCutlength.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.addCutlength.Depth = 0;
+            this.addCutlength.DrawShadows = true;
+            this.addCutlength.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addCutlength.HighEmphasis = true;
+            this.addCutlength.Icon = global::LCC.Properties.Resources.add;
+            this.addCutlength.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.addCutlength.Location = new System.Drawing.Point(975, 15);
+            this.addCutlength.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.addCutlength.MouseState = MaterialSkin.MouseState.HOVER;
+            this.addCutlength.Name = "addCutlength";
+            this.addCutlength.Size = new System.Drawing.Size(78, 36);
+            this.addCutlength.TabIndex = 2;
+            this.addCutlength.Text = "Add";
+            this.addCutlength.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.addCutlength.UseAccentColor = false;
+            this.addCutlength.UseVisualStyleBackColor = true;
+            this.addCutlength.Click += new System.EventHandler(this.addCutlength_Click);
             // 
             // materialTab
             // 
@@ -1029,6 +1054,8 @@ namespace LCC
             this.cutLengthTab.ResumeLayout(false);
             this.cutLengthTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cutLengthsTable)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.materialTab.ResumeLayout(false);
             this.tabResult.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1109,5 +1136,7 @@ namespace LCC
         private System.Windows.Forms.ToolStripMenuItem commLengthListItem;
         private System.Windows.Forms.Button button1;
         private MaterialSkin.Controls.MaterialButton stopButton;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialButton addCutlength;
     }
 }

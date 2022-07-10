@@ -37,7 +37,7 @@ namespace LCC.Modals
         {
             IEnumerable<StockModel> oList = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>()
                 .AsQueryable()
-                .Where(e => e.material_id == GLOBAL.iSelectedMaterialId);
+                .Where(e => e.material_id == GLOBAL.iSelectedMaterialId && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
           
             BindingList<StockModel> oListModel = new BindingList<StockModel>(oList.ToList());
             this.dt_stock.DataSource = oListModel;

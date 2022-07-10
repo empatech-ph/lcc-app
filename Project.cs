@@ -56,6 +56,27 @@ namespace LCC
             //for redo/undo commands
             proj.ProjectNameChanged += proj_ProjectNameChanged;
             UpdateUndoRedoButtons();
+            this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["project_id"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["order_number"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["length"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["part_code"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["note"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["description"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["id"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["optimize_type"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["solution_no"].Visible = false;
+
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["material_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["data"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["stock_desc_grade"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_length"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_left"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_right"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["scrap"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["optimize_type"].Visible = false;
         }
         void UpdateUndoRedoButtons()
         {
@@ -298,7 +319,7 @@ namespace LCC
                     if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
                         if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null && row.Cells["part_code"].Value != null && row.Cells["quantity"].Value != null && row.Cells["uncut_quantity"].Value != null 
-                            && row.Cells["length"].Value != null && row.Cells["order_number"].Value != null && row.Cells["note"].Value != null)
+                            && row.Cells["length"].Value != null)
                         {
                             this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
                             {
@@ -317,6 +338,7 @@ namespace LCC
                         else
                         {
                             MessageBox.Show("Fields are required and can't be null.");
+                            cutLengthsTable.Rows.RemoveAt(cutLengthsTable.NewRowIndex);
                         }
                     }
                     else
@@ -332,9 +354,9 @@ namespace LCC
                     }
 
                 }
-                catch
+                catch (Exception ee)
                 {
-                    MessageBox.Show("Error.");
+                    MessageBox.Show("Error!, " + ee.Message);
                 }
                 LastNewRowIndex = -1;
             }
@@ -392,28 +414,6 @@ namespace LCC
 
             this.optiplusComponent1.dt_materials.Columns.OfType<DataGridViewColumn>().ToList().ForEach(col => col.Visible = false);
             this.optiplusComponent1.dt_materials.Columns["optiplus_desc_grade"].Visible = true;
-
-            
-            this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["project_id"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["order_number"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["length"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["part_code"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["note"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["description"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["id"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["optimize_type"].Visible = false;
-            this.optimizeComponent1.dt_optimize.Columns["solution_no"].Visible = false;
-
-            this.optimizeComponent1.dt_stockLength.Columns["cutlength_id"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["material_id"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["data"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["stock_desc_grade"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["cutlength_length"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["trim_left"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["trim_right"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
-            this.optimizeComponent1.dt_stockLength.Columns["optimize_type"].Visible = false;
 
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
             this.optimizeBtn.Visible = false;
@@ -601,8 +601,8 @@ namespace LCC
             this.optimizeBtn.Enabled = true;
             this.progressOptimize.Value = 0;
 
-            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type  + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
-            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
+            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type  + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
+            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {
@@ -667,6 +667,15 @@ namespace LCC
             this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
             this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
+        }
+
+        private void addCutlength_Click(object sender, EventArgs e)
+        {
+
+            NewOrEditCutlength newCutlength= new NewOrEditCutlength(); ;
+            newCutlength.oProject = this;
+            NewOrEditProject.isAdd = true;
+            newCutlength.ShowDialog();
         }
     }
 }

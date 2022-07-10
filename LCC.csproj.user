@@ -64,6 +64,9 @@
     <Compile Update="Modals\StocksManager.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="NewOrEditCutlength.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="NewOrEditProject.cs">
       <SubType>Form</SubType>
     </Compile>
