@@ -318,8 +318,7 @@ namespace LCC
                     var row = cutLengthsTable.Rows[e.RowIndex];
                     if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
-                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null && row.Cells["part_code"].Value != null && row.Cells["quantity"].Value != null && row.Cells["uncut_quantity"].Value != null 
-                            && row.Cells["length"].Value != null)
+                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null && row.Cells["quantity"].Value != null && row.Cells["length"].Value != null)
                         {
                             this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
                             {
