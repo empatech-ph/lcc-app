@@ -676,5 +676,22 @@ namespace LCC
             NewOrEditProject.isAdd = true;
             newCutlength.ShowDialog();
         }
+
+        private void closeButton_Clicked(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void inventoryListItem_Click(object sender, EventArgs e)
+        {
+            StocksManager oStockManager = new StocksManager("ST");
+            oStockManager.ShowDialog();
+        }
+
+        private void commLengthListItem_Click(object sender, EventArgs e)
+        {
+            StocksManager oStockManager = new StocksManager("BO");
+            oStockManager.ShowDialog();
+        }
     }
 }

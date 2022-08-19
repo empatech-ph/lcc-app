@@ -8,6 +8,8 @@ namespace LCC.Model
     {
         public int id { get; set; }
         public int material_id { get; set; }
+        public string description { get; set; }
+        public string grade { get; set; }
         public string qty { get; set; }
         public double length { get; set; }
         public string stock_type { get; set; }

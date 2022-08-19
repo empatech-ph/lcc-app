@@ -23,7 +23,7 @@ namespace LCC.Components
             InitializeComponent();
             this.oFile = UtilsLibrary.getUserFile();
             this.initDatagrid();
-            this.addCheckboxHeader();
+            this.addCheckboxHeader();   
         }
 
         public void initDatagrid()
@@ -196,7 +196,7 @@ namespace LCC.Components
             this.oHeaderCheckbox.BackColor = Color.White;
             this.oHeaderCheckbox.Checked = true;
             this.oHeaderCheckbox.Size = new Size(15, 15);
-            this.oHeaderCheckbox.Location = new Point((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2, oCell.Height / 2);
+            this.oHeaderCheckbox.Location = new Point(((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2) + 10, oCell.Height / 2);
             this.oHeaderCheckbox.Click += new EventHandler(HeaderCheckBox_Clicked);
             this.dt_material.Controls.Add(this.oHeaderCheckbox);
         }

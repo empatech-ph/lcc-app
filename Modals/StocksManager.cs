@@ -17,11 +17,21 @@ namespace LCC.Modals
     {
         public bool bST;
         public bool bBO;
+        public string sStockType = "";
         public StocksManager()
         {
             InitializeComponent();
             Library.ThemeLibrary.initMaterialDesign(this);
             this.initMaterialTitle();
+        }
+
+        public StocksManager(string sStockType)
+        {
+            InitializeComponent();
+            Library.ThemeLibrary.initMaterialDesign(this);
+            this.sStockType = sStockType;
+
+            this.l_material.Text = (sStockType == "BO") ? "Commercial Length List" : "Inventory List";
         }
 
         public void initMaterialTitle()
@@ -35,11 +45,43 @@ namespace LCC.Modals
 
         public void initStockData()
         {
-            IEnumerable<StockModel> oList = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>()
-                .AsQueryable()
-                .Where(e => e.material_id == GLOBAL.iSelectedMaterialId && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
-          
-            BindingList<StockModel> oListModel = new BindingList<StockModel>(oList.ToList());
+            IEnumerable<StockModel> oStockList = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>()
+                .AsQueryable();
+
+            if (this.sStockType != "") {
+                IEnumerable<MaterialModel> oMaterialList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>()
+                .AsQueryable();
+                oStockList = oStockList.Where(e => e.stock_type == this.sStockType);
+                oStockList = oStockList.Join(oMaterialList,
+                    stock => stock.material_id,
+                    material => material.id,
+                    (stock, material) => new StockModel{
+                        cost = stock.cost,
+                        stock_code = stock.stock_code,
+                        cut_stock_type = stock.stock_type,
+                        description = material.description,
+                        grade = material.grade,
+                        editable = stock.editable,
+                        id = material.id,
+                        length = stock.length,
+                        material_id = stock.material_id,
+                        note = stock.note,
+                        qty = stock.qty,
+                        stock_type = stock.stock_type,
+                        visibility = stock.visibility
+                    }
+                ).Where(e => e.material_id == e.id);
+                this.dt_stock.Columns["stock_type"].Visible = false;
+                this.dt_stock.Columns["grade"].ReadOnly = true;
+                this.dt_stock.Columns["description"].ReadOnly = true;
+            } else {
+                oStockList = oStockList.Where(e => e.material_id == GLOBAL.iSelectedMaterialId && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
+
+                this.dt_stock.Columns["grade"].Visible = false;
+                this.dt_stock.Columns["description"].Visible = false;
+            }
+
+            BindingList<StockModel> oListModel = new BindingList<StockModel>(oStockList.ToList());
             this.dt_stock.DataSource = oListModel;
             this.dt_stock.Columns["id"].Visible = false;
             this.dt_stock.Columns["stock_type"].ReadOnly = true;

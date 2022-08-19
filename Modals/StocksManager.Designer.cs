@@ -30,6 +30,8 @@ namespace LCC.Modals
         private void InitializeComponent()
         {
             this.dt_stock = new System.Windows.Forms.DataGridView();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,7 +42,7 @@ namespace LCC.Modals
             this.editable_image = new System.Windows.Forms.DataGridViewImageColumn();
             this.stockType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.l_material = new MaterialSkin.Controls.MaterialLabel();
+            this.l_material = new System.Windows.Forms.Label();
             this.btn_add = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stock)).BeginInit();
             this.SuspendLayout();
@@ -51,8 +53,11 @@ namespace LCC.Modals
             this.dt_stock.AllowUserToDeleteRows = false;
             this.dt_stock.AllowUserToResizeColumns = false;
             this.dt_stock.AllowUserToResizeRows = false;
+            this.dt_stock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dt_stock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_stock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.description,
+            this.grade,
             this.qty,
             this.length,
             this.stock_type,
@@ -66,7 +71,7 @@ namespace LCC.Modals
             this.dt_stock.Name = "dt_stock";
             this.dt_stock.RowHeadersVisible = false;
             this.dt_stock.RowTemplate.Height = 25;
-            this.dt_stock.Size = new System.Drawing.Size(975, 390);
+            this.dt_stock.Size = new System.Drawing.Size(1406, 390);
             this.dt_stock.TabIndex = 4;
             this.dt_stock.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dt_stock_CellBeginEdit);
             this.dt_stock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCellClick);
@@ -76,6 +81,20 @@ namespace LCC.Modals
             this.dt_stock.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dt_stock_CellFormatting);
             this.dt_stock.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dt_stock_DataBindingComplete);
             // 
+            // description
+            // 
+            this.description.DataPropertyName = "description";
+            this.description.HeaderText = "Description";
+            this.description.Name = "description";
+            this.description.Width = 92;
+            // 
+            // grade
+            // 
+            this.grade.DataPropertyName = "grade";
+            this.grade.HeaderText = "Grade";
+            this.grade.Name = "grade";
+            this.grade.Width = 63;
+            // 
             // qty
             // 
             this.qty.DataPropertyName = "qty";
@@ -83,7 +102,7 @@ namespace LCC.Modals
             this.qty.Name = "qty";
             this.qty.ReadOnly = true;
             this.qty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.qty.Width = 60;
+            this.qty.Width = 78;
             // 
             // length
             // 
@@ -91,7 +110,7 @@ namespace LCC.Modals
             this.length.HeaderText = "Length (mm)";
             this.length.Name = "length";
             this.length.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.length.Width = 120;
+            this.length.Width = 102;
             // 
             // stock_type
             // 
@@ -99,26 +118,28 @@ namespace LCC.Modals
             this.stock_type.HeaderText = "Stock Type";
             this.stock_type.Name = "stock_type";
             this.stock_type.ReadOnly = true;
+            this.stock_type.Width = 88;
             // 
             // cost
             // 
             this.cost.DataPropertyName = "cost";
             this.cost.HeaderText = "Cost (AUD) / EA";
             this.cost.Name = "cost";
-            this.cost.Width = 135;
+            this.cost.Width = 116;
             // 
             // stock_code
             // 
             this.stock_code.DataPropertyName = "stock_code";
             this.stock_code.HeaderText = "Stock Code";
             this.stock_code.Name = "stock_code";
+            this.stock_code.Width = 92;
             // 
             // note
             // 
             this.note.DataPropertyName = "note";
             this.note.HeaderText = "Note";
             this.note.Name = "note";
-            this.note.Width = 240;
+            this.note.Width = 58;
             // 
             // visibility_image
             // 
@@ -126,7 +147,7 @@ namespace LCC.Modals
             this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.visibility_image.Name = "visibility_image";
             this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.visibility_image.Width = 120;
+            this.visibility_image.Width = 57;
             // 
             // editable_image
             // 
@@ -134,7 +155,7 @@ namespace LCC.Modals
             this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.editable_image.Name = "editable_image";
             this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editable_image.Width = 120;
+            this.editable_image.Width = 55;
             // 
             // stockType
             // 
@@ -148,13 +169,12 @@ namespace LCC.Modals
             // 
             // l_material
             // 
-            this.l_material.Depth = 0;
-            this.l_material.Font = new System.Drawing.Font("Roboto", 34F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.l_material.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
-            this.l_material.Location = new System.Drawing.Point(195, 74);
-            this.l_material.MouseState = MaterialSkin.MouseState.HOVER;
+            this.l_material.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_material.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.l_material.Location = new System.Drawing.Point(416, 72);
             this.l_material.Name = "l_material";
-            this.l_material.Size = new System.Drawing.Size(604, 58);
+            this.l_material.Size = new System.Drawing.Size(604, 78);
             this.l_material.TabIndex = 2;
             this.l_material.Text = "Material";
             this.l_material.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -184,7 +204,7 @@ namespace LCC.Modals
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(981, 549);
+            this.ClientSize = new System.Drawing.Size(1412, 549);
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.l_material);
             this.Controls.Add(this.dt_stock);
@@ -204,8 +224,10 @@ namespace LCC.Modals
         private System.Windows.Forms.DataGridView dt_stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockType;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockCode;
-        public MaterialSkin.Controls.MaterialLabel l_material;
+        public System.Windows.Forms.Label l_material;
         private MaterialSkin.Controls.MaterialButton btn_add;
+        private System.Windows.Forms.DataGridViewTextBoxColumn description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grade;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn length;
         private System.Windows.Forms.DataGridViewTextBoxColumn stock_type;
