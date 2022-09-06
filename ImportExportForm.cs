@@ -55,7 +55,6 @@ namespace LCC
 
             if (menuItem == null)
             {
-
                 importTxt.Text = openFileDialog.FileName;
             }
             else

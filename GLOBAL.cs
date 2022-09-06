@@ -10,6 +10,8 @@ namespace LCC
     {
         public static int iSelectedProjectId = 0;
         public static int iSelectedMaterialId = 0;
+        public static string sSelectedGrade = "";
+        public static string sSelectedDescription = "";
         public static List<int> aCheckedMaterials = new List<int>();
         public static List<TempCurrentUseOptimizeType> oTempCurrentUseOptimizeType = new List<TempCurrentUseOptimizeType>();
         public static List<TempOptimizedModel> oTempOptimized = new List<TempOptimizedModel>();

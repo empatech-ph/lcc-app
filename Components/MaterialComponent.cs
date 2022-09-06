@@ -156,6 +156,8 @@ namespace LCC.Components
                     else
                     {
                         GLOBAL.iSelectedMaterialId = int.Parse(oRow.Cells["id"].Value.ToString());
+                        GLOBAL.sSelectedGrade = oRow.Cells["grade"].Value.ToString();
+                        GLOBAL.sSelectedDescription = oRow.Cells["description"].Value.ToString();
                         var oStockManager = new Modals.StocksManager();
                         oStockManager.bBO = this.BO.Checked;
                         oStockManager.bST = this.ST.Checked;
@@ -196,7 +198,7 @@ namespace LCC.Components
             this.oHeaderCheckbox.BackColor = Color.White;
             this.oHeaderCheckbox.Checked = true;
             this.oHeaderCheckbox.Size = new Size(15, 15);
-            this.oHeaderCheckbox.Location = new Point(((oCell.Width - this.oHeaderCheckbox.Size.Width) / 2) + 10, oCell.Height / 2);
+            this.oHeaderCheckbox.Location = new Point(4, (oCell.Height / 2) + 5);
             this.oHeaderCheckbox.Click += new EventHandler(HeaderCheckBox_Clicked);
             this.dt_material.Controls.Add(this.oHeaderCheckbox);
         }

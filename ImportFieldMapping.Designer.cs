@@ -64,7 +64,7 @@
             this.importOptionsgrpbx.Controls.Add(this.lblDelimiter);
             this.importOptionsgrpbx.Controls.Add(this.checkBoxClearData);
             this.importOptionsgrpbx.Controls.Add(this.checkBoxContainsFirstRow);
-            this.importOptionsgrpbx.Location = new System.Drawing.Point(25, 77);
+            this.importOptionsgrpbx.Location = new System.Drawing.Point(16, 80);
             this.importOptionsgrpbx.Name = "importOptionsgrpbx";
             this.importOptionsgrpbx.Size = new System.Drawing.Size(743, 95);
             this.importOptionsgrpbx.TabIndex = 0;
@@ -133,7 +133,7 @@
             // 
             this.grpBxData.Controls.Add(this.dataGridViewImportData);
             this.grpBxData.Controls.Add(this.dataTbl);
-            this.grpBxData.Location = new System.Drawing.Point(25, 178);
+            this.grpBxData.Location = new System.Drawing.Point(16, 181);
             this.grpBxData.Name = "grpBxData";
             this.grpBxData.Size = new System.Drawing.Size(743, 167);
             this.grpBxData.TabIndex = 1;
@@ -168,7 +168,7 @@
             // 
             this.grpBxFieldMap.Controls.Add(this.dataGridViewFieldMap);
             this.grpBxFieldMap.Controls.Add(this.fieldMapTbl);
-            this.grpBxFieldMap.Location = new System.Drawing.Point(25, 351);
+            this.grpBxFieldMap.Location = new System.Drawing.Point(16, 354);
             this.grpBxFieldMap.Name = "grpBxFieldMap";
             this.grpBxFieldMap.Size = new System.Drawing.Size(743, 251);
             this.grpBxFieldMap.TabIndex = 2;
@@ -208,7 +208,7 @@
             this.btnImportCancel.Enabled = false;
             this.btnImportCancel.HighEmphasis = true;
             this.btnImportCancel.Icon = null;
-            this.btnImportCancel.Location = new System.Drawing.Point(452, 611);
+            this.btnImportCancel.Location = new System.Drawing.Point(443, 614);
             this.btnImportCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnImportCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImportCancel.Name = "btnImportCancel";
@@ -226,7 +226,7 @@
             this.btnImportFieldMap.DrawShadows = true;
             this.btnImportFieldMap.HighEmphasis = true;
             this.btnImportFieldMap.Icon = null;
-            this.btnImportFieldMap.Location = new System.Drawing.Point(537, 612);
+            this.btnImportFieldMap.Location = new System.Drawing.Point(528, 615);
             this.btnImportFieldMap.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnImportFieldMap.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImportFieldMap.Name = "btnImportFieldMap";
@@ -245,7 +245,7 @@
             this.btnImportFieldMapClose.DrawShadows = true;
             this.btnImportFieldMapClose.HighEmphasis = true;
             this.btnImportFieldMapClose.Icon = null;
-            this.btnImportFieldMapClose.Location = new System.Drawing.Point(672, 611);
+            this.btnImportFieldMapClose.Location = new System.Drawing.Point(679, 611);
             this.btnImportFieldMapClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnImportFieldMapClose.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnImportFieldMapClose.Name = "btnImportFieldMapClose";
@@ -261,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(785, 666);
+            this.ClientSize = new System.Drawing.Size(785, 669);
             this.Controls.Add(this.btnImportFieldMapClose);
             this.Controls.Add(this.btnImportFieldMap);
             this.Controls.Add(this.btnImportCancel);
@@ -307,5 +307,6 @@
         private MaterialSkin.Controls.MaterialButton btnImportFieldMapClose;
         public System.Windows.Forms.OpenFileDialog openFileDialog;
         public System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Label importTitle;
     }
 }

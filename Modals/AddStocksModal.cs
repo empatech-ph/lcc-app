@@ -31,6 +31,8 @@ namespace LCC.Modals
             {
                 id = 1,
                 material_id = GLOBAL.iSelectedMaterialId,
+                grade = GLOBAL.sSelectedGrade,
+                description = GLOBAL.sSelectedDescription,
                 qty = (this.c_qty.Text == "∞") ? "-1" : this.c_qty.Text,
                 stock_type = this.c_stockType.SelectedItem.ToString(),
                 length = double.Parse(this.tb_length.Text.ToString()),

@@ -31,6 +31,9 @@ namespace LCC.Components
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dt_materials = new System.Windows.Forms.DataGridView();
             this.optiplus_desc_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dt_optiplus = new System.Windows.Forms.DataGridView();
@@ -65,12 +68,13 @@ namespace LCC.Components
             this.dt_materials.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dt_materials.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dt_materials.BackgroundColor = System.Drawing.Color.White;
             this.dt_materials.CausesValidation = false;
             this.dt_materials.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -79,6 +83,14 @@ namespace LCC.Components
             this.dt_materials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_materials.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.optiplus_desc_grade});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dt_materials.DefaultCellStyle = dataGridViewCellStyle2;
             this.dt_materials.Location = new System.Drawing.Point(3, 125);
             this.dt_materials.MultiSelect = false;
             this.dt_materials.Name = "dt_materials";
@@ -97,7 +109,7 @@ namespace LCC.Components
             this.optiplus_desc_grade.HeaderText = "Materials";
             this.optiplus_desc_grade.Name = "optiplus_desc_grade";
             this.optiplus_desc_grade.ReadOnly = true;
-            this.optiplus_desc_grade.Width = 235;
+            this.optiplus_desc_grade.Width = 102;
             // 
             // dt_optiplus
             // 
@@ -105,20 +117,23 @@ namespace LCC.Components
             this.dt_optiplus.AllowUserToDeleteRows = false;
             this.dt_optiplus.AllowUserToResizeColumns = false;
             this.dt_optiplus.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.NullValue = "-";
+            this.dt_optiplus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dt_optiplus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dt_optiplus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dt_optiplus.BackgroundColor = System.Drawing.Color.White;
             this.dt_optiplus.CausesValidation = false;
             this.dt_optiplus.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dt_optiplus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_optiplus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dt_optiplus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_optiplus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.optiplus_no,
@@ -127,6 +142,14 @@ namespace LCC.Components
             this.optiplus_gross_yield,
             this.optiplus_storage_part,
             this.optiplus_no_of_layouts});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dt_optiplus.DefaultCellStyle = dataGridViewCellStyle5;
             this.dt_optiplus.Location = new System.Drawing.Point(271, 125);
             this.dt_optiplus.MultiSelect = false;
             this.dt_optiplus.Name = "dt_optiplus";
@@ -143,7 +166,7 @@ namespace LCC.Components
             this.optiplus_no.HeaderText = "#";
             this.optiplus_no.Name = "optiplus_no";
             this.optiplus_no.ReadOnly = true;
-            this.optiplus_no.Width = 25;
+            this.optiplus_no.Width = 44;
             // 
             // optiplus_solutions
             // 
@@ -151,7 +174,7 @@ namespace LCC.Components
             this.optiplus_solutions.HeaderText = "Solutions";
             this.optiplus_solutions.Name = "optiplus_solutions";
             this.optiplus_solutions.ReadOnly = true;
-            this.optiplus_solutions.Width = 200;
+            this.optiplus_solutions.Width = 103;
             // 
             // optiplus_cost
             // 
@@ -159,6 +182,7 @@ namespace LCC.Components
             this.optiplus_cost.HeaderText = "Cost";
             this.optiplus_cost.Name = "optiplus_cost";
             this.optiplus_cost.ReadOnly = true;
+            this.optiplus_cost.Width = 68;
             // 
             // optiplus_gross_yield
             // 
@@ -166,7 +190,7 @@ namespace LCC.Components
             this.optiplus_gross_yield.HeaderText = "Gross Yield %";
             this.optiplus_gross_yield.Name = "optiplus_gross_yield";
             this.optiplus_gross_yield.ReadOnly = true;
-            this.optiplus_gross_yield.Width = 150;
+            this.optiplus_gross_yield.Width = 110;
             // 
             // optiplus_storage_part
             // 
@@ -174,7 +198,7 @@ namespace LCC.Components
             this.optiplus_storage_part.HeaderText = "Storage Parts Used";
             this.optiplus_storage_part.Name = "optiplus_storage_part";
             this.optiplus_storage_part.ReadOnly = true;
-            this.optiplus_storage_part.Width = 150;
+            this.optiplus_storage_part.Width = 125;
             // 
             // optiplus_no_of_layouts
             // 
@@ -182,7 +206,7 @@ namespace LCC.Components
             this.optiplus_no_of_layouts.HeaderText = "No. of Layouts";
             this.optiplus_no_of_layouts.Name = "optiplus_no_of_layouts";
             this.optiplus_no_of_layouts.ReadOnly = true;
-            this.optiplus_no_of_layouts.Width = 150;
+            this.optiplus_no_of_layouts.Width = 129;
             // 
             // materialLabel2
             // 

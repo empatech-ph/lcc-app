@@ -97,7 +97,7 @@ namespace LCC.Components
         {
             Label oLabel = new Label();
             oLabel.Text = sText;
-            oLabel.Font = new Font(FontFamily.GenericSansSerif, 7F, FontStyle.Regular);
+            oLabel.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Regular);
             oLabel.TextAlign = ContentAlignment.MiddleCenter;
             oLabel.Dock = DockStyle.Fill;
             return oLabel;

@@ -1,4 +1,5 @@
 ﻿using LCC.Components;
+using LCC.Library;
 using LCC.Model;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -18,6 +19,8 @@ namespace LCC.Modals
         public bool bST;
         public bool bBO;
         public string sStockType = "";
+        private dynamic oInfo;
+        private dynamic oLogin;
         public StocksManager()
         {
             InitializeComponent();
@@ -28,10 +31,17 @@ namespace LCC.Modals
         public StocksManager(string sStockType)
         {
             InitializeComponent();
+            this.oLogin = new RegistryLibrary().getLogin();
+
             Library.ThemeLibrary.initMaterialDesign(this);
             this.sStockType = sStockType;
 
             this.l_material.Text = (sStockType == "BO") ? "Commercial Length List" : "Inventory List";
+
+            if (oLogin.user_type == 2 && sStockType == "ST")
+            {
+                this.btn_add.Visible = false;
+            }
         }
 
         public void initMaterialTitle()
@@ -223,6 +233,19 @@ namespace LCC.Modals
                     oRow.Cells["qty"].Value = "∞";
                 }
             }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ImportFieldMapping importFieldMapping = new ImportFieldMapping();
+            importFieldMapping.Text += " - " + "Materials";
+            importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
+            importFieldMapping.openFileDialog.Title = "Browse File";
+            System.Windows.Forms.DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();
+            importFieldMapping.sType = "Materials";
+            if (dialogResult == System.Windows.Forms.DialogResult.Cancel) return;
+            importFieldMapping.openFileDialog.Tag = "Materials";
+            importFieldMapping.importFieldMappingDisplay(sender, e);
         }
     }
 }

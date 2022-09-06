@@ -174,6 +174,8 @@ namespace LCC
         private void importBtn_Click(object sender, EventArgs e)
         {
             ImportFieldMapping importFieldMapping = new ImportFieldMapping();
+            importFieldMapping.Text += " - " + this.tabOptiPlus.SelectedTab.Text;
+            importFieldMapping.sType = this.tabOptiPlus.SelectedTab.Text;
             importFieldMapping.oProject = this;
             importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             importFieldMapping.openFileDialog.Title = "Browse File";

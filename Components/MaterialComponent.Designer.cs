@@ -29,6 +29,7 @@ namespace LCC.Components
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -62,9 +63,9 @@ namespace LCC.Components
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dt_material.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dt_material.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -82,6 +83,15 @@ namespace LCC.Components
             this.trim_right,
             this.part_allowance,
             this.min_remnant_length});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.NullValue = "-";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dt_material.DefaultCellStyle = dataGridViewCellStyle7;
             this.dt_material.Location = new System.Drawing.Point(0, 56);
             this.dt_material.Name = "dt_material";
             this.dt_material.RowHeadersVisible = false;
@@ -110,7 +120,7 @@ namespace LCC.Components
             this.no.DefaultCellStyle = dataGridViewCellStyle2;
             this.no.HeaderText = "No.";
             this.no.Name = "no";
-            this.no.Width = 51;
+            this.no.Width = 61;
             // 
             // stock
             // 
@@ -125,7 +135,7 @@ namespace LCC.Components
             this.stock.Name = "stock";
             this.stock.ReadOnly = true;
             this.stock.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.stock.Width = 50;
+            this.stock.Width = 64;
             // 
             // description
             // 
@@ -136,7 +146,7 @@ namespace LCC.Components
             this.description.Name = "description";
             this.description.ReadOnly = true;
             this.description.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.description.Width = 96;
+            this.description.Width = 119;
             // 
             // grade
             // 
@@ -147,7 +157,7 @@ namespace LCC.Components
             this.grade.Name = "grade";
             this.grade.ReadOnly = true;
             this.grade.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.grade.Width = 66;
+            this.grade.Width = 79;
             // 
             // kerf
             // 
@@ -157,35 +167,35 @@ namespace LCC.Components
             this.kerf.HeaderText = "Kerf (mm)";
             this.kerf.Name = "kerf";
             this.kerf.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.kerf.Width = 83;
+            this.kerf.Width = 99;
             // 
             // trim_left
             // 
             this.trim_left.DataPropertyName = "trim_left";
             this.trim_left.HeaderText = "Trim Left (mm)";
             this.trim_left.Name = "trim_left";
-            this.trim_left.Width = 106;
+            this.trim_left.Width = 96;
             // 
             // trim_right
             // 
             this.trim_right.DataPropertyName = "trim_right";
             this.trim_right.HeaderText = "Trim Right (mm)";
             this.trim_right.Name = "trim_right";
-            this.trim_right.Width = 113;
+            this.trim_right.Width = 105;
             // 
             // part_allowance
             // 
             this.part_allowance.DataPropertyName = "part_allowance";
             this.part_allowance.HeaderText = "Part Allowance (mm)";
             this.part_allowance.Name = "part_allowance";
-            this.part_allowance.Width = 135;
+            this.part_allowance.Width = 134;
             // 
             // min_remnant_length
             // 
             this.min_remnant_length.DataPropertyName = "min_remnant_length";
             this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
             this.min_remnant_length.Name = "min_remnant_length";
-            this.min_remnant_length.Width = 142;
+            this.min_remnant_length.Width = 117;
             // 
             // btn_analyze
             // 

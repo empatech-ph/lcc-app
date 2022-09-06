@@ -25,6 +25,7 @@ namespace LCC
     {
         public string filename;
         public Project oProject;
+        public string sType;
         public ImportFieldMapping()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace LCC
             var extension = Path.GetExtension(filename);
             var reader = new ChoCSVReader(filePath).WithFirstLineHeader();
             dynamic rec;
-            if (oProject.tabOptiPlus.SelectedTab.Text == "Materials")
+            if (this.sType == "Materials")
             {
                 var descGradeDistinct = dataGridViewImportData.Rows.Cast<DataGridViewRow>().Select(x => new { V = x.Cells[0].Value.ToString(), Y = x.Cells[1].Value.ToString() }).Distinct().ToList();
                 var collection = Library.UtilsLibrary.getUserFile().GetCollection<StockModel>();
@@ -109,7 +110,7 @@ namespace LCC
             {
                 while ((rec = reader.Read()) != null)
                 {
-                    if (oProject.tabOptiPlus.SelectedTab.Text == "Project")
+                    if (this.sType == "Project")
                     {
                         //if (default value walang laman) { 
 
@@ -117,7 +118,7 @@ namespace LCC
                         var collection = Library.UtilsLibrary.getUserFile().GetCollection<ProjectModel>();
                         collection.InsertOne(new ProjectModel { id = 1, project_reference = rec[dataGridViewFieldMapping[0][1]], project_name = rec[dataGridViewFieldMapping[1][1]], rev_no = rec[dataGridViewFieldMapping[2][1]], scope = rec[dataGridViewFieldMapping[3][1]] });
                     }
-                    else if (oProject.tabOptiPlus.SelectedTab.Text == "Cut Lengths")
+                    else if (this.sType == "Cut Lengths")
                     {
                         var collection = Library.UtilsLibrary.getUserFile().GetCollection<CutLengthModel>();
                         collection.InsertOne(
@@ -168,11 +169,11 @@ namespace LCC
                 dataGridViewImportData.DataSource = dt;
                 sourceField.Items.AddRange(reader.Context.Headers);
             }
-            if (oProject.tabOptiPlus.SelectedTab.Text == "Project")
+            if (this.sType == "Project")
             {
                 siteMapHeaderList = new List<string>() { "Project Reference", "Project Name", "Revision Number", "Scope", };
             }
-            else if (oProject.tabOptiPlus.SelectedTab.Text == "Cut Lengths")
+            else if (this.sType == "Cut Lengths")
             {
                 siteMapHeaderList = new List<string>() { "Part Code", "Description", "Grade", "Length", "Quantity", "Uncut Quantity", "Order Number", "Note" };
             }
@@ -193,8 +194,10 @@ namespace LCC
             dataGridViewFieldMap.Columns["defaultValue"].ReadOnly = true;
             ShowDialog();
             //}
-            this.oProject.initProject();
-            this.oProject.initCutLength();
+            if (this.oProject != null) {
+                this.oProject.initProject();
+                this.oProject.initCutLength();
+            }
         }
 
         private void btnImportFieldMapClose_Click(object sender, EventArgs e)
