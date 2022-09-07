@@ -42,6 +42,8 @@ namespace LCC.Modals
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.description = new MaterialSkin.Controls.MaterialTextBox();
+            this.grade = new MaterialSkin.Controls.MaterialTextBox();
             this.SuspendLayout();
             // 
             // btn_save
@@ -51,7 +53,7 @@ namespace LCC.Modals
             this.btn_save.DrawShadows = true;
             this.btn_save.HighEmphasis = true;
             this.btn_save.Icon = null;
-            this.btn_save.Location = new System.Drawing.Point(226, 377);
+            this.btn_save.Location = new System.Drawing.Point(218, 448);
             this.btn_save.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_save.MouseState = MaterialSkin.MouseState.HOVER;
             this.btn_save.Name = "btn_save";
@@ -84,7 +86,7 @@ namespace LCC.Modals
             this.tb_cost.Depth = 0;
             this.tb_cost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tb_cost.Hint = "Cost (AUD) / EA";
-            this.tb_cost.Location = new System.Drawing.Point(390, 153);
+            this.tb_cost.Location = new System.Drawing.Point(382, 224);
             this.tb_cost.MaxLength = 50;
             this.tb_cost.MouseState = MaterialSkin.MouseState.OUT;
             this.tb_cost.Multiline = false;
@@ -106,7 +108,7 @@ namespace LCC.Modals
             this.c_qty.ItemHeight = 15;
             this.c_qty.Items.AddRange(new object[] {
             "∞"});
-            this.c_qty.Location = new System.Drawing.Point(32, 178);
+            this.c_qty.Location = new System.Drawing.Point(24, 249);
             this.c_qty.MaxDropDownItems = 4;
             this.c_qty.Name = "c_qty";
             this.c_qty.Size = new System.Drawing.Size(92, 23);
@@ -124,7 +126,7 @@ namespace LCC.Modals
             this.c_stockType.FormattingEnabled = true;
             this.c_stockType.IntegralHeight = false;
             this.c_stockType.ItemHeight = 15;
-            this.c_stockType.Location = new System.Drawing.Point(139, 178);
+            this.c_stockType.Location = new System.Drawing.Point(131, 249);
             this.c_stockType.MaxDropDownItems = 4;
             this.c_stockType.Name = "c_stockType";
             this.c_stockType.Size = new System.Drawing.Size(100, 23);
@@ -139,7 +141,7 @@ namespace LCC.Modals
             this.rb_note.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.rb_note.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.rb_note.Hint = "Note";
-            this.rb_note.Location = new System.Drawing.Point(32, 248);
+            this.rb_note.Location = new System.Drawing.Point(24, 319);
             this.rb_note.Margin = new System.Windows.Forms.Padding(5);
             this.rb_note.MouseState = MaterialSkin.MouseState.HOVER;
             this.rb_note.Name = "rb_note";
@@ -153,7 +155,7 @@ namespace LCC.Modals
             this.ck_editable.Checked = true;
             this.ck_editable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ck_editable.Depth = 0;
-            this.ck_editable.Location = new System.Drawing.Point(32, 338);
+            this.ck_editable.Location = new System.Drawing.Point(24, 409);
             this.ck_editable.Margin = new System.Windows.Forms.Padding(0);
             this.ck_editable.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ck_editable.MouseState = MaterialSkin.MouseState.HOVER;
@@ -170,7 +172,7 @@ namespace LCC.Modals
             this.ck_visible.Checked = true;
             this.ck_visible.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ck_visible.Depth = 0;
-            this.ck_visible.Location = new System.Drawing.Point(32, 378);
+            this.ck_visible.Location = new System.Drawing.Point(24, 449);
             this.ck_visible.Margin = new System.Windows.Forms.Padding(0);
             this.ck_visible.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ck_visible.MouseState = MaterialSkin.MouseState.HOVER;
@@ -200,7 +202,7 @@ namespace LCC.Modals
             this.tb_length.Depth = 0;
             this.tb_length.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tb_length.Hint = "Length (mm)";
-            this.tb_length.Location = new System.Drawing.Point(256, 153);
+            this.tb_length.Location = new System.Drawing.Point(248, 224);
             this.tb_length.MaxLength = 50;
             this.tb_length.MouseState = MaterialSkin.MouseState.OUT;
             this.tb_length.Multiline = false;
@@ -216,7 +218,7 @@ namespace LCC.Modals
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
-            this.materialLabel1.Location = new System.Drawing.Point(32, 222);
+            this.materialLabel1.Location = new System.Drawing.Point(24, 293);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(32, 17);
@@ -229,7 +231,7 @@ namespace LCC.Modals
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
-            this.materialLabel2.Location = new System.Drawing.Point(32, 153);
+            this.materialLabel2.Location = new System.Drawing.Point(24, 224);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(56, 17);
@@ -242,18 +244,50 @@ namespace LCC.Modals
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel3.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
-            this.materialLabel3.Location = new System.Drawing.Point(139, 153);
+            this.materialLabel3.Location = new System.Drawing.Point(131, 224);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(71, 17);
             this.materialLabel3.TabIndex = 7;
             this.materialLabel3.Text = "Stock Type";
             // 
+            // description
+            // 
+            this.description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.description.Depth = 0;
+            this.description.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.description.Hint = "Description";
+            this.description.Location = new System.Drawing.Point(16, 160);
+            this.description.MaxLength = 50;
+            this.description.MouseState = MaterialSkin.MouseState.OUT;
+            this.description.Multiline = false;
+            this.description.Name = "description";
+            this.description.Size = new System.Drawing.Size(256, 50);
+            this.description.TabIndex = 10;
+            this.description.Text = "";
+            // 
+            // grade
+            // 
+            this.grade.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grade.Depth = 0;
+            this.grade.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.grade.Hint = "Grade";
+            this.grade.Location = new System.Drawing.Point(280, 160);
+            this.grade.MaxLength = 50;
+            this.grade.MouseState = MaterialSkin.MouseState.OUT;
+            this.grade.Multiline = false;
+            this.grade.Name = "grade";
+            this.grade.Size = new System.Drawing.Size(232, 50);
+            this.grade.TabIndex = 11;
+            this.grade.Text = "";
+            // 
             // AddStocksModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 433);
+            this.ClientSize = new System.Drawing.Size(529, 508);
+            this.Controls.Add(this.grade);
+            this.Controls.Add(this.description);
             this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.materialLabel1);
@@ -272,6 +306,7 @@ namespace LCC.Modals
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Stocks";
             this.Load += new System.EventHandler(this.AddStocksModal_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.AddStocksModal_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +327,7 @@ namespace LCC.Modals
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialTextBox description;
+        private MaterialSkin.Controls.MaterialTextBox grade;
     }
 }

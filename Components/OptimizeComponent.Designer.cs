@@ -29,30 +29,19 @@ namespace LCC.Components
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.optimizeBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dt_stockLength = new System.Windows.Forms.DataGridView();
-            this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_rest = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_total_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLengthTable_total_cut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockLength_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.dt_optimize = new System.Windows.Forms.DataGridView();
@@ -74,19 +63,27 @@ namespace LCC.Components
             this.material_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.sub_layout_label = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.layout_sequence_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layout_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layout_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.layout_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.dt_stockLength = new System.Windows.Forms.DataGridView();
+            this.layout_label = new System.Windows.Forms.Label();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.material_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel10 = new System.Windows.Forms.Panel();
+            this.layout_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_rest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_repeated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockLength_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel8.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dt_stockLength)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).BeginInit();
             this.panel2.SuspendLayout();
@@ -96,6 +93,7 @@ namespace LCC.Components
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_stockLength)).BeginInit();
             this.SuspendLayout();
             // 
             // optimizeBarPanel
@@ -105,6 +103,7 @@ namespace LCC.Components
             this.optimizeBarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.optimizeBarPanel.Location = new System.Drawing.Point(0, 448);
             this.optimizeBarPanel.Name = "optimizeBarPanel";
+            this.optimizeBarPanel.Padding = new System.Windows.Forms.Padding(0, 10, 10, 0);
             this.optimizeBarPanel.Size = new System.Drawing.Size(1262, 101);
             this.optimizeBarPanel.TabIndex = 17;
             // 
@@ -142,142 +141,6 @@ namespace LCC.Components
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1262, 232);
             this.tableLayoutPanel1.TabIndex = 14;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(8, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 17);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Summary of Stocks";
-            // 
-            // dt_stockLength
-            // 
-            this.dt_stockLength.AllowUserToAddRows = false;
-            this.dt_stockLength.AllowUserToDeleteRows = false;
-            this.dt_stockLength.AllowUserToResizeColumns = false;
-            this.dt_stockLength.AllowUserToResizeRows = false;
-            this.dt_stockLength.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dt_stockLength.BackgroundColor = System.Drawing.Color.White;
-            this.dt_stockLength.CausesValidation = false;
-            this.dt_stockLength.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.NullValue = "-";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dt_stockLength.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dt_stockLength.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dt_stockLength.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.stockLength_stock_code,
-            this.stockLength_length,
-            this.stockLength_stock_type,
-            this.stockLength_rest,
-            this.stockLength_total_cost,
-            this.stockLengthTable_total_cut,
-            this.stockLength_repeated,
-            this.stockLength_note});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.NullValue = "-";
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dt_stockLength.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dt_stockLength.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_stockLength.Location = new System.Drawing.Point(0, 32);
-            this.dt_stockLength.MultiSelect = false;
-            this.dt_stockLength.Name = "dt_stockLength";
-            this.dt_stockLength.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dt_stockLength.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.dt_stockLength.RowHeadersVisible = false;
-            this.dt_stockLength.RowTemplate.Height = 25;
-            this.dt_stockLength.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dt_stockLength.ShowEditingIcon = false;
-            this.dt_stockLength.Size = new System.Drawing.Size(625, 130);
-            this.dt_stockLength.TabIndex = 2;
-            this.dt_stockLength.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
-            this.dt_stockLength.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_optimize_DataError);
-            // 
-            // stockLength_stock_code
-            // 
-            this.stockLength_stock_code.DataPropertyName = "stock_code";
-            this.stockLength_stock_code.HeaderText = "Stock Code";
-            this.stockLength_stock_code.Name = "stockLength_stock_code";
-            this.stockLength_stock_code.ReadOnly = true;
-            this.stockLength_stock_code.Width = 92;
-            // 
-            // stockLength_length
-            // 
-            this.stockLength_length.DataPropertyName = "length";
-            this.stockLength_length.HeaderText = "Length (mm)";
-            this.stockLength_length.Name = "stockLength_length";
-            this.stockLength_length.ReadOnly = true;
-            this.stockLength_length.Width = 102;
-            // 
-            // stockLength_stock_type
-            // 
-            this.stockLength_stock_type.DataPropertyName = "stock_type";
-            this.stockLength_stock_type.HeaderText = "Stock Type";
-            this.stockLength_stock_type.Name = "stockLength_stock_type";
-            this.stockLength_stock_type.ReadOnly = true;
-            this.stockLength_stock_type.Width = 90;
-            // 
-            // stockLength_rest
-            // 
-            this.stockLength_rest.DataPropertyName = "rest";
-            this.stockLength_rest.HeaderText = "Remnant";
-            this.stockLength_rest.Name = "stockLength_rest";
-            this.stockLength_rest.ReadOnly = true;
-            this.stockLength_rest.Width = 80;
-            // 
-            // stockLength_total_cost
-            // 
-            this.stockLength_total_cost.DataPropertyName = "cost";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.stockLength_total_cost.DefaultCellStyle = dataGridViewCellStyle8;
-            this.stockLength_total_cost.HeaderText = "Total Cost";
-            this.stockLength_total_cost.Name = "stockLength_total_cost";
-            this.stockLength_total_cost.ReadOnly = true;
-            this.stockLength_total_cost.Width = 84;
-            // 
-            // stockLengthTable_total_cut
-            // 
-            this.stockLengthTable_total_cut.DataPropertyName = "total_cut";
-            this.stockLengthTable_total_cut.HeaderText = "Total Cut";
-            this.stockLengthTable_total_cut.Name = "stockLengthTable_total_cut";
-            this.stockLengthTable_total_cut.ReadOnly = true;
-            this.stockLengthTable_total_cut.Width = 79;
-            // 
-            // stockLength_repeated
-            // 
-            this.stockLength_repeated.DataPropertyName = "repeated";
-            this.stockLength_repeated.HeaderText = "Repeated";
-            this.stockLength_repeated.Name = "stockLength_repeated";
-            this.stockLength_repeated.ReadOnly = true;
-            this.stockLength_repeated.Width = 81;
-            // 
-            // stockLength_note
-            // 
-            this.stockLength_note.DataPropertyName = "note";
-            this.stockLength_note.HeaderText = "Note";
-            this.stockLength_note.Name = "stockLength_note";
-            this.stockLength_note.ReadOnly = true;
-            this.stockLength_note.Width = 58;
-            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.label2);
@@ -292,7 +155,7 @@ namespace LCC.Components
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(8, 8);
+            this.label2.Location = new System.Drawing.Point(8, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(153, 17);
             this.label2.TabIndex = 4;
@@ -309,15 +172,15 @@ namespace LCC.Components
             this.dt_optimize.BackgroundColor = System.Drawing.Color.White;
             this.dt_optimize.CausesValidation = false;
             this.dt_optimize.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.NullValue = "-";
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dt_optimize.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.NullValue = "-";
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_optimize.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dt_optimize.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dt_optimize.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.optimize_description,
@@ -328,15 +191,15 @@ namespace LCC.Components
             this.optimize_gross_yield,
             this.optimize_cost,
             this.optimize_no_layout});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.NullValue = "-";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dt_optimize.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.NullValue = "-";
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dt_optimize.DefaultCellStyle = dataGridViewCellStyle11;
             this.dt_optimize.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dt_optimize.Location = new System.Drawing.Point(0, 29);
             this.dt_optimize.MultiSelect = false;
@@ -460,30 +323,30 @@ namespace LCC.Components
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.CausesValidation = false;
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.NullValue = "-";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.NullValue = "-";
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.material_stock_code,
             this.material_length,
             this.material_stock_type});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.NullValue = "-";
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.NullValue = "-";
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView2.Location = new System.Drawing.Point(0, 32);
             this.dataGridView2.MultiSelect = false;
@@ -535,7 +398,7 @@ namespace LCC.Components
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.label3);
+            this.panel7.Controls.Add(this.sub_layout_label);
             this.panel7.Controls.Add(this.dataGridView1);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(634, 3);
@@ -543,15 +406,15 @@ namespace LCC.Components
             this.panel7.Size = new System.Drawing.Size(309, 162);
             this.panel7.TabIndex = 0;
             // 
-            // label3
+            // sub_layout_label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(8, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Cutlength - Layout 1 (L1)";
+            this.sub_layout_label.AutoSize = true;
+            this.sub_layout_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.sub_layout_label.Location = new System.Drawing.Point(8, 8);
+            this.sub_layout_label.Name = "sub_layout_label";
+            this.sub_layout_label.Size = new System.Drawing.Size(154, 17);
+            this.sub_layout_label.TabIndex = 14;
+            this.sub_layout_label.Text = "Cutlength - Layout 1 (L1)";
             // 
             // dataGridView1
             // 
@@ -563,30 +426,30 @@ namespace LCC.Components
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.CausesValidation = false;
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.NullValue = "-";
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.NullValue = "-";
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.layout_sequence_no,
             this.layout_part_code,
             this.layout_length,
             this.layout_qty});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = "-";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.NullValue = "-";
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(0, 32);
             this.dataGridView1.MultiSelect = false;
@@ -626,6 +489,85 @@ namespace LCC.Components
             this.layout_qty.ReadOnly = true;
             this.layout_qty.Width = 78;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.dt_stockLength);
+            this.panel10.Controls.Add(this.layout_label);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(3, 3);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(625, 162);
+            this.panel10.TabIndex = 2;
+            // 
+            // dt_stockLength
+            // 
+            this.dt_stockLength.AllowUserToAddRows = false;
+            this.dt_stockLength.AllowUserToDeleteRows = false;
+            this.dt_stockLength.AllowUserToResizeColumns = false;
+            this.dt_stockLength.AllowUserToResizeRows = false;
+            this.dt_stockLength.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dt_stockLength.BackgroundColor = System.Drawing.Color.White;
+            this.dt_stockLength.CausesValidation = false;
+            this.dt_stockLength.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.NullValue = "-";
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_stockLength.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.dt_stockLength.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dt_stockLength.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.layout_no,
+            this.stockLength_length,
+            this.stockLength_stock_code,
+            this.stockLength_stock_type,
+            this.stockLength_rest,
+            this.stockLength_repeated,
+            this.stockLength_note});
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.NullValue = "-";
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dt_stockLength.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dt_stockLength.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dt_stockLength.Location = new System.Drawing.Point(0, 32);
+            this.dt_stockLength.MultiSelect = false;
+            this.dt_stockLength.Name = "dt_stockLength";
+            this.dt_stockLength.ReadOnly = true;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dt_stockLength.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dt_stockLength.RowHeadersVisible = false;
+            this.dt_stockLength.RowTemplate.Height = 25;
+            this.dt_stockLength.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dt_stockLength.ShowEditingIcon = false;
+            this.dt_stockLength.Size = new System.Drawing.Size(625, 130);
+            this.dt_stockLength.TabIndex = 2;
+            this.dt_stockLength.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
+            this.dt_stockLength.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_optimize_DataError);
+            // 
+            // layout_label
+            // 
+            this.layout_label.AutoSize = true;
+            this.layout_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.layout_label.Location = new System.Drawing.Point(8, 8);
+            this.layout_label.Name = "layout_label";
+            this.layout_label.Size = new System.Drawing.Size(126, 17);
+            this.layout_label.TabIndex = 3;
+            this.layout_label.Text = "Summary of Stocks";
+            // 
             // materialLabel4
             // 
             this.materialLabel4.AutoSize = true;
@@ -644,15 +586,60 @@ namespace LCC.Components
             this.material_qty.HeaderText = "Quantity";
             this.material_qty.Name = "material_qty";
             // 
-            // panel10
+            // layout_no
             // 
-            this.panel10.Controls.Add(this.dt_stockLength);
-            this.panel10.Controls.Add(this.label1);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 3);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(625, 162);
-            this.panel10.TabIndex = 2;
+            this.layout_no.HeaderText = "Layout #";
+            this.layout_no.Name = "layout_no";
+            this.layout_no.ReadOnly = true;
+            this.layout_no.Width = 78;
+            // 
+            // stockLength_length
+            // 
+            this.stockLength_length.DataPropertyName = "length";
+            this.stockLength_length.HeaderText = "Length (mm)";
+            this.stockLength_length.Name = "stockLength_length";
+            this.stockLength_length.ReadOnly = true;
+            this.stockLength_length.Width = 102;
+            // 
+            // stockLength_stock_code
+            // 
+            this.stockLength_stock_code.DataPropertyName = "stock_code";
+            this.stockLength_stock_code.HeaderText = "Stock Code";
+            this.stockLength_stock_code.Name = "stockLength_stock_code";
+            this.stockLength_stock_code.ReadOnly = true;
+            this.stockLength_stock_code.Width = 92;
+            // 
+            // stockLength_stock_type
+            // 
+            this.stockLength_stock_type.DataPropertyName = "stock_type";
+            this.stockLength_stock_type.HeaderText = "Stock Type";
+            this.stockLength_stock_type.Name = "stockLength_stock_type";
+            this.stockLength_stock_type.ReadOnly = true;
+            this.stockLength_stock_type.Width = 90;
+            // 
+            // stockLength_rest
+            // 
+            this.stockLength_rest.DataPropertyName = "rest";
+            this.stockLength_rest.HeaderText = "Remnant";
+            this.stockLength_rest.Name = "stockLength_rest";
+            this.stockLength_rest.ReadOnly = true;
+            this.stockLength_rest.Width = 80;
+            // 
+            // stockLength_repeated
+            // 
+            this.stockLength_repeated.DataPropertyName = "repeated";
+            this.stockLength_repeated.HeaderText = "Instances";
+            this.stockLength_repeated.Name = "stockLength_repeated";
+            this.stockLength_repeated.ReadOnly = true;
+            this.stockLength_repeated.Width = 82;
+            // 
+            // stockLength_note
+            // 
+            this.stockLength_note.DataPropertyName = "note";
+            this.stockLength_note.HeaderText = "Note";
+            this.stockLength_note.Name = "stockLength_note";
+            this.stockLength_note.ReadOnly = true;
+            this.stockLength_note.Width = 58;
             // 
             // OptimizeComponent
             // 
@@ -667,7 +654,6 @@ namespace LCC.Components
             this.panel8.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dt_stockLength)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optimize)).EndInit();
@@ -681,6 +667,7 @@ namespace LCC.Components
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dt_stockLength)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -692,15 +679,7 @@ namespace LCC.Components
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         public MaterialSkin.Controls.MaterialLabel materialLabel4;
         public System.Windows.Forms.DataGridView dt_optimize;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_code;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_length;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_scrap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_rest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_total_cost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLengthTable_total_cut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_repeated;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_note;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimize_description;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimize_no_of_parts;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimize_uncut;
@@ -714,7 +693,7 @@ namespace LCC.Components
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label layout_label;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -726,7 +705,7 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn material_stock_type;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sub_layout_label;
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn layout_sequence_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn layout_part_code;
@@ -734,5 +713,12 @@ namespace LCC.Components
         private System.Windows.Forms.DataGridViewTextBoxColumn layout_qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn material_qty;
         private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn layout_no;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_length;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_stock_type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_rest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_repeated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_note;
     }
 }

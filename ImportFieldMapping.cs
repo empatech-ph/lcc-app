@@ -26,6 +26,9 @@ namespace LCC
         public string filename;
         public Project oProject;
         public string sType;
+        public string sInvetoryType = "";
+        public string sDescription = "";
+        public string sGrade = "";
         public ImportFieldMapping()
         {
             InitializeComponent();
@@ -52,58 +55,22 @@ namespace LCC
                 var materialItem = new MaterialModel();
                 while ((rec = reader.Read()) != null)
                 {
-                loop:
-                    foreach (var item in descGradeDistinct)
+                    collection.InsertOne(
+                    new StockModel
                     {
-                        if (rec[0] != item.V && rec[1] != item.Y)
-                        {
-                            descGradeDistinct.Remove(item);
-                            goto loop;
-                        }
-                        materialItem = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
-                           .Where(e => e.description == item.V && e.grade == item.Y).FirstOrDefault();
-
-                        var insertStockPerMaterial = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
-                        .Where(e => e.description == "" && e.grade == "").ToList();
-                        if (materialItem != null)
-                        {
-                            if (dataGridViewImportData.ColumnCount > 4)
-                            {
-                                collection.InsertOne(
-                                        new StockModel
-                                        {
-                                            id = 1,
-                                            material_id = materialItem.id,
-                                            qty = rec[dataGridViewFieldMapping[1][1]] ?? "",
-                                            stock_type = "ST",
-                                            length = double.Parse(rec[dataGridViewFieldMapping[2][1]]) ?? 0.00,
-                                            cost = 0.00,
-                                            stock_code = rec[dataGridViewFieldMapping[0][1]] ?? "",
-                                            note = rec[dataGridViewFieldMapping[3][1]] ?? "",
-                                            visibility = false,
-                                            editable = false
-                                        });
-                            }
-                            else
-                            {
-                                collection.InsertOne(
-                                    new StockModel
-                                    {
-                                        id = 1,
-                                        material_id = materialItem.id,
-                                        qty = "",
-                                        stock_type = "BO",
-                                        length = double.Parse(rec[dataGridViewFieldMapping[0][1]]) ?? 0.00,
-                                        cost = double.Parse(rec[dataGridViewFieldMapping[1][1]]) ?? 0.00,
-                                        stock_code = "",
-                                        note = "",
-                                        visibility = false,
-                                        editable = false
-                                    });
-                            }
-                        }
-                        break;
-                    }
+                        id = 1,
+                        material_id = materialItem.id,
+                        qty = rec[dataGridViewFieldMapping[4][1]] ?? "0",
+                        stock_type = this.sInvetoryType,
+                        description = rec[dataGridViewFieldMapping[0][1]],
+                        grade = rec[dataGridViewFieldMapping[1][1]],
+                        length = double.Parse(rec[dataGridViewFieldMapping[2][1]]) ?? 0.00,
+                        cost = double.Parse(rec[dataGridViewFieldMapping[3][1]]) ?? 0.00,
+                        stock_code = "",
+                        note = "",
+                        visibility = false,
+                        editable = false
+                    });
                 }
             }
             else
@@ -179,7 +146,14 @@ namespace LCC
             }
             else
             {
-                siteMapHeaderList = dataGridViewImportData.ColumnCount > 4 ? new List<string>() { "Stock Code", "Quantity", "Length", "Note" } : new List<string>() { "Length", "Cost" };
+                List<string> oList = new List<string>() { "Description", "Grade", "Length", "Cost", "Qty" };
+                if (this.sGrade != "" && this.sDescription != "")
+                {
+                    oList = new List<string>() { "Length", "Cost", "Qty" };
+                }
+
+
+                siteMapHeaderList = dataGridViewImportData.ColumnCount > 4 ? new List<string>() { "Description", "Grade", "Stock Code", "Quantity", "Length", "Note" } : oList;
             }
 
             List<DataGridViewRow> rows = new List<DataGridViewRow>(siteMapHeaderList.Count);

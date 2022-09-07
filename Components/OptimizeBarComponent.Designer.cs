@@ -43,17 +43,20 @@ namespace LCC.Components
             this.optimizeBarPanel.RowCount = 2;
             this.optimizeBarPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.optimizeBarPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.optimizeBarPanel.Size = new System.Drawing.Size(1056, 84);
+            this.optimizeBarPanel.Size = new System.Drawing.Size(1876, 84);
             this.optimizeBarPanel.TabIndex = 0;
             // 
             // OptimizeBarComponent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AllowDrop = true;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.White;
+            this.CausesValidation = false;
             this.Controls.Add(this.optimizeBarPanel);
             this.Name = "OptimizeBarComponent";
-            this.Size = new System.Drawing.Size(1056, 84);
+            this.Size = new System.Drawing.Size(1876, 84);
             this.ResumeLayout(false);
 
         }

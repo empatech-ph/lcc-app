@@ -24,9 +24,9 @@ namespace LCC.Library
             List<StockModel> oStockModel = new List<StockModel>();
             foreach (MaterialModel oMaterialItem in OptimizeLibrary.getMaterialsPerProject())
             {
-                if (oMaterialItem.description == sDescription && oMaterialItem.grade == sGrade)
+                if (oMaterialItem.description.Trim() == sDescription.Trim() && oMaterialItem.grade.Trim() == sGrade.Trim())
                 {
-                    foreach (StockModel oStockItem in OptimizeLibrary.getStockPerMaterial(int.Parse(oMaterialItem.id.ToString())))
+                    foreach (StockModel oStockItem in OptimizeLibrary.getStockPerMaterial(sDescription.Trim(), sGrade.Trim()))
                     {
                         oStockModel.Add(oStockItem);
                     }
@@ -81,12 +81,12 @@ namespace LCC.Library
 
         }
 
-        private static List<StockModel> getStockPerMaterial(int iMaterialId)
+        private static List<StockModel> getStockPerMaterial(string sDescription, string sGrade)
         {
             return OptimizeLibrary.oFile
                 .GetCollection<StockModel>()
                 .AsQueryable()
-                .Where(e => e.material_id == iMaterialId && e.visibility == true)
+                .Where(e => e.description.Trim() == sDescription && e.grade.Trim() == sGrade && e.visibility == true)
                 .ToList();
         }
 
@@ -94,7 +94,7 @@ namespace LCC.Library
         {
             return OptimizeLibrary.oFile.GetCollection<MaterialModel>()
                 .AsQueryable()
-                .Where(e => e.description == sDescription && e.grade == sGrade)
+                .Where(e => e.description.Trim() == sDescription.Trim() && e.grade.Trim() == sGrade.Trim())
                 .First();
         }
 
@@ -112,7 +112,7 @@ namespace LCC.Library
             return OptimizeLibrary.oFile
                 .GetCollection<CutLengthModel>()
                 .AsQueryable()
-                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && OptimizeLibrary.getMaterialsPerProject().Select(e => new { desc_grade = e.description + e.grade }).Select(e => e.desc_grade).ToList().Contains((e.description + e.grade)))
+                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && OptimizeLibrary.getMaterialsPerProject().Select(e => new { desc_grade = e.description.Trim() + e.grade.Trim() }).Select(e => e.desc_grade.Trim()).ToList().Contains((e.description.Trim() + e.grade.Trim())))
                 .OrderByDescending(e => e.length)
                 .ToList();
         }

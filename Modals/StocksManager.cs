@@ -21,6 +21,9 @@ namespace LCC.Modals
         public string sStockType = "";
         private dynamic oInfo;
         private dynamic oLogin;
+        public string sDescription = "";
+        public string sGrade= "";
+       
         public StocksManager()
         {
             InitializeComponent();
@@ -51,6 +54,8 @@ namespace LCC.Modals
                 .Select(o => new { o.description, o.grade })
                 .First();
             this.l_material.Text = oMaterial.description + " " + oMaterial.grade;
+            this.sDescription = oMaterial.description;
+            this.sGrade = oMaterial.grade;
         }
 
         public void initStockData()
@@ -62,30 +67,12 @@ namespace LCC.Modals
                 IEnumerable<MaterialModel> oMaterialList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>()
                 .AsQueryable();
                 oStockList = oStockList.Where(e => e.stock_type == this.sStockType);
-                oStockList = oStockList.Join(oMaterialList,
-                    stock => stock.material_id,
-                    material => material.id,
-                    (stock, material) => new StockModel{
-                        cost = stock.cost,
-                        stock_code = stock.stock_code,
-                        cut_stock_type = stock.stock_type,
-                        description = material.description,
-                        grade = material.grade,
-                        editable = stock.editable,
-                        id = material.id,
-                        length = stock.length,
-                        material_id = stock.material_id,
-                        note = stock.note,
-                        qty = stock.qty,
-                        stock_type = stock.stock_type,
-                        visibility = stock.visibility
-                    }
-                ).Where(e => e.material_id == e.id);
+                
                 this.dt_stock.Columns["stock_type"].Visible = false;
                 this.dt_stock.Columns["grade"].ReadOnly = true;
                 this.dt_stock.Columns["description"].ReadOnly = true;
             } else {
-                oStockList = oStockList.Where(e => e.material_id == GLOBAL.iSelectedMaterialId && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
+                oStockList = oStockList.Where(e => (e.grade.Trim() == GLOBAL.sSelectedGrade.Trim() && e.description.Trim() == GLOBAL.sSelectedDescription.Trim()) && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
 
                 this.dt_stock.Columns["grade"].Visible = false;
                 this.dt_stock.Columns["description"].Visible = false;
@@ -239,6 +226,9 @@ namespace LCC.Modals
         {
             ImportFieldMapping importFieldMapping = new ImportFieldMapping();
             importFieldMapping.Text += " - " + "Materials";
+            importFieldMapping.sInvetoryType = this.sStockType;
+            importFieldMapping.sDescription = this.sDescription;
+            importFieldMapping.sGrade = this.sGrade;
             importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             importFieldMapping.openFileDialog.Title = "Browse File";
             System.Windows.Forms.DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();

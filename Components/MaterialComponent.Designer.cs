@@ -85,7 +85,7 @@ namespace LCC.Components
             this.min_remnant_length});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle7.NullValue = "-";
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -174,28 +174,28 @@ namespace LCC.Components
             this.trim_left.DataPropertyName = "trim_left";
             this.trim_left.HeaderText = "Trim Left (mm)";
             this.trim_left.Name = "trim_left";
-            this.trim_left.Width = 96;
+            this.trim_left.Width = 130;
             // 
             // trim_right
             // 
             this.trim_right.DataPropertyName = "trim_right";
             this.trim_right.HeaderText = "Trim Right (mm)";
             this.trim_right.Name = "trim_right";
-            this.trim_right.Width = 105;
+            this.trim_right.Width = 139;
             // 
             // part_allowance
             // 
             this.part_allowance.DataPropertyName = "part_allowance";
             this.part_allowance.HeaderText = "Part Allowance (mm)";
             this.part_allowance.Name = "part_allowance";
-            this.part_allowance.Width = 134;
+            this.part_allowance.Width = 169;
             // 
             // min_remnant_length
             // 
             this.min_remnant_length.DataPropertyName = "min_remnant_length";
             this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
             this.min_remnant_length.Name = "min_remnant_length";
-            this.min_remnant_length.Width = 117;
+            this.min_remnant_length.Width = 178;
             // 
             // btn_analyze
             // 

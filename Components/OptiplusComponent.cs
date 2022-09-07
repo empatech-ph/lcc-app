@@ -58,7 +58,7 @@ namespace LCC.Components
                 e.cost,
                 e.total_layout,
                 e.total_parts_length,
-                e.total_stock_length,
+                e.total_stock_length
             })
             .Select(e => new TempOptiplusData()
             {

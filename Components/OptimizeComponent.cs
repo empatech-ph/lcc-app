@@ -79,6 +79,15 @@ namespace LCC.Components
             this.dt_stockLength.DataSource = new List<TempStocklengthModel>();
             List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.cutlength_id == iCutLength && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
             this.dt_stockLength.DataSource = oTempStockLengthModel.ToArray();
+            this.dt_stockLength.Columns["total_cut"].Visible = false;
+            this.dt_stockLength.Columns["cost"].Visible = false;
+
+            int iIncr = 1;
+            foreach(DataGridViewRow oRow in this.dt_stockLength.Rows)
+            {
+                oRow.Cells["layout_no"].Value = "L" + iIncr;
+                iIncr++;
+            }
 
             this.optimizeBarPanel.Controls.Clear();
 
@@ -104,6 +113,7 @@ namespace LCC.Components
                 DataGridViewRow oCurrentRow = this.dt_optimize.Rows[e.RowIndex];
                 var iCutLength = int.Parse(oCurrentRow.Cells["id"].Value.ToString());
                 this.initOptimizedStockLengthDataTable(iCutLength);
+                this.layout_label.Text = oCurrentRow.Cells["optimize_description"].Value.ToString() + " Layouts";
             }
         }
 
