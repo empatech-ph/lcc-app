@@ -21,6 +21,7 @@ namespace LCC.Components
 
         public void initializeBar(TempStocklengthModel oStockLength)
         {
+            this.barLabel.Text = oStockLength.stock_desc_grade + " - " + " with the length of " + oStockLength.length + " mm, total cut of " + oStockLength.total_cut + " and repeated " + oStockLength.repeated + "x"; 
             int iCounter = 0;
             if (oStockLength.trim_left > 0)
             {

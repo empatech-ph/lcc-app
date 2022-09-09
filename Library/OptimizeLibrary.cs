@@ -24,9 +24,9 @@ namespace LCC.Library
             List<StockModel> oStockModel = new List<StockModel>();
             foreach (MaterialModel oMaterialItem in OptimizeLibrary.getMaterialsPerProject())
             {
-                if (oMaterialItem.description.Trim() == sDescription.Trim() && oMaterialItem.grade.Trim() == sGrade.Trim())
+                if ((oMaterialItem.description ?? "").Trim() == sDescription.Trim() && (oMaterialItem.grade.Trim() ?? "") == sGrade.Trim())
                 {
-                    foreach (StockModel oStockItem in OptimizeLibrary.getStockPerMaterial(sDescription.Trim(), sGrade.Trim()))
+                    foreach (StockModel oStockItem in OptimizeLibrary.getStockPerMaterial((sDescription ?? "").Trim(), (sGrade ?? "").Trim()))
                     {
                         oStockModel.Add(oStockItem);
                     }
@@ -86,7 +86,7 @@ namespace LCC.Library
             return OptimizeLibrary.oFile
                 .GetCollection<StockModel>()
                 .AsQueryable()
-                .Where(e => e.description.Trim() == sDescription && e.grade.Trim() == sGrade && e.visibility == true)
+                .Where(e => (e.description ?? "").Trim() == sDescription && (e.grade ?? "").Trim() == sGrade && e.visibility == true)
                 .ToList();
         }
 
@@ -94,7 +94,7 @@ namespace LCC.Library
         {
             return OptimizeLibrary.oFile.GetCollection<MaterialModel>()
                 .AsQueryable()
-                .Where(e => e.description.Trim() == sDescription.Trim() && e.grade.Trim() == sGrade.Trim())
+                .Where(e => (e.description ?? "").Trim() == sDescription && (e.grade ?? "").Trim() == sGrade)
                 .First();
         }
 
@@ -112,7 +112,7 @@ namespace LCC.Library
             return OptimizeLibrary.oFile
                 .GetCollection<CutLengthModel>()
                 .AsQueryable()
-                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && OptimizeLibrary.getMaterialsPerProject().Select(e => new { desc_grade = e.description.Trim() + e.grade.Trim() }).Select(e => e.desc_grade.Trim()).ToList().Contains((e.description.Trim() + e.grade.Trim())))
+                .Where(e => e.project_id == GLOBAL.iSelectedProjectId && OptimizeLibrary.getMaterialsPerProject().Select(e => new { desc_grade = (e.description ?? "").Trim() + (e.grade ?? "").Trim() }).Select(e => e.desc_grade).ToList().Contains(((e.description ?? "").Trim() + (e.grade ?? "").Trim())))
                 .OrderByDescending(e => e.length)
                 .ToList();
         }
@@ -213,7 +213,7 @@ namespace LCC.Library
             List<TempCutlengthModel> oTempCutlengthModel = new List<TempCutlengthModel>();
             foreach (TempCutlengthModel oCutLengthItem in GLOBAL.oTempCutlength)
             {
-                MaterialModel oMaterialModel = OptimizeLibrary.getMaterialByDescriptionAndGrade(oCutLengthItem.description, oCutLengthItem.grade);
+                MaterialModel oMaterialModel = OptimizeLibrary.getMaterialByDescriptionAndGrade((oCutLengthItem.description ?? "").Trim(), (oCutLengthItem.grade ?? "").Trim());
                 double dTotalMargins = oMaterialModel.trim_left + oMaterialModel.trim_right;
                 double dPartAllowance = oMaterialModel.part_allowance * 2;
                 double dComputedCutlengthLength = dPartAllowance + oCutLengthItem.length;
@@ -296,43 +296,45 @@ namespace LCC.Library
                             if (oCutLengthItem.uncut_quantity <= 0 || (iQtyCut == iStockQty && iStockQty != -1)) break;
                             if (iUsedStockQty >= iStockQty && iStockQty != -1) break;
                         }
-                    }
 
-                    if(oTempOptimizeModel.id == 0) {
-
-                        int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
-                        iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
-                        iUsedStockQty += 1;
-                        if (iQtyCut1 <= 0) break;
-                        oTempOptimizeModel = new TempOptimizedModel()
+                        if (oTempOptimizeModel.id == 0)
                         {
 
-                            id = iIdTempOptimized++,
-                            stock_id = oStockItem.id,
-                            stock_code = oStockItem.stock_code,
-                            stock_desc_grade = oCutLengthItem.description + ", " + oCutLengthItem.grade,
-                            material_id = oStockItem.material_id,
-                            cutlength_id = oCutLengthItem.id,
-                            stock_length = oStockItem.length,
-                            cutlength_desc = oCutLengthItem.description,
-                            total_cut = iQtyCut1,
-                            total_uncut = oCutLengthItem.uncut_quantity,
-                            remaining_stock_length = oMaterialModel.min_remnant_length,
-                            scrap_stock_length = oMaterialModel.min_remnant_length,
-                            total_rest = oMaterialModel.min_remnant_length,
-                            cutlength_length = oCutLengthItem.length,
-                            computed_cutlength_length = dComputedCutlengthLength,
-                            trim_right = oMaterialModel.trim_right,
-                            trim_left = oMaterialModel.trim_left,
-                            kerf = oMaterialModel.kerf,
-                            stock_type = oStockItem.stock_type,
-                            cost = oStockItem.cost,
-                            note = oStockItem.note,
-                            optimize_type = sType
-                        };
-                        oTempOptimizedList.Add(oTempOptimizeModel);
+                            int iQtyCut1 = Convert.ToInt32(Math.Ceiling(double.Parse(((dComputedStockLength) / (dComputedCutlengthLength + oMaterialModel.kerf)).ToString())));
+                            iQtyCut1 = (iQtyCut1 > oCutLengthItem.uncut_quantity) ? oCutLengthItem.uncut_quantity : iQtyCut1;
+                            iUsedStockQty += 1;
+                            if (iQtyCut1 <= 0) break;
+                            oTempOptimizeModel = new TempOptimizedModel()
+                            {
+                                id = iIdTempOptimized++,
+                                stock_id = oStockItem.id,
+                                stock_code = oStockItem.stock_code,
+                                stock_desc_grade = oCutLengthItem.description + ", " + oCutLengthItem.grade,
+                                material_id = oStockItem.material_id,
+                                cutlength_id = oCutLengthItem.id,
+                                stock_length = oStockItem.length,
+                                cutlength_desc = oCutLengthItem.description,
+                                total_cut = iQtyCut1,
+                                total_uncut = oCutLengthItem.uncut_quantity,
+                                remaining_stock_length = oMaterialModel.min_remnant_length,
+                                scrap_stock_length = oMaterialModel.min_remnant_length,
+                                total_rest = oMaterialModel.min_remnant_length,
+                                cutlength_length = oCutLengthItem.length,
+                                computed_cutlength_length = dComputedCutlengthLength,
+                                trim_right = oMaterialModel.trim_right,
+                                trim_left = oMaterialModel.trim_left,
+                                kerf = oMaterialModel.kerf,
+                                stock_type = oStockItem.stock_type,
+                                cost = oStockItem.cost,
+                                note = oStockItem.note,
+                                optimize_type = sType,
+                            };
+                            oTempOptimizedList.Add(oTempOptimizeModel);
+                        }
                     }
+
                 }
+                int iIncr = 1;
                 List<TempOptimizedModel> oFilteredOptimizedModel = oTempOptimizedList.Where(o => Convert.ToDouble(o.total_uncut) != o.stock_length).ToList();
                 List<TempStocklengthModel> oGroupedOptimized = oFilteredOptimizedModel.GroupBy(o => new
                 {
@@ -343,6 +345,7 @@ namespace LCC.Library
                     o.optimize_type
                 }).Select(o => new TempStocklengthModel
                 {
+                    id = iIncr++,
                     optimize_type = o.First().optimize_type,
                     cutlength_id = o.First().cutlength_id,
                     material_id = o.First().material_id,

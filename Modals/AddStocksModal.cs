@@ -65,6 +65,14 @@ namespace LCC.Modals
 
         private void AddStocksModal_Load(object sender, EventArgs e)
         {
+            if (this.oStockManager.sDescription != "" || this.oStockManager.sGrade != "")
+            {
+                this.description.Enabled = false;
+                this.grade.Enabled = false;
+
+                this.description.Text = GLOBAL.sSelectedDescription;
+                this.grade.Text = GLOBAL.sSelectedGrade;
+            }
 
             this.l_materialName.Text = this.oStockManager.l_material.Text;
             if (this.oStockManager.sStockType != "")
@@ -105,19 +113,6 @@ namespace LCC.Modals
             }
             else {
                 this.c_qty.Enabled = true;
-            }
-        }
-
-        private void AddStocksModal_Paint(object sender, PaintEventArgs e)
-        {
-
-            if (this.oStockManager.sDescription != "" || this.oStockManager.sGrade != "")
-            {
-                this.description.Enabled = false;
-                this.grade.Enabled = false;
-
-                this.description.Text = GLOBAL.sSelectedDescription;
-                this.grade.Text = GLOBAL.sSelectedGrade;
             }
         }
     }

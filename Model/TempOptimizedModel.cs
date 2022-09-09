@@ -32,6 +32,7 @@ namespace LCC.Model
 
     public class TempStocklengthModel
     {
+        public int id { get; set; }
         public int cutlength_id { get; set; }
         public int material_id { get; set; }
         public string stock_code { get; set; }
@@ -110,5 +111,20 @@ namespace LCC.Model
         public double gross_yield { get; set; }
         public double total_storage_part { get; set; }
         public double total_no_of_layout { get; set; }
+    }
+
+    public class TempSubLayoutOptimize 
+    {
+        public dynamic layout_sequence_no { get; set; }
+        public dynamic layout_part_code { get; set; }
+        public dynamic layout_length { get; set; }
+        public dynamic layout_qty { get; set; }
+    }
+    public class TempSubLayoutMaterialOptimize 
+    {
+        public dynamic layout_material_qty { get; set; }
+        public dynamic layout_material_stock_code { get; set; }
+        public dynamic layout_material_length { get; set; }
+        public dynamic layout_material_stock_type { get; set; }
     }
 }

@@ -18,6 +18,9 @@ namespace LCC.Components
     public partial class OptimizeComponent : UserControl
     {
         DataStore oFile;
+        public int iSelectedCutlegthId = 0;
+        public string sSelectedLayout = "";
+        public int iSelectedStockId = 0;
         public OptimizeComponent()
         {
             InitializeComponent();
@@ -30,6 +33,7 @@ namespace LCC.Components
 
             OptimizeLibrary.optimize(oBackgroundWorker);
 
+            int iIncr = 1;
             oBackgroundWorker.ReportProgress(50);
             GLOBAL.oTempStockLengthOptimized = new List<TempStocklengthModel>();
             GLOBAL.oTempStockLengthOptimized = GLOBAL.oTempOptimized.GroupBy(o => new
@@ -41,6 +45,7 @@ namespace LCC.Components
                 o.optimize_type
             }).Select(o => new TempStocklengthModel
             {
+                id = iIncr++,
                 optimize_type = o.Last().optimize_type,
                 cutlength_id = o.Last().cutlength_id,
                 material_id = o.Last().material_id,
@@ -72,18 +77,19 @@ namespace LCC.Components
             oBackgroundWorker.ReportProgress(80);
 
         }
-       
-        public void initOptimizedStockLengthDataTable(int iCutLength)
+
+        public void initOptimizedStockLengthDataTable()
         {
 
             this.dt_stockLength.DataSource = new List<TempStocklengthModel>();
-            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.cutlength_id == iCutLength && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
+            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.cutlength_id == this.iSelectedCutlegthId && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
             this.dt_stockLength.DataSource = oTempStockLengthModel.ToArray();
             this.dt_stockLength.Columns["total_cut"].Visible = false;
             this.dt_stockLength.Columns["cost"].Visible = false;
+            this.dt_stockLength.Columns["id"].Visible = false;
 
             int iIncr = 1;
-            foreach(DataGridViewRow oRow in this.dt_stockLength.Rows)
+            foreach (DataGridViewRow oRow in this.dt_stockLength.Rows)
             {
                 oRow.Cells["layout_no"].Value = "L" + iIncr;
                 iIncr++;
@@ -98,7 +104,40 @@ namespace LCC.Components
                 oOptimizeBar.initializeBar(oTempStockLength);
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);
             }
+            int iRowIndexOptimize = this.dt_optimize.CurrentRow.Index;
+            int iRowIndexStockLength = this.dt_stockLength.CurrentRow.Index;
+            if (this.dt_optimize.CurrentRow.Index != -1)
+            {
+                this.iSelectedStockId = Int32.Parse(this.dt_stockLength.Rows[iRowIndexStockLength].Cells["id"].Value.ToString());
+                this.layout_label.Text = this.dt_optimize.Rows[iRowIndexOptimize].Cells["optimize_description"].Value.ToString() + " Layouts";
+                this.sSelectedLayout = this.dt_stockLength.Rows[iRowIndexStockLength].Cells["layout_no"].Value.ToString();
+                this.sub_layout_label.Text = "Cutlengths - " + this.sSelectedLayout;
+                this.initSummaryOfCutlengths();
+            }
         }
+
+        private void initSummaryOfCutlengths()
+        {
+            List<TempSubLayoutOptimize> oSummaryCutlengths = new List<TempSubLayoutOptimize>();
+            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.id == this.iSelectedStockId && e.cutlength_id == this.iSelectedCutlegthId);
+            var oCutLengthCollection = this.oFile.GetCollection<CutLengthModel>();
+            var oFilteredCutlength = oCutLengthCollection.Find(e => e.id == this.iSelectedCutlegthId).First();
+            int iIncr = 1;
+            foreach (dynamic oSummary in oTempStockLengthModel.Select(e => new { layout_sequence_no = 0, layout_part_code = "", layout_length = e.cutlength_length, layout_qty = e.total_cut }).ToList())
+            {
+                oSummaryCutlengths.Add(new TempSubLayoutOptimize() { layout_sequence_no = this.sSelectedLayout + "." + iIncr, layout_part_code = oFilteredCutlength.part_code, layout_length = oSummary.layout_length, layout_qty = oSummary.layout_qty });
+                iIncr++;
+            }
+            this.dt_summary_cutlengths.DataSource = oSummaryCutlengths;
+            this.initSummaryOfMaterials();
+        }
+        private void initSummaryOfMaterials()
+        {
+            List<TempSubLayoutMaterialOptimize> oSummaryMaterials = new List<TempSubLayoutMaterialOptimize>();
+            List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.id == this.iSelectedStockId && e.cutlength_id == this.iSelectedCutlegthId);
+            this.dt_summary_materials.DataSource = oTempStockLengthModel.Select(e => new TempSubLayoutMaterialOptimize { layout_material_length = e.length, layout_material_qty = e.repeated, layout_material_stock_code = e.stock_code, layout_material_stock_type = e.stock_type }).ToArray();
+        }
+
         public void assignReportParameters()
         {
             ReportViewerForm reportViewerForm = new ReportViewerForm();
@@ -112,7 +151,8 @@ namespace LCC.Components
             {
                 DataGridViewRow oCurrentRow = this.dt_optimize.Rows[e.RowIndex];
                 var iCutLength = int.Parse(oCurrentRow.Cells["id"].Value.ToString());
-                this.initOptimizedStockLengthDataTable(iCutLength);
+                this.initOptimizedStockLengthDataTable();
+                this.initSummaryOfCutlengths();
                 this.layout_label.Text = oCurrentRow.Cells["optimize_description"].Value.ToString() + " Layouts";
             }
         }
@@ -122,6 +162,11 @@ namespace LCC.Components
             if (e.RowIndex != -1)
             {
                 this.optimizeBarPanel.AutoScrollPosition = new Point(3, e.RowIndex * 90);
+
+                this.sSelectedLayout = this.dt_stockLength.Rows[e.RowIndex].Cells["layout_no"].Value.ToString();
+                this.sub_layout_label.Text = "Cutlengths - " + this.sSelectedLayout;
+                this.iSelectedStockId = Int32.Parse(this.dt_stockLength.Rows[e.RowIndex].Cells["id"].Value.ToString());
+                this.initSummaryOfCutlengths();
             }
         }
 

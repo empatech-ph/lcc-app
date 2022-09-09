@@ -306,7 +306,6 @@ namespace LCC.Modals
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Stocks";
             this.Load += new System.EventHandler(this.AddStocksModal_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.AddStocksModal_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

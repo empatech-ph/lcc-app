@@ -100,6 +100,7 @@ namespace LCC.Modals
             this.dt_stock.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_stock_CellEndEdit);
             this.dt_stock.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dt_stock_CellFormatting);
             this.dt_stock.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dt_stock_DataBindingComplete);
+            this.dt_stock.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_stock_DataError);
             // 
             // description
             // 

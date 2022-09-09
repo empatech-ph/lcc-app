@@ -607,7 +607,8 @@ namespace LCC
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {
-                this.optimizeComponent1.initOptimizedStockLengthDataTable(int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString()));
+                this.optimizeComponent1.iSelectedCutlegthId = int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString());
+                this.optimizeComponent1.initOptimizedStockLengthDataTable();
             }
 
             this.stopButton.Visible = false;

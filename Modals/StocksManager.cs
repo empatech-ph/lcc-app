@@ -72,7 +72,7 @@ namespace LCC.Modals
                 this.dt_stock.Columns["grade"].ReadOnly = true;
                 this.dt_stock.Columns["description"].ReadOnly = true;
             } else {
-                oStockList = oStockList.Where(e => (e.grade.Trim() == GLOBAL.sSelectedGrade.Trim() && e.description.Trim() == GLOBAL.sSelectedDescription.Trim()) && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
+                oStockList = oStockList.Where(e => ((e.grade ?? "").Trim() == GLOBAL.sSelectedGrade.Trim() && (e.description ?? "").Trim() == GLOBAL.sSelectedDescription.Trim()) && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
 
                 this.dt_stock.Columns["grade"].Visible = false;
                 this.dt_stock.Columns["description"].Visible = false;
@@ -190,6 +190,8 @@ namespace LCC.Modals
                     length = (row.Cells["length"].Value == null) ? 0 : double.Parse(row.Cells["length"].Value.ToString()),
                     stock_code = (row.Cells["stock_code"].Value == null) ? "" : row.Cells["stock_code"].Value.ToString(),
                     note = (row.Cells["note"].Value == null) ? "" : row.Cells["note"].Value.ToString(),
+                    description = (row.Cells["description"].Value == null) ? "" : row.Cells["description"].Value.ToString(),
+                    grade = (row.Cells["grade"].Value == null) ? "" : row.Cells["grade"].Value.ToString(),
                     visibility = bool.Parse(row.Cells["visibility"].Value.ToString()),
                     editable = bool.Parse(row.Cells["editable"].Value.ToString())
                 });
@@ -236,6 +238,11 @@ namespace LCC.Modals
             if (dialogResult == System.Windows.Forms.DialogResult.Cancel) return;
             importFieldMapping.openFileDialog.Tag = "Materials";
             importFieldMapping.importFieldMappingDisplay(sender, e);
+        }
+
+        private void dt_stock_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Please check if you have inputted the correct information");
         }
     }
 }
