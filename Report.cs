@@ -8,6 +8,7 @@ using System.IO;
 using JsonFlatFileDataStore;
 using System.Linq;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace LCC
 {
@@ -25,7 +26,7 @@ namespace LCC
             var slItems = new ReportValue[oTempStockLengthModel.Count];
             int count = 0;
 
-            foreach (TempCutlengthModel oCutLength in oTempCutlength)
+            foreach (TempCutlengthModel oCutLength in GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList())
             {
                 clItems[count] = new ReportValue
                 {
@@ -98,6 +99,7 @@ namespace LCC
             using var fs = new FileStream(Environment.CurrentDirectory + "/../../../RPT_CutLengthReport.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("Items", items));
+            report.DataSources.Add(new ReportDataSource("ReportData", items));
         }
         public static void LoadInventoryCommListReport(LocalReport report, bool isInventoryList)
         {

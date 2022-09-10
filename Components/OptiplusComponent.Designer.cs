@@ -37,12 +37,6 @@ namespace LCC.Components
             this.dt_materials = new System.Windows.Forms.DataGridView();
             this.optiplus_desc_grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dt_optiplus = new System.Windows.Forms.DataGridView();
-            this.optiplus_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_solutions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_storage_part = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optiplus_no_of_layouts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,10 +44,14 @@ namespace LCC.Components
             this.btn_right = new MaterialSkin.Controls.MaterialButton();
             this.btn_left = new MaterialSkin.Controls.MaterialButton();
             this.table_parameters = new System.Windows.Forms.TableLayoutPanel();
-            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.optiplus_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_solutions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optiplus_storage_part = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dt_materials)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dt_optiplus)).BeginInit();
             this.panel1.SuspendLayout();
@@ -140,8 +138,7 @@ namespace LCC.Components
             this.optiplus_solutions,
             this.optiplus_cost,
             this.optiplus_gross_yield,
-            this.optiplus_storage_part,
-            this.optiplus_no_of_layouts});
+            this.optiplus_storage_part});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -159,54 +156,6 @@ namespace LCC.Components
             this.dt_optiplus.ShowEditingIcon = false;
             this.dt_optiplus.Size = new System.Drawing.Size(800, 314);
             this.dt_optiplus.TabIndex = 15;
-            // 
-            // optiplus_no
-            // 
-            this.optiplus_no.DataPropertyName = "auto_no";
-            this.optiplus_no.HeaderText = "#";
-            this.optiplus_no.Name = "optiplus_no";
-            this.optiplus_no.ReadOnly = true;
-            this.optiplus_no.Width = 44;
-            // 
-            // optiplus_solutions
-            // 
-            this.optiplus_solutions.DataPropertyName = "solution_no";
-            this.optiplus_solutions.HeaderText = "Solutions";
-            this.optiplus_solutions.Name = "optiplus_solutions";
-            this.optiplus_solutions.ReadOnly = true;
-            this.optiplus_solutions.Width = 103;
-            // 
-            // optiplus_cost
-            // 
-            this.optiplus_cost.DataPropertyName = "total_cost";
-            this.optiplus_cost.HeaderText = "Cost";
-            this.optiplus_cost.Name = "optiplus_cost";
-            this.optiplus_cost.ReadOnly = true;
-            this.optiplus_cost.Width = 68;
-            // 
-            // optiplus_gross_yield
-            // 
-            this.optiplus_gross_yield.DataPropertyName = "gross_yield";
-            this.optiplus_gross_yield.HeaderText = "Gross Yield %";
-            this.optiplus_gross_yield.Name = "optiplus_gross_yield";
-            this.optiplus_gross_yield.ReadOnly = true;
-            this.optiplus_gross_yield.Width = 110;
-            // 
-            // optiplus_storage_part
-            // 
-            this.optiplus_storage_part.DataPropertyName = "total_storage_part";
-            this.optiplus_storage_part.HeaderText = "Storage Parts Used";
-            this.optiplus_storage_part.Name = "optiplus_storage_part";
-            this.optiplus_storage_part.ReadOnly = true;
-            this.optiplus_storage_part.Width = 125;
-            // 
-            // optiplus_no_of_layouts
-            // 
-            this.optiplus_no_of_layouts.DataPropertyName = "total_no_of_layout";
-            this.optiplus_no_of_layouts.HeaderText = "No. of Layouts";
-            this.optiplus_no_of_layouts.Name = "optiplus_no_of_layouts";
-            this.optiplus_no_of_layouts.ReadOnly = true;
-            this.optiplus_no_of_layouts.Width = 129;
             // 
             // materialLabel2
             // 
@@ -246,7 +195,6 @@ namespace LCC.Components
             this.panel1.Controls.Add(this.btn_right);
             this.panel1.Controls.Add(this.btn_left);
             this.panel1.Controls.Add(this.table_parameters);
-            this.panel1.Controls.Add(this.materialLabel6);
             this.panel1.Controls.Add(this.materialLabel5);
             this.panel1.Controls.Add(this.materialLabel4);
             this.panel1.Controls.Add(this.materialLabel3);
@@ -322,8 +270,7 @@ namespace LCC.Components
             // 
             this.table_parameters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.table_parameters.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.table_parameters.ColumnCount = 4;
-            this.table_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.table_parameters.ColumnCount = 3;
             this.table_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.table_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.table_parameters.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -334,20 +281,6 @@ namespace LCC.Components
             this.table_parameters.Size = new System.Drawing.Size(555, 34);
             this.table_parameters.TabIndex = 19;
             // 
-            // materialLabel6
-            // 
-            this.materialLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialLabel6.AutoSize = true;
-            this.materialLabel6.Depth = 0;
-            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel6.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.materialLabel6.Location = new System.Drawing.Point(819, 39);
-            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(19, 14);
-            this.materialLabel6.TabIndex = 18;
-            this.materialLabel6.Text = "4th";
-            // 
             // materialLabel5
             // 
             this.materialLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -355,7 +288,7 @@ namespace LCC.Components
             this.materialLabel5.Depth = 0;
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.materialLabel5.Location = new System.Drawing.Point(680, 39);
+            this.materialLabel5.Location = new System.Drawing.Point(792, 32);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(19, 14);
@@ -369,7 +302,7 @@ namespace LCC.Components
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel4.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.materialLabel4.Location = new System.Drawing.Point(543, 39);
+            this.materialLabel4.Location = new System.Drawing.Point(608, 32);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
             this.materialLabel4.Size = new System.Drawing.Size(22, 14);
@@ -389,6 +322,46 @@ namespace LCC.Components
             this.materialLabel3.Size = new System.Drawing.Size(18, 14);
             this.materialLabel3.TabIndex = 18;
             this.materialLabel3.Text = "1st";
+            // 
+            // optiplus_no
+            // 
+            this.optiplus_no.DataPropertyName = "auto_no";
+            this.optiplus_no.HeaderText = "#";
+            this.optiplus_no.Name = "optiplus_no";
+            this.optiplus_no.ReadOnly = true;
+            this.optiplus_no.Width = 44;
+            // 
+            // optiplus_solutions
+            // 
+            this.optiplus_solutions.DataPropertyName = "solution_no";
+            this.optiplus_solutions.HeaderText = "Solutions";
+            this.optiplus_solutions.Name = "optiplus_solutions";
+            this.optiplus_solutions.ReadOnly = true;
+            this.optiplus_solutions.Width = 103;
+            // 
+            // optiplus_cost
+            // 
+            this.optiplus_cost.DataPropertyName = "total_cost";
+            this.optiplus_cost.HeaderText = "Cost";
+            this.optiplus_cost.Name = "optiplus_cost";
+            this.optiplus_cost.ReadOnly = true;
+            this.optiplus_cost.Width = 68;
+            // 
+            // optiplus_gross_yield
+            // 
+            this.optiplus_gross_yield.DataPropertyName = "gross_yield";
+            this.optiplus_gross_yield.HeaderText = "Gross Yield %";
+            this.optiplus_gross_yield.Name = "optiplus_gross_yield";
+            this.optiplus_gross_yield.ReadOnly = true;
+            this.optiplus_gross_yield.Width = 133;
+            // 
+            // optiplus_storage_part
+            // 
+            this.optiplus_storage_part.DataPropertyName = "total_storage_part";
+            this.optiplus_storage_part.HeaderText = "Storage Parts Used";
+            this.optiplus_storage_part.Name = "optiplus_storage_part";
+            this.optiplus_storage_part.ReadOnly = true;
+            this.optiplus_storage_part.Width = 125;
             // 
             // OptiplusComponent
             // 

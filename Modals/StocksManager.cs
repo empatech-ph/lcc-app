@@ -39,7 +39,7 @@ namespace LCC.Modals
         public StocksManager(string sStockType)
         {
             InitializeComponent();
-            this.oLogin = new RegistryLibrary().getLogin();
+            this.oLogin = new RegistryLibrary().getLogin(); 
             string unit = GLOBAL.getOptions().unit ?? "mm";
             foreach (DataGridViewColumn oHeader in this.dt_stock.Columns)
             {
@@ -81,7 +81,7 @@ namespace LCC.Modals
                 this.dt_stock.Columns["grade"].ReadOnly = true;
                 this.dt_stock.Columns["description"].ReadOnly = true;
             } else {
-                oStockList = oStockList.Where(e => ((e.grade ?? "").Trim() == GLOBAL.sSelectedGrade.Trim() && (e.description ?? "").Trim() == GLOBAL.sSelectedDescription.Trim()) && (e.stock_type == "ST" || this.bST == true) && (e.stock_type == "BO" || this.bBO == true));
+                oStockList = oStockList.Where(e => ((e.grade ?? "").Trim() == GLOBAL.sSelectedGrade.Trim() && (e.description ?? "").Trim() == GLOBAL.sSelectedDescription.Trim()) && ((e.stock_type == "BO" || this.bST == true) && (e.stock_type == "ST" || this.bBO == true)));
 
                 this.dt_stock.Columns["grade"].Visible = false;
                 this.dt_stock.Columns["description"].Visible = false;

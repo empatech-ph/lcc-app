@@ -25,14 +25,12 @@ namespace LCC.Components
                 { GROSS_YIELD, "total_cost" },
                 { COST, "gross_yield" },
                 { STORAGE_PART, "total_storage_part" },
-                { LAYOUT, "total_no_of_layout" },
             };
         private string sCurrentSelected = "btn_gross_yield";
         private Dictionary<string, string> oParameters = new Dictionary<string, string>(){
                 { "btn_gross_yield", "Gross Yield" },
                 { "btn_total_cost", "Cost" },
                 { "btn_total_storage_part", "Storage Parts Used" },
-                { "btn_total_no_of_layout", "No. of Layouts" },
             };
         private List<TempOptiplusData> oTempOptiplusData = new List<TempOptiplusData>();
         public OptiplusComponent()
@@ -56,7 +54,6 @@ namespace LCC.Components
                 e.gross_yield,
                 e.quantity,
                 e.cost,
-                e.total_layout,
                 e.total_parts_length,
                 e.total_stock_length
             })
@@ -66,17 +63,15 @@ namespace LCC.Components
                 solution_no = e.Last().solution_no,
                 gross_yield = e.Last().gross_yield,
                 total_cost = e.Last().cost,
-                total_no_of_layout = e.Last().total_layout,
                 total_storage_part = e.Last().total_parts_length
             })
-            .GroupBy(e => new { e.gross_yield, e.total_cost, e.total_no_of_layout, e.total_storage_part })
+            .GroupBy(e => new { e.gross_yield, e.total_cost, e.total_storage_part })
             .Select(e => new TempOptiplusData()
              {
                  auto_no = iCounter++,
                  solution_no = e.Last().solution_no,
                  gross_yield = e.Last().gross_yield,
                  total_cost = e.Last().total_cost,
-                 total_no_of_layout = e.Last().total_no_of_layout,
                  total_storage_part = e.Last().total_storage_part
             })
             .ToList();
@@ -160,12 +155,10 @@ namespace LCC.Components
         {
             Button _btn_current = sender as Button;
 
-            Button _btn_layout = this.table_parameters.Controls["btn_total_no_of_layout"] as Button;
             Button _btn_gross_yield = this.table_parameters.Controls["btn_gross_yield"] as Button;
             Button _btn_cost = this.table_parameters.Controls["btn_total_cost"] as Button;
             Button _btn_storage_part = this.table_parameters.Controls["btn_total_storage_part"] as Button;
 
-            _btn_layout.BackColor = Color.White;
             _btn_gross_yield.BackColor = Color.White;
             _btn_cost.BackColor = Color.White;
             _btn_storage_part.BackColor = Color.White;

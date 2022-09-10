@@ -115,7 +115,7 @@ namespace LCC.Admin
 
         private void AdminDashboard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+
         }
     }
 }

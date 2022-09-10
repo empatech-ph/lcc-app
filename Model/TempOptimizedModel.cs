@@ -110,7 +110,6 @@ namespace LCC.Model
         public double total_cost { get; set; }
         public double gross_yield { get; set; }
         public double total_storage_part { get; set; }
-        public double total_no_of_layout { get; set; }
     }
 
     public class TempSubLayoutOptimize 

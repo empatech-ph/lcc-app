@@ -163,16 +163,16 @@ namespace LCC.Components
                         GLOBAL.sSelectedGrade = oRow.Cells["grade"].Value.ToString();
                         GLOBAL.sSelectedDescription = oRow.Cells["description"].Value.ToString();
                         var oStockManager = new Modals.StocksManager();
-                        oStockManager.bBO = this.BO.Checked;
-                        oStockManager.bST = this.ST.Checked;
+                        oStockManager.bBO = this.BO.Checked == true;
+                        oStockManager.bST = this.ST.Checked == true;
                         oStockManager.ShowDialog();
                     }
                 }
                 else
                 {
                     var oStockManager = new Modals.StocksManager();
-                    oStockManager.bBO = this.BO.Checked;
-                    oStockManager.bST = this.ST.Checked;
+                    oStockManager.bBO = this.BO.Checked == true;
+                    oStockManager.bST = this.ST.Checked == true;
                     oStockManager.ShowDialog();
                 }
             }

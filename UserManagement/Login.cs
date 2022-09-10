@@ -67,11 +67,6 @@ namespace LCC.UserManagement
                     this.Hide();
                     (new Register(this.tb_email.Text, oResult.user_type.ToString())).Show();
                 }
-                else if (this.getUserType(oResult.user_type.ToString()) == 1)
-                {
-                    this.Hide();
-                    (new Admin.AdminDashboard()).Show();
-                }
                 else
                 {
                     this.Hide();

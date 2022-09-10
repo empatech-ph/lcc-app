@@ -36,7 +36,6 @@ namespace LCC
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Project));
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -63,6 +62,12 @@ namespace LCC
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.cellClickLabel = new System.Windows.Forms.Label();
             this.projectTable = new System.Windows.Forms.DataGridView();
+            this.project_reference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scope = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rev_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.delete_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.addProject = new MaterialSkin.Controls.MaterialButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -97,12 +102,6 @@ namespace LCC
             this.panel8 = new System.Windows.Forms.Panel();
             this.headerHandlerBar = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Label();
-            this.project_reference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.project_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scope = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rev_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.delete_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
@@ -482,6 +481,56 @@ namespace LCC
             this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.projectTable.SelectionChanged += new System.EventHandler(this.projectTable_SelectionChanged);
             this.projectTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
+            // 
+            // project_reference
+            // 
+            this.project_reference.DataPropertyName = "project_reference";
+            this.project_reference.HeaderText = "Project Reference #";
+            this.project_reference.Name = "project_reference";
+            this.project_reference.Width = 163;
+            // 
+            // project_name
+            // 
+            this.project_name.DataPropertyName = "project_name";
+            this.project_name.HeaderText = "Project Name";
+            this.project_name.Name = "project_name";
+            this.project_name.Width = 123;
+            // 
+            // scope
+            // 
+            this.scope.DataPropertyName = "scope";
+            this.scope.HeaderText = "Scope of Works";
+            this.scope.Name = "scope";
+            this.scope.Width = 138;
+            // 
+            // rev_no
+            // 
+            this.rev_no.DataPropertyName = "rev_no";
+            this.rev_no.HeaderText = "Revision #";
+            this.rev_no.Name = "rev_no";
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "Edit";
+            this.edit_column.Image = global::LCC.Properties.Resources.icons8_edit_property_32;
+            this.edit_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.edit_column.MinimumWidth = 2;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.edit_column.ToolTipText = "Edit";
+            this.edit_column.Width = 44;
+            // 
+            // delete_column
+            // 
+            this.delete_column.HeaderText = "Delete";
+            this.delete_column.Image = global::LCC.Properties.Resources.icons8_Remove_32;
+            this.delete_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.delete_column.MinimumWidth = 2;
+            this.delete_column.Name = "delete_column";
+            this.delete_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.delete_column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.delete_column.ToolTipText = "Delete";
+            this.delete_column.Width = 83;
             // 
             // addProject
             // 
@@ -960,15 +1009,15 @@ namespace LCC
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Enabled = false;
+            this.button1.BackgroundImage = global::LCC.Properties.Resources.logo;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.button1.Location = new System.Drawing.Point(8, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 40);
             this.button1.TabIndex = 20;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel1
             // 
@@ -1020,56 +1069,6 @@ namespace LCC
             this.closeButton.Text = "  X";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Clicked);
             // 
-            // project_reference
-            // 
-            this.project_reference.DataPropertyName = "project_reference";
-            this.project_reference.HeaderText = "Project Reference #";
-            this.project_reference.Name = "project_reference";
-            this.project_reference.Width = 163;
-            // 
-            // project_name
-            // 
-            this.project_name.DataPropertyName = "project_name";
-            this.project_name.HeaderText = "Project Name";
-            this.project_name.Name = "project_name";
-            this.project_name.Width = 123;
-            // 
-            // scope
-            // 
-            this.scope.DataPropertyName = "scope";
-            this.scope.HeaderText = "Scope of Works";
-            this.scope.Name = "scope";
-            this.scope.Width = 138;
-            // 
-            // rev_no
-            // 
-            this.rev_no.DataPropertyName = "rev_no";
-            this.rev_no.HeaderText = "Revision #";
-            this.rev_no.Name = "rev_no";
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "Edit";
-            this.edit_column.Image = global::LCC.Properties.Resources.icons8_edit_property_32;
-            this.edit_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.edit_column.MinimumWidth = 2;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.edit_column.ToolTipText = "Edit";
-            this.edit_column.Width = 44;
-            // 
-            // delete_column
-            // 
-            this.delete_column.HeaderText = "Delete";
-            this.delete_column.Image = global::LCC.Properties.Resources.icons8_Remove_32;
-            this.delete_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.delete_column.MinimumWidth = 2;
-            this.delete_column.Name = "delete_column";
-            this.delete_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.delete_column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.delete_column.ToolTipText = "Delete";
-            this.delete_column.Width = 83;
-            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1079,7 +1078,6 @@ namespace LCC
             this.Controls.Add(this.statusBarLbl);
             this.Controls.Add(this.panel1);
             this.DrawerShowIconsWhenHidden = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1105, 682);
             this.Name = "Project";
@@ -1192,5 +1190,8 @@ namespace LCC
         private DataGridViewTextBoxColumn rev_no;
         private DataGridViewImageColumn edit_column;
         private DataGridViewImageColumn delete_column;
+        private MaterialSkin.Controls.MaterialButton adminBtn;
+        private LinkLabel accessAdminLinkBtn;
+        private Button logoBtn;
     }
 }

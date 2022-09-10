@@ -49,7 +49,6 @@ namespace LCC
             this.initProject();
             this.initCutLength();
 
-
             //for redo/undo commands
             proj.ProjectNameChanged += proj_ProjectNameChanged;
             UpdateUndoRedoButtons();
@@ -425,7 +424,9 @@ namespace LCC
         {
             this.optimizeBtn.Enabled = false;
             this.tabOptiPlus.SelectedIndex = 3;
-            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
+            this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>(); 
+            this.optimizeComponent1.dt_summary_cutlengths.DataSource = new List<TempSubLayoutOptimize>();
+            this.optimizeComponent1.dt_summary_materials.DataSource = new List<TempSubLayoutMaterialOptimize>();
             this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
             this.optiplusComponent1.dt_materials.DataSource = new List<TempCutlengthModel>();
 
@@ -684,7 +685,21 @@ namespace LCC
         {
             this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>();
             this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
+            this.optimizeComponent1.dt_summary_cutlengths.DataSource = new List<TempSubLayoutOptimize>();
+            this.optimizeComponent1.dt_summary_materials.DataSource = new List<TempSubLayoutMaterialOptimize>();
+            this.optimizeComponent1.dt_stockLength.DataSource = new List<TempStocklengthModel>();
+            this.optiplusComponent1.dt_optiplus.DataSource = new List<TempOptiplusData>();
             this.optimizeComponent1.optimizeBarPanel.Controls.Clear();
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["material_id"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["data"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["stock_desc_grade"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["cutlength_length"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_left"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["trim_right"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["scrap"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["optimize_type"].Visible = false;
         }
 
         private void addCutlength_Click(object sender, EventArgs e)
@@ -711,6 +726,14 @@ namespace LCC
         {
             StocksManager oStockManager = new StocksManager("BO");
             oStockManager.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (((new Library.RegistryLibrary()).getLogin()).user_type == 1)
+            {
+                (new Admin.AdminDashboard()).ShowDialog();
+            }
         }
     }
 }

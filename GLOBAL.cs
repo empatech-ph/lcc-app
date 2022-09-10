@@ -25,8 +25,12 @@ namespace LCC
         public static OptionSettingsModel getOptions() {
 
             DataStore oFile = UtilsLibrary.getUserFile();
-            var oCollection = oFile.GetCollection<OptionSettingsModel>().AsQueryable().First();
-            return oCollection;
+            var oCollection = oFile.GetCollection<OptionSettingsModel>().AsQueryable();
+            if (oCollection.ToList().Count <= 0)
+            {
+                return new OptionSettingsModel();
+            }
+            return oCollection.First();
         }
     }
 }
