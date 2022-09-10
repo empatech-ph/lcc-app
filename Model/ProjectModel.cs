@@ -27,6 +27,7 @@ namespace LCC.Model
         }
         public string scope { get; set; }
         public string rev_no { get; set; }
+        public bool is_active { get; set; }
         public event Action ProjectReferenceChanged;
         public event Action ProjectNameChanged;
     }

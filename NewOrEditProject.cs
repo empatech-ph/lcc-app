@@ -42,12 +42,12 @@ namespace LCC
                     Project.selectedProject = collection.GetNextIdValue();
                     if (isAdd)
                     {
-                        collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                        collection.InsertOne(new ProjectModel { id = 1, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text, is_active = true });
                     }
                     else
                     {
 
-                        collection.UpdateOne(x => x.id == editProjectId, new ProjectModel { id = editProjectId, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text });
+                        collection.UpdateOne(x => x.id == editProjectId, new ProjectModel { id = editProjectId, project_name = projNameTxt.Text, project_reference = projNameReferenceTxt.Text, rev_no = revNumberTxt.Text, scope = scopeOfWorksTxt.Text, is_active = true });
                     }
                     this.Close();
                 }

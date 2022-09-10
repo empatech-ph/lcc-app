@@ -32,11 +32,10 @@ namespace LCC
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Project));
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
@@ -46,12 +45,8 @@ namespace LCC
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.fileMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.importItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importInventoryList = new System.Windows.Forms.ToolStripMenuItem();
-            this.importCommercialLengths = new System.Windows.Forms.ToolStripMenuItem();
             this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportProjects = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportReports = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryListItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commLengthListItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oBackgroundWorker = new System.ComponentModel.BackgroundWorker();
@@ -68,11 +63,6 @@ namespace LCC
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.cellClickLabel = new System.Windows.Forms.Label();
             this.projectTable = new System.Windows.Forms.DataGridView();
-            this.project_reference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.project_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scope = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rev_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewButtonColumn();
             this.addProject = new MaterialSkin.Controls.MaterialButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -107,6 +97,12 @@ namespace LCC
             this.panel8 = new System.Windows.Forms.Panel();
             this.headerHandlerBar = new System.Windows.Forms.Panel();
             this.closeButton = new System.Windows.Forms.Label();
+            this.project_reference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scope = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rev_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.delete_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
@@ -190,44 +186,19 @@ namespace LCC
             // fileMenuStrip
             // 
             this.fileMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importItem,
             this.exportItem,
             this.inventoryListItem,
             this.commLengthListItem});
             this.fileMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.fileMenuStrip.Name = "fileMenuStrip";
-            this.fileMenuStrip.Size = new System.Drawing.Size(201, 92);
+            this.fileMenuStrip.Size = new System.Drawing.Size(201, 70);
             this.fileMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileMenuStrip_ItemClicked);
             this.fileMenuStrip.Click += new System.EventHandler(this.fileMenuStrip_Click);
-            // 
-            // importItem
-            // 
-            this.importItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importInventoryList,
-            this.importCommercialLengths});
-            this.importItem.Name = "importItem";
-            this.importItem.Size = new System.Drawing.Size(200, 22);
-            this.importItem.Text = "Import";
-            // 
-            // importInventoryList
-            // 
-            this.importInventoryList.Name = "importInventoryList";
-            this.importInventoryList.Size = new System.Drawing.Size(184, 22);
-            this.importInventoryList.Text = "Inventory List";
-            this.importInventoryList.Click += new System.EventHandler(this.importInventoryList_Click);
-            // 
-            // importCommercialLengths
-            // 
-            this.importCommercialLengths.Name = "importCommercialLengths";
-            this.importCommercialLengths.Size = new System.Drawing.Size(184, 22);
-            this.importCommercialLengths.Text = "Commercial Lengths";
-            this.importCommercialLengths.Click += new System.EventHandler(this.importCommercialLengths_Click);
             // 
             // exportItem
             // 
             this.exportItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportProjects,
-            this.exportReports});
+            this.exportProjects});
             this.exportItem.Name = "exportItem";
             this.exportItem.Size = new System.Drawing.Size(200, 22);
             this.exportItem.Text = "Export";
@@ -235,16 +206,9 @@ namespace LCC
             // exportProjects
             // 
             this.exportProjects.Name = "exportProjects";
-            this.exportProjects.Size = new System.Drawing.Size(116, 22);
-            this.exportProjects.Text = "Projects";
+            this.exportProjects.Size = new System.Drawing.Size(132, 22);
+            this.exportProjects.Text = "Cutlenghts";
             this.exportProjects.Click += new System.EventHandler(this.exportProjects_Click);
-            // 
-            // exportReports
-            // 
-            this.exportReports.Name = "exportReports";
-            this.exportReports.Size = new System.Drawing.Size(116, 22);
-            this.exportReports.Text = "Reports";
-            this.exportReports.Click += new System.EventHandler(this.exportReports_Click);
             // 
             // inventoryListItem
             // 
@@ -492,21 +456,22 @@ namespace LCC
             this.project_name,
             this.scope,
             this.rev_no,
-            this.edit_column});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = "-";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.projectTable.DefaultCellStyle = dataGridViewCellStyle3;
+            this.edit_column,
+            this.delete_column});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.NullValue = "-";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.projectTable.DefaultCellStyle = dataGridViewCellStyle2;
             this.projectTable.Location = new System.Drawing.Point(3, 64);
             this.projectTable.MultiSelect = false;
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.projectTable.RowHeadersVisible = false;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.Size = new System.Drawing.Size(1072, 370);
@@ -517,43 +482,6 @@ namespace LCC
             this.projectTable.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthsTable_RowValidated);
             this.projectTable.SelectionChanged += new System.EventHandler(this.projectTable_SelectionChanged);
             this.projectTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.cutLengthsTable_UserAddedRow);
-            // 
-            // project_reference
-            // 
-            this.project_reference.DataPropertyName = "project_reference";
-            this.project_reference.HeaderText = "Project Reference #";
-            this.project_reference.Name = "project_reference";
-            this.project_reference.Width = 163;
-            // 
-            // project_name
-            // 
-            this.project_name.DataPropertyName = "project_name";
-            this.project_name.HeaderText = "Project Name";
-            this.project_name.Name = "project_name";
-            this.project_name.Width = 123;
-            // 
-            // scope
-            // 
-            this.scope.DataPropertyName = "scope";
-            this.scope.HeaderText = "Scope of Works";
-            this.scope.Name = "scope";
-            this.scope.Width = 138;
-            // 
-            // rev_no
-            // 
-            this.rev_no.DataPropertyName = "rev_no";
-            this.rev_no.HeaderText = "Revision #";
-            this.rev_no.Name = "rev_no";
-            // 
-            // edit_column
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Edit";
-            this.edit_column.DefaultCellStyle = dataGridViewCellStyle2;
-            this.edit_column.HeaderText = "";
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Text = "Edit";
-            this.edit_column.Width = 5;
             // 
             // addProject
             // 
@@ -692,24 +620,24 @@ namespace LCC
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.NullValue = "-";
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.NullValue = "-";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.cutLengthsTable.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cutLengthsTable.DefaultCellStyle = dataGridViewCellStyle5;
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 56);
             this.cutLengthsTable.Name = "cutLengthsTable";
@@ -1092,6 +1020,56 @@ namespace LCC
             this.closeButton.Text = "  X";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Clicked);
             // 
+            // project_reference
+            // 
+            this.project_reference.DataPropertyName = "project_reference";
+            this.project_reference.HeaderText = "Project Reference #";
+            this.project_reference.Name = "project_reference";
+            this.project_reference.Width = 163;
+            // 
+            // project_name
+            // 
+            this.project_name.DataPropertyName = "project_name";
+            this.project_name.HeaderText = "Project Name";
+            this.project_name.Name = "project_name";
+            this.project_name.Width = 123;
+            // 
+            // scope
+            // 
+            this.scope.DataPropertyName = "scope";
+            this.scope.HeaderText = "Scope of Works";
+            this.scope.Name = "scope";
+            this.scope.Width = 138;
+            // 
+            // rev_no
+            // 
+            this.rev_no.DataPropertyName = "rev_no";
+            this.rev_no.HeaderText = "Revision #";
+            this.rev_no.Name = "rev_no";
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "Edit";
+            this.edit_column.Image = global::LCC.Properties.Resources.icons8_edit_property_32;
+            this.edit_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.edit_column.MinimumWidth = 2;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.edit_column.ToolTipText = "Edit";
+            this.edit_column.Width = 44;
+            // 
+            // delete_column
+            // 
+            this.delete_column.HeaderText = "Delete";
+            this.delete_column.Image = global::LCC.Properties.Resources.icons8_Remove_32;
+            this.delete_column.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.delete_column.MinimumWidth = 2;
+            this.delete_column.Name = "delete_column";
+            this.delete_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.delete_column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.delete_column.ToolTipText = "Delete";
+            this.delete_column.Width = 83;
+            // 
             // Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1153,12 +1131,8 @@ namespace LCC
         private System.Windows.Forms.DataGridViewTextBoxColumn stockLength_cutlength_desc;
       
         private System.Windows.Forms.ContextMenuStrip fileMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem importItem;
         private System.Windows.Forms.ToolStripMenuItem exportItem;
         private System.Windows.Forms.ToolStripMenuItem exportProjects;
-        private System.Windows.Forms.ToolStripMenuItem exportReports;
-        private System.Windows.Forms.ToolStripMenuItem importInventoryList;
-        private System.Windows.Forms.ToolStripMenuItem importCommercialLengths;
         private MaterialSkin.Controls.MaterialButton materialButton3;
         private System.ComponentModel.BackgroundWorker oBackgroundWorker;
         private System.Windows.Forms.ToolStripMenuItem inventoryListItem;
@@ -1177,11 +1151,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private Label cellClickLabel;
         public DataGridView projectTable;
-        private DataGridViewTextBoxColumn project_reference;
-        private DataGridViewTextBoxColumn project_name;
-        private DataGridViewTextBoxColumn scope;
-        private DataGridViewTextBoxColumn rev_no;
-        private DataGridViewButtonColumn edit_column;
         private MaterialSkin.Controls.MaterialButton addProject;
         private Panel panel3;
         private Panel panel6;
@@ -1217,5 +1186,11 @@ namespace LCC
         private Panel handleHeaderBar;
         private Panel headerHandlerBar;
         private Label closeButton;
+        private DataGridViewTextBoxColumn project_reference;
+        private DataGridViewTextBoxColumn project_name;
+        private DataGridViewTextBoxColumn scope;
+        private DataGridViewTextBoxColumn rev_no;
+        private DataGridViewImageColumn edit_column;
+        private DataGridViewImageColumn delete_column;
     }
 }

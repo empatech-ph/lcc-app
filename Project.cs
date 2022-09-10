@@ -32,6 +32,7 @@ namespace LCC
         ActionManager actionManager = new ActionManager();
         //Project project = new Project();
         public static int selectedProject = 0;
+        private OptionSettingsModel oOptionSettings;
         int LastNewRowIndex = -1;
 
         private DataStore oFile;
@@ -42,16 +43,12 @@ namespace LCC
             //this.Icon = Properties.Resources.;
             InitializeComponent();
             ThemeLibrary.initMaterialDesign(this);
-
-            if (((new Library.RegistryLibrary()).getLogin()).user_type != 2)
-            {
-                this.importInventoryList.Visible = false;
-                this.importCommercialLengths.Visible = false;
-            }
+            oOptionSettings = GLOBAL.getOptions();
 
             this.oFile = UtilsLibrary.getUserFile();
             this.initProject();
             this.initCutLength();
+
 
             //for redo/undo commands
             proj.ProjectNameChanged += proj_ProjectNameChanged;
@@ -136,9 +133,10 @@ namespace LCC
         public void initProject()
         {
             this.oFile.Reload();
-            var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable();
+            var oProjectList = this.oFile.GetCollection<ProjectModel>().AsQueryable().Where(e => e.is_active == true);
             this.projectTable.DataSource = oProjectList.ToList();
             this.projectTable.Columns["id"].Visible = false;
+            this.projectTable.Columns["is_active"].Visible = false;
             this.projectTable.Columns["project_reference"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.projectTable.Columns["rev_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             GLOBAL.iSelectedProjectId = (oProjectList.ToList().Count <= 0) ? 0 : oProjectList.FirstOrDefault().id;
@@ -164,6 +162,24 @@ namespace LCC
                     NewOrEditProject.editProjectId = int.Parse(row.Cells["id"].Value.ToString());
                     NewOrEditProject.isAdd = false;
                     editProject.ShowDialog();
+                }
+                if (e.ColumnIndex == projectTable.Columns["delete_column"].Index)
+                {
+                    DialogResult oDialogResult = MessageBox.Show("Do you want to delete this project?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (oDialogResult == DialogResult.Yes)
+                    {
+                        var collection = this.oFile.GetCollection<ProjectModel>();
+                        collection.UpdateOne(x => x.id == (int)row.Cells["id"].Value, new ProjectModel
+                        {
+                            id = int.Parse(row.Cells["id"].Value.ToString()),
+                            project_name = row.Cells["project_name"].Value.ToString(),
+                            project_reference = row.Cells["project_reference"].Value.ToString(),
+                            rev_no = row.Cells["rev_no"].Value.ToString(),
+                            scope = row.Cells["scope"].Value.ToString(),
+                            is_active = false
+                        });
+                        this.initProject();
+                    }
                 }
 
                 this.materialComponent1.initDatagrid();
@@ -298,7 +314,7 @@ namespace LCC
             cutLengthsTable.Columns["quantity"].HeaderText = "Quantity";
             cutLengthsTable.Columns["uncut_quantity"].HeaderText = "Uncut Quantity";
             cutLengthsTable.Columns["uncut_quantity"].ReadOnly = true;
-            cutLengthsTable.Columns["length"].HeaderText = "Length";
+            cutLengthsTable.Columns["length"].HeaderText = "Length " + "(" + (this.oOptionSettings.unit ?? "mm") + ")";
             cutLengthsTable.Columns["order_number"].HeaderText = "Order Number";
             cutLengthsTable.Columns["note"].HeaderText = "Note";
             cutLengthsTable.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

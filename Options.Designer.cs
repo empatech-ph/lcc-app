@@ -223,9 +223,9 @@ namespace LCC
             // 
             // unitDropdown
             // 
+            this.unitDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.unitDropdown.FormattingEnabled = true;
             this.unitDropdown.Items.AddRange(new object[] {
-            "",
             "mm",
             "cm",
             "dm",
@@ -247,6 +247,7 @@ namespace LCC
             // 
             // precisionDropdown
             // 
+            this.precisionDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.precisionDropdown.FormattingEnabled = true;
             this.precisionDropdown.Items.AddRange(new object[] {
             "1",
@@ -273,6 +274,7 @@ namespace LCC
             // 
             // typeDropdown
             // 
+            this.typeDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeDropdown.FormattingEnabled = true;
             this.typeDropdown.Items.AddRange(new object[] {
             "Decimal",
@@ -376,6 +378,7 @@ namespace LCC
             this.cancelOptBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.cancelOptBtn.UseAccentColor = false;
             this.cancelOptBtn.UseVisualStyleBackColor = true;
+            this.cancelOptBtn.Click += new System.EventHandler(this.cancelOptBtn_Click);
             // 
             // Options
             // 
@@ -388,6 +391,7 @@ namespace LCC
             this.Controls.Add(this.optionTab);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Options";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

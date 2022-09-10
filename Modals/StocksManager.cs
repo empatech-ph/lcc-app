@@ -29,13 +29,22 @@ namespace LCC.Modals
             InitializeComponent();
             Library.ThemeLibrary.initMaterialDesign(this);
             this.initMaterialTitle();
+            string unit = GLOBAL.getOptions().unit ?? "mm";
+            foreach (DataGridViewColumn oHeader in this.dt_stock.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
         }
 
         public StocksManager(string sStockType)
         {
             InitializeComponent();
             this.oLogin = new RegistryLibrary().getLogin();
-
+            string unit = GLOBAL.getOptions().unit ?? "mm";
+            foreach (DataGridViewColumn oHeader in this.dt_stock.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
             Library.ThemeLibrary.initMaterialDesign(this);
             this.sStockType = sStockType;
 

@@ -33,6 +33,10 @@ namespace LCC.Components
             this.dt_material.DataSource = oListModel;
             this.dt_material.Columns["id"].Visible = false;
             this.dt_material.Columns["project_id"].Visible = false;
+            string unit = GLOBAL.getOptions().unit ?? "mm";
+            foreach (DataGridViewColumn oHeader in this.dt_material.Columns){
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
         }
 
         private void btn_add_Click(object sender, EventArgs e)

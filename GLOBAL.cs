@@ -1,8 +1,12 @@
-﻿using LCC.Model;
+﻿using JsonFlatFileDataStore;
+using LCC.Library;
+using LCC.Model;
 using MaterialSkin;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace LCC
 {
@@ -17,5 +21,12 @@ namespace LCC
         public static List<TempOptimizedModel> oTempOptimized = new List<TempOptimizedModel>();
         public static List<TempCutlengthModel> oTempCutlength = new List<TempCutlengthModel>();
         public static List<TempStocklengthModel> oTempStockLengthOptimized = new List<TempStocklengthModel>();
+
+        public static OptionSettingsModel getOptions() {
+
+            DataStore oFile = UtilsLibrary.getUserFile();
+            var oCollection = oFile.GetCollection<OptionSettingsModel>().AsQueryable().First();
+            return oCollection;
+        }
     }
 }

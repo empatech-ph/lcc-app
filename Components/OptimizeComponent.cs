@@ -25,6 +25,24 @@ namespace LCC.Components
         {
             InitializeComponent();
             this.oFile = UtilsLibrary.getUserFile();
+
+            string unit = GLOBAL.getOptions().unit ?? "mm";
+            foreach (DataGridViewColumn oHeader in this.dt_optimize.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
+            foreach (DataGridViewColumn oHeader in this.dt_stockLength.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
+            foreach (DataGridViewColumn oHeader in this.dt_summary_cutlengths.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
+            foreach (DataGridViewColumn oHeader in this.dt_summary_materials.Columns)
+            {
+                oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
+            }
         }
 
         public void triggerOptimize(BackgroundWorker oBackgroundWorker)
