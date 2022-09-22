@@ -39,6 +39,7 @@ namespace LCC
             this.Name = "ReportViewerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportViewerForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ReportViewerForm_FormClosing);
             this.ResumeLayout(false);
 
         }

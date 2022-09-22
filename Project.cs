@@ -243,7 +243,6 @@ namespace LCC
         private void printerBtn_Click(object sender, EventArgs e)
         {
             GeneralReport generateReport = new GeneralReport();
-
             generateReport.ShowDialog();
         }
 
@@ -422,6 +421,7 @@ namespace LCC
 
         private void optimizeBtn_Click(object sender, EventArgs e)
         {
+            GLOBAL.oTempPartOptimized.Clear();
             this.optimizeBtn.Enabled = false;
             this.tabOptiPlus.SelectedIndex = 3;
             this.optimizeComponent1.dt_optimize.DataSource = new List<TempCutlengthModel>(); 

@@ -473,6 +473,7 @@ namespace LCC
             this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.projectTable.RowHeadersVisible = false;
             this.projectTable.RowTemplate.Height = 25;
+            this.projectTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.projectTable.Size = new System.Drawing.Size(1072, 370);
             this.projectTable.TabIndex = 3;
             this.projectTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.projectTblView_CellClick);

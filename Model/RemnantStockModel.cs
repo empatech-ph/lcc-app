@@ -7,6 +7,7 @@ namespace LCC.Model
     public class RemnantStockModel
     {
         public int id { get; set; }
+        public int project_id { get; set; }
         public int material_id { get; set; }
         public string qty { get; set; }
         public double length { get; set; }

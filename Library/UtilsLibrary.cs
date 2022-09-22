@@ -51,5 +51,10 @@ namespace LCC.Library
                                       .Where(oControl => oControl.GetType() == oType)
                                       .ToList();
         }
+
+        public static string getPublicPath()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory;
+        } 
     }
 }

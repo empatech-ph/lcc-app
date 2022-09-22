@@ -28,6 +28,8 @@ namespace LCC.Model
         public string stock_type { get; set; }
         public string note { get; set; }
         public string optimize_type { get; set; }
+        public string order_no { get; set; }
+        public string description { get; set; }
     }
 
     public class TempStocklengthModel
@@ -43,6 +45,8 @@ namespace LCC.Model
         public double cost { get; set; }
         public int total_cut { get; set; }
         public int repeated { get; set; }
+        public string order_no { get; set; }
+        public string description { get; set; }
         public string note { get; set; }
         public string stock_desc_grade { get; set; }
         public string optimize_type { get; set; }
@@ -50,6 +54,7 @@ namespace LCC.Model
         public double trim_left { get; set; }
         public double trim_right { get; set; }
         public double kerf { get; set; }
+        public string path { get; set; }
         public TempOptimizedModel data { get; set; }
     }
 
@@ -125,5 +130,16 @@ namespace LCC.Model
         public dynamic layout_material_stock_code { get; set; }
         public dynamic layout_material_length { get; set; }
         public dynamic layout_material_stock_type { get; set; }
+    }
+
+    public class TempPartOptimized
+    {
+        public int temp_stock_id { get; set; }
+        public int no { get; set; }
+        public dynamic part_no { get; set; }
+        public string description { get; set; }
+        public string order_no { get; set; }
+        public dynamic length { get; set; }
+        public int repeat { get; set; }
     }
 }

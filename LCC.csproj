@@ -7,6 +7,7 @@
 		<ApplicationIcon>183331897_150351457100256_4252464618922505131_n (3).ico</ApplicationIcon>
 		<NoWin32Manifest>true</NoWin32Manifest>
 		<PackageIcon>183331897_150351457100256_4252464618922505131_n.png</PackageIcon>
+		<StartupObject>LCC.Program</StartupObject>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -57,6 +58,21 @@
 		<Compile Update="Admin\AssignRoles.cs" />
 		<Compile Update="Modals\AddStocksModal.cs" />
 		<Compile Update="Modals\StocksManager.cs" />
+		<Compile Update="Model\Datasets\MaterialsAndStocksDataSet.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>MaterialsAndStocksDataSet.xsd</DependentUpon>
+		</Compile>
+		<Compile Update="Model\Datasets\ProjectsAndCutlengthsDataSet.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ProjectsAndCutlengthsDataSet.xsd</DependentUpon>
+		</Compile>
+		<Compile Update="Model\Datasets\TempOptimizedModelsDataSet.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>TempOptimizedModelsDataSet.xsd</DependentUpon>
+		</Compile>
 		<Compile Update="NewOrEditProject - Copy.cs">
 		  <SubType>Form</SubType>
 		</Compile>
@@ -80,6 +96,18 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <None Update="Model\Datasets\MaterialsAndStocksDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MaterialsAndStocksDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Model\Datasets\ProjectsAndCutlengthsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectsAndCutlengthsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Model\Datasets\TempOptimizedModelsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TempOptimizedModelsDataSet.Designer.cs</LastGenOutput>
+    </None>
     <None Update="ReportData.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ReportData.Designer.cs</LastGenOutput>

@@ -75,13 +75,13 @@ namespace LCC.Modals
             if (this.sStockType != "") {
                 IEnumerable<MaterialModel> oMaterialList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>()
                 .AsQueryable();
-                oStockList = oStockList.Where(e => e.stock_type == this.sStockType);
+                oStockList = oStockList.Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == this.sStockType);
                 
                 this.dt_stock.Columns["stock_type"].Visible = false;
                 this.dt_stock.Columns["grade"].ReadOnly = true;
                 this.dt_stock.Columns["description"].ReadOnly = true;
             } else {
-                oStockList = oStockList.Where(e => ((e.grade ?? "").Trim() == GLOBAL.sSelectedGrade.Trim() && (e.description ?? "").Trim() == GLOBAL.sSelectedDescription.Trim()) && ((e.stock_type == "BO" || this.bST == true) && (e.stock_type == "ST" || this.bBO == true)));
+                oStockList = oStockList.Where(e => e.project_id == GLOBAL.iSelectedProjectId && ((e.grade ?? "").Trim() == GLOBAL.sSelectedGrade.Trim() && (e.description ?? "").Trim() == GLOBAL.sSelectedDescription.Trim()) && ((e.stock_type == "BO" || this.bST == true) && (e.stock_type == "ST" || this.bBO == true)));
 
                 this.dt_stock.Columns["grade"].Visible = false;
                 this.dt_stock.Columns["description"].Visible = false;
@@ -90,6 +90,7 @@ namespace LCC.Modals
             BindingList<StockModel> oListModel = new BindingList<StockModel>(oStockList.ToList());
             this.dt_stock.DataSource = oListModel;
             this.dt_stock.Columns["id"].Visible = false;
+            this.dt_stock.Columns["project_id"].Visible = false;
             this.dt_stock.Columns["stock_type"].ReadOnly = true;
             this.dt_stock.Columns["cut_stock_type"].Visible = false;
             this.dt_stock.Columns["material_id"].Visible = false;
@@ -192,6 +193,7 @@ namespace LCC.Modals
                 collection.UpdateOne(oRow => oRow.id == int.Parse(row.Cells["id"].Value.ToString()), new StockModel
                 {
                     id = int.Parse(row.Cells["id"].Value.ToString()),
+                    project_id = GLOBAL.iSelectedProjectId,
                     material_id = GLOBAL.iSelectedMaterialId,
                     qty = (row.Cells["qty"].Value == null) ? "0" : ((row.Cells["qty"].Value.ToString() == "∞") ? "-1" : row.Cells["qty"].Value.ToString()),
                     stock_type = row.Cells["stock_type"].Value.ToString(),

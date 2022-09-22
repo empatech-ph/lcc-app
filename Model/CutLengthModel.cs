@@ -1,4 +1,6 @@
-﻿namespace LCC.Model
+﻿
+
+namespace LCC.Model
 {
     public class CutLengthModel
     {

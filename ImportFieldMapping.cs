@@ -59,6 +59,7 @@ namespace LCC
                     new StockModel
                     {
                         id = 1,
+                        project_id = GLOBAL.iSelectedProjectId,
                         material_id = materialItem.id,
                         qty = rec[dataGridViewFieldMapping[4][1]] ?? "0",
                         stock_type = this.sInvetoryType,

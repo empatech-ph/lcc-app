@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_LastSelectedProfileId>D:\Documents\Projects\My Desktop Applications\LCC\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>C:\Users\DELL\Documents\Projects\My Desktop Applications\LCC\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Admin\AdminDashboard.cs">
@@ -35,9 +35,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="GeneralReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Help.cs">
@@ -76,7 +73,7 @@
     <Compile Update="Project.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Properties\Form1.cs">
+    <Compile Update="Reports\GeneralReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SplashScreen.cs">
@@ -92,5 +89,15 @@
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Update="Model\Datasets\MaterialsAndStocksDataSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Model\Datasets\ProjectsAndCutlengthsDataSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Model\Datasets\TempOptimizedModelsDataSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
 </Project>

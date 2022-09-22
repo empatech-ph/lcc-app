@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using MaterialSkin.Controls;
+using System.Drawing.Printing;
 
 namespace LCC
 {
@@ -16,11 +17,24 @@ namespace LCC
         private readonly ReportViewer reportViewer;
         public FlowLayoutPanel optimizeBarPnl = new FlowLayoutPanel();
         public string reportType;
+        public GeneralReport oGeneralReportForm;
         public ReportViewerForm()
         {
             Text = "Report viewer";
             WindowState = FormWindowState.Maximized;
             reportViewer = new ReportViewer();
+            reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
+
+            WindowState = FormWindowState.Maximized;
+
+           PageSettings pg = new PageSettings();
+            pg.Margins.Top = 1/2;
+            pg.Margins.Bottom = 1/2;
+            pg.Margins.Left = 0;
+            pg.Margins.Right = 0;
+            pg.Landscape = true;
+            reportViewer.SetPageSettings(pg);
+            reportViewer.RefreshReport();
             reportViewer.Dock = DockStyle.Fill;
             Controls.Add(reportViewer);
         }
@@ -29,7 +43,7 @@ namespace LCC
         {
             if (reportType == "Label - Parts / Cut Lengths")
             {
-                Report.LoadCutLengthReport(reportViewer.LocalReport);
+                Report.LoadCutLengthReport(reportViewer);
             }
             else if (reportType == "Inventory List")
             {
@@ -41,15 +55,22 @@ namespace LCC
             }
             else if (reportType == "Material Quantity - Storage and Buyout")
             {
-                Report.LoadMaterialReport(reportViewer.LocalReport, false);
+                Report.loadMaterialXStocksReport(reportViewer, false);
             }
             else if (reportType == "Material Quantity - Remnants & Scraps")
             {
-                Report.LoadMaterialReport(reportViewer.LocalReport, true);
+                Report.loadMaterialXStocksReport(reportViewer, true);
             }
             else if (reportType == "Nesting Layout")
             {
-                Report.loadNestedReport(reportViewer.LocalReport, GLOBAL.oTempCutlength, GLOBAL.oTempStockLengthOptimized);
+                GLOBAL.isPrintNestedCompact = false;
+                Report.loadNestingLayoutReport(reportViewer.LocalReport);
+            } 
+            else if (reportType == "Nesting Layout (Compressed)")
+            {
+                GLOBAL.isPrintNestedCompact = true;
+                Report.loadNestingLayoutReport(reportViewer.LocalReport);
+
             }
             else
             {
@@ -73,6 +94,11 @@ namespace LCC
                     bitmap.Save(fs, ImageFormat.Png);
                 }
             } catch (Exception) { }
+        }
+
+        private void ReportViewerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.oGeneralReportForm.Hide();
         }
     }
 }

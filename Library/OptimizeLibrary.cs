@@ -284,7 +284,9 @@ namespace LCC.Library
                                 stock_type = oStockItem.stock_type,
                                 cost = oStockItem.cost,
                                 note = oStockItem.note,
-                                optimize_type = sType
+                                optimize_type = sType,
+                                order_no = oCutLengthItem.order_number,
+                                description = oCutLengthItem.description,
                             };
                             oTempOptimizedList.Add(oTempOptimizeModel);
                             double dPartLength = Math.Round((dComputedCutlengthLength * (oCutLengthItem.quantity - oCutLengthItem.uncut_quantity)), 2);
@@ -328,6 +330,8 @@ namespace LCC.Library
                                 cost = oStockItem.cost,
                                 note = oStockItem.note,
                                 optimize_type = sType,
+                                order_no = oCutLengthItem.order_number,
+                                description = oCutLengthItem.description,
                             };
                             oTempOptimizedList.Add(oTempOptimizeModel);
                         }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -81,7 +82,8 @@ namespace LCC.Components
                 stock_type = o.Last().stock_type,
                 cost = o.Last().cost,
                 note = o.Last().note,
-                data = o.Last()
+                data = o.Last(),
+                order_no = o.Last().order_no
             }).ToList();
 
             oBackgroundWorker.ReportProgress(55);
@@ -105,6 +107,7 @@ namespace LCC.Components
             this.dt_stockLength.Columns["total_cut"].Visible = false;
             this.dt_stockLength.Columns["cost"].Visible = false;
             this.dt_stockLength.Columns["id"].Visible = false;
+            this.dt_stockLength.Columns["path"].Visible = false;
 
             int iIncr = 1;
             foreach (DataGridViewRow oRow in this.dt_stockLength.Rows)
@@ -114,13 +117,14 @@ namespace LCC.Components
             }
 
             this.optimizeBarPanel.Controls.Clear();
-
+            int iIncrOptiBar = 1;
             foreach (TempStocklengthModel oTempStockLength in oTempStockLengthModel)
             {
                 var oStockCollection = this.oFile.GetCollection<StockModel>();
                 OptimizeBarComponent oOptimizeBar = new OptimizeBarComponent();
-                oOptimizeBar.initializeBar(oTempStockLength);
+                oTempStockLength.path = oOptimizeBar.initializeBar(oTempStockLength, iIncrOptiBar);
                 this.optimizeBarPanel.Controls.Add(oOptimizeBar);
+                iIncrOptiBar++;
             }
             int iRowIndexOptimize = this.dt_optimize.CurrentRow.Index;
             int iRowIndexStockLength = this.dt_stockLength.CurrentRow.Index;
@@ -132,10 +136,13 @@ namespace LCC.Components
                 this.sub_layout_label.Text = "Cutlengths - " + this.sSelectedLayout;
                 this.initSummaryOfCutlengths();
             }
+
         }
 
         private void initSummaryOfCutlengths()
         {
+
+            GLOBAL.iSelectedPrintCutLengthOptimized = this.iSelectedCutlegthId;
             List<TempSubLayoutOptimize> oSummaryCutlengths = new List<TempSubLayoutOptimize>();
             List<TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => e.id == this.iSelectedStockId && e.cutlength_id == this.iSelectedCutlegthId);
             var oCutLengthCollection = this.oFile.GetCollection<CutLengthModel>();
@@ -168,7 +175,10 @@ namespace LCC.Components
             if (e.RowIndex != -1)
             {
                 DataGridViewRow oCurrentRow = this.dt_optimize.Rows[e.RowIndex];
+                GLOBAL.oTempPartOptimized.Clear();
                 var iCutLength = int.Parse(oCurrentRow.Cells["id"].Value.ToString());
+                GLOBAL.iSelectedPrintCutLengthOptimized = iCutLength;
+                this.iSelectedCutlegthId = iCutLength;
                 this.initOptimizedStockLengthDataTable();
                 this.initSummaryOfCutlengths();
                 this.layout_label.Text = oCurrentRow.Cells["optimize_description"].Value.ToString() + " Layouts";

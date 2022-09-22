@@ -34,6 +34,7 @@ namespace LCC.Modals
                 oStockModel.InsertOne(new StockModel
                 {
                     id = 1,
+                    project_id = GLOBAL.iSelectedProjectId,
                     material_id = GLOBAL.iSelectedMaterialId,
                     grade = this.grade.Text,
                     description = this.description.Text,

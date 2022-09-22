@@ -21,6 +21,7 @@ namespace LCC
         public string CutLengthRPT_PartLength { get; set; }
         public string CutLengthRPT_PartCode { get; set; }
         public string CutLengthRPT_MaterialDesc { get; set; }
+        public byte[] CutLengthRPT_QR { get; set; }
         public string MaterialRPT_ProjectNumber { get; set; }
         public string MaterialRPT_Scope { get; set; }
         public string MaterialRPT_Rev { get; set; }

@@ -7,6 +7,7 @@ namespace LCC.Model
     public class StockModel
     {
         public int id { get; set; }
+        public int project_id { get; set; }
         public int material_id { get; set; }
         public string description { get; set; }
         public string grade { get; set; }
@@ -22,6 +23,7 @@ namespace LCC.Model
          * scrap
          */
         public string cut_stock_type { get; set; } = "stock";
+        public int total_cost { get; set; } = 0;
         public bool visibility { get; set; }
         public bool editable { get; set; }
     }

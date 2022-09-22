@@ -16,7 +16,7 @@ using System.Web;
 
 namespace LCC
 {
-    public partial class GeneralReport : MaterialForm
+    public partial class GeneralReport : MaterialForm 
     {
         public GeneralReport()
         {
@@ -32,9 +32,11 @@ namespace LCC
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
             var reportTypeString = generateReportDropdown.SelectedItem.ToString();
+
             ReportViewerForm reportViewerForm = new ReportViewerForm();
             reportViewerForm.reportType = reportTypeString;
-            reportViewerForm.Show();
+            reportViewerForm.oGeneralReportForm = this;
+            reportViewerForm.ShowDialog();
         }
     }
 }
