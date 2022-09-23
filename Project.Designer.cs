@@ -101,6 +101,7 @@ namespace LCC
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.headerHandlerBar = new System.Windows.Forms.Panel();
+            this.minimizeBtn = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Label();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -437,7 +438,7 @@ namespace LCC
             this.projectTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.projectTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.projectTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.projectTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.projectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -488,21 +489,18 @@ namespace LCC
             this.project_reference.DataPropertyName = "project_reference";
             this.project_reference.HeaderText = "Project Reference #";
             this.project_reference.Name = "project_reference";
-            this.project_reference.Width = 163;
             // 
             // project_name
             // 
             this.project_name.DataPropertyName = "project_name";
             this.project_name.HeaderText = "Project Name";
             this.project_name.Name = "project_name";
-            this.project_name.Width = 123;
             // 
             // scope
             // 
             this.scope.DataPropertyName = "scope";
             this.scope.HeaderText = "Scope of Works";
             this.scope.Name = "scope";
-            this.scope.Width = 138;
             // 
             // rev_no
             // 
@@ -519,7 +517,6 @@ namespace LCC
             this.edit_column.Name = "edit_column";
             this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.edit_column.ToolTipText = "Edit";
-            this.edit_column.Width = 44;
             // 
             // delete_column
             // 
@@ -531,7 +528,6 @@ namespace LCC
             this.delete_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.delete_column.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.delete_column.ToolTipText = "Delete";
-            this.delete_column.Width = 83;
             // 
             // addProject
             // 
@@ -661,14 +657,13 @@ namespace LCC
             // 
             // cutLengthsTable
             // 
-            this.cutLengthsTable.AllowUserToAddRows = false;
             this.cutLengthsTable.AllowUserToOrderColumns = true;
             this.cutLengthsTable.AllowUserToResizeColumns = false;
             this.cutLengthsTable.AllowUserToResizeRows = false;
             this.cutLengthsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
@@ -1049,12 +1044,27 @@ namespace LCC
             // headerHandlerBar
             // 
             this.headerHandlerBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(120)))));
+            this.headerHandlerBar.Controls.Add(this.minimizeBtn);
             this.headerHandlerBar.Controls.Add(this.closeButton);
             this.headerHandlerBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerHandlerBar.Location = new System.Drawing.Point(0, 0);
             this.headerHandlerBar.Name = "headerHandlerBar";
             this.headerHandlerBar.Size = new System.Drawing.Size(1099, 16);
             this.headerHandlerBar.TabIndex = 0;
+            // 
+            // minimizeBtn
+            // 
+            this.minimizeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.minimizeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(54)))), ((int)(((byte)(120)))));
+            this.minimizeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.minimizeBtn.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.minimizeBtn.ForeColor = System.Drawing.Color.White;
+            this.minimizeBtn.Location = new System.Drawing.Point(1048, 0);
+            this.minimizeBtn.Name = "minimizeBtn";
+            this.minimizeBtn.Size = new System.Drawing.Size(28, 16);
+            this.minimizeBtn.TabIndex = 1;
+            this.minimizeBtn.Text = "—";
+            this.minimizeBtn.Click += new System.EventHandler(this.minimizeBtn_Click);
             // 
             // closeButton
             // 
@@ -1194,5 +1204,6 @@ namespace LCC
         private MaterialSkin.Controls.MaterialButton adminBtn;
         private LinkLabel accessAdminLinkBtn;
         private Button logoBtn;
+        private Label minimizeBtn;
     }
 }

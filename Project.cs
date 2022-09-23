@@ -735,5 +735,10 @@ namespace LCC
                 (new Admin.AdminDashboard()).ShowDialog();
             }
         }
+
+        private void minimizeBtn_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

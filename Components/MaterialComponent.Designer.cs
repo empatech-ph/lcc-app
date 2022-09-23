@@ -108,6 +108,7 @@ namespace LCC.Components
             // 
             // chk_filter
             // 
+            this.chk_filter.FillWeight = 4.642526F;
             this.chk_filter.HeaderText = "";
             this.chk_filter.Name = "chk_filter";
             this.chk_filter.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -118,6 +119,7 @@ namespace LCC.Components
             this.no.DataPropertyName = "no";
             dataGridViewCellStyle2.NullValue = null;
             this.no.DefaultCellStyle = dataGridViewCellStyle2;
+            this.no.FillWeight = 61.15064F;
             this.no.HeaderText = "No.";
             this.no.Name = "no";
             this.no.Width = 61;
@@ -129,6 +131,7 @@ namespace LCC.Components
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.NullValue = "Stock";
             this.stock.DefaultCellStyle = dataGridViewCellStyle3;
+            this.stock.FillWeight = 65.53381F;
             this.stock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.stock.HeaderText = "Stocks";
             this.stock.MinimumWidth = 10;
@@ -142,6 +145,7 @@ namespace LCC.Components
             this.description.DataPropertyName = "description";
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.description.DefaultCellStyle = dataGridViewCellStyle4;
+            this.description.FillWeight = 123.9257F;
             this.description.HeaderText = "Description";
             this.description.Name = "description";
             this.description.ReadOnly = true;
@@ -153,6 +157,7 @@ namespace LCC.Components
             this.grade.DataPropertyName = "grade";
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.grade.DefaultCellStyle = dataGridViewCellStyle5;
+            this.grade.FillWeight = 79.36354F;
             this.grade.HeaderText = "Grade";
             this.grade.Name = "grade";
             this.grade.ReadOnly = true;
@@ -164,6 +169,7 @@ namespace LCC.Components
             this.kerf.DataPropertyName = "kerf";
             dataGridViewCellStyle6.NullValue = null;
             this.kerf.DefaultCellStyle = dataGridViewCellStyle6;
+            this.kerf.FillWeight = 99.90955F;
             this.kerf.HeaderText = "Kerf (mm)";
             this.kerf.Name = "kerf";
             this.kerf.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -172,6 +178,7 @@ namespace LCC.Components
             // trim_left
             // 
             this.trim_left.DataPropertyName = "trim_left";
+            this.trim_left.FillWeight = 129.3104F;
             this.trim_left.HeaderText = "Trim Left (mm)";
             this.trim_left.Name = "trim_left";
             this.trim_left.Width = 130;
@@ -179,6 +186,7 @@ namespace LCC.Components
             // trim_right
             // 
             this.trim_right.DataPropertyName = "trim_right";
+            this.trim_right.FillWeight = 132.4538F;
             this.trim_right.HeaderText = "Trim Right (mm)";
             this.trim_right.Name = "trim_right";
             this.trim_right.Width = 139;
@@ -186,6 +194,7 @@ namespace LCC.Components
             // part_allowance
             // 
             this.part_allowance.DataPropertyName = "part_allowance";
+            this.part_allowance.FillWeight = 153.4852F;
             this.part_allowance.HeaderText = "Part Allowance (mm)";
             this.part_allowance.Name = "part_allowance";
             this.part_allowance.Width = 169;
@@ -193,6 +202,7 @@ namespace LCC.Components
             // min_remnant_length
             // 
             this.min_remnant_length.DataPropertyName = "min_remnant_length";
+            this.min_remnant_length.FillWeight = 150.2248F;
             this.min_remnant_length.HeaderText = "Min. Remnant Length (mm)";
             this.min_remnant_length.Name = "min_remnant_length";
             this.min_remnant_length.Width = 178;

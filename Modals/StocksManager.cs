@@ -96,6 +96,7 @@ namespace LCC.Modals
             this.dt_stock.Columns["material_id"].Visible = false;
             this.dt_stock.Columns["visibility"].Visible = false;
             this.dt_stock.Columns["editable"].Visible = false;
+            this.dt_stock.Columns["total_cost"].Visible = false;
         }
 
         private void btn_add_Click(object sender, EventArgs e)
@@ -244,9 +245,9 @@ namespace LCC.Modals
             importFieldMapping.sGrade = this.sGrade;
             importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             importFieldMapping.openFileDialog.Title = "Browse File";
-            System.Windows.Forms.DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();
+            DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();
             importFieldMapping.sType = "Materials";
-            if (dialogResult == System.Windows.Forms.DialogResult.Cancel) return;
+            if (dialogResult == DialogResult.Cancel) return;
             importFieldMapping.openFileDialog.Tag = "Materials";
             importFieldMapping.importFieldMappingDisplay(sender, e);
         }

@@ -60,9 +60,9 @@ namespace LCC
             oReport.SetPageSettings(pg);
             oReport.RefreshReport();
             
-            if (isRemnant)
+            if (isRemnant == false)
             {
-                using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_RS.rdlc", FileMode.Open);
+                using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_STBO.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_BO", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.stock_type == "BO").ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_ST", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.stock_type == "ST").ToList()));
@@ -72,7 +72,7 @@ namespace LCC
             }
             else
             {
-                using FileStream fs  = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_STBO.rdlc", FileMode.Open);
+                using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_RS.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Scrap", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "scrap").ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Remnant", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "remnant").ToList()));
