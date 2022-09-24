@@ -64,8 +64,8 @@ namespace LCC
             {
                 using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_STBO.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
-                oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_BO", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.stock_type == "BO").ToList()));
-                oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_ST", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.stock_type == "ST").ToList()));
+                oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_BO", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == "BO").ToList()));
+                oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_ST", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == "ST").ToList()));
 
                 oReport.LocalReport.LoadReportDefinition(fs);
 
@@ -74,8 +74,8 @@ namespace LCC
             {
                 using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_RS.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
-                oReport.LocalReport.DataSources.Add(new ReportDataSource("Scrap", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "scrap").ToList()));
-                oReport.LocalReport.DataSources.Add(new ReportDataSource("Remnant", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "remnant").ToList()));
+                oReport.LocalReport.DataSources.Add(new ReportDataSource("Scrap", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "scrap").ToList()));
+                oReport.LocalReport.DataSources.Add(new ReportDataSource("Remnant", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "remnant").ToList()));
 
                 oReport.LocalReport.LoadReportDefinition(fs);
             }
@@ -144,27 +144,13 @@ namespace LCC
             oReport.SetPageSettings(pg);
             oReport.RefreshReport();
 
-            var collection = (from p in UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable()
-                              join cl in UtilsLibrary.getUserFile().GetCollection<CutLengthModel>().AsQueryable()
-                              on p.id equals cl.project_id
-                              join m in UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
-                              on p.id equals m.project_id
-                              join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
-                              on m.id equals sl.material_id
-                              where p.id == GLOBAL.iSelectedProjectId
-                              select new
-                              {
-                                  p,
-                                  cl,
-                                  sl,
-                                  m
-                              }).ToList();
+            var collection = UtilsLibrary.getUserFile().GetCollection<CutLengthModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId).ToList();
             var items = new ReportValue[collection.Count];
             int count = 0;
             foreach (var oCutLength in collection)
             {
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                QRCodeData qrCodeData = qrGenerator.CreateQrCode(oCutLength.cl.part_code + " - " + oCutLength.cl.length.ToString(), QRCodeGenerator.ECCLevel.Q);
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(collection[count].part_code + " - " + collection[count].length.ToString(), QRCodeGenerator.ECCLevel.Q);
                 QRCode qrCode = new QRCode(qrCodeData);
                 Bitmap bmp = qrCode.GetGraphic(7);
                 using (MemoryStream ms = new MemoryStream())
@@ -172,13 +158,9 @@ namespace LCC
                     bmp.Save(ms, ImageFormat.Bmp);
                     items[count] = new ReportValue
                     {
-                        CutLengthRPT_PartLength = oCutLength.cl.length.ToString(),
-                        CutLengthRPT_MaterialDesc = oCutLength.m.description.ToString(),
-                        CutLengthRPT_PartCode = oCutLength.cl.part_code.ToString(),
-                        MaterialRPT_ProjectNumber = oCutLength.p.project_reference.ToString(),
-                        NestingRPT_Project = oCutLength.p.project_reference.ToString(),
-                        MaterialRPT_Scope = oCutLength.p.scope.ToString(),
-                        MaterialRPT_Rev = oCutLength.p.rev_no.ToString(),
+                        CutLengthRPT_PartLength = collection[count].length.ToString(),
+                        CutLengthRPT_MaterialDesc = collection[count].description.ToString(),
+                        CutLengthRPT_PartCode = collection[count].part_code.ToString(),
                         CutLengthRPT_QR = ms.ToArray()
     
                     };
@@ -193,31 +175,19 @@ namespace LCC
         public static void LoadInventoryCommListReport(LocalReport report, bool isInventoryList)
         {
             var stockType = isInventoryList ? "ST" : "BO";
-            var collection = (from p in UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable()
-                              join m in UtilsLibrary.getUserFile().GetCollection<MaterialModel>().AsQueryable()
-                              on p.id equals m.project_id
-                              join sl in UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable()
-                              on m.id equals sl.material_id
-                              where sl.stock_type == stockType && p.id == GLOBAL.iSelectedProjectId
-                              select new
-                              {
-                                  p,
-                                  sl,
-                                  m
-                              }).ToList();
+            var collection = UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == stockType).ToList();
             var items = new ReportValue[collection.Count];
             int count = 0;
             foreach (var oInventory in collection)
             {
                 items[count] = new ReportValue
                 {
-                    CutLengthRPT_MaterialDesc = oInventory.m.description.ToString(),
-                    NestingRPT_Project = oInventory.p.project_reference.ToString(),
-                    MaterialRPT_Qty = oInventory.sl.qty.ToString(),
-                    MaterialRPT_Length = oInventory.sl.length.ToString(),
-                    MaterialRPT_UnitCost = oInventory.sl.cost.ToString(),
-                    MaterialRPT_StockCode = oInventory.sl.stock_code.ToString(),
-                    MaterialRPT_Note = oInventory.sl.note.ToString(),
+                    CutLengthRPT_MaterialDesc = oInventory.description.ToString(),
+                    MaterialRPT_Qty = oInventory.qty.ToString(),
+                    MaterialRPT_Length = oInventory.length.ToString(),
+                    MaterialRPT_UnitCost = oInventory.cost.ToString(),
+                    MaterialRPT_StockCode = oInventory.stock_code.ToString(),
+                    MaterialRPT_Note = oInventory.note.ToString(),
                 };
                 count++;
             }
@@ -226,6 +196,7 @@ namespace LCC
             using var fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_InventoryList.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("inventoryListReport", items));
+            report.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
             report.SetParameters(parameters);
         }
 

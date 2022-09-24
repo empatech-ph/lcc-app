@@ -1051,6 +1051,7 @@ namespace LCC
             this.headerHandlerBar.Name = "headerHandlerBar";
             this.headerHandlerBar.Size = new System.Drawing.Size(1099, 16);
             this.headerHandlerBar.TabIndex = 0;
+            this.headerHandlerBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.headerHandlerBar_MouseMove);
             // 
             // minimizeBtn
             // 
@@ -1094,7 +1095,6 @@ namespace LCC
             this.Name = "Project";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Project_FormClosing);
             this.Load += new System.EventHandler(this.Project_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Project_KeyDown);

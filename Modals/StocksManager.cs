@@ -243,6 +243,7 @@ namespace LCC.Modals
             importFieldMapping.sInvetoryType = this.sStockType;
             importFieldMapping.sDescription = this.sDescription;
             importFieldMapping.sGrade = this.sGrade;
+            importFieldMapping.oStockManager = this;
             importFieldMapping.openFileDialog.Filter = "CSV and Text Files (*.csv;*.txt;*.xlsx)|*.csv;*.txt;*.xlsx";
             importFieldMapping.openFileDialog.Title = "Browse File";
             DialogResult dialogResult = importFieldMapping.openFileDialog.ShowDialog();

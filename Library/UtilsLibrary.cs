@@ -55,6 +55,14 @@ namespace LCC.Library
         public static string getPublicPath()
         {
             return AppDomain.CurrentDomain.BaseDirectory;
-        } 
+        }
+
+        private static Random random = new Random();
+        public static string CreateRandomString(int stringLength = 10)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, stringLength)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
     }
 }

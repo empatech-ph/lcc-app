@@ -42,6 +42,12 @@ namespace LCC
         {
             //this.Icon = Properties.Resources.;
             InitializeComponent();
+            Rectangle screen = Screen.PrimaryScreen.WorkingArea;
+            int w = screen.Width;
+            int h = screen.Height;
+            this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
+            this.Size = new Size(w, h);
+
             ThemeLibrary.initMaterialDesign(this);
             oOptionSettings = GLOBAL.getOptions();
 
@@ -188,6 +194,16 @@ namespace LCC
 
         private void importBtn_Click(object sender, EventArgs e)
         {
+            if (tabOptiPlus.SelectedTab.Text == "Results Summary" || tabOptiPlus.SelectedTab.Text == "Opti Plus")
+            {
+                MessageBox.Show("Import not possible here");
+                return;
+            }
+            if (tabOptiPlus.SelectedTab.Text == "Materials")
+            {
+                MessageBox.Show("Import in materials in not possible, it is always derrived in cutlengts, you need to analyze!.");
+                return;
+            }
             ImportFieldMapping importFieldMapping = new ImportFieldMapping();
             importFieldMapping.Text += " - " + this.tabOptiPlus.SelectedTab.Text;
             importFieldMapping.sType = this.tabOptiPlus.SelectedTab.Text;
@@ -739,6 +755,16 @@ namespace LCC
         private void minimizeBtn_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void headerHandlerBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+            Point loc1 = MousePosition;
+            this.Location = loc1;
+                //this.Location = new Point(Cursor.Position.X + e.X, Cursor.Position.Y + e.Y);
+            }
         }
     }
 }
