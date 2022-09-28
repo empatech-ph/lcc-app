@@ -64,5 +64,27 @@ namespace LCC.Library
             return new string(Enumerable.Repeat(chars, stringLength)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public static int getUserTypeInt(string sUserType)
+        {
+            switch (sUserType)
+            {
+                case "SystemAdministrator": return 1;
+                case "Moderator": return 2;
+                case "Estimator": return 3;
+                default: return 0;
+            }
+        }
+
+        public static string getUserTypeString(int iUserType)
+        {
+            switch (iUserType)
+            {
+                case 1: return "SystemAdministrator";
+                case 2: return "Moderator";
+                case 3 : return "Estimator";
+                default: return "";
+            }
+        }
     }
 }

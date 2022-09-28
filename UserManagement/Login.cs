@@ -74,7 +74,7 @@ namespace LCC.UserManagement
                     {
                         { "id",  oResult.id.ToString()},
                         { "file_name", EncryptionDecryptionLibrary.getEncryptBase64(oResult.id.ToString() + oResult.email.ToString())},
-                        { "user_type", this.getUserType(oResult.user_type.ToString())},
+                        { "user_type", UtilsLibrary.getUserTypeInt(oResult.user_type.ToString())},
                         { "email", oResult.email.ToString()},
                         { "timestamp",  UtilsLibrary.getTimestamp() }
                     };
@@ -101,16 +101,6 @@ namespace LCC.UserManagement
             this.Hide();
             new Library.RegistryLibrary().deleteRegistry("info");
             (new BootEnterLicenseKey()).Show();
-        }
-        private int getUserType(string sUserType)
-        {
-            switch (sUserType)
-            {
-                case "SystemAdministrator": return 1;
-                case "Moderator": return 2;
-                case "Estimator": return 3;
-                default: return 0;
-            }
         }
 
         private void tb_email_KeyDown(object sender, KeyEventArgs e)

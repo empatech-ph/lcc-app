@@ -1,5 +1,6 @@
 using JsonFlatFileDataStore;
 using LCC.Components;
+using LCC.Library;
 using LCC.Model;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -17,9 +18,12 @@ namespace LCC.Modals
     public partial class AddStocksModal : MaterialForm
     {
         public StocksManager oStockManager;
+        private dynamic oLogin;
+        public bool bIsGeneral = false;
         public AddStocksModal()
         {
             InitializeComponent();
+            this.oLogin = new RegistryLibrary().getLogin();
             Library.ThemeLibrary.initMaterialDesign(this);
         }
 
@@ -45,7 +49,8 @@ namespace LCC.Modals
                     stock_code = this.tb_stock_code.Text,
                     note = this.rb_note.Text,
                     visibility = this.ck_visible.Checked,
-                    editable = this.ck_editable.Checked
+                    editable = this.ck_editable.Checked,
+                    is_general = this.bIsGeneral
                 });
                 MessageBox.Show("Successfully inserted.", "Success");
                 this.Close();
@@ -85,6 +90,7 @@ namespace LCC.Modals
                 if (this.oStockManager.bST == false && this.oStockManager.bBO == true)
                 {
                     this.c_stockType.Items.Add("BO");
+                    this.c_qty.Enabled = false;
                 }
                 else if (this.oStockManager.bST == true && this.oStockManager.bBO == false)
                 {
@@ -92,8 +98,17 @@ namespace LCC.Modals
                 }
                 else
                 {
-                    this.c_stockType.Items.Add("ST");
-                    this.c_stockType.Items.Add("BO");
+
+                    if (oLogin.user_type != 1)
+                    {
+                        this.c_stockType.Items.Add("BO");
+                        this.c_qty.Enabled = false;
+                    }
+                    else
+                    { 
+                        this.c_stockType.Items.Add("ST");
+                        this.c_stockType.Items.Add("BO");
+                    }
                 }
             }
             this.c_qty.SelectedIndex = 0;
@@ -107,7 +122,7 @@ namespace LCC.Modals
 
         private void c_stockType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.c_stockType.SelectedIndex == 1)
+            if (this.c_stockType.SelectedItem.ToString() == "BO")
             {
                 this.c_qty.SelectedIndex = 0;
                 this.c_qty.Enabled = false;

@@ -44,14 +44,30 @@ namespace LCC.Components
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dt_optimize = new System.Windows.Forms.DataGridView();
+            this.optimize_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_no_of_parts = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_part_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_stock_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimize_no_layout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.dt_summary_materials = new System.Windows.Forms.DataGridView();
+            this.layout_material_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_material_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_material_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_material_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumarry_materials_label = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.sub_layout_label = new System.Windows.Forms.Label();
             this.dt_summary_cutlengths = new System.Windows.Forms.DataGridView();
+            this.layout_sequence_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.layout_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dt_stockLength = new System.Windows.Forms.DataGridView();
             this.layout_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,22 +80,6 @@ namespace LCC.Components
             this.layout_label = new System.Windows.Forms.Label();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.material_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_no_of_parts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_uncut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_part_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_stock_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_gross_yield = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimize_no_layout = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_sequence_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_part_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_material_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_material_stock_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_material_length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.layout_material_stock_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel8.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -100,10 +100,10 @@ namespace LCC.Components
             this.optimizeBarPanel.AutoScroll = true;
             this.optimizeBarPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.optimizeBarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.optimizeBarPanel.Location = new System.Drawing.Point(0, 448);
+            this.optimizeBarPanel.Location = new System.Drawing.Point(0, 420);
             this.optimizeBarPanel.Name = "optimizeBarPanel";
             this.optimizeBarPanel.Padding = new System.Windows.Forms.Padding(0, 10, 10, 0);
-            this.optimizeBarPanel.Size = new System.Drawing.Size(1262, 101);
+            this.optimizeBarPanel.Size = new System.Drawing.Size(1262, 129);
             this.optimizeBarPanel.TabIndex = 17;
             // 
             // panel8
@@ -114,7 +114,7 @@ namespace LCC.Components
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1262, 448);
+            this.panel8.Size = new System.Drawing.Size(1262, 420);
             this.panel8.TabIndex = 16;
             // 
             // panel1
@@ -122,9 +122,9 @@ namespace LCC.Components
             this.panel1.Controls.Add(this.tableLayoutPanel1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 48);
+            this.panel1.Location = new System.Drawing.Point(0, 56);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1262, 400);
+            this.panel1.Size = new System.Drawing.Size(1262, 364);
             this.panel1.TabIndex = 14;
             // 
             // tableLayoutPanel1
@@ -137,7 +137,7 @@ namespace LCC.Components
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1262, 232);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1262, 184);
             this.tableLayoutPanel1.TabIndex = 14;
             // 
             // panel6
@@ -146,7 +146,7 @@ namespace LCC.Components
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1256, 226);
+            this.panel6.Size = new System.Drawing.Size(1256, 178);
             this.panel6.TabIndex = 15;
             // 
             // dt_optimize
@@ -188,25 +188,89 @@ namespace LCC.Components
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dt_optimize.DefaultCellStyle = dataGridViewCellStyle2;
             this.dt_optimize.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_optimize.Location = new System.Drawing.Point(0, 16);
+            this.dt_optimize.Location = new System.Drawing.Point(0, 3);
             this.dt_optimize.MultiSelect = false;
             this.dt_optimize.Name = "dt_optimize";
             this.dt_optimize.ReadOnly = true;
             this.dt_optimize.RowHeadersVisible = false;
             this.dt_optimize.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_optimize.ShowEditingIcon = false;
-            this.dt_optimize.Size = new System.Drawing.Size(1256, 210);
+            this.dt_optimize.Size = new System.Drawing.Size(1256, 175);
             this.dt_optimize.TabIndex = 13;
             this.dt_optimize.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cutLengthTable_CellClick);
             this.dt_optimize.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_optimize_DataError);
+            // 
+            // optimize_description
+            // 
+            this.optimize_description.DataPropertyName = "cutlength_desc_grade";
+            this.optimize_description.HeaderText = "Description (Grade)";
+            this.optimize_description.Name = "optimize_description";
+            this.optimize_description.ReadOnly = true;
+            this.optimize_description.Width = 124;
+            // 
+            // optimize_no_of_parts
+            // 
+            this.optimize_no_of_parts.DataPropertyName = "quantity";
+            this.optimize_no_of_parts.HeaderText = "No. of Parts";
+            this.optimize_no_of_parts.Name = "optimize_no_of_parts";
+            this.optimize_no_of_parts.ReadOnly = true;
+            this.optimize_no_of_parts.Width = 87;
+            // 
+            // optimize_uncut
+            // 
+            this.optimize_uncut.DataPropertyName = "uncut_quantity";
+            this.optimize_uncut.HeaderText = "Uncut Parts";
+            this.optimize_uncut.Name = "optimize_uncut";
+            this.optimize_uncut.ReadOnly = true;
+            this.optimize_uncut.Width = 86;
+            // 
+            // optimize_part_length
+            // 
+            this.optimize_part_length.DataPropertyName = "total_parts_length";
+            this.optimize_part_length.HeaderText = "Total Parts Length (mm)";
+            this.optimize_part_length.Name = "optimize_part_length";
+            this.optimize_part_length.ReadOnly = true;
+            this.optimize_part_length.Width = 119;
+            // 
+            // optimize_stock_length
+            // 
+            this.optimize_stock_length.DataPropertyName = "total_stock_length";
+            this.optimize_stock_length.HeaderText = "Total Stock Length (mm)";
+            this.optimize_stock_length.Name = "optimize_stock_length";
+            this.optimize_stock_length.ReadOnly = true;
+            this.optimize_stock_length.Width = 123;
+            // 
+            // optimize_gross_yield
+            // 
+            this.optimize_gross_yield.DataPropertyName = "gross_yield";
+            this.optimize_gross_yield.HeaderText = "Gross Yield %";
+            this.optimize_gross_yield.Name = "optimize_gross_yield";
+            this.optimize_gross_yield.ReadOnly = true;
+            this.optimize_gross_yield.Width = 86;
+            // 
+            // optimize_cost
+            // 
+            this.optimize_cost.DataPropertyName = "cost";
+            this.optimize_cost.HeaderText = "Cost";
+            this.optimize_cost.Name = "optimize_cost";
+            this.optimize_cost.ReadOnly = true;
+            this.optimize_cost.Width = 55;
+            // 
+            // optimize_no_layout
+            // 
+            this.optimize_no_layout.DataPropertyName = "total_layout";
+            this.optimize_no_layout.HeaderText = "No. of Layout";
+            this.optimize_no_layout.Name = "optimize_no_layout";
+            this.optimize_no_layout.ReadOnly = true;
+            this.optimize_no_layout.Width = 96;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.tableLayoutPanel2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 232);
+            this.panel2.Location = new System.Drawing.Point(0, 184);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1262, 168);
+            this.panel2.Size = new System.Drawing.Size(1262, 180);
             this.panel2.TabIndex = 14;
             // 
             // tableLayoutPanel2
@@ -223,7 +287,7 @@ namespace LCC.Components
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1262, 168);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1262, 180);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
             // panel9
@@ -233,7 +297,7 @@ namespace LCC.Components
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(949, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(310, 162);
+            this.panel9.Size = new System.Drawing.Size(310, 174);
             this.panel9.TabIndex = 1;
             // 
             // dt_summary_materials
@@ -271,15 +335,47 @@ namespace LCC.Components
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dt_summary_materials.DefaultCellStyle = dataGridViewCellStyle4;
             this.dt_summary_materials.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_summary_materials.Location = new System.Drawing.Point(0, 32);
+            this.dt_summary_materials.Location = new System.Drawing.Point(0, 37);
             this.dt_summary_materials.MultiSelect = false;
             this.dt_summary_materials.Name = "dt_summary_materials";
             this.dt_summary_materials.ReadOnly = true;
             this.dt_summary_materials.RowHeadersVisible = false;
             this.dt_summary_materials.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_summary_materials.ShowEditingIcon = false;
-            this.dt_summary_materials.Size = new System.Drawing.Size(310, 130);
+            this.dt_summary_materials.Size = new System.Drawing.Size(310, 137);
             this.dt_summary_materials.TabIndex = 16;
+            // 
+            // layout_material_qty
+            // 
+            this.layout_material_qty.DataPropertyName = "layout_material_qty";
+            this.layout_material_qty.HeaderText = "Qty";
+            this.layout_material_qty.Name = "layout_material_qty";
+            this.layout_material_qty.ReadOnly = true;
+            this.layout_material_qty.Width = 51;
+            // 
+            // layout_material_stock_code
+            // 
+            this.layout_material_stock_code.DataPropertyName = "layout_material_stock_code";
+            this.layout_material_stock_code.HeaderText = "Stock Code";
+            this.layout_material_stock_code.Name = "layout_material_stock_code";
+            this.layout_material_stock_code.ReadOnly = true;
+            this.layout_material_stock_code.Width = 92;
+            // 
+            // layout_material_length
+            // 
+            this.layout_material_length.DataPropertyName = "layout_material_length";
+            this.layout_material_length.HeaderText = "Length (mm)";
+            this.layout_material_length.Name = "layout_material_length";
+            this.layout_material_length.ReadOnly = true;
+            this.layout_material_length.Width = 102;
+            // 
+            // layout_material_stock_type
+            // 
+            this.layout_material_stock_type.DataPropertyName = "layout_material_stock_type";
+            this.layout_material_stock_type.HeaderText = "Stock Type";
+            this.layout_material_stock_type.Name = "layout_material_stock_type";
+            this.layout_material_stock_type.ReadOnly = true;
+            this.layout_material_stock_type.Width = 90;
             // 
             // sumarry_materials_label
             // 
@@ -298,7 +394,7 @@ namespace LCC.Components
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(634, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(309, 162);
+            this.panel7.Size = new System.Drawing.Size(309, 174);
             this.panel7.TabIndex = 0;
             // 
             // sub_layout_label
@@ -346,15 +442,47 @@ namespace LCC.Components
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dt_summary_cutlengths.DefaultCellStyle = dataGridViewCellStyle6;
             this.dt_summary_cutlengths.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_summary_cutlengths.Location = new System.Drawing.Point(0, 32);
+            this.dt_summary_cutlengths.Location = new System.Drawing.Point(0, 37);
             this.dt_summary_cutlengths.MultiSelect = false;
             this.dt_summary_cutlengths.Name = "dt_summary_cutlengths";
             this.dt_summary_cutlengths.ReadOnly = true;
             this.dt_summary_cutlengths.RowHeadersVisible = false;
             this.dt_summary_cutlengths.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_summary_cutlengths.ShowEditingIcon = false;
-            this.dt_summary_cutlengths.Size = new System.Drawing.Size(309, 130);
+            this.dt_summary_cutlengths.Size = new System.Drawing.Size(309, 137);
             this.dt_summary_cutlengths.TabIndex = 15;
+            // 
+            // layout_sequence_no
+            // 
+            this.layout_sequence_no.DataPropertyName = "layout_sequence_no";
+            this.layout_sequence_no.HeaderText = "Seq. #";
+            this.layout_sequence_no.Name = "layout_sequence_no";
+            this.layout_sequence_no.ReadOnly = true;
+            this.layout_sequence_no.Width = 65;
+            // 
+            // layout_part_code
+            // 
+            this.layout_part_code.DataPropertyName = "layout_part_code";
+            this.layout_part_code.HeaderText = "Part Code";
+            this.layout_part_code.Name = "layout_part_code";
+            this.layout_part_code.ReadOnly = true;
+            this.layout_part_code.Width = 83;
+            // 
+            // layout_length
+            // 
+            this.layout_length.DataPropertyName = "layout_length";
+            this.layout_length.HeaderText = "Length (mm)";
+            this.layout_length.Name = "layout_length";
+            this.layout_length.ReadOnly = true;
+            this.layout_length.Width = 102;
+            // 
+            // layout_qty
+            // 
+            this.layout_qty.DataPropertyName = "layout_qty";
+            this.layout_qty.HeaderText = "Quantity";
+            this.layout_qty.Name = "layout_qty";
+            this.layout_qty.ReadOnly = true;
+            this.layout_qty.Width = 78;
             // 
             // panel10
             // 
@@ -363,7 +491,7 @@ namespace LCC.Components
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(3, 3);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(625, 162);
+            this.panel10.Size = new System.Drawing.Size(625, 174);
             this.panel10.TabIndex = 2;
             // 
             // dt_stockLength
@@ -404,7 +532,7 @@ namespace LCC.Components
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dt_stockLength.DefaultCellStyle = dataGridViewCellStyle8;
             this.dt_stockLength.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_stockLength.Location = new System.Drawing.Point(0, 32);
+            this.dt_stockLength.Location = new System.Drawing.Point(0, 37);
             this.dt_stockLength.MultiSelect = false;
             this.dt_stockLength.Name = "dt_stockLength";
             this.dt_stockLength.ReadOnly = true;
@@ -420,7 +548,7 @@ namespace LCC.Components
             this.dt_stockLength.RowTemplate.Height = 25;
             this.dt_stockLength.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dt_stockLength.ShowEditingIcon = false;
-            this.dt_stockLength.Size = new System.Drawing.Size(625, 130);
+            this.dt_stockLength.Size = new System.Drawing.Size(625, 137);
             this.dt_stockLength.TabIndex = 2;
             this.dt_stockLength.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.stockLengthTable_CellClick);
             this.dt_stockLength.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_optimize_DataError);
@@ -507,134 +635,6 @@ namespace LCC.Components
             // 
             this.material_qty.HeaderText = "Quantity";
             this.material_qty.Name = "material_qty";
-            // 
-            // optimize_description
-            // 
-            this.optimize_description.DataPropertyName = "cutlength_desc_grade";
-            this.optimize_description.HeaderText = "Description (Grade)";
-            this.optimize_description.Name = "optimize_description";
-            this.optimize_description.ReadOnly = true;
-            this.optimize_description.Width = 124;
-            // 
-            // optimize_no_of_parts
-            // 
-            this.optimize_no_of_parts.DataPropertyName = "quantity";
-            this.optimize_no_of_parts.HeaderText = "No. of Parts";
-            this.optimize_no_of_parts.Name = "optimize_no_of_parts";
-            this.optimize_no_of_parts.ReadOnly = true;
-            this.optimize_no_of_parts.Width = 87;
-            // 
-            // optimize_uncut
-            // 
-            this.optimize_uncut.DataPropertyName = "uncut_quantity";
-            this.optimize_uncut.HeaderText = "Uncut Parts";
-            this.optimize_uncut.Name = "optimize_uncut";
-            this.optimize_uncut.ReadOnly = true;
-            this.optimize_uncut.Width = 86;
-            // 
-            // optimize_part_length
-            // 
-            this.optimize_part_length.DataPropertyName = "total_parts_length";
-            this.optimize_part_length.HeaderText = "Total Parts Length (mm)";
-            this.optimize_part_length.Name = "optimize_part_length";
-            this.optimize_part_length.ReadOnly = true;
-            this.optimize_part_length.Width = 119;
-            // 
-            // optimize_stock_length
-            // 
-            this.optimize_stock_length.DataPropertyName = "total_stock_length";
-            this.optimize_stock_length.HeaderText = "Total Stock Length (mm)";
-            this.optimize_stock_length.Name = "optimize_stock_length";
-            this.optimize_stock_length.ReadOnly = true;
-            this.optimize_stock_length.Width = 123;
-            // 
-            // optimize_gross_yield
-            // 
-            this.optimize_gross_yield.DataPropertyName = "gross_yield";
-            this.optimize_gross_yield.HeaderText = "Gross Yield %";
-            this.optimize_gross_yield.Name = "optimize_gross_yield";
-            this.optimize_gross_yield.ReadOnly = true;
-            this.optimize_gross_yield.Width = 86;
-            // 
-            // optimize_cost
-            // 
-            this.optimize_cost.DataPropertyName = "cost";
-            this.optimize_cost.HeaderText = "Cost";
-            this.optimize_cost.Name = "optimize_cost";
-            this.optimize_cost.ReadOnly = true;
-            this.optimize_cost.Width = 55;
-            // 
-            // optimize_no_layout
-            // 
-            this.optimize_no_layout.DataPropertyName = "total_layout";
-            this.optimize_no_layout.HeaderText = "No. of Layout";
-            this.optimize_no_layout.Name = "optimize_no_layout";
-            this.optimize_no_layout.ReadOnly = true;
-            this.optimize_no_layout.Width = 96;
-            // 
-            // layout_sequence_no
-            // 
-            this.layout_sequence_no.DataPropertyName = "layout_sequence_no";
-            this.layout_sequence_no.HeaderText = "Seq. #";
-            this.layout_sequence_no.Name = "layout_sequence_no";
-            this.layout_sequence_no.ReadOnly = true;
-            this.layout_sequence_no.Width = 65;
-            // 
-            // layout_part_code
-            // 
-            this.layout_part_code.DataPropertyName = "layout_part_code";
-            this.layout_part_code.HeaderText = "Part Code";
-            this.layout_part_code.Name = "layout_part_code";
-            this.layout_part_code.ReadOnly = true;
-            this.layout_part_code.Width = 83;
-            // 
-            // layout_length
-            // 
-            this.layout_length.DataPropertyName = "layout_length";
-            this.layout_length.HeaderText = "Length (mm)";
-            this.layout_length.Name = "layout_length";
-            this.layout_length.ReadOnly = true;
-            this.layout_length.Width = 102;
-            // 
-            // layout_qty
-            // 
-            this.layout_qty.DataPropertyName = "layout_qty";
-            this.layout_qty.HeaderText = "Quantity";
-            this.layout_qty.Name = "layout_qty";
-            this.layout_qty.ReadOnly = true;
-            this.layout_qty.Width = 78;
-            // 
-            // layout_material_qty
-            // 
-            this.layout_material_qty.DataPropertyName = "layout_material_qty";
-            this.layout_material_qty.HeaderText = "Qty";
-            this.layout_material_qty.Name = "layout_material_qty";
-            this.layout_material_qty.ReadOnly = true;
-            this.layout_material_qty.Width = 51;
-            // 
-            // layout_material_stock_code
-            // 
-            this.layout_material_stock_code.DataPropertyName = "layout_material_stock_code";
-            this.layout_material_stock_code.HeaderText = "Stock Code";
-            this.layout_material_stock_code.Name = "layout_material_stock_code";
-            this.layout_material_stock_code.ReadOnly = true;
-            this.layout_material_stock_code.Width = 92;
-            // 
-            // layout_material_length
-            // 
-            this.layout_material_length.DataPropertyName = "layout_material_length";
-            this.layout_material_length.HeaderText = "Length (mm)";
-            this.layout_material_length.Name = "layout_material_length";
-            this.layout_material_length.ReadOnly = true;
-            this.layout_material_length.Width = 102;
-            // 
-            // layout_material_stock_type
-            // 
-            this.layout_material_stock_type.DataPropertyName = "layout_material_stock_type";
-            this.layout_material_stock_type.HeaderText = "Stock Type";
-            this.layout_material_stock_type.Name = "layout_material_stock_type";
-            this.layout_material_stock_type.ReadOnly = true;
-            this.layout_material_stock_type.Width = 90;
             // 
             // OptimizeComponent
             // 

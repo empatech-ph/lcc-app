@@ -105,7 +105,7 @@ namespace LCC
                             grade = bIsWithExisting ? this.sGrade : this.getValidatedValue(rec, 1, this.sGrade),
                             length = double.Parse(this.getValidatedValue(rec, bIsWithExisting ? 0 : 2, "0.00")),
                             cost = double.Parse(this.getValidatedValue(rec, bIsWithExisting ? 1 : 3, "0.00")),
-                            stock_code = UtilsLibrary.CreateRandomString(10),
+                            stock_code = "",
                             note = "",
                             visibility = true,
                             editable = true

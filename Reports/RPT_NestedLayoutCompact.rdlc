@@ -500,7 +500,7 @@
                 </Paragraphs>
                 <rd:DefaultName>cutlength_desc_grade</rd:DefaultName>
                 <Top>0.04514in</Top>
-                <Left>0.125in</Left>
+                <Left>0.15625in</Left>
                 <Height>0.25in</Height>
                 <Width>3.23611in</Width>
                 <Style>
@@ -516,7 +516,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Height>0.33681in</Height>
+            <Height>0.375in</Height>
             <Width>6.48958in</Width>
             <ZIndex>16</ZIndex>
             <Style>
@@ -825,7 +825,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>1.76042in</Height>
+              <Height>1.1875in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -835,8 +835,7 @@
                           <Source>External</Source>
                           <Value>=Fields!path.Value</Value>
                           <Sizing>FitProportional</Sizing>
-                          <Left>0.01583in</Left>
-                          <Height>1.76042in</Height>
+                          <Height>1.1875in</Height>
                           <Width>10.79667in</Width>
                           <Style>
                             <Border>
@@ -873,7 +872,7 @@
         <DataSetName>OptimizedStockLengths</DataSetName>
         <Top>3.72292in</Top>
         <Left>0.11834in</Left>
-        <Height>1.76042in</Height>
+        <Height>1.1875in</Height>
         <Width>10.8125in</Width>
         <ZIndex>2</ZIndex>
         <Style>
@@ -889,7 +888,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Nesting Layout Report</Value>
+                <Value>Nesting Layout Report (Compressed)</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -904,7 +903,7 @@
         <Top>0.14111in</Top>
         <Left>0.13417in</Left>
         <Height>0.25in</Height>
-        <Width>1.70292in</Width>
+        <Width>2.6925in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -917,7 +916,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>5.48334in</Height>
+    <Height>5.02501in</Height>
     <Style />
   </Body>
   <Width>10.93084in</Width>

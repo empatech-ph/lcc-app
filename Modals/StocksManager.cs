@@ -23,6 +23,7 @@ namespace LCC.Modals
         private dynamic oLogin;
         public string sDescription = "";
         public string sGrade= "";
+        public bool bIsGeneral = false;
        
         public StocksManager()
         {
@@ -34,6 +35,7 @@ namespace LCC.Modals
             {
                 oHeader.HeaderText = oHeader.HeaderText.Replace("(mm)", "(" + unit + ")");
             }
+            this.bIsGeneral = false;
         }
 
         public StocksManager(string sStockType)
@@ -50,10 +52,13 @@ namespace LCC.Modals
 
             this.l_material.Text = (sStockType == "BO") ? "Commercial Length List" : "Inventory List";
 
-            if (oLogin.user_type == 2 && sStockType == "ST")
+            if (oLogin.user_type != 1 && sStockType == "ST")
             {
                 this.btn_add.Visible = false;
+                this.btnImport.Visible = false;
+                this.dt_stock.ReadOnly = true;
             }
+            this.bIsGeneral = true;
         }
 
         public void initMaterialTitle()
@@ -75,7 +80,7 @@ namespace LCC.Modals
             if (this.sStockType != "") {
                 IEnumerable<MaterialModel> oMaterialList = Library.UtilsLibrary.getUserFile().GetCollection<MaterialModel>()
                 .AsQueryable();
-                oStockList = oStockList.Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == this.sStockType);
+                oStockList = oStockList.Where(e => (e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == this.sStockType) || (e.is_general == true && e.stock_type == this.sStockType));
                 
                 this.dt_stock.Columns["stock_type"].Visible = false;
                 this.dt_stock.Columns["grade"].ReadOnly = true;
@@ -94,6 +99,7 @@ namespace LCC.Modals
             this.dt_stock.Columns["stock_type"].ReadOnly = true;
             this.dt_stock.Columns["cut_stock_type"].Visible = false;
             this.dt_stock.Columns["material_id"].Visible = false;
+            this.dt_stock.Columns["is_general"].Visible = false;
             this.dt_stock.Columns["visibility"].Visible = false;
             this.dt_stock.Columns["editable"].Visible = false;
             this.dt_stock.Columns["total_cost"].Visible = false;
@@ -103,6 +109,7 @@ namespace LCC.Modals
         {
             var oAddStockModal = new AddStocksModal();
             oAddStockModal.oStockManager = this;
+            oAddStockModal.bIsGeneral = this.bIsGeneral;
             oAddStockModal.ShowDialog();
         }
 
@@ -205,7 +212,8 @@ namespace LCC.Modals
                     description = (row.Cells["description"].Value == null) ? "" : row.Cells["description"].Value.ToString(),
                     grade = (row.Cells["grade"].Value == null) ? "" : row.Cells["grade"].Value.ToString(),
                     visibility = bool.Parse(row.Cells["visibility"].Value.ToString()),
-                    editable = bool.Parse(row.Cells["editable"].Value.ToString())
+                    editable = bool.Parse(row.Cells["editable"].Value.ToString()),
+                    is_general = bool.Parse(row.Cells["is_general"].Value.ToString()),
                 });
             }
             catch (Exception)

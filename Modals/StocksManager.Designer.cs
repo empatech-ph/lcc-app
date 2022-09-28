@@ -31,7 +31,13 @@ namespace LCC.Modals
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.dt_stock = new System.Windows.Forms.DataGridView();
+            this.btnImport = new MaterialSkin.Controls.MaterialButton();
+            this.btn_add = new MaterialSkin.Controls.MaterialButton();
+            this.l_material = new System.Windows.Forms.Label();
+            this.stockType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,13 +48,21 @@ namespace LCC.Modals
             this.note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.visibility_image = new System.Windows.Forms.DataGridViewImageColumn();
             this.editable_image = new System.Windows.Forms.DataGridViewImageColumn();
-            this.stockType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.l_material = new System.Windows.Forms.Label();
-            this.btn_add = new MaterialSkin.Controls.MaterialButton();
-            this.btnImport = new MaterialSkin.Controls.MaterialButton();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stock)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dt_stock);
+            this.panel1.Controls.Add(this.btnImport);
+            this.panel1.Controls.Add(this.btn_add);
+            this.panel1.Controls.Add(this.l_material);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 68);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1103, 478);
+            this.panel1.TabIndex = 0;
             // 
             // dt_stock
             // 
@@ -88,20 +102,85 @@ namespace LCC.Modals
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dt_stock.DefaultCellStyle = dataGridViewCellStyle2;
             this.dt_stock.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dt_stock.Location = new System.Drawing.Point(3, 156);
+            this.dt_stock.Location = new System.Drawing.Point(0, 88);
             this.dt_stock.Name = "dt_stock";
             this.dt_stock.RowHeadersVisible = false;
             this.dt_stock.RowTemplate.Height = 25;
-            this.dt_stock.Size = new System.Drawing.Size(1406, 390);
-            this.dt_stock.TabIndex = 4;
-            this.dt_stock.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dt_stock_CellBeginEdit);
+            this.dt_stock.Size = new System.Drawing.Size(1103, 390);
+            this.dt_stock.TabIndex = 8;
             this.dt_stock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCellClick);
-            this.dt_stock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCellClick);
             this.dt_stock.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_stock_CellDoubleClick);
             this.dt_stock.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dt_stock_CellEndEdit);
-            this.dt_stock.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dt_stock_CellFormatting);
-            this.dt_stock.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dt_stock_DataBindingComplete);
-            this.dt_stock.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dt_stock_DataError);
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnImport.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnImport.Depth = 0;
+            this.btnImport.DrawShadows = true;
+            this.btnImport.HighEmphasis = true;
+            this.btnImport.Icon = global::LCC.Properties.Resources.import;
+            this.btnImport.Location = new System.Drawing.Point(112, 27);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnImport.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnImport.Size = new System.Drawing.Size(104, 36);
+            this.btnImport.TabIndex = 9;
+            this.btnImport.Text = "Import";
+            this.btnImport.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btnImport.UseAccentColor = false;
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btn_add
+            // 
+            this.btn_add.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btn_add.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btn_add.Depth = 0;
+            this.btn_add.DrawShadows = true;
+            this.btn_add.HighEmphasis = true;
+            this.btn_add.Icon = global::LCC.Properties.Resources.add;
+            this.btn_add.Location = new System.Drawing.Point(17, 27);
+            this.btn_add.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btn_add.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_add.Size = new System.Drawing.Size(78, 36);
+            this.btn_add.TabIndex = 7;
+            this.btn_add.Text = "Add";
+            this.btn_add.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.btn_add.UseAccentColor = false;
+            this.btn_add.UseVisualStyleBackColor = false;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // l_material
+            // 
+            this.l_material.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.l_material.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.l_material.Location = new System.Drawing.Point(265, 7);
+            this.l_material.Name = "l_material";
+            this.l_material.Size = new System.Drawing.Size(604, 78);
+            this.l_material.TabIndex = 6;
+            this.l_material.Text = "Material";
+            this.l_material.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // stockType
+            // 
+            this.stockType.HeaderText = "Stock Type";
+            this.stockType.Name = "stockType";
+            // 
+            // stockCode
+            // 
+            this.stockCode.HeaderText = "Stock Code";
+            this.stockCode.Name = "stockCode";
             // 
             // description
             // 
@@ -166,6 +245,7 @@ namespace LCC.Modals
             // visibility_image
             // 
             this.visibility_image.HeaderText = "Visibility";
+            this.visibility_image.Image = global::LCC.Properties.Resources.light_on;
             this.visibility_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.visibility_image.Name = "visibility_image";
             this.visibility_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -174,102 +254,36 @@ namespace LCC.Modals
             // editable_image
             // 
             this.editable_image.HeaderText = "Editable";
+            this.editable_image.Image = global::LCC.Properties.Resources.unlocked;
             this.editable_image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.editable_image.Name = "editable_image";
             this.editable_image.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.editable_image.Width = 75;
             // 
-            // stockType
-            // 
-            this.stockType.HeaderText = "Stock Type";
-            this.stockType.Name = "stockType";
-            // 
-            // stockCode
-            // 
-            this.stockCode.HeaderText = "Stock Code";
-            this.stockCode.Name = "stockCode";
-            // 
-            // l_material
-            // 
-            this.l_material.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.l_material.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.l_material.Location = new System.Drawing.Point(416, 72);
-            this.l_material.Name = "l_material";
-            this.l_material.Size = new System.Drawing.Size(604, 78);
-            this.l_material.TabIndex = 2;
-            this.l_material.Text = "Material";
-            this.l_material.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_add
-            // 
-            this.btn_add.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btn_add.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_add.Depth = 0;
-            this.btn_add.DrawShadows = true;
-            this.btn_add.HighEmphasis = true;
-            this.btn_add.Icon = global::LCC.Properties.Resources.add;
-            this.btn_add.Location = new System.Drawing.Point(7, 92);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btn_add.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_add.Size = new System.Drawing.Size(78, 36);
-            this.btn_add.TabIndex = 3;
-            this.btn_add.Text = "Add";
-            this.btn_add.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.btn_add.UseAccentColor = false;
-            this.btn_add.UseVisualStyleBackColor = false;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnImport.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnImport.Depth = 0;
-            this.btnImport.DrawShadows = true;
-            this.btnImport.HighEmphasis = true;
-            this.btnImport.Icon = global::LCC.Properties.Resources.import;
-            this.btnImport.Location = new System.Drawing.Point(1304, 24);
-            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnImport.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnImport.Name = "btnImport";
-            this.btnImport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnImport.Size = new System.Drawing.Size(104, 36);
-            this.btnImport.TabIndex = 5;
-            this.btnImport.Text = "Import";
-            this.btnImport.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
-            this.btnImport.UseAccentColor = false;
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // StocksManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1412, 549);
-            this.Controls.Add(this.btnImport);
-            this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.l_material);
-            this.Controls.Add(this.dt_stock);
+            this.ClientSize = new System.Drawing.Size(1109, 549);
+            this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1109, 549);
+            this.MinimumSize = new System.Drawing.Size(1109, 549);
             this.Name = "StocksManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stocks";
             this.Load += new System.EventHandler(this.StocksManager_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dt_stock)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dt_stock;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockCode;
-        public System.Windows.Forms.Label l_material;
-        private MaterialSkin.Controls.MaterialButton btn_add;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.DataGridViewTextBoxColumn grade;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
@@ -281,5 +295,9 @@ namespace LCC.Modals
         private System.Windows.Forms.DataGridViewImageColumn visibility_image;
         private System.Windows.Forms.DataGridViewImageColumn editable_image;
         private MaterialSkin.Controls.MaterialButton btnImport;
+        private MaterialSkin.Controls.MaterialButton btn_add;
+        public System.Windows.Forms.Label l_material;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockCode;
     }
 }

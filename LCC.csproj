@@ -11,6 +11,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Reports\RPT_CutlengthReport.rdlc" />
+	  <None Remove="Reports\RPT_InventoryList.rdlc" />
+	  <None Remove="Reports\RPT_MaterialReport_RS.rdlc" />
+	  <None Remove="Reports\RPT_MaterialReport_STBO.rdlc" />
+	  <None Remove="Reports\RPT_NestedLayout.rdlc" />
+	  <None Remove="Reports\RPT_NestedLayoutCompact.rdlc" />
+	  <None Remove="Reports\RPT_NestingReport.rdlc" />
+	  <None Remove="Reports\RPT_ResultSummary.rdlc" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<COMReference Include="Microsoft.Office.Interop.Excel">
 			<WrapperTool>tlbimp</WrapperTool>
 			<VersionMinor>9</VersionMinor>
@@ -24,6 +35,30 @@
 
 	<ItemGroup>
 	  <Content Include="183331897_150351457100256_4252464618922505131_n (3).ico" />
+	  <Content Include="Reports\RPT_CutlengthReport.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_InventoryList.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_MaterialReport_RS.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_MaterialReport_STBO.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_NestedLayoutCompact.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_NestedLayout.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_NestingReport.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Reports\RPT_ResultSummary.rdlc">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -75,6 +110,9 @@
 		</Compile>
 		<Compile Update="NewOrEditProject - Copy.cs">
 		  <SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Program.cs">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
 			<DesignTime>True</DesignTime>

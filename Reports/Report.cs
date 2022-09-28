@@ -21,7 +21,7 @@ namespace LCC
         {
 
             int iIncrOptiBar = 1;
-            List< TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.cutlength_id == GLOBAL.iSelectedPrintCutLengthOptimized && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
+            List< TempStocklengthModel> oTempStockLengthModel = GLOBAL.oTempStockLengthOptimized.FindAll(e => (e.description == GLOBAL.sSelectedPrintDescriptionOptimized && e.grade == GLOBAL.sSelectedPrintGradeOptimized && Convert.ToDouble(e.data.total_uncut) != e.data.stock_length));
             if (GLOBAL.isPrintNestedCompact == true)
             {
                 foreach (TempStocklengthModel oTempStockLength in oTempStockLengthModel)
@@ -39,7 +39,7 @@ namespace LCC
 
             }
             oReport.EnableExternalImages = true;
-            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_NestedLayout.rdlc", FileMode.Open);
+            using var fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/" + ((GLOBAL.isPrintNestedCompact == true) ? "RPT_NestedLayoutCompact.rdlc" : "RPT_NestedLayout.rdlc"), FileMode.Open);
             oReport.DataSources.Add(new ReportDataSource("Optimized", GLOBAL.oTempOptimized));
             oReport.DataSources.Add(new ReportDataSource("OptimizedCutLengths", GLOBAL.oTempCutlength.Where(e => e.id == GLOBAL.iSelectedPrintCutLengthOptimized)));
             oReport.DataSources.Add(new ReportDataSource("OptimizedStockLengths", oTempStockLengthModel));
@@ -62,7 +62,7 @@ namespace LCC
             
             if (isRemnant == false)
             {
-                using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_STBO.rdlc", FileMode.Open);
+                using FileStream fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/RPT_MaterialReport_STBO.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_BO", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == "BO").ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Stocks_ST", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.stock_type == "ST").ToList()));
@@ -72,7 +72,7 @@ namespace LCC
             }
             else
             {
-                using FileStream fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_MaterialReport_RS.rdlc", FileMode.Open);
+                using FileStream fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/RPT_MaterialReport_RS.rdlc", FileMode.Open);
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Scrap", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "scrap").ToList()));
                 oReport.LocalReport.DataSources.Add(new ReportDataSource("Remnant", UtilsLibrary.getUserFile().GetCollection<StockModel>().AsQueryable().Where(e => e.project_id == GLOBAL.iSelectedProjectId && e.cut_stock_type == "remnant").ToList()));
@@ -125,7 +125,7 @@ namespace LCC
             //var image = Image.FromFile(Path.Combine(Path.GetFullPath(@"..\..\"), "optBar.jpeg"));
             var parameters = new[] { new ReportParameter("optBarPanelImage", Path.Combine(UtilsLibrary.getPublicPath() + @"\L1.png"), true) };
             report.EnableExternalImages = true;
-            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_ResultSummary.rdlc", FileMode.Open);
+            using var fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/RPT_ResultSummary.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("optimizeComponent", clItems));
             report.DataSources.Add(new ReportDataSource("optimizeComponent", slItems));
@@ -167,7 +167,7 @@ namespace LCC
                 }
                 count++;
             }
-            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_CutLengthReport.rdlc", FileMode.Open);
+            using var fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/RPT_CutLengthReport.rdlc", FileMode.Open);
             oReport.LocalReport.LoadReportDefinition(fs);
             oReport.LocalReport.DataSources.Add(new ReportDataSource("Items", items));
             oReport.LocalReport.DataSources.Add(new ReportDataSource("ReportData", items));
@@ -193,7 +193,7 @@ namespace LCC
             }
             var title = isInventoryList ? "Inventory List Report" : "Commercial Lengths Report";
             var parameters = new[] { new ReportParameter("rptTitle", title) };
-            using var fs = new FileStream(Environment.CurrentDirectory + "/../../../Reports/RPT_InventoryList.rdlc", FileMode.Open);
+            using var fs = new FileStream(UtilsLibrary.getPublicPath() + "/Reports/RPT_InventoryList.rdlc", FileMode.Open);
             report.LoadReportDefinition(fs);
             report.DataSources.Add(new ReportDataSource("inventoryListReport", items));
             report.DataSources.Add(new ReportDataSource("Project", UtilsLibrary.getUserFile().GetCollection<ProjectModel>().AsQueryable().Where(e => e.id == GLOBAL.iSelectedProjectId).ToList()));

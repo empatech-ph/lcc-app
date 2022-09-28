@@ -30,6 +30,8 @@ namespace LCC.Model
         public string optimize_type { get; set; }
         public string order_no { get; set; }
         public string description { get; set; }
+        public string grade { get; set; }
+        public string part_code { get; set; }
     }
 
     public class TempStocklengthModel
@@ -47,6 +49,7 @@ namespace LCC.Model
         public int repeated { get; set; }
         public string order_no { get; set; }
         public string description { get; set; }
+        public string grade { get; set; }
         public string note { get; set; }
         public string stock_desc_grade { get; set; }
         public string optimize_type { get; set; }

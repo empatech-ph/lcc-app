@@ -15,6 +15,8 @@ namespace LCC
         public static int iSelectedProjectId = 0;
         public static int iSelectedMaterialId = 0;
         public static int iSelectedPrintCutLengthOptimized = 0;
+        public static string sSelectedPrintGradeOptimized = "";
+        public static string sSelectedPrintDescriptionOptimized = "";
         public static bool isPrintNestedCompact = false;
         public static string sSelectedGrade = "";
         public static string sSelectedDescription = "";

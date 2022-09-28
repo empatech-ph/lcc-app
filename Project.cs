@@ -23,6 +23,10 @@ using Microsoft.Reporting.WinForms;
 using GuiLabs.Undo;
 using System.Threading;
 using LCC.Modals;
+using Microsoft.Office.Interop.Excel;
+using Rectangle = System.Drawing.Rectangle;
+using Point = System.Drawing.Point;
+using Application = System.Windows.Forms.Application;
 
 namespace LCC
 {
@@ -33,6 +37,7 @@ namespace LCC
         //Project project = new Project();
         public static int selectedProject = 0;
         private OptionSettingsModel oOptionSettings;
+        dynamic oLogin;
         int LastNewRowIndex = -1;
 
         private DataStore oFile;
@@ -52,6 +57,11 @@ namespace LCC
             oOptionSettings = GLOBAL.getOptions();
 
             this.oFile = UtilsLibrary.getUserFile();
+
+            this.oLogin = new RegistryLibrary().getLogin();
+
+            this.login_details_label.Text = oLogin.email.ToString() + " - " + UtilsLibrary.getUserTypeString((int)oLogin.user_type);
+
             this.initProject();
             this.initCutLength();
 
@@ -65,6 +75,7 @@ namespace LCC
             this.optimizeComponent1.dt_optimize.Columns["part_code"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["note"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["description"].Visible = false;
+            this.optimizeComponent1.dt_optimize.Columns["grade"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["id"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["optimize_type"].Visible = false;
             this.optimizeComponent1.dt_optimize.Columns["solution_no"].Visible = false;
@@ -79,6 +90,12 @@ namespace LCC
             this.optimizeComponent1.dt_stockLength.Columns["kerf"].Visible = false;
             this.optimizeComponent1.dt_stockLength.Columns["scrap"].Visible = false;
             this.optimizeComponent1.dt_stockLength.Columns["optimize_type"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["cost"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["total_cut"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["order_no"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["description"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["grade"].Visible = false;
+            this.optimizeComponent1.dt_stockLength.Columns["path"].Visible = false;
         }
         void UpdateUndoRedoButtons()
         {
@@ -322,18 +339,9 @@ namespace LCC
             cutLengthsTable.DataSource = new BindingList<CutLengthModel>(collection);
             cutLengthsTable.Columns["id"].Visible = false;
             cutLengthsTable.Columns["project_id"].Visible = false;
-            cutLengthsTable.Columns["part_code"].HeaderText = "Part Code";
-            cutLengthsTable.Columns["description"].HeaderText = "Description";
-            cutLengthsTable.Columns["grade"].HeaderText = "Grade";
-            cutLengthsTable.Columns["quantity"].HeaderText = "Quantity";
-            cutLengthsTable.Columns["uncut_quantity"].HeaderText = "Uncut Quantity";
-            cutLengthsTable.Columns["uncut_quantity"].ReadOnly = true;
-            cutLengthsTable.Columns["length"].HeaderText = "Length " + "(" + (this.oOptionSettings.unit ?? "mm") + ")";
-            cutLengthsTable.Columns["order_number"].HeaderText = "Order Number";
-            cutLengthsTable.Columns["note"].HeaderText = "Note";
+            cutLengthsTable.Columns["cutlength_uncut_qty"].ReadOnly = true;
+            cutLengthsTable.Columns["cutlength_length"].HeaderText = "Length " + "(" + (this.oOptionSettings.unit ?? "mm") + ")";
             cutLengthsTable.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            cutLengthsTable.Columns["description"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            cutLengthsTable.Columns["note"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
         private void cutLengthsTable_UserAddedRow(object sender, DataGridViewRowEventArgs e)
@@ -350,26 +358,26 @@ namespace LCC
                     var row = cutLengthsTable.Rows[e.RowIndex];
                     if (tabOptiPlus.SelectedTab.Name == "cutLengthTab")
                     {
-                        if (row.Cells["description"].Value != null && row.Cells["grade"].Value != null && row.Cells["quantity"].Value != null && row.Cells["length"].Value != null)
+                        if (row.Cells["cutlength_description"].Value != null && row.Cells["cutlength_grade"].Value != null && row.Cells["cutlength_qty"].Value != null && row.Cells["cutlength_length"].Value != null)
                         {
                             this.oFile.GetCollection<CutLengthModel>().InsertOne(new CutLengthModel
                             {
                                 id = 1,
                                 project_id = GLOBAL.iSelectedProjectId,
-                                part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
-                                description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
-                                grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
-                                quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
-                                uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                                length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0.00,
-                                order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
-                                note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                                part_code = row.Cells["cutlength_partcode"].Value != null ? row.Cells["cutlength_partcode"].Value.ToString() : string.Empty,
+                                description = row.Cells["cutlength_description"].Value != null ? row.Cells["cutlength_description"].Value.ToString() : string.Empty,
+                                grade = row.Cells["cutlength_grade"].Value != null ? row.Cells["cutlength_grade"].Value.ToString() : string.Empty,
+                                quantity = row.Cells["cutlength_qty"].Value != null ? int.Parse(row.Cells["cutlength_qty"].Value.ToString()) : 0,
+                                uncut_quantity = row.Cells["cutlength_uncut_qty"].Value != null ? int.Parse(row.Cells["cutlength_uncut_qty"].Value.ToString()) : 0,
+                                length = row.Cells["cutlength_length"].Value != null ? double.Parse(row.Cells["cutlength_length"].Value.ToString()) : 0.00,
+                                order_number = row.Cells["cutlength_order_no"].Value != null ? row.Cells["cutlength_order_no"].Value.ToString() : string.Empty,
+                                note = row.Cells["cutlength_note"].Value != null ? row.Cells["cutlength_note"].Value.ToString() : string.Empty,
                             });
                         }
                         else
                         {
                             MessageBox.Show("Fields are required and can't be null.");
-                            cutLengthsTable.Rows.RemoveAt(cutLengthsTable.NewRowIndex);
+                            cutLengthsTable.Rows[cutLengthsTable.NewRowIndex - 1].DefaultCellStyle.BackColor = Color.Salmon;
                         }
                     }
                     else
@@ -387,7 +395,8 @@ namespace LCC
                 }
                 catch (Exception ee)
                 {
-                    MessageBox.Show("Error!, " + ee.Message);
+                    MessageBox.Show(ee.Message.ToString());
+                    cutLengthsTable.Rows[cutLengthsTable.NewRowIndex - 1].DefaultCellStyle.BackColor = Color.Salmon;
                 }
                 LastNewRowIndex = -1;
             }
@@ -402,14 +411,14 @@ namespace LCC
                 {
                     id = int.Parse(row.Cells["id"].Value.ToString()),
                     project_id = GLOBAL.iSelectedProjectId,
-                    part_code = row.Cells["part_code"].Value != null ? row.Cells["part_code"].Value.ToString() : string.Empty,
-                    description = row.Cells["description"].Value != null ? row.Cells["description"].Value.ToString() : string.Empty,
-                    grade = row.Cells["grade"].Value != null ? row.Cells["grade"].Value.ToString() : string.Empty,
-                    quantity = row.Cells["quantity"].Value != null ? int.Parse(row.Cells["quantity"].Value.ToString()) : 0,
-                    uncut_quantity = row.Cells["uncut_quantity"].Value != null ? int.Parse(row.Cells["uncut_quantity"].Value.ToString()) : 0,
-                    length = row.Cells["length"].Value != null ? double.Parse(row.Cells["length"].Value.ToString()) : 0.00F,
-                    order_number = row.Cells["order_number"].Value != null ? row.Cells["order_number"].Value.ToString() : string.Empty,
-                    note = row.Cells["note"].Value != null ? row.Cells["note"].Value.ToString() : string.Empty,
+                    part_code = row.Cells["cutlength_partcode"].Value != null ? row.Cells["cutlength_partcode"].Value.ToString() : string.Empty,
+                    description = row.Cells["cutlength_description"].Value != null ? row.Cells["cutlength_description"].Value.ToString() : string.Empty,
+                    grade = row.Cells["cutlength_grade"].Value != null ? row.Cells["cutlength_grade"].Value.ToString() : string.Empty,
+                    quantity = row.Cells["cutlength_qty"].Value != null ? int.Parse(row.Cells["cutlength_qty"].Value.ToString()) : 0,
+                    uncut_quantity = row.Cells["cutlength_uncut_qty"].Value != null ? int.Parse(row.Cells["cutlength_uncut_qty"].Value.ToString()) : 0,
+                    length = row.Cells["cutlength_length"].Value != null ? double.Parse(row.Cells["cutlength_length"].Value.ToString()) : 0.00F,
+                    order_number = row.Cells["cutlength_order_no"].Value != null ? row.Cells["cutlength_order_no"].Value.ToString() : string.Empty,
+                    note = row.Cells["cutlength_note"].Value != null ? row.Cells["cutlength_note"].Value.ToString() : string.Empty,
                 });
             }
         }
@@ -459,6 +468,14 @@ namespace LCC
         {
             this.optimizeBtn.Visible = false;
             this.stopButton.Visible = false;
+            if (GLOBAL.iSelectedProjectId <= 0)
+            {
+                cutLengthsTable.AllowUserToAddRows = false;
+            } else
+            {
+
+                cutLengthsTable.AllowUserToAddRows = true;
+            }
             if (this.tabOptiPlus.SelectedTab.Name == "materialTab")
             {
                 this.optimizeBtn.Visible = true;
@@ -634,13 +651,45 @@ namespace LCC
         {
             this.optimizeBtn.Enabled = true;
             this.progressOptimize.Value = 0;
+            List<TempCutlengthModel> oDTOptimize = GLOBAL.oTempCutlength.Distinct()
+                    .GroupBy(e => new { e.description, e.grade })
+                    .Select(e => new TempCutlengthModel()
+                    {
+                        cost = e.First().cost,
+                        cutlength_desc_grade = e.First().cutlength_desc_grade,
+                        description = e.First().description,
+                        grade = e.First().grade,
+                        gross_yield = e.First().gross_yield,
+                        id = e.First().id,
+                        length = e.Sum(e => e.length),
+                        note = e.First().note,
+                        optimize_type = e.First().optimize_type,
+                        order_number = e.First().order_number,
+                        part_code = e.First().part_code,
+                        project_id = e.First().project_id,
+                        quantity = e.Sum(e => e.quantity),
+                        solution_no = e.First().solution_no,
+                        total_layout = e.Count(),
+                        total_parts_length = e.Sum(e => e.total_parts_length),
+                        total_stock_length = e.Sum(e => e.total_stock_length),
+                        uncut_quantity = e.Sum(e => e.uncut_quantity),
 
-            this.optimizeComponent1.dt_optimize.DataSource = GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type  + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
+                    })
+                    .Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id)
+                    .ToArray().Contains(e.optimize_type + e.id)).ToList();
+            this.optimizeComponent1.dt_optimize.DataSource = oDTOptimize;
             this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {
                 this.optimizeComponent1.iSelectedCutlegthId = int.Parse(this.optimizeComponent1.dt_optimize.Rows[0].Cells["id"].Value.ToString());
+                this.optimizeComponent1.sSelectedDescription = this.optimizeComponent1.dt_optimize.Rows[0].Cells["description"].Value.ToString();
+                this.optimizeComponent1.sSelectedGrade = this.optimizeComponent1.dt_optimize.Rows[0].Cells["grade"].Value.ToString();
+
+                GLOBAL.iSelectedPrintCutLengthOptimized = this.optimizeComponent1.iSelectedCutlegthId;
+                GLOBAL.sSelectedPrintDescriptionOptimized = this.optimizeComponent1.sSelectedDescription;
+                GLOBAL.sSelectedPrintGradeOptimized = this.optimizeComponent1.sSelectedGrade;
+
                 this.optimizeComponent1.initOptimizedStockLengthDataTable();
             }
 
@@ -669,6 +718,21 @@ namespace LCC
 
         private void cutLengthsTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex != -1)
+            {
+                var row = cutLengthsTable.Rows[e.RowIndex];
+
+                if (e.ColumnIndex == cutLengthsTable.Columns["cutlength_delete"].Index)
+                {
+                    DialogResult oDialogResult = MessageBox.Show("Do you want to delete this cutlength?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (oDialogResult == DialogResult.Yes)
+                    {
+                        var collection = this.oFile.GetCollection<CutLengthModel>();
+                        collection.DeleteOne(x => x.id == (int)row.Cells["id"].Value);
+                        this.initCutLength();
+                    }
+                }
+            }
             //try
             //{
             //    if (e.RowIndex != -1)

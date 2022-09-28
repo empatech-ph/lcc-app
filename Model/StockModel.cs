@@ -23,6 +23,7 @@ namespace LCC.Model
          * scrap
          */
         public string cut_stock_type { get; set; } = "stock";
+        public bool is_general { get; set; } = false;
         public int total_cost { get; set; } = 0;
         public bool visibility { get; set; } = true;
         public bool editable { get; set; } = true;

@@ -29,7 +29,7 @@ namespace LCC.Components
             this.labelLength.Text = oStockLength.length.ToString();
             this.labelRepeat.Text = oStockLength.repeated.ToString();
             this.labelRest.Text = oStockLength.rest.ToString();
-            this.labelStockCode.Text = oStockLength.stock_code;
+            this.labelStockCode.Text = oStockLength.data.part_code;
             int iCounter = 0;
             int iNoCounter = 1;
 
@@ -111,7 +111,7 @@ namespace LCC.Components
                 });
             }
             
-            this.generateDetails(oStockLength.total_cut, (oStockLength.kerf > 0) ? (oStockLength.total_cut * 2) - 1 : oStockLength.total_cut, oStockLength.cutlength_length, oStockLength.rest, oStockLength.stock_code, oStockLength.trim_left, oStockLength.trim_right);
+            this.generateDetails(oStockLength.total_cut, (oStockLength.kerf > 0) ? (oStockLength.total_cut * 2) - 1 : oStockLength.total_cut, oStockLength.cutlength_length, oStockLength.rest, oStockLength.data.part_code, oStockLength.trim_left, oStockLength.trim_right);
             this.dt_parts.DataSource = GLOBAL.oTempPartOptimized.Where(e => e.temp_stock_id == oStockLength.id).ToList();
 
             string sPublicPath = UtilsLibrary.getPublicPath() + @"\L" + iIncrCounter.ToString() + ".jpg";
@@ -237,10 +237,8 @@ namespace LCC.Components
             sPublicPath = UtilsLibrary.getPublicPath() + @"\L" + this.iIncr.ToString() + ".jpg";
             using (Bitmap oImage = new Bitmap(this.mainPanel.Width, this.mainPanel.Height))
             {
-                double dNewWidth = this.mainPanel.Width / 1.8;
-                double dNewHeight = this.mainPanel.Height / 1.8;
                 this.mainPanel.DrawToBitmap(oImage, new Rectangle(0, 0, this.mainPanel.Width, this.mainPanel.Height));
-                FixedSize(oImage, (int)Math.Round(dNewWidth), (int)Math.Round(dNewHeight)).Save(sPublicPath, ImageFormat.Jpeg);
+                oImage.Save(sPublicPath, ImageFormat.Jpeg);
             }
             this.Height = 180;
 
