@@ -31,14 +31,14 @@ namespace LCC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
@@ -58,6 +58,7 @@ namespace LCC
             this.statusBarLbl = new System.Windows.Forms.Label();
             this.fileBtn = new MaterialSkin.Controls.MaterialButton();
             this.windowsPanel = new System.Windows.Forms.Panel();
+            this.login_details_label = new System.Windows.Forms.Label();
             this.searchString = new MaterialSkin.Controls.MaterialTextBox();
             this.progressOptimize = new System.Windows.Forms.ProgressBar();
             this.tabOptiPlus = new MaterialSkin.Controls.MaterialTabControl();
@@ -115,7 +116,7 @@ namespace LCC
             this.headerHandlerBar = new System.Windows.Forms.Panel();
             this.minimizeBtn = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Label();
-            this.login_details_label = new System.Windows.Forms.Label();
+            this.cleasrCutlengthsBtn = new MaterialSkin.Controls.MaterialButton();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.fileMenuStrip.SuspendLayout();
@@ -358,6 +359,16 @@ namespace LCC
             this.windowsPanel.Size = new System.Drawing.Size(1099, 610);
             this.windowsPanel.TabIndex = 21;
             // 
+            // login_details_label
+            // 
+            this.login_details_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.login_details_label.AutoSize = true;
+            this.login_details_label.Location = new System.Drawing.Point(8, 587);
+            this.login_details_label.Name = "login_details_label";
+            this.login_details_label.Size = new System.Drawing.Size(38, 15);
+            this.login_details_label.TabIndex = 13;
+            this.login_details_label.Text = "label1";
+            // 
             // searchString
             // 
             this.searchString.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -456,14 +467,14 @@ namespace LCC
             this.projectTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.projectTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.projectTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.projectTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.projectTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.projectTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.project_reference,
@@ -472,20 +483,20 @@ namespace LCC
             this.rev_no,
             this.edit_column,
             this.delete_column});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.NullValue = "-";
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.projectTable.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.NullValue = "-";
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.projectTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.projectTable.Location = new System.Drawing.Point(3, 64);
             this.projectTable.MultiSelect = false;
             this.projectTable.Name = "projectTable";
             this.projectTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.projectTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.projectTable.RowHeadersVisible = false;
             this.projectTable.RowTemplate.Height = 25;
             this.projectTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -525,11 +536,11 @@ namespace LCC
             // edit_column
             // 
             this.edit_column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.NullValue = "Edit";
-            this.edit_column.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.NullValue = "Edit";
+            this.edit_column.DefaultCellStyle = dataGridViewCellStyle2;
             this.edit_column.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.edit_column.HeaderText = "";
             this.edit_column.MinimumWidth = 100;
@@ -541,11 +552,11 @@ namespace LCC
             // delete_column
             // 
             this.delete_column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.NullValue = "Delete";
-            this.delete_column.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.NullValue = "Delete";
+            this.delete_column.DefaultCellStyle = dataGridViewCellStyle3;
             this.delete_column.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.delete_column.HeaderText = "";
             this.delete_column.MinimumWidth = 100;
@@ -691,14 +702,14 @@ namespace LCC
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cutLengthsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cutLengthsTable.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cutLengthsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.cutLengthsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cutLengthsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cutlength_partcode,
@@ -710,15 +721,15 @@ namespace LCC
             this.cutlength_order_no,
             this.cutlength_note,
             this.cutlength_delete});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.NullValue = "-";
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.cutLengthsTable.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.NullValue = "-";
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.cutLengthsTable.DefaultCellStyle = dataGridViewCellStyle8;
             this.cutLengthsTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.cutLengthsTable.Location = new System.Drawing.Point(3, 56);
             this.cutLengthsTable.Name = "cutLengthsTable";
@@ -794,11 +805,11 @@ namespace LCC
             // cutlength_delete
             // 
             this.cutlength_delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.NullValue = "Remove";
-            this.cutlength_delete.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.NullValue = "Remove";
+            this.cutlength_delete.DefaultCellStyle = dataGridViewCellStyle7;
             this.cutlength_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cutlength_delete.HeaderText = "";
             this.cutlength_delete.MinimumWidth = 100;
@@ -809,6 +820,7 @@ namespace LCC
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cleasrCutlengthsBtn);
             this.panel5.Controls.Add(this.addCutlength);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
@@ -826,7 +838,7 @@ namespace LCC
             this.addCutlength.HighEmphasis = true;
             this.addCutlength.Icon = global::LCC.Properties.Resources.add;
             this.addCutlength.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.addCutlength.Location = new System.Drawing.Point(984, 15);
+            this.addCutlength.Location = new System.Drawing.Point(782, 11);
             this.addCutlength.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.addCutlength.MouseState = MaterialSkin.MouseState.HOVER;
             this.addCutlength.Name = "addCutlength";
@@ -1189,15 +1201,27 @@ namespace LCC
             this.closeButton.Text = "  X";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Clicked);
             // 
-            // login_details_label
+            // cleasrCutlengthsBtn
             // 
-            this.login_details_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.login_details_label.AutoSize = true;
-            this.login_details_label.Location = new System.Drawing.Point(8, 587);
-            this.login_details_label.Name = "login_details_label";
-            this.login_details_label.Size = new System.Drawing.Size(38, 15);
-            this.login_details_label.TabIndex = 13;
-            this.login_details_label.Text = "label1";
+            this.cleasrCutlengthsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cleasrCutlengthsBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cleasrCutlengthsBtn.Depth = 0;
+            this.cleasrCutlengthsBtn.DrawShadows = true;
+            this.cleasrCutlengthsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cleasrCutlengthsBtn.HighEmphasis = true;
+            this.cleasrCutlengthsBtn.Icon = global::LCC.Properties.Resources.cancel_80px;
+            this.cleasrCutlengthsBtn.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.cleasrCutlengthsBtn.Location = new System.Drawing.Point(868, 11);
+            this.cleasrCutlengthsBtn.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.cleasrCutlengthsBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cleasrCutlengthsBtn.Name = "cleasrCutlengthsBtn";
+            this.cleasrCutlengthsBtn.Size = new System.Drawing.Size(192, 36);
+            this.cleasrCutlengthsBtn.TabIndex = 3;
+            this.cleasrCutlengthsBtn.Text = "Clear Cutlengths";
+            this.cleasrCutlengthsBtn.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.cleasrCutlengthsBtn.UseAccentColor = false;
+            this.cleasrCutlengthsBtn.UseVisualStyleBackColor = true;
+            this.cleasrCutlengthsBtn.Click += new System.EventHandler(this.cleasrCutlengthsBtn_Click);
             // 
             // Project
             // 
@@ -1334,5 +1358,6 @@ namespace LCC
         private DataGridViewTextBoxColumn cutlength_note;
         private DataGridViewButtonColumn cutlength_delete;
         private Label login_details_label;
+        private MaterialSkin.Controls.MaterialButton cleasrCutlengthsBtn;
     }
 }

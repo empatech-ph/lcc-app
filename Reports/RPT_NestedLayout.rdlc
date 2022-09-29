@@ -19,9 +19,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>note</rd:DefaultName>
-            <Top>0.33681in</Top>
-            <Left>0.15625in</Left>
-            <Height>1.65972in</Height>
+            <Top>0.47915in</Top>
+            <Left>0.16688in</Left>
+            <Height>1.57987in</Height>
             <Width>3.07986in</Width>
             <Style>
               <Border>
@@ -48,8 +48,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0.33333in</Top>
-            <Left>3.69098in</Left>
+            <Top>0.47915in</Top>
+            <Left>3.68034in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>1</ZIndex>
@@ -78,8 +78,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0.61111in</Top>
-            <Left>3.69098in</Left>
+            <Top>0.75693in</Top>
+            <Left>3.68034in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>2</ZIndex>
@@ -108,8 +108,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0.86111in</Top>
-            <Left>3.69098in</Left>
+            <Top>1.00693in</Top>
+            <Left>3.68034in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>3</ZIndex>
@@ -138,8 +138,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>cost</rd:DefaultName>
-            <Top>0.33333in</Top>
-            <Left>4.82639in</Left>
+            <Top>0.47915in</Top>
+            <Left>4.81575in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>4</ZIndex>
@@ -168,8 +168,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>gross_yield</rd:DefaultName>
-            <Top>0.61111in</Top>
-            <Left>4.82639in</Left>
+            <Top>0.75693in</Top>
+            <Left>4.81575in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>5</ZIndex>
@@ -198,8 +198,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>gross_yield1</rd:DefaultName>
-            <Top>0.86111in</Top>
-            <Left>4.82639in</Left>
+            <Top>1.00693in</Top>
+            <Left>4.81575in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>6</ZIndex>
@@ -214,8 +214,8 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>1.16667in</Top>
-            <Left>3.69098in</Left>
+            <Top>1.22916in</Top>
+            <Left>3.70161in</Left>
             <Height>0in</Height>
             <Width>2.13542in</Width>
             <ZIndex>7</ZIndex>
@@ -243,8 +243,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.23611in</Top>
-            <Left>3.70162in</Left>
+            <Top>1.2986in</Top>
+            <Left>3.71225in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>8</ZIndex>
@@ -275,8 +275,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.4132in</Top>
-            <Left>3.70162in</Left>
+            <Top>1.53471in</Top>
+            <Left>3.70161in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>9</ZIndex>
@@ -307,8 +307,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.6007in</Top>
-            <Left>3.70162in</Left>
+            <Top>1.72569in</Top>
+            <Left>3.71226in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>10</ZIndex>
@@ -339,8 +339,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.74654in</Top>
-            <Left>3.70162in</Left>
+            <Top>1.93403in</Top>
+            <Left>3.71225in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>11</ZIndex>
@@ -371,8 +371,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>uncut_quantity</rd:DefaultName>
-            <Top>1.74654in</Top>
-            <Left>4.81576in</Left>
+            <Top>1.93403in</Top>
+            <Left>4.82639in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>12</ZIndex>
@@ -403,8 +403,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>total_layout</rd:DefaultName>
-            <Top>1.6007in</Top>
-            <Left>4.82639in</Left>
+            <Top>1.72569in</Top>
+            <Left>4.83703in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>13</ZIndex>
@@ -435,8 +435,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>total_stock_length</rd:DefaultName>
-            <Top>1.23611in</Top>
-            <Left>4.82639in</Left>
+            <Top>1.2986in</Top>
+            <Left>4.83702in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>14</ZIndex>
@@ -467,8 +467,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>total_parts_length</rd:DefaultName>
-            <Top>1.42709in</Top>
-            <Left>4.81576in</Left>
+            <Top>1.5486in</Top>
+            <Left>4.81575in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
             <ZIndex>15</ZIndex>
@@ -516,6 +516,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
+            <Top>0.00693in</Top>
             <Height>0.33681in</Height>
             <Width>6.48958in</Width>
             <ZIndex>16</ZIndex>
@@ -528,10 +529,10 @@
           </Rectangle>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>0.59596in</Top>
-        <Left>0.1448in</Left>
-        <Height>2.10417in</Height>
-        <Width>6.48958in</Width>
+        <Top>0.53347in</Top>
+        <Left>0.13417in</Left>
+        <Height>2.18403in</Height>
+        <Width>6.50021in</Width>
         <Style>
           <Border>
             <Color>PaleTurquoise</Color>

@@ -43,11 +43,11 @@ namespace LCC.Components
             _btn_gross_yield.BackColor = Color.SkyBlue;
         }
 
-        private void initOptiplusData(int iCutlengthNo)
+        private void initOptiplusData(string sDescription, string sGrade)
         {
             this.dt_optiplus.DataSource = new List<TempOptiplusData>();
             int iCounter = 1;
-            this.oTempOptiplusData = GLOBAL.oTempCutlength.Where(e => e.id == iCutlengthNo).GroupBy(e => new
+            this.oTempOptiplusData = GLOBAL.oTempCutlength.Where(e => e.grade == sGrade && e.description == sDescription).GroupBy(e => new
             {
                 e.cutlength_desc_grade,
                 e.part_code,
@@ -172,8 +172,9 @@ namespace LCC.Components
             int iRowIndex = e.RowIndex;
             if (iRowIndex != -1)
             {
-                int iCutlengthId = int.Parse(this.dt_materials.Rows[iRowIndex].Cells["id"].Value.ToString());
-                this.initOptiplusData(iCutlengthId);
+                string sDescription = (this.dt_materials.Rows[iRowIndex].Cells["description"].Value.ToString());
+                string sGrade = (this.dt_materials.Rows[iRowIndex].Cells["grade"].Value.ToString());
+                this.initOptiplusData(sDescription, sGrade);
             }
             this.sortOptiplus();
         }
@@ -182,8 +183,9 @@ namespace LCC.Components
         {
             if (this.dt_materials.RowCount > 0)
             {
-                int iCutlengthId = int.Parse(this.dt_materials.Rows[0].Cells["id"].Value.ToString());
-                this.initOptiplusData(iCutlengthId);
+                string sDescription = (this.dt_materials.Rows[0].Cells["description"].Value.ToString());
+                string sGrade = (this.dt_materials.Rows[0].Cells["grade"].Value.ToString());
+                this.initOptiplusData(sDescription, sGrade);
             }
         }
 

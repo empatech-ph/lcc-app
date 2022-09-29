@@ -217,7 +217,7 @@
             <Top>1.16667in</Top>
             <Left>3.69098in</Left>
             <Height>0in</Height>
-            <Width>2.13542in</Width>
+            <Width>2.15668in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -339,7 +339,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.74654in</Top>
+            <Top>1.8507in</Top>
             <Left>3.70162in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>
@@ -371,7 +371,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>uncut_quantity</rd:DefaultName>
-            <Top>1.74654in</Top>
+            <Top>1.8507in</Top>
             <Left>4.81576in</Left>
             <Height>0.25in</Height>
             <Width>1in</Width>

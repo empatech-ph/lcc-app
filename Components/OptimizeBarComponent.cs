@@ -215,10 +215,8 @@ namespace LCC.Components
             string sPublicPath = UtilsLibrary.getPublicPath() + @"\L" + this.iIncr.ToString() + "-COMPRESSED.jpg";
             using (Bitmap oImage = new Bitmap(this.mainPanel.Width, this.mainPanel.Height))
             {
-                double dNewWidth = this.mainPanel.Width / 1.8;
-                double dNewHeight = this.mainPanel.Height / 1.8;
                 this.mainPanel.DrawToBitmap(oImage, new Rectangle(0, 0, this.mainPanel.Width, this.mainPanel.Height));
-                FixedSize(oImage, (int)Math.Round(dNewWidth), (int)Math.Round(dNewHeight)).Save(sPublicPath, ImageFormat.Jpeg);
+                oImage.Save(sPublicPath, ImageFormat.Jpeg);
             }
             int iHeight = 0;
             int iRowHeight = 50;

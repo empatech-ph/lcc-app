@@ -389,6 +389,7 @@ namespace LCC
                             project_reference = row.Cells["project_reference"].Value != null ? row.Cells["project_reference"].Value.ToString() : string.Empty,
                             rev_no = row.Cells["rev_no"].Value != null ? row.Cells["rev_no"].Value.ToString() : string.Empty,
                             scope = row.Cells["scope"].Value != null ? row.Cells["scope"].Value.ToString() : string.Empty,
+                            is_active = true
                         });
                     }
 
@@ -678,7 +679,27 @@ namespace LCC
                     .Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id)
                     .ToArray().Contains(e.optimize_type + e.id)).ToList();
             this.optimizeComponent1.dt_optimize.DataSource = oDTOptimize;
-            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.Distinct().Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
+            this.optiplusComponent1.dt_materials.DataSource = GLOBAL.oTempCutlength.GroupBy(e => new { e.grade, e.description})
+                .Select(e => new TempCutlengthModel() {
+                    cutlength_desc_grade = e.First().cutlength_desc_grade,
+                    description = e.First().description,
+                    grade = e.First().grade,
+                    gross_yield = e.First().gross_yield,
+                    id = e.First().id,
+                    length = e.Sum(e => e.length),
+                    note = e.First().note,
+                    optimize_type = e.First().optimize_type,
+                    order_number = e.First().order_number,
+                    part_code = e.First().part_code,
+                    project_id = e.First().project_id,
+                    quantity = e.Sum(e => e.quantity),
+                    solution_no = e.First().solution_no,
+                    total_layout = e.Count(),
+                    total_parts_length = e.Sum(e => e.total_parts_length),
+                    total_stock_length = e.Sum(e => e.total_stock_length),
+                    uncut_quantity = e.Sum(e => e.uncut_quantity),
+                })
+                .Where(e => GLOBAL.oTempCurrentUseOptimizeType.Select(e => e.optimize_type + e.cutlength_id).ToArray().Contains(e.optimize_type + e.id)).ToList();
 
             if (this.optimizeComponent1.dt_optimize.RowCount > 0)
             {
@@ -733,22 +754,6 @@ namespace LCC
                     }
                 }
             }
-            //try
-            //{
-            //    if (e.RowIndex != -1)
-            //    {
-            //        var row = cutLengthsTable.Rows[e.RowIndex];
-            //        //this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
-            //        this.statusBarLbl.Text = this.l_currentProject.Text.Remove(0, 18) + " - " + row.Cells["part_code"].Value.ToString() + " - " + row.Cells["description"].Value.ToString();
-            //        this.materialComponent1.initDatagrid();
-            //        this.initCutLength();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
-
         }
 
         private void cutLengthsTable_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -828,6 +833,17 @@ namespace LCC
             Point loc1 = MousePosition;
             this.Location = loc1;
                 //this.Location = new Point(Cursor.Position.X + e.X, Cursor.Position.Y + e.Y);
+            }
+        }
+
+        private void cleasrCutlengthsBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult oDialogResult = MessageBox.Show("Do you want to clear all the cutlengths in this project?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                var collection = this.oFile.GetCollection<CutLengthModel>();
+                collection.DeleteMany(x => x.project_id == GLOBAL.iSelectedProjectId);
+                this.initCutLength();
             }
         }
     }
